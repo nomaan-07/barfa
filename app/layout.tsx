@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Vazirmatn } from 'next/font/google';
+import { HeroUIProvider } from '@heroui/react';
 
 const vazirmatn = Vazirmatn({
   subsets: ['arabic'],
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazirmatn.variable}`}>{children}</body>
+      <body className={`${vazirmatn.variable} font-vazirmatn`}>
+        <HeroUIProvider>{children}</HeroUIProvider>
+      </body>
     </html>
   );
 }

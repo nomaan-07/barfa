@@ -1,3 +1,9 @@
+import { Button } from '@heroui/react';
+
 export default function Home() {
-  return <div>صفحه اصلی</div>;
+  return (
+    <div>
+      <Button color="primary">کلیک کن</Button>
+    </div>
+  );
 }
