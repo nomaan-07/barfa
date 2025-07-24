@@ -1,22 +1,21 @@
-import type { Metadata } from 'next';
-import './_styles/globals.css';
-import { Vazirmatn } from 'next/font/google';
-import { HeroUIProvider } from '@heroui/react';
+import type { Metadata } from "next";
+import "./_styles/globals.css";
+import { Vazirmatn } from "next/font/google";
 
 const vazirmatn = Vazirmatn({
-  subsets: ['arabic'],
-  weight: ['300', '400', '500', '600', '700', '900'],
-  variable: '--font-vazirmatn',
-  display: 'swap',
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700", "900"],
+  variable: "--font-vazirmatn",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | برفا',
-    default: 'برفا | فروشگاه اینترنتی تکنولوژی',
+    template: "%s | برفا",
+    default: "برفا | فروشگاه اینترنتی تکنولوژی",
   },
   description:
-    'تجربه خرید بهترین موبایل، لپ‌تاپ و محصولات دیجیتال از فروشگاه برفا',
+    "تجربه خرید بهترین موبایل، لپ‌تاپ و محصولات دیجیتال از فروشگاه برفا",
 };
 
 export default function RootLayout({
@@ -72,9 +71,7 @@ export default function RootLayout({
           sizes="180x180"
         />
       </head>
-      <body className={`${vazirmatn.variable} font-vazirmatn`}>
-        <HeroUIProvider>{children}</HeroUIProvider>
-      </body>
+      <body className={`${vazirmatn.variable} font-vazirmatn`}>{children}</body>
     </html>
   );
 }
