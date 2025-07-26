@@ -1,8 +1,9 @@
+import { HeroUIProvider } from "@heroui/react";
 import type { Metadata } from "next";
-import "./_styles/globals.css";
 import { Vazirmatn } from "next/font/google";
 import Header from "./_components/Header/Header";
-import { HeroUIProvider } from "@heroui/react";
+import MobileHeader from "./_components/Header/MobileHeader";
+import "./_styles/globals.css";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
@@ -73,10 +74,11 @@ export default function RootLayout({
           sizes="180x180"
         />
       </head>
-      <body className={`${vazirmatn.variable} font-vazirmatn`}>
+      <body className={`${vazirmatn.variable} font-vazirmatn bg-pink-100`}>
         <HeroUIProvider>
           <Header />
-          <main>{children}</main>
+          <MobileHeader />
+          <main className="h-1000">{children}</main>
         </HeroUIProvider>
       </body>
     </html>
