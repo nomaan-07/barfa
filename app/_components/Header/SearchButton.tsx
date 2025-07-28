@@ -40,6 +40,7 @@ function SearchButton() {
         placement="top"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        backdrop="blur"
       >
         <DrawerContent>
           {(onClose) => (
