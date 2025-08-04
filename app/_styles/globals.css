@@ -4,14 +4,20 @@
 @import "swiper/css";
 @import "swiper/css/pagination";
 @import "swiper/css/navigation";
+@import "swiper/css/effect-creative";
 
 @theme {
   --font-vazirmatn: var(--font-vazirmatn);
 }
 
+/* Swiper Related*/
 @utility hero-bullet {
   @apply bg-background m-1 inline-block size-2 rounded-full opacity-60 transition-all duration-300 ease-in md:cursor-pointer;
 }
 @utility hero-bullet--active {
   @apply bg-primary w-6 cursor-default opacity-100;
+}
+
+@utility swiper-button-disabled {
+  @apply !hidden;
 }

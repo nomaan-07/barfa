@@ -78,7 +78,7 @@ export default function RootLayout({
         <HeroUIProvider>
           <Header />
           <MobileHeader />
-          <main className="h-500">{children}</main>
+          <main className="space-y-12 pb-40">{children}</main>
         </HeroUIProvider>
       </body>
     </html>

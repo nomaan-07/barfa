@@ -4,7 +4,12 @@ import { Button } from "@heroui/react";
 import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import {
+  Autoplay,
+  EffectCreative,
+  Navigation,
+  Pagination,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 interface Item {
@@ -80,7 +85,17 @@ function Hero() {
           prevEl: ".hero-prev-btn",
           nextEl: ".hero-next-btn",
         }}
-        modules={[Pagination, Autoplay, Navigation]}
+        effect={"creative"}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: [0, 0, -400],
+          },
+          next: {
+            translate: ["-100%", 0, 0],
+          },
+        }}
+        modules={[Pagination, Autoplay, Navigation, EffectCreative]}
       >
         {items.map((item) => (
           <SwiperSlide key={item.id}>
@@ -107,9 +122,9 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-l from-black/60 to-black/20"></div>
 
             <div className="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6 text-white">
-              <h1 className="mb-4 max-w-5xl text-4xl leading-tight font-extrabold md:text-5xl lg:text-6xl">
+              <h2 className="mb-4 max-w-5xl text-4xl leading-tight font-extrabold md:text-5xl lg:text-6xl">
                 {item.title}
-              </h1>
+              </h2>
 
               <p className="mb-8 text-lg md:text-xl lg:mb-10 lg:text-2xl">
                 {item.caption}
