@@ -1,5 +1,7 @@
 import { convertToPersian } from "@/app/_utils/helper";
-import { Button, Card, Image } from "@heroui/react";
+import { Button } from "@heroui/button";
+import { Card } from "@heroui/card";
+import { Image } from "@heroui/image";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 

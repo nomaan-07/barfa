@@ -1,4 +1,4 @@
-import { Navbar, NavbarBrand, NavbarContent } from "@heroui/react";
+import { Navbar, NavbarBrand, NavbarContent } from "@heroui/navbar";
 import Logo from "../Logo";
 import HeaderButtons from "./HeaderButtons";
 import Navigation from "./Navigation";

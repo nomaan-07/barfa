@@ -4,7 +4,7 @@ import {
   NavbarContent,
   NavbarMenu,
   NavbarMenuToggle,
-} from "@heroui/react";
+} from "@heroui/navbar";
 import Logo from "../Logo";
 import CartButton from "./CartButton";
 import MobileMenu from "./MobileMenu";

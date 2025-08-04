@@ -1,4 +1,4 @@
-import { NavbarMenuItem } from "@heroui/react";
+import { NavbarMenuItem } from "@heroui/navbar";
 import { LucideLogIn } from "lucide-react";
 import Link from "next/link";
 import { items } from "./items";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Listbox, ListboxItem } from "@heroui/react";
+import { Listbox, ListboxItem } from "@heroui/listbox";
 import Link from "next/link";
 import { ReactNode } from "react";
 

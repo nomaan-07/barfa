@@ -1,4 +1,4 @@
-import { Divider } from "@heroui/react";
+import { Divider } from "@heroui/divider";
 import CartButton from "./CartButton";
 import LoginButton from "./LoginButton";
 import SearchButton from "./SearchButton";

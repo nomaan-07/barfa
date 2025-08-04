@@ -1,4 +1,5 @@
-import { Button, NavbarItem } from "@heroui/react";
+import { Button } from "@heroui/button";
+import { NavbarItem } from "@heroui/navbar";
 import Link from "next/link";
 import SubMenu from "./SubMenu";
 import { items } from "./items";

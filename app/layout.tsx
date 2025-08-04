@@ -1,8 +1,9 @@
-import { HeroUIProvider } from "@heroui/react";
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
+import Head from "next/head";
 import Header from "./_components/Header";
 import MobileHeader from "./_components/Header/MobileHeader";
+import { Providers } from "./_providers/providers";
 import "./_styles/globals.css";
 
 const vazirmatn = Vazirmatn({
@@ -28,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <head>
+      <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
         <link
@@ -73,13 +74,13 @@ export default function RootLayout({
           href="/favicons/apple-touch-icon.png"
           sizes="180x180"
         />
-      </head>
+      </Head>
       <body className={`${vazirmatn.variable} font-vazirmatn`}>
-        <HeroUIProvider>
+        <Providers>
           <Header />
           <MobileHeader />
           <main className="space-y-12 pb-40">{children}</main>
-        </HeroUIProvider>
+        </Providers>
       </body>
     </html>
   );
