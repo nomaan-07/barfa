@@ -1,11 +1,11 @@
 "use client";
 
 import { Button } from "@heroui/button";
-import { Link } from "@heroui/link";
 import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "../../Common/ProductCard";
+import SectionHeader from "../../Common/SectionHeader";
 
 const products = [
   {
@@ -93,23 +93,14 @@ const products = [
 
 function Offers() {
   return (
-    <section className="border-danger mx-auto max-w-7xl space-y-4 rounded-md">
-      {/* Header */}
-      <div className="bg-danger flex items-center justify-between rounded-md px-4 py-2">
-        <h3 className="text-xl font-semibold text-white sm:text-2xl">
-          پیشنهاد ویژه
-        </h3>
-        <Button
-          as={Link}
-          endContent={<LucideChevronLeft className="size-4.5" />}
-          variant="light"
-          href="products/all"
-          className="px-0 text-white sm:text-base"
-          color="danger"
-        >
-          مشاهده بیشتر
-        </Button>
-      </div>
+    <section>
+      <SectionHeader
+        link="products/all"
+        buttonColor="danger"
+        bgColor="bg-danger"
+        textColor="text-white"
+        title="پیشنهاد ویژه"
+      />
 
       <Swiper
         freeMode

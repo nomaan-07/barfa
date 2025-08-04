@@ -79,7 +79,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <MobileHeader />
-          <main className="space-y-12 pb-40">{children}</main>
+          {children}
         </Providers>
       </body>
     </html>
