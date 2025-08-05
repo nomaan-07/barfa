@@ -21,7 +21,7 @@ function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div
-      className={`mb-4 flex items-center justify-between rounded-md px-4 py-2 ${bgColor}`}
+      className={`mb-4 flex h-14 items-center justify-between rounded-md px-4 ${bgColor}`}
     >
       <h3 className={`text-xl font-semibold sm:text-2xl ${textColor}`}>
         {title}

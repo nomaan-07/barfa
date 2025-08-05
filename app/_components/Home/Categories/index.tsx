@@ -56,7 +56,11 @@ const Categories = () => {
 
       <div className="grid grid-cols-2 gap-x-8 gap-y-14 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {categories.map((category) => (
-          <Link key={category.id} href={category.link} className="relative">
+          <Link
+            key={category.id}
+            href={category.link}
+            className="relative select-none"
+          >
             <Image
               alt={category.name}
               className="h-32 object-cover sm:h-40"

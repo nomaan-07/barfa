@@ -25,7 +25,7 @@ interface Item {
 const items: Item[] = [
   {
     id: "1",
-    imageSrc: "/hero/products.png",
+    imageSrc: "/hero/products.jpg",
     mobileImageSrc: "/hero/products.png",
     title: "برفا؛ تکنولوژی در دستان شما",
     caption:
@@ -105,7 +105,7 @@ function Hero() {
               priority
               quality={80}
               alt="تجربه بهترین خرید با برفا"
-              className="hidden object-center md:block"
+              className="hidden md:block"
               sizes="(max-width: 768px) 100vw, 1280px"
             />
             <Image
@@ -114,7 +114,7 @@ function Hero() {
               priority
               quality={80}
               alt="تجربه بهترین خرید با برفا"
-              className="object-cover object-center md:hidden"
+              className="md:hidden"
               sizes="(max-width: 768px) 100vw, 1280px"
             />
 
@@ -126,7 +126,7 @@ function Hero() {
                 {item.title}
               </h2>
 
-              <p className="mb-8 text-lg md:text-xl lg:mb-10 lg:text-2xl">
+              <p className="mb-8 max-w-4xl text-lg md:text-xl lg:mb-10 lg:text-2xl">
                 {item.caption}
               </p>
 
