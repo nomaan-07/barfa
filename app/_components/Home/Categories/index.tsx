@@ -3,7 +3,7 @@ import Link from "next/link";
 import SectionHeader from "../../Common/SectionHeader";
 
 interface Category {
-  id: string;
+  id: number;
   name: string;
   imageSrc: string;
   link: string;
@@ -12,37 +12,37 @@ interface Category {
 // FIXME: Images from supabase storage
 const categories: Category[] = [
   {
-    id: "1",
+    id: 1,
     name: "موبایل",
     imageSrc: "/hero/smartphones.png",
     link: "/categories/smartphones",
   },
   {
-    id: "2",
+    id: 2,
     name: "لپ تاپ",
     imageSrc: "/hero/laptops.png",
     link: "/categories/laptops",
   },
   {
-    id: "3",
+    id: 3,
     name: "هدفون",
     imageSrc: "/hero/headphone.png",
     link: "/categories/earbuds",
   },
   {
-    id: "4",
+    id: 4,
     name: "تبلت",
     imageSrc: "/hero/smartphones-mobile.png",
     link: "/categories/tablets",
   },
   {
-    id: "5",
+    id: 5,
     name: "ساعت هوشمند",
     imageSrc: "/hero/headphone-mobile.png",
     link: "/categories/smartwatches",
   },
   {
-    id: "6",
+    id: 6,
     name: "لوازم جانبی",
     imageSrc: "/hero/laptops.png",
     link: "/categories/accessories",

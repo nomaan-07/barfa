@@ -16,7 +16,7 @@ const products = [
     title: "Smart Fitness Watch Smart Fitness Watch Smart Fitness Watch",
     imageSrc: "/hero/smartphones.png",
     price: 19943534,
-    discountPercent: 25,
+    discountPercent: 0,
     link: "/product/23",
   },
   {
@@ -32,7 +32,7 @@ const products = [
     title: "Gaming Mechanical Keyboard",
     imageSrc: "/hero/headphone.png",
     price: 1594554,
-    discountPercent: 25,
+    discountPercent: 0,
     link: "/product/23",
   },
   {
@@ -48,7 +48,7 @@ const products = [
     title: "Professional Camera Lens",
     imageSrc: "/hero/products.png",
     price: 4994545,
-    discountPercent: 30,
+    discountPercent: 0,
     link: "/product/23",
   },
   {
@@ -56,7 +56,7 @@ const products = [
     title: "4K Ultra HD Smart TV",
     imageSrc: "/hero/headphone-mobile.png",
     price: 154879000,
-    discountPercent: 25,
+    discountPercent: 0,
     link: "/product/23",
   },
   {
@@ -64,7 +64,7 @@ const products = [
     title: "Professional Camera Lens",
     imageSrc: "/hero/products.png",
     price: 4994545,
-    discountPercent: 30,
+    discountPercent: 0,
     link: "/product/23",
   },
   {
@@ -72,7 +72,7 @@ const products = [
     title: "4K Ultra HD Smart TV",
     imageSrc: "/hero/headphone-mobile.png",
     price: 154879000,
-    discountPercent: 25,
+    discountPercent: 0,
     link: "/product/23",
   },
   {
@@ -80,25 +80,25 @@ const products = [
     title: "Professional Camera Lens",
     imageSrc: "/hero/products.png",
     price: 4994545,
-    discountPercent: 30,
+    discountPercent: 0,
     link: "/product/23",
   },
 ];
 
-function Offers() {
+function NewProducts() {
   return (
     <section>
       <SectionHeader
         link="products/all"
-        buttonColor="danger"
-        bgColor="bg-danger"
+        buttonColor="success"
+        bgColor="bg-success"
         textColor="text-white"
-        title="پیشنهاد ویژه"
+        title="جدیدترین محصولات"
       />
 
-      <ProductsSwiper products={products} uniqueId="offers" />
+      <ProductsSwiper products={products} uniqueId="newProducts" />
     </section>
   );
 }
 
-export default Offers;
+export default NewProducts;

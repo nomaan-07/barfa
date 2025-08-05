@@ -8,21 +8,23 @@ interface BannerImageProps {
   alt: string;
   src: string;
 }
+
 function BannerImage({ alt, src }: BannerImageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <>
+    <div className="relative">
       {isLoading && (
-        <Skeleton className="bg-default-200 h-50 rounded-lg sm:h-75"></Skeleton>
+        <Skeleton className="bg-default-200 absolute inset-0 h-50 rounded-lg sm:h-75"></Skeleton>
       )}
       <Image
         alt={alt}
         src={src}
         onLoad={() => setIsLoading(false)}
         onError={() => setIsLoading(false)}
+        className={`transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
       />
-    </>
+    </div>
   );
 }
 
