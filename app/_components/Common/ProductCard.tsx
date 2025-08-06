@@ -70,7 +70,7 @@ function ProductCard({ product }: ProductCardProps) {
         <Button
           color="primary"
           endContent={<ShoppingCart className="size-4.5" />}
-          className="w-full"
+          fullWidth
         >
           افزودن به سبد خرید
         </Button>

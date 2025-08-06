@@ -6,7 +6,7 @@ import Offers from "./_components/Home/Offers";
 
 export default function Page() {
   return (
-    <main className="space-y-16 pb-40 md:space-y-24">
+    <>
       <Hero />
       <div className="mx-auto max-w-7xl space-y-16 px-6 md:space-y-24">
         <Offers />
@@ -14,6 +14,6 @@ export default function Page() {
         <Banners />
         <NewProducts />
       </div>
-    </main>
+    </>
   );
 }

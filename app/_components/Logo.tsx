@@ -1,12 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
-function Logo() {
+interface LogoProps {
+  color?: "primary" | "white";
+}
+
+function Logo({ color = "primary" }: LogoProps) {
   return (
     <Link href="/" className="relative h-10 w-26 select-none sm:w-30">
       <Image
         priority
-        src="/logo.png"
+        src={color === "primary" ? "/logo/logo.png" : "/logo/logo-white.png"}
         fill
         sizes="120px"
         alt="لوگوی برفا"
