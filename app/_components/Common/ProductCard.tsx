@@ -24,7 +24,7 @@ function ProductCard({ product }: ProductCardProps) {
   return (
     <Card shadow="none" className="border-default-200 w-56 border">
       {/* Image */}
-      <Link href={product.link}>
+      <Link href={product.link} className="select-none">
         <Image
           isZoomed
           src={product.imageSrc}

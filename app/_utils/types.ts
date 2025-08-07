@@ -6,3 +6,10 @@ export type Product = {
   discountPercent: number;
   link: string;
 };
+
+export type Brand = {
+  id: number;
+  name: string;
+  link: string;
+  image_src: string;
+};

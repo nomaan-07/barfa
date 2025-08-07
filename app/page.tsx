@@ -1,4 +1,5 @@
 import Banners from "./_components/Home/Banners";
+import Brands from "./_components/Home/Brands";
 import Categories from "./_components/Home/Categories";
 import Hero from "./_components/Home/Hero";
 import NewProducts from "./_components/Home/NewProducts";
@@ -13,6 +14,7 @@ export default function Page() {
         <Categories />
         <Banners />
         <NewProducts />
+        <Brands />
       </div>
     </>
   );

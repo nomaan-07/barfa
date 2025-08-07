@@ -17,3 +17,19 @@ export async function getBanners() {
 
   return data;
 }
+
+export async function getBrands() {
+  const { data, error } = await supabase
+    .from("barfa-popular-brands")
+    .select("id, image_src, link, name");
+
+  // For testing
+  // await new Promise((res) => setTimeout(res, 10000));
+
+  if (error) {
+    console.error(error);
+    throw new Error("Brands could not be loaded");
+  }
+
+  return data;
+}

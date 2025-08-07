@@ -105,7 +105,7 @@ function Hero() {
               priority
               quality={80}
               alt="تجربه بهترین خرید با برفا"
-              className="hidden md:block"
+              className="hidden select-none md:block"
               sizes="(max-width: 768px) 100vw, 1280px"
             />
             <Image
@@ -114,7 +114,7 @@ function Hero() {
               priority
               quality={80}
               alt="تجربه بهترین خرید با برفا"
-              className="md:hidden"
+              className="select-none md:hidden"
               sizes="(max-width: 768px) 100vw, 1280px"
             />
 

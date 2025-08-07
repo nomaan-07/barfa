@@ -13,7 +13,7 @@ function BannerImage({ alt, src }: BannerImageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative">
+    <div className="relative select-none">
       {isLoading && (
         <Skeleton className="bg-default-200 absolute inset-0 aspect-video rounded-lg"></Skeleton>
       )}

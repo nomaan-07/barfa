@@ -1,11 +1,10 @@
 "use client";
 
 import { Product } from "@/app/_utils/types";
-import { Button } from "@heroui/button";
-import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "./ProductCard";
+import SwiperButton from "./SwiperButton";
 
 interface ProductsSwiperProps {
   products: Product[];
@@ -26,25 +25,16 @@ function ProductsSwiper({ products, uniqueId }: ProductsSwiperProps) {
         nextEl: `.${nextButtonClass}`,
         disabledClass: "swiper-button-disabled",
       }}
-      modules={[Navigation, Pagination, Autoplay]}
+      modules={[Navigation, Pagination]}
     >
       {products.map((product) => (
         <SwiperSlide key={product.id} className="!w-auto">
           <ProductCard product={product} />
         </SwiperSlide>
       ))}
-      <Button
-        isIconOnly
-        className={`${prevButtonClass} absolute top-2/5 right-1 z-40 hidden lg:flex`}
-      >
-        <LucideChevronRight />
-      </Button>
-      <Button
-        isIconOnly
-        className={`${nextButtonClass} absolute top-2/5 left-1 z-40 hidden lg:flex`}
-      >
-        <LucideChevronLeft />
-      </Button>
+
+      <SwiperButton direction="prev" className={prevButtonClass} />
+      <SwiperButton direction="next" className={nextButtonClass} />
     </Swiper>
   );
 }
