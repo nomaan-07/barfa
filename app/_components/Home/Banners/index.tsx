@@ -1,11 +1,11 @@
 import { Suspense } from "react";
 import BannersContent from "./BannersContent";
-import Fallback from "./Fallback";
+import BannersFallback from "./BannersFallback";
 
 async function Banners() {
   return (
     <section>
-      <Suspense fallback={<Fallback />}>
+      <Suspense fallback={<BannersFallback />}>
         <BannersContent />
       </Suspense>
     </section>

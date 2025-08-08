@@ -1,10 +1,9 @@
-import { getBrands } from "@/app/_lib/data-service";
+import { Suspense } from "react";
 import SectionHeader from "../../Common/SectionHeader";
-import BrandsSwiper from "./BrandsSwiper";
+import BrandsContent from "./BrandsContent";
+import BrandsFallback from "./BrandsFallback";
 
 async function Brands() {
-  const brands = await getBrands();
-
   return (
     <section>
       <SectionHeader
@@ -13,8 +12,9 @@ async function Brands() {
         title="برند‌های محبوب"
       />
 
-      {/* FIXME: add suspense */}
-      <BrandsSwiper brands={brands} />
+      <Suspense fallback={<BrandsFallback />}>
+        <BrandsContent />
+      </Suspense>
     </section>
   );
 }

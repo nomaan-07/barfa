@@ -8,7 +8,7 @@ export async function getBanners() {
     .select("id, image_src, link, title");
 
   // For testing
-  // await new Promise((res) => setTimeout(res, 10000));
+  await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
@@ -24,7 +24,7 @@ export async function getBrands() {
     .select("id, image_src, link, name");
 
   // For testing
-  // await new Promise((res) => setTimeout(res, 10000));
+  await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
@@ -42,11 +42,12 @@ export async function getDiscountedProducts() {
     .from("barfa-products")
     .select(homepageProductsFields)
     .gt("discount_percent", 0)
+    .gt("quantity", 0)
     .order("discount_percent", { ascending: false })
     .limit(10);
 
   // For testing
-  // await new Promise((res) => setTimeout(res, 10000));
+  await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
@@ -60,14 +61,16 @@ export async function getNewestProducts() {
   const { data, error } = await supabase
     .from("barfa-products")
     .select(homepageProductsFields)
-    .order("created_at", { ascending: false });
+    .gt("quantity", 0)
+    .order("created_at", { ascending: false })
+    .limit(10);
 
   // For testing
-  // await new Promise((res) => setTimeout(res, 10000));
+  await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
-    throw new Error("new products could not be loaded");
+    throw new Error("newest products could not be loaded");
   }
 
   return data;

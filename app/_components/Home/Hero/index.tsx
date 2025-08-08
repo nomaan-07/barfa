@@ -69,7 +69,7 @@ function Hero() {
   return (
     <section className="group relative">
       <Swiper
-        className="relative h-[86vh] w-full overflow-hidden"
+        className="relative h-[50vh] w-full overflow-hidden sm:h-[60vh] lg:h-[70vh] xl:h-[80vh]"
         loop
         autoplay={{
           delay: 3000,

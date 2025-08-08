@@ -1,25 +1,29 @@
-import { ImageSources } from "@/app/_utils/types";
 import { Image } from "@heroui/image";
+import { Skeleton } from "@heroui/skeleton";
 import Link from "next/link";
+import { useState } from "react";
 
 interface ProductImageProps {
-  imageSources: ImageSources;
+  src: string;
   alt: string;
   id: number;
 }
 
-function ProductImage({ imageSources, alt, id }: ProductImageProps) {
+function ProductImage({ src, alt, id }: ProductImageProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
   return (
     <Link href={`product/${id}`} className="mx-auto size-48 p-2 select-none">
-      {imageSources && (
+      <Skeleton className="rounded-lg" isLoaded={isLoaded}>
         <Image
           isZoomed
-          src={imageSources.main}
+          src={src}
           alt={alt}
           height={176}
           width="100%"
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setIsLoaded(true)}
         />
-      )}
+      </Skeleton>
     </Link>
   );
 }

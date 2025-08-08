@@ -6,21 +6,22 @@ import Link from "next/link";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperButton from "../../Common/SwiperButton";
+import { useState } from "react";
+import { Skeleton } from "@heroui/react";
 
 interface BrandSwiperProps {
   brands: Brand[];
 }
 
 function BrandsSwiper({ brands }: BrandSwiperProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const prevButtonClass = "swiper-prev-button-brands";
   const nextButtonClass = "swiper-next-button-brands";
-
-  if (!brands) return null;
 
   return (
     <Swiper
       freeMode
-      spaceBetween={12}
       slidesPerView="auto"
       navigation={{
         prevEl: `.${prevButtonClass}`,
@@ -38,7 +39,17 @@ function BrandsSwiper({ brands }: BrandSwiperProps) {
             href={brand.link}
             className="flex size-28 items-center justify-center sm:size-32"
           >
-            <Image src={brand.image_src} alt={brand.name} radius="none" />
+            <Skeleton isLoaded={isLoaded} className="rounded-xl">
+              <div className="flex size-28 items-center justify-center transition-transform sm:size-32 md:hover:scale-105">
+                <Image
+                  src={brand.image_src}
+                  alt={brand.name}
+                  radius="none"
+                  onLoad={() => setIsLoaded(true)}
+                  onError={() => setIsLoaded(true)}
+                />
+              </div>
+            </Skeleton>
           </Link>
         </SwiperSlide>
       ))}

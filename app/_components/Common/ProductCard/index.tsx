@@ -27,12 +27,14 @@ function ProductCard({ product }: ProductCardProps) {
     : convertToPersian(product.price);
 
   return (
-    <Card shadow="none" className="border-default-200 w-56 border">
-      <ProductImage
-        imageSources={product.image_sources}
-        alt={product.title_fa}
-        id={product.id}
-      />
+    <Card shadow="none" className="border-default-200 border">
+      {product.image_sources && (
+        <ProductImage
+          src={product.image_sources.main}
+          alt={product.title_fa}
+          id={product.id}
+        />
+      )}
 
       <div className="flex flex-grow flex-col space-y-4 p-2">
         <Title id={product.id} title={product.title_fa} />

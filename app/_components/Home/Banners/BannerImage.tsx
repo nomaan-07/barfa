@@ -10,20 +10,21 @@ interface BannerImageProps {
 }
 
 function BannerImage({ alt, src }: BannerImageProps) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className="relative select-none">
-      {isLoading && (
-        <Skeleton className="bg-default-200 absolute inset-0 aspect-video rounded-xl"></Skeleton>
-      )}
-      <Image
-        alt={alt}
-        src={src}
-        onLoad={() => setIsLoading(false)}
-        onError={() => setIsLoading(false)}
-        className={`transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
-      />
+    <div className="select-none">
+      <Skeleton
+        className={`aspect-video rounded-xl ${isLoaded ? "before:hidden after:hidden" : ""}`}
+        isLoaded={isLoaded}
+      >
+        <Image
+          alt={alt}
+          src={src}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setIsLoaded(true)}
+        />
+      </Skeleton>
     </div>
   );
 }

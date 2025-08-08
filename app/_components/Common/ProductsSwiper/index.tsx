@@ -3,8 +3,8 @@
 import { ProductCardData } from "@/app/_utils/types";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import ProductCard from "./ProductCard";
-import SwiperButton from "./SwiperButton";
+import ProductCard from "../ProductCard";
+import SwiperButton from "../SwiperButton";
 
 interface ProductsSwiperProps {
   products: ProductCardData[];
@@ -19,7 +19,7 @@ function ProductsSwiper({ products, uniqueId }: ProductsSwiperProps) {
     <Swiper
       freeMode
       spaceBetween={12}
-      slidesPerView="auto"
+      slidesPerView={"auto"}
       navigation={{
         prevEl: `.${prevButtonClass}`,
         nextEl: `.${nextButtonClass}`,
@@ -28,7 +28,7 @@ function ProductsSwiper({ products, uniqueId }: ProductsSwiperProps) {
       modules={[Navigation, Pagination]}
     >
       {products.map((product) => (
-        <SwiperSlide key={product.id} className="!w-auto">
+        <SwiperSlide key={product.id} className="!w-56 not-last:!ml-3">
           <ProductCard product={product} />
         </SwiperSlide>
       ))}
