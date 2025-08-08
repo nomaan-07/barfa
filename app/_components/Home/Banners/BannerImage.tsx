@@ -15,7 +15,7 @@ function BannerImage({ alt, src }: BannerImageProps) {
   return (
     <div className="relative select-none">
       {isLoading && (
-        <Skeleton className="bg-default-200 absolute inset-0 aspect-video rounded-lg"></Skeleton>
+        <Skeleton className="bg-default-200 absolute inset-0 aspect-video rounded-xl"></Skeleton>
       )}
       <Image
         alt={alt}

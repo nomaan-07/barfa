@@ -1,0 +1,66 @@
+import { convertToPersian } from "@/app/_utils/helper";
+import { ProductCardData } from "@/app/_utils/types";
+import { Button } from "@heroui/button";
+import { Card } from "@heroui/card";
+import { ShoppingCart } from "lucide-react";
+import ColorCircles from "./components/ColorCircles";
+import DiscountBadge from "./components/DiscountBadge";
+import FinalPrice from "./components/FinalPrice";
+import OriginalPrice from "./components/OriginalPrice";
+import ProductImage from "./components/ProductImage";
+import Title from "./components/Title";
+
+interface ProductCardProps {
+  product: ProductCardData;
+}
+
+function ProductCard({ product }: ProductCardProps) {
+  const colorsArr = Object.entries(product.colors);
+
+  const haveDiscount = product.discount_percent > 0;
+  const discountedPrice = haveDiscount
+    ? convertToPersian(
+        Number(
+          (product.price * (1 - product.discount_percent / 100)).toFixed(0),
+        ),
+      )
+    : convertToPersian(product.price);
+
+  return (
+    <Card shadow="none" className="border-default-200 w-56 border">
+      <ProductImage
+        imageSources={product.image_sources}
+        alt={product.title_fa}
+        id={product.id}
+      />
+
+      <div className="flex flex-grow flex-col space-y-4 p-2">
+        <Title id={product.id} title={product.title_fa} />
+
+        <div className="flex h-13 flex-col justify-end">
+          <div className="flex items-center justify-between pl-8">
+            {colorsArr.length && <ColorCircles colorsArr={colorsArr} />}
+            {haveDiscount && <OriginalPrice price={product.price} />}
+          </div>
+
+          <div className="flex items-center justify-end">
+            {haveDiscount && (
+              <DiscountBadge discountPercent={product.discount_percent} />
+            )}
+            <FinalPrice price={discountedPrice} />
+          </div>
+        </div>
+
+        <Button
+          color="primary"
+          endContent={<ShoppingCart className="size-4.5" />}
+          fullWidth
+        >
+          افزودن به سبد خرید
+        </Button>
+      </div>
+    </Card>
+  );
+}
+
+export default ProductCard;

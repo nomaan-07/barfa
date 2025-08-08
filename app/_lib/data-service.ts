@@ -33,3 +33,42 @@ export async function getBrands() {
 
   return data;
 }
+
+const homepageProductsFields =
+  "id, title_fa, image_sources, price, discount_percent, colors";
+
+export async function getDiscountedProducts() {
+  const { data, error } = await supabase
+    .from("barfa-products")
+    .select(homepageProductsFields)
+    .gt("discount_percent", 0)
+    .order("discount_percent", { ascending: false })
+    .limit(10);
+
+  // For testing
+  // await new Promise((res) => setTimeout(res, 10000));
+
+  if (error) {
+    console.error(error);
+    throw new Error("discounted products could not be loaded");
+  }
+
+  return data;
+}
+
+export async function getNewestProducts() {
+  const { data, error } = await supabase
+    .from("barfa-products")
+    .select(homepageProductsFields)
+    .order("created_at", { ascending: false });
+
+  // For testing
+  // await new Promise((res) => setTimeout(res, 10000));
+
+  if (error) {
+    console.error(error);
+    throw new Error("new products could not be loaded");
+  }
+
+  return data;
+}

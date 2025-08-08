@@ -1,13 +1,13 @@
 "use client";
 
-import { Product } from "@/app/_utils/types";
+import { ProductCardData } from "@/app/_utils/types";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "./ProductCard";
 import SwiperButton from "./SwiperButton";
 
 interface ProductsSwiperProps {
-  products: Product[];
+  products: ProductCardData[];
   uniqueId: string;
 }
 
