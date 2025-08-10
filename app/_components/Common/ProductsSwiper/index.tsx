@@ -1,13 +1,13 @@
 "use client";
 
-import { ProductCardData } from "@/app/_utils/types";
+import { ListProduct } from "@/app/_utils/types";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "../ProductCard";
 import SwiperButton from "../SwiperButton";
 
 interface ProductsSwiperProps {
-  products: ProductCardData[];
+  products: ListProduct[];
   uniqueId: string;
 }
 
@@ -29,7 +29,7 @@ function ProductsSwiper({ products, uniqueId }: ProductsSwiperProps) {
     >
       {products.map((product) => (
         <SwiperSlide key={product.id} className="!w-56 not-last:!ml-3">
-          <ProductCard product={product} />
+          <ProductCard product={product} variation="swiper" />
         </SwiperSlide>
       ))}
 

@@ -8,22 +8,38 @@ export type ImageSources = {
   colors: Record<string, string>;
 };
 
-export type ProductCardData = {
+export type ProductsVariation = "list" | "swiper";
+
+export type ListProduct = {
+  created_at: string;
   id: number;
   title_fa: string;
   image_sources: ImageSources;
   colors: Record<string, Color>;
   price: number;
   discount_percent: number;
+  quantity?: number;
+  brand?: {
+    en: string;
+    fa: string;
+  };
 };
 
-export type Product = ProductCardData & {
+export type Product = ListProduct & {
+  title_en: string;
+  introduction: string;
+
+  category: {
+    en: string;
+    fa: string;
+  };
+};
+
+export type Banner = {
   id: number;
   title: string;
-  imageSrc: string;
-  price: number;
-  discountPercent: number;
   link: string;
+  image_src: string;
 };
 
 export type Brand = {
@@ -32,3 +48,9 @@ export type Brand = {
   link: string;
   image_src: string;
 };
+
+export type CategoryParams = Promise<{ slug: string }>;
+export type CategorySearchParams = Promise<{
+  sort?: string;
+  discount?: string;
+}>;

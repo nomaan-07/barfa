@@ -5,8 +5,6 @@ import BannerImage from "./BannerImage";
 async function BannersContent() {
   const banners = await getBanners();
 
-  if (!banners) return null;
-
   return (
     <div className="grid gap-8 pt-6 lg:grid-cols-2">
       {banners.map((banner) => (

@@ -1,11 +1,17 @@
+import {
+  SWIPER_PRODUCTS_LIMIT,
+  TABLE_FIELDS,
+  TABLES,
+} from "../_utils/constants";
+import { Banner, Brand, ListProduct, ProductsVariation } from "../_utils/types";
 import { supabase } from "./supabase";
 
 // -------- GET --------
 
 export async function getBanners() {
   const { data, error } = await supabase
-    .from("barfa-home-banners")
-    .select("id, image_src, link, title");
+    .from(TABLES.BANNERS)
+    .select(TABLE_FIELDS.BANNERS);
 
   // For testing
   await new Promise((res) => setTimeout(res, 2000));
@@ -15,13 +21,13 @@ export async function getBanners() {
     throw new Error("Banners could not be loaded");
   }
 
-  return data;
+  return data as unknown as Banner[];
 }
 
 export async function getBrands() {
   const { data, error } = await supabase
-    .from("barfa-popular-brands")
-    .select("id, image_src, link, name");
+    .from(TABLES.POPULAR_BRANDS)
+    .select(TABLE_FIELDS.POPULAR_BRANDS);
 
   // For testing
   await new Promise((res) => setTimeout(res, 2000));
@@ -31,47 +37,48 @@ export async function getBrands() {
     throw new Error("Brands could not be loaded");
   }
 
-  return data;
+  return data as unknown as Brand[];
 }
 
-const homepageProductsFields =
-  "id, title_fa, image_sources, price, discount_percent, colors";
+interface getProductsOptions {
+  limit?: number;
+  quantity?: boolean;
+  filter?: "discounted" | "all";
+  variation: ProductsVariation;
+}
 
-export async function getDiscountedProducts() {
-  const { data, error } = await supabase
-    .from("barfa-products")
-    .select(homepageProductsFields)
-    .gt("discount_percent", 0)
-    .gt("quantity", 0)
-    .order("discount_percent", { ascending: false })
-    .limit(10);
+export async function getProducts({ filter, variation }: getProductsOptions) {
+  const isSwiper = variation === "swiper";
+
+  const fields = isSwiper
+    ? TABLE_FIELDS.SWIPER_PRODUCT
+    : TABLE_FIELDS.LIST_PRODUCT;
+
+  let query = supabase.from(TABLES.PRODUCTS).select(fields);
+
+  switch (filter) {
+    case "all":
+      query = query.order("quantity", { ascending: false });
+      break;
+    case "discounted":
+      query = query
+        .gt("discount_percent", 0)
+        .gt("quantity", 0)
+        .order("discount_percent", { ascending: false });
+      break;
+  }
+
+  if (isSwiper) query = query.gt("quantity", 0).limit(SWIPER_PRODUCTS_LIMIT);
+
+  const { data, error } = await query;
 
   // For testing
   await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
-    throw new Error("discounted products could not be loaded");
+    throw new Error(`${filter} products could not be loaded`);
   }
 
-  return data;
-}
-
-export async function getNewestProducts() {
-  const { data, error } = await supabase
-    .from("barfa-products")
-    .select(homepageProductsFields)
-    .gt("quantity", 0)
-    .order("created_at", { ascending: false })
-    .limit(10);
-
-  // For testing
-  await new Promise((res) => setTimeout(res, 2000));
-
-  if (error) {
-    console.error(error);
-    throw new Error("newest products could not be loaded");
-  }
-
-  return data;
+  return data as unknown as ListProduct[];
 }

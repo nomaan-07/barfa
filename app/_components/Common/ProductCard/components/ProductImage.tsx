@@ -1,3 +1,5 @@
+"use client";
+
 import { Image } from "@heroui/image";
 import { Skeleton } from "@heroui/skeleton";
 import Link from "next/link";

@@ -6,8 +6,8 @@ import {
   LucideMessageCircle,
   LucidePackage2,
   LucideSmartphone,
+  LucideSparkles,
   LucideTablet,
-  LucideTrendingUp,
 } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -28,7 +28,7 @@ export const items: Item[] = [
   {
     id: "1",
     title: "محصولات",
-    href: "/products",
+    href: "/category/all",
     icon: <LucidePackage2 className={iconsStyles} />,
     subItems: [
       {
@@ -60,14 +60,14 @@ export const items: Item[] = [
   {
     id: "2",
     title: "پیشنهاد ویژه",
-    href: "/offers",
+    href: "/category/discounted",
     icon: <LucideBadgePercent className={iconsStyles} />,
   },
   {
     id: "3",
-    title: "پرفروش‌ها",
-    href: "/products",
-    icon: <LucideTrendingUp className={iconsStyles} />,
+    title: "جدیدترین‌ها",
+    href: "/category/all?sort=newest",
+    icon: <LucideSparkles className={iconsStyles} />,
   },
   {
     id: "4",
