@@ -1,23 +1,34 @@
-import { ListProduct } from "./types";
+import { notFound } from "next/navigation";
+import {
+  VALID_CATEGORY_SLUGS,
+  VALID_PRODUCTS_SORTS,
+  VALID_SEARCHPARAMS,
+} from "./constants";
 
 export const convertToPersian = (number: number) => {
   return number.toLocaleString("fa-IR");
 };
 
-interface sortProductsOptions {
-  products: ListProduct[];
-  field: "newest";
+function invalidSearchParams(params: Record<string, string | undefined>) {
+  const keys = Object.keys(params);
+  const invalidKeys = keys.filter((key) => !VALID_SEARCHPARAMS.includes(key));
+
+  if (invalidKeys.length > 0) notFound();
 }
 
-export const sortProducts = ({ products, field }: sortProductsOptions) => {
-  const sortedProducts = [...products];
+export const categoryParamsValidation = (
+  slug: string,
+  searchParams: Record<string, string | undefined>,
+) => {
+  if (!VALID_CATEGORY_SLUGS.includes(slug)) notFound();
 
-  if (field === "newest") {
-    sortedProducts.sort(
-      (a, b) =>
-        new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
-    );
+  invalidSearchParams(searchParams);
+
+  const { sort, discounted } = searchParams;
+
+  if ("sort" in searchParams && !VALID_PRODUCTS_SORTS.includes(sort!)) {
+    notFound();
   }
 
-  return sortedProducts;
+  if ("discounted" in searchParams && discounted !== "1") notFound();
 };

@@ -50,7 +50,8 @@ export type Brand = {
 };
 
 export type CategoryParams = Promise<{ slug: string }>;
+
 export type CategorySearchParams = Promise<{
   sort?: string;
-  discount?: string;
+  discounted?: string;
 }>;

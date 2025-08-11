@@ -41,13 +41,18 @@ export async function getBrands() {
 }
 
 interface getProductsOptions {
-  limit?: number;
-  quantity?: boolean;
-  filter?: "discounted" | "all";
+  category: string;
   variation: ProductsVariation;
+  discounted?: string;
+  sort?: string;
 }
 
-export async function getProducts({ filter, variation }: getProductsOptions) {
+export async function getProducts({
+  variation,
+  category,
+  discounted,
+  sort,
+}: getProductsOptions) {
   const isSwiper = variation === "swiper";
 
   const fields = isSwiper
@@ -56,15 +61,20 @@ export async function getProducts({ filter, variation }: getProductsOptions) {
 
   let query = supabase.from(TABLES.PRODUCTS).select(fields);
 
-  switch (filter) {
-    case "all":
-      query = query.order("quantity", { ascending: false });
+  if (category !== "all") {
+    query = query.eq("category->>en", category);
+  }
+
+  // Filter
+  if (discounted) query = query.gt("discount_percent", 0).gt("quantity", 0);
+
+  // Sort
+  switch (sort) {
+    case "newest":
+      query.order("created_at", { ascending: false });
       break;
-    case "discounted":
-      query = query
-        .gt("discount_percent", 0)
-        .gt("quantity", 0)
-        .order("discount_percent", { ascending: false });
+    default:
+      query.order("quantity", { ascending: false });
       break;
   }
 
@@ -77,7 +87,7 @@ export async function getProducts({ filter, variation }: getProductsOptions) {
 
   if (error) {
     console.error(error);
-    throw new Error(`${filter} products could not be loaded`);
+    throw new Error(`${category} products could not be loaded`);
   }
 
   return data as unknown as ListProduct[];

@@ -1,12 +1,13 @@
 import { getProducts } from "@/app/_lib/data-service";
-import { sortProducts } from "@/app/_utils/helper";
 import ProductsSwiper from "../../Common/ProductsSwiper";
 import SectionHeader from "../../Common/SectionHeader";
 
 async function NewProducts() {
-  let products = await getProducts({ variation: "swiper" });
-
-  products = sortProducts({ products, field: "newest" });
+  const products = await getProducts({
+    variation: "swiper",
+    category: "all",
+    sort: "newest",
+  });
 
   return (
     <section>

@@ -1,13 +1,15 @@
 import PageBreadCrumbs from "@/app/_components/Common/PageBreadCrumbs";
 import ProductCard from "@/app/_components/Common/ProductCard";
 import { getProducts } from "@/app/_lib/data-service";
-import { sortProducts } from "@/app/_utils/helper";
+import { categoryParamsValidation } from "@/app/_utils/helper";
 import {
   CategoryParams,
   CategorySearchParams,
   ListProduct,
 } from "@/app/_utils/types";
 import CategorySidebar from "./components/CategorySidebar";
+
+const VARIATION = "list";
 
 interface CategoryProps {
   params: CategoryParams;
@@ -16,22 +18,18 @@ interface CategoryProps {
 
 async function Category({ params, searchParams }: CategoryProps) {
   const { slug } = await params;
-  const { sort } = await searchParams;
+  const searchParamsObj = await searchParams;
 
-  const VARIATION = "list";
-  let products: ListProduct[] = [];
+  categoryParamsValidation(slug, searchParamsObj);
 
-  if (slug === "all") {
-    products = await getProducts({ filter: "all", variation: VARIATION });
-  }
+  const { sort, discounted } = searchParamsObj;
 
-  if (slug === "discounted")
-    products = await getProducts({
-      filter: "discounted",
-      variation: VARIATION,
-    });
-
-  if (sort === "newest") products = sortProducts({ products, field: "newest" });
+  const products: ListProduct[] = await getProducts({
+    category: slug,
+    variation: VARIATION,
+    sort,
+    discounted,
+  });
 
   return (
     <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">

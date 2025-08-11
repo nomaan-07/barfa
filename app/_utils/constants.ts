@@ -15,3 +15,17 @@ export const TABLE_FIELDS = {
   POPULAR_BRANDS: "id, image_src, link, name",
   BANNERS: "id, image_src, link, title",
 };
+
+export const VALID_CATEGORY_SLUGS = [
+  "all",
+  "discounted",
+  "mobile",
+  "laptop",
+  "tablet",
+  "headphone",
+  "accessories",
+  "smartwatch",
+];
+
+export const VALID_SEARCHPARAMS = ["sort", "discounted"];
+export const VALID_PRODUCTS_SORTS = ["newest"];

@@ -4,7 +4,8 @@ import ProductsSwiper from "../../Common/ProductsSwiper";
 async function OffersContent() {
   const products = await getProducts({
     variation: "swiper",
-    filter: "discounted",
+    category: "all",
+    discounted: "1",
   });
 
   return (
