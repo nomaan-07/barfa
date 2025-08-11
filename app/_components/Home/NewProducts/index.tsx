@@ -15,7 +15,7 @@ async function NewProducts() {
         buttonColor="success"
         bgColor="bg-success"
         textColor="text-white"
-        title="جدیدترین محصولات"
+        title="جدیدترین‌ها"
       />
 
       <ProductsSwiper products={products} uniqueId="newProducts" />

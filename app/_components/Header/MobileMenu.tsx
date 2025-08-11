@@ -4,11 +4,18 @@ import Link from "next/link";
 import { items } from "./items";
 import SubMenu from "./SubMenu";
 
-function MobileMenu() {
+interface MobileMenuProps {
+  onCloseMenu: () => void;
+}
+function MobileMenu({ onCloseMenu }: MobileMenuProps) {
   return (
     <>
       {items.map((item) => (
-        <NavbarMenuItem key={item.id} className="not-first:mt-6">
+        <NavbarMenuItem
+          key={item.id}
+          className="not-first:mt-6"
+          onClick={onCloseMenu}
+        >
           <Link href={item.href} className="flex items-center gap-3">
             {item.icon}
             {item.title}
