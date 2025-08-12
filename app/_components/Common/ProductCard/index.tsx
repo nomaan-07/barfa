@@ -1,4 +1,3 @@
-import { convertToPersian } from "@/app/_utils/helper";
 import { ListProduct, ProductsVariation } from "@/app/_utils/types";
 import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
@@ -9,8 +8,8 @@ import DiscountBadge from "./components/DiscountBadge";
 import FinalPrice from "./components/FinalPrice";
 import OriginalPrice from "./components/OriginalPrice";
 import ProductImage from "./components/ProductImage";
-import Title from "./components/Title";
 import QuantityText from "./components/QuantityText";
+import Title from "./components/Title";
 
 interface ProductCardProps {
   product: ListProduct;
@@ -22,13 +21,6 @@ function ProductCard({ product, variation }: ProductCardProps) {
   const isFinished = product.quantity === 0;
   const colorsArr = Object.entries(product.colors);
   const haveDiscount = product.discount_percent > 0;
-  const discountedPrice = haveDiscount
-    ? convertToPersian(
-        Number(
-          (product.price * (1 - product.discount_percent / 100)).toFixed(0),
-        ),
-      )
-    : convertToPersian(product.price);
 
   return (
     <Card
@@ -66,7 +58,7 @@ function ProductCard({ product, variation }: ProductCardProps) {
                   />
                 )}
                 {!isSwiper && <QuantityText quantity={product.quantity!} />}
-                <FinalPrice price={discountedPrice} />
+                <FinalPrice price={product.discounted_price} />
               </div>
             </div>
             <Button

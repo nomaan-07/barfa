@@ -7,7 +7,8 @@ import {
   CategorySearchParams,
   ListProduct,
 } from "@/app/_utils/types";
-import CategorySidebar from "./components/CategorySidebar";
+import FilterAndSort from "../Common/FilterAndSort";
+import FilterSidebar from "../Common/FilterAndSort/Filter/FilterSidebar";
 
 const VARIATION = "list";
 
@@ -36,9 +37,10 @@ async function Category({ params, searchParams }: CategoryProps) {
       <PageBreadCrumbs />
       {/* sidebar */}
       <div className="flex gap-4">
-        <CategorySidebar />
+        <FilterSidebar />
         {/* main */}
-        <div className="space-y-16 md:space-y-24">
+        <div className="space-y-4">
+          <FilterAndSort />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {products.map((product) => (
               <ProductCard

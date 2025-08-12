@@ -1,9 +1,9 @@
 "use client";
 
+import { useScrollDirection } from "@/app/_components/_hooks/useScrollDirection";
 import { Card } from "@heroui/card";
-import { useScrollDirection } from "../../_hooks/useScrollDirection";
 
-function CategorySidebar() {
+function FilterSidebar() {
   const scrollDirection = useScrollDirection();
 
   return (
@@ -20,4 +20,4 @@ function CategorySidebar() {
   );
 }
 
-export default CategorySidebar;
+export default FilterSidebar;

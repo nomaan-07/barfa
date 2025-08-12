@@ -7,7 +7,7 @@ export const TABLES = {
 };
 
 const BASE_PRODUCT_FIELDS =
-  "id,created_at, title_fa, image_sources, price, discount_percent, colors";
+  "id,created_at, title_fa, image_sources, price, discount_percent, discounted_price, colors";
 
 export const TABLE_FIELDS = {
   SWIPER_PRODUCT: BASE_PRODUCT_FIELDS,
@@ -28,4 +28,34 @@ export const VALID_CATEGORY_SLUGS = [
 ];
 
 export const VALID_SEARCHPARAMS = ["sort", "discounted"];
-export const VALID_PRODUCTS_SORTS = ["newest"];
+
+export const VALID_PRODUCTS_SORTS = [
+  "default",
+  "cheapest",
+  "expensive",
+  "newest",
+  "oldest",
+];
+
+export const SORT_OPTIONS = [
+  {
+    name: "پیش‌فرض",
+    value: "default",
+  },
+  {
+    name: "ارزان‌ترین",
+    value: "cheapest",
+  },
+  {
+    name: "گران‌ترین",
+    value: "expensive",
+  },
+  {
+    name: "جدیدترین‌",
+    value: "newest",
+  },
+  {
+    name: "قدیمی‌ترین",
+    value: "oldest",
+  },
+];

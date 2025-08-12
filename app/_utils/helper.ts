@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import {
+  SORT_OPTIONS,
   VALID_CATEGORY_SLUGS,
-  VALID_PRODUCTS_SORTS,
   VALID_SEARCHPARAMS,
 } from "./constants";
 
@@ -26,7 +26,10 @@ export const categoryParamsValidation = (
 
   const { sort, discounted } = searchParams;
 
-  if ("sort" in searchParams && !VALID_PRODUCTS_SORTS.includes(sort!)) {
+  if (
+    "sort" in searchParams &&
+    !SORT_OPTIONS.some((option) => option.value === sort)
+  ) {
     notFound();
   }
 

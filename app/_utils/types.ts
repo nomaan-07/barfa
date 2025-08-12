@@ -18,6 +18,7 @@ export type ListProduct = {
   colors: Record<string, Color>;
   price: number;
   discount_percent: number;
+  discounted_price: number;
   quantity?: number;
   brand?: {
     en: string;
@@ -55,3 +56,5 @@ export type CategorySearchParams = Promise<{
   sort?: string;
   discounted?: string;
 }>;
+
+export type SortChangeHandler = (sort: string, onClose?: () => void) => void;

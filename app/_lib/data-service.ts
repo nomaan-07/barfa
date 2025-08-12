@@ -71,10 +71,21 @@ export async function getProducts({
   // Sort
   switch (sort) {
     case "newest":
-      query.order("created_at", { ascending: false });
+      query = query.order("created_at", { ascending: false });
+      break;
+    case "oldest":
+      query = query.order("created_at", { ascending: true });
+      break;
+    // FIXME: Finished Products goes last
+    case "cheapest":
+      query = query.order("discounted_price", { ascending: true });
+      break;
+    // FIXME: Finished Products goes last
+    case "expensive":
+      query = query.order("discounted_price", { ascending: false });
       break;
     default:
-      query.order("quantity", { ascending: false });
+      query = query.order("quantity", { ascending: false });
       break;
   }
 
