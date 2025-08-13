@@ -6,12 +6,8 @@ export const TABLES = {
   BANNERS: "barfa-home-banners",
 };
 
-const BASE_PRODUCT_FIELDS =
-  "id,created_at, title_fa, image_sources, price, discount_percent, discounted_price, colors";
-
 export const TABLE_FIELDS = {
-  SWIPER_PRODUCT: BASE_PRODUCT_FIELDS,
-  LIST_PRODUCT: `${BASE_PRODUCT_FIELDS}, quantity, brand`,
+  LIST_PRODUCT: `id,created_at, title_fa, image_sources, price, discount_percent, discounted_price, colors, quantity, brand`,
   POPULAR_BRANDS: "id, image_src, link, name",
   BANNERS: "id, image_src, link, title",
 };

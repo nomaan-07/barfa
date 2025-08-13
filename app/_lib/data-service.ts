@@ -3,7 +3,12 @@ import {
   TABLE_FIELDS,
   TABLES,
 } from "../_utils/constants";
-import { Banner, Brand, ListProduct, ProductsVariation } from "../_utils/types";
+import {
+  Banner,
+  ListProduct,
+  PopularBrand,
+  ProductsVariation,
+} from "../_utils/types";
 import { supabase } from "./supabase";
 
 // -------- GET --------
@@ -37,7 +42,7 @@ export async function getBrands() {
     throw new Error("Brands could not be loaded");
   }
 
-  return data as unknown as Brand[];
+  return data as unknown as PopularBrand[];
 }
 
 interface getProductsOptions {
@@ -55,11 +60,7 @@ export async function getProducts({
 }: getProductsOptions) {
   const isSwiper = variation === "swiper";
 
-  const fields = isSwiper
-    ? TABLE_FIELDS.SWIPER_PRODUCT
-    : TABLE_FIELDS.LIST_PRODUCT;
-
-  let query = supabase.from(TABLES.PRODUCTS).select(fields);
+  let query = supabase.from(TABLES.PRODUCTS).select(TABLE_FIELDS.LIST_PRODUCT);
 
   if (category !== "all") {
     query = query.eq("category->>en", category);

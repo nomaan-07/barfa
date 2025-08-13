@@ -1,29 +1,30 @@
-type Color = {
-  name: string;
-  value: string;
-};
+export type ProductsVariation = "list" | "swiper";
+
+type Color = { en: string; fa: string; value: string };
+
+export type Colors = Color[];
 
 export type ImageSources = {
   main: string;
   colors: Record<string, string>;
 };
 
-export type ProductsVariation = "list" | "swiper";
+export type ProductBrand = {
+  en: string;
+  fa: string;
+};
 
 export type ListProduct = {
   created_at: string;
   id: number;
   title_fa: string;
   image_sources: ImageSources;
-  colors: Record<string, Color>;
+  colors: Colors;
   price: number;
   discount_percent: number;
   discounted_price: number;
-  quantity?: number;
-  brand?: {
-    en: string;
-    fa: string;
-  };
+  quantity: number;
+  brand: ProductBrand;
 };
 
 export type Product = ListProduct & {
@@ -43,7 +44,7 @@ export type Banner = {
   image_src: string;
 };
 
-export type Brand = {
+export type PopularBrand = {
   id: number;
   name: string;
   link: string;

@@ -1,5 +1,17 @@
+"use client";
+
+import { useProducts } from "@/app/_contexts/ProductsContext";
+import FilterDrawer from "./FilterDrawer";
+
 function Filter() {
-  return <div></div>;
+  const { products, brands, colors, maxPrice, minPrice } = useProducts();
+
+  console.log(brands);
+  return (
+    <div>
+      <FilterDrawer />
+    </div>
+  );
 }
 
 export default Filter;

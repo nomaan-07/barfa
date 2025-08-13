@@ -1,16 +1,16 @@
 "use client";
 
-import { Brand } from "@/app/_utils/types";
+import { PopularBrand } from "@/app/_utils/types";
 import { Image } from "@heroui/image";
+import { Skeleton } from "@heroui/react";
 import Link from "next/link";
+import { useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperButton from "../../Common/SwiperButton";
-import { useState } from "react";
-import { Skeleton } from "@heroui/react";
 
 interface BrandSwiperProps {
-  brands: Brand[];
+  brands: PopularBrand[];
 }
 
 function BrandsSwiper({ brands }: BrandSwiperProps) {

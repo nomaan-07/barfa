@@ -1,15 +1,15 @@
-type ColorsArr = [string, { name: string; value: string }][];
+import { Colors } from "@/app/_utils/types";
 
 interface ColorCirclesProps {
-  colorsArr: ColorsArr;
+  colors: Colors;
 }
 
-function ColorCircles({ colorsArr }: ColorCirclesProps) {
+function ColorCircles({ colors }: ColorCirclesProps) {
   return (
     <div className="flex gap-1">
-      {colorsArr.map(([key, color]) => (
+      {colors.map((color) => (
         <div
-          key={key}
+          key={color.en}
           className="border-default-300 size-2.5 rounded-full border"
           style={{ backgroundColor: color.value }}
         ></div>

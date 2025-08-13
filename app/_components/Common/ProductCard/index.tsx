@@ -19,7 +19,6 @@ interface ProductCardProps {
 function ProductCard({ product, variation }: ProductCardProps) {
   const isSwiper = variation === "swiper";
   const isFinished = product.quantity === 0;
-  const colorsArr = Object.entries(product.colors);
   const haveDiscount = product.discount_percent > 0;
 
   return (
@@ -46,7 +45,7 @@ function ProductCard({ product, variation }: ProductCardProps) {
           <>
             <div className="flex h-13 flex-col justify-end">
               <div className="flex items-center justify-between pl-8">
-                {colorsArr.length && <ColorCircles colorsArr={colorsArr} />}
+                <ColorCircles colors={product.colors} />
                 {haveDiscount && <OriginalPrice price={product.price} />}
               </div>
 
