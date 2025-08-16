@@ -1,17 +1,13 @@
-import { Card } from "@heroui/card";
-import Filter from "./Filter";
+import FilterDrawer from "./Filter/FilterDrawer";
 import Sort from "./Sort";
 
 function FilterAndSort() {
   return (
     <>
-      <Card
-        shadow="sm"
-        className="shadow-small h-10 flex-row items-center justify-between text-sm lg:justify-start"
-      >
-        <Filter />
+      <div className="lg:shadow-small flex h-10 items-center justify-between rounded-xl text-sm shadow-none lg:justify-start">
+        <FilterDrawer />
         <Sort />
-      </Card>
+      </div>
     </>
   );
 }

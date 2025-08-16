@@ -1,6 +1,5 @@
 import { SORT_OPTIONS } from "@/app/_utils/constants";
 import { SortChangeHandler } from "@/app/_utils/types";
-import { Button } from "@heroui/button";
 import {
   Drawer,
   DrawerBody,
@@ -9,7 +8,9 @@ import {
 } from "@heroui/drawer";
 import { useDisclosure } from "@heroui/react";
 import clsx from "clsx";
-import { LucideCheck, LucideSliders, LucideX } from "lucide-react";
+import { LucideCheck } from "lucide-react";
+import DrawerCloseButton from "../Drawer/DrawerCloseButton";
+import DrawerOpenButton from "../Drawer/DrawerOpenButton";
 
 interface SortDrawerProps {
   currentSort: string;
@@ -21,18 +22,11 @@ function SortDrawer({ currentSort, onSortChange }: SortDrawerProps) {
 
   return (
     <div className="lg:hidden">
-      <Button
-        onPress={onOpen}
-        variant="light"
-        className="border-r-default-200 rounded-none border-r"
-        startContent={<LucideSliders className="size-4.5" />}
-      >
-        <span>
-          {currentSort === "default"
-            ? "مرتب سازی"
-            : SORT_OPTIONS.find((option) => option.value === currentSort)!.name}
-        </span>
-      </Button>
+      <DrawerOpenButton onOpen={onOpen} variation="sort">
+        {currentSort === "default"
+          ? "مرتب سازی"
+          : SORT_OPTIONS.find((option) => option.value === currentSort)!.name}
+      </DrawerOpenButton>
       <Drawer
         hideCloseButton
         placement="bottom"
@@ -44,10 +38,8 @@ function SortDrawer({ currentSort, onSortChange }: SortDrawerProps) {
           {(onClose) => (
             <>
               <DrawerHeader className="border-b-default-300 items-center justify-between border-b text-base">
-                <p>مرتب سازی بر اساس</p>
-                <Button variant="light" isIconOnly onPress={onClose}>
-                  <LucideX className="size-5" />
-                </Button>
+                <h2>مرتب سازی بر اساس</h2>
+                <DrawerCloseButton onClose={onClose} />
               </DrawerHeader>
               <DrawerBody className="gap-0 divide-y">
                 {SORT_OPTIONS.map((option) => (

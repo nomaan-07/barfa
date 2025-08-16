@@ -1,7 +1,12 @@
 import PageBreadCrumbs from "@/app/_components/Common/PageBreadCrumbs";
 import { ProductsProvider } from "@/app/_contexts/ProductsContext";
-import { getProducts } from "@/app/_lib/data-service";
-import { categoryParamsValidation } from "@/app/_utils/helper";
+import {
+  getMinAndMaxPrice,
+  getProducts,
+  getProductsBrands,
+  getProductsColors,
+} from "@/app/_lib/data-service";
+import { categoryParamsValidation, normalizeParam } from "@/app/_utils/helper";
 import {
   CategoryParams,
   CategorySearchParams,
@@ -22,17 +27,35 @@ async function Category({ params, searchParams }: CategoryProps) {
 
   categoryParamsValidation(slug, searchParamsObj);
 
-  const { sort, discounted } = searchParamsObj;
+  const { sort, discounted, available, minPrice, maxPrice, brand, color } =
+    searchParamsObj;
+
+  const brands = normalizeParam(brand);
+  const colors = normalizeParam(color);
 
   const products: ListProduct[] = await getProducts({
     category: slug,
     variation: "list",
     sort,
     discounted,
+    available,
+    minPrice,
+    maxPrice,
+    brands,
+    colors,
   });
 
+  const productsBrands = await getProductsBrands({ category: slug });
+  const productColors = await getProductsColors({ category: slug });
+  const prices = await getMinAndMaxPrice({ category: slug });
+
   return (
-    <ProductsProvider products={products}>
+    <ProductsProvider
+      products={products}
+      brands={productsBrands}
+      colors={productColors}
+      prices={prices}
+    >
       <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">
         <PageBreadCrumbs />
         <div className="flex gap-4">

@@ -23,7 +23,15 @@ export const VALID_CATEGORY_SLUGS = [
   "smartwatch",
 ];
 
-export const VALID_SEARCHPARAMS = ["sort", "discounted"];
+export const VALID_SEARCHPARAMS = [
+  "sort",
+  "discounted",
+  "available",
+  "minPrice",
+  "maxPrice",
+  "brand",
+  "color",
+];
 
 export const VALID_PRODUCTS_SORTS = [
   "default",

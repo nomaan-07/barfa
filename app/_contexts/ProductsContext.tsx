@@ -1,53 +1,40 @@
 "use client";
 
-import { createContext, ReactNode, use, useMemo } from "react";
+import { createContext, ReactNode, use } from "react";
 import { Colors, ListProduct, ProductBrand } from "../_utils/types";
 
 interface ProductsContextValue {
   products: ListProduct[];
-  minPrice: number;
-  maxPrice: number;
   colors: Colors;
   brands: ProductBrand[];
+  minPrice: number;
+  maxPrice: number;
 }
 
 const ProductsContext = createContext<ProductsContextValue | undefined>(
   undefined,
 );
 
-function convertColorsToUniqueArray(colors: Colors[]) {
-  const uniqueColorMap = new Map();
-
-  const flattenedColors = colors.flatMap((colorArray) => colorArray);
-
-  flattenedColors.forEach((color) => {
-    if (!uniqueColorMap.has(color.en)) {
-      uniqueColorMap.set(color.en, color);
-    }
-  });
-
-  return Array.from(uniqueColorMap.values());
-}
-
 interface ProductsProviderProps {
   children: ReactNode;
   products: ListProduct[];
+  brands: ProductBrand[];
+  colors: Colors;
+  prices: { min: number; max: number };
 }
 
-function ProductsProvider({ children, products }: ProductsProviderProps) {
-  const value = useMemo(() => {
-    const prices = products.map((p) => p.discounted_price);
-    const minPrice = Math.min(...prices);
-    const maxPrice = Math.max(...prices);
-    const brands = [
-      ...new Map(products.map((p) => [p.brand.en, p.brand])).values(),
-    ];
-    const colors = convertColorsToUniqueArray(products.map((p) => p.colors));
-
-    return { products, brands, minPrice, maxPrice, colors };
-  }, [products]);
+function ProductsProvider({
+  children,
+  products,
+  brands,
+  colors,
+  prices,
+}: ProductsProviderProps) {
+  const { min: minPrice, max: maxPrice } = prices;
   return (
-    <ProductsContext.Provider value={value}>
+    <ProductsContext.Provider
+      value={{ products, brands, minPrice, maxPrice, colors }}
+    >
       {children}
     </ProductsContext.Provider>
   );

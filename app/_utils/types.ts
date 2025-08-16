@@ -1,6 +1,6 @@
 export type ProductsVariation = "list" | "swiper";
 
-type Color = { en: string; fa: string; value: string };
+export type Color = { en: string; fa: string; value: string };
 
 export type Colors = Color[];
 
@@ -56,6 +56,11 @@ export type CategoryParams = Promise<{ slug: string }>;
 export type CategorySearchParams = Promise<{
   sort?: string;
   discounted?: string;
+  available?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  brand?: string;
+  color?: string;
 }>;
 
 export type SortChangeHandler = (sort: string, onClose?: () => void) => void;
