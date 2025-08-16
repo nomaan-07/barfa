@@ -15,6 +15,7 @@ import {
 import FilterAndSort from "../Common/FilterAndSort";
 import FilterSidebar from "../Common/FilterAndSort/Filter/FilterSidebar";
 import ProductsList from "../Common/ProductsList";
+import NoProductsFound from "./components/NoProductsFound";
 
 interface CategoryProps {
   params: CategoryParams;
@@ -60,9 +61,13 @@ async function Category({ params, searchParams }: CategoryProps) {
         <PageBreadCrumbs />
         <div className="flex gap-4">
           <FilterSidebar />
-          <div className="space-y-4">
+          <div className="w-full space-y-4">
             <FilterAndSort />
-            <ProductsList products={products} />
+            {products.length > 0 ? (
+              <ProductsList products={products} />
+            ) : (
+              <NoProductsFound />
+            )}
           </div>
         </div>
       </div>
