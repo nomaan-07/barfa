@@ -9,7 +9,8 @@ function PageBreadCrumbs() {
       <BreadcrumbItem>
         <Link href="/">فروشگاه اینترنتی برفا</Link>
       </BreadcrumbItem>
-      <BreadcrumbItem href="/test">Music</BreadcrumbItem>
+      <BreadcrumbItem href="/test">همه‌ی محصولات</BreadcrumbItem>
+      <BreadcrumbItem href="/test">شیائومی</BreadcrumbItem>
     </Breadcrumbs>
   );
 }

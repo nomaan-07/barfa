@@ -1,7 +1,7 @@
 import { Skeleton } from "@heroui/skeleton";
 import ProductsSwiperFallback from "./_components/Common/ProductsSwiper/components/ProductsSwiperFallback";
 
-function loading() {
+function RootLoading() {
   return (
     <>
       <Skeleton className="h-[50vh] w-full overflow-hidden sm:h-[60vh] lg:h-[70vh] xl:h-[80vh]" />
@@ -13,4 +13,4 @@ function loading() {
   );
 }
 
-export default loading;
+export default RootLoading;

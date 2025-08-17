@@ -1,5 +1,17 @@
-import Category from "@/app/_components/Category";
+import FilterAndSort from "@/app/_components/Common/FilterAndSort";
+import FilterSidebar from "@/app/_components/Common/FilterAndSort/Filter/FilterSidebar";
+import PageBreadCrumbs from "@/app/_components/Common/PageBreadCrumbs";
+import ProductsList from "@/app/_components/Common/ProductsList";
+import ProductsListFallback from "@/app/_components/Common/ProductsList/components/ProductsListFallback";
+import { FiltersProvider } from "@/app/_contexts/FiltersContext";
+import {
+  getMinAndMaxPrice,
+  getProductsBrands,
+  getProductsColors,
+} from "@/app/_lib/data-services";
+import { categoryParamsValidation, normalizeParam } from "@/app/_utils/helper";
 import { CategoryParams, CategorySearchParams } from "@/app/_utils/types";
+import { Suspense } from "react";
 
 interface CategoryPageProps {
   params: CategoryParams;
@@ -7,10 +19,61 @@ interface CategoryPageProps {
 }
 
 async function CategoryPage({ params, searchParams }: CategoryPageProps) {
+  const { slug } = await params;
+  const searchParamsObj = await searchParams;
+
+  categoryParamsValidation(slug, searchParamsObj);
+
+  const { sort, discounted, available, minPrice, maxPrice, brand, color } =
+    searchParamsObj;
+
+  const brands = normalizeParam(brand);
+  const colors = normalizeParam(color);
+
+  const productsBrands = await getProductsBrands({ category: slug });
+  const productColors = await getProductsColors({ category: slug });
+  const prices = await getMinAndMaxPrice({ category: slug });
+
   return (
-    <div>
-      <Category params={params} searchParams={searchParams} />
-    </div>
+    <FiltersProvider
+      brands={productsBrands}
+      colors={productColors}
+      prices={prices}
+    >
+      <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">
+        <PageBreadCrumbs />
+        <div className="flex gap-4">
+          <FilterSidebar />
+          <div className="w-full space-y-4">
+            <FilterAndSort />
+            <Suspense
+              key={JSON.stringify({
+                slug,
+                sort,
+                discounted,
+                available,
+                minPrice,
+                maxPrice,
+                brands,
+                colors,
+              })}
+              fallback={<ProductsListFallback />}
+            >
+              <ProductsList
+                category={slug}
+                sort={sort}
+                discounted={discounted}
+                available={available}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
+                brands={brands}
+                colors={colors}
+              />
+            </Suspense>
+          </div>
+        </div>
+      </div>
+    </FiltersProvider>
   );
 }
 

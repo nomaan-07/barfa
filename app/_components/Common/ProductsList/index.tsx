@@ -1,7 +1,7 @@
 import { getProducts } from "@/app/_lib/data-services";
 import { ListProduct } from "@/app/_utils/types";
-import NoProductsFound from "../../Category/components/NoProductsFound";
 import ProductCard from "../ProductCard";
+import NoProductsFound from "./components/NoProductsFound";
 
 interface ProductsListProps {
   category: string;

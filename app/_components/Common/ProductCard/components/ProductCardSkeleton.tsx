@@ -1,5 +1,4 @@
 import { ProductsVariation } from "@/app/_utils/types";
-import { Card } from "@heroui/card";
 import { Skeleton } from "@heroui/skeleton";
 import clsx from "clsx";
 
@@ -9,11 +8,10 @@ interface ProductCardSkeletonProps {
 
 function ProductCardSkeleton({ variation }: ProductCardSkeletonProps) {
   return (
-    <Card
-      shadow="none"
-      className={clsx("border-default-200 shrink-0 border", {
-        "w-56": variation === "swiper",
-        relative: variation === "list",
+    <div
+      className={clsx("shrink-0 rounded-xl", {
+        "border-default-200 w-56 border": variation === "swiper",
+        "shadow-small relative": variation === "list",
       })}
     >
       {/* Image */}
@@ -53,7 +51,7 @@ function ProductCardSkeleton({ variation }: ProductCardSkeletonProps) {
         {/* Button */}
         <Skeleton className="bg-primary h-10 rounded-lg" />
       </div>
-    </Card>
+    </div>
   );
 }
 
