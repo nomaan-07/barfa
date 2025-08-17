@@ -1,8 +1,8 @@
-import BrandStory from "./BrandStory";
-import Contact from "./Contact";
-import FooterCredits from "./FooterCredits";
-import FooterLinks from "./FooterLinks";
-import FooterTop from "./FooterTop";
+import BrandStory from "./components/BrandStory";
+import Contact from "./components/Contact";
+import FooterCredits from "./components/FooterCredits";
+import FooterLinks from "./components/FooterLinks";
+import FooterTop from "./components/FooterTop";
 
 function Footer() {
   return (

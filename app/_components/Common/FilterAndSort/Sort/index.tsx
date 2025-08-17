@@ -2,8 +2,8 @@
 
 import { SortChangeHandler } from "@/app/_utils/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import SortDesktop from "./SortDesktop";
-import SortDrawer from "./SortDrawer";
+import SortDesktop from "./components/SortDesktop";
+import SortDrawer from "./components/SortDrawer";
 
 function Sort() {
   const searchParams = useSearchParams();

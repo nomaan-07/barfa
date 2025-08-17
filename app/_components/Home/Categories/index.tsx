@@ -15,37 +15,37 @@ const categories: Category[] = [
     id: 1,
     name: "موبایل",
     imageSrc: "/hero/smartphones.png",
-    link: "/categories/smartphones",
+    link: "/category/mobile",
   },
   {
     id: 2,
     name: "لپ تاپ",
     imageSrc: "/hero/laptops.png",
-    link: "/categories/laptops",
+    link: "/category/laptop",
   },
   {
     id: 3,
     name: "هدفون",
     imageSrc: "/hero/headphone.png",
-    link: "/categories/earbuds",
+    link: "/category/headphone",
   },
   {
     id: 4,
     name: "تبلت",
     imageSrc: "/hero/smartphones-mobile.png",
-    link: "/categories/tablets",
+    link: "/category/tablet",
   },
   {
     id: 5,
     name: "ساعت هوشمند",
     imageSrc: "/hero/headphone-mobile.png",
-    link: "/categories/smartwatches",
+    link: "/category/smartwatch",
   },
   {
     id: 6,
     name: "لوازم جانبی",
     imageSrc: "/hero/laptops.png",
-    link: "/categories/accessories",
+    link: "/category/accessories",
   },
 ];
 

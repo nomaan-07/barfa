@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import BannersContent from "./BannersContent";
-import BannersFallback from "./BannersFallback";
+import BannersContent from "./components/BannersContent";
+import BannersFallback from "./components/BannersFallback";
 
 async function Banners() {
   return (

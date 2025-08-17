@@ -1,5 +1,5 @@
-import { useQueryFilters } from "@/app/_components/_hooks/useQueryFilters";
-import { useProducts } from "@/app/_contexts/ProductsContext";
+import { useFilters } from "@/app/_contexts/FiltersContext";
+import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
 import { convertToPersian } from "@/app/_utils/helper";
 import { Accordion, AccordionItem } from "@heroui/accordion";
 import BrandFIlter from "./BrandFilter";
@@ -20,7 +20,7 @@ function mapSelectedToPersian(
 function FilterPanel() {
   const { getParam, getAllParams } = useQueryFilters();
 
-  const { brands, colors } = useProducts();
+  const { brands, colors } = useFilters();
 
   const minPrice = getParam("minPrice");
   const maxPrice = getParam("maxPrice");

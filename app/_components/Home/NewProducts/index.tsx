@@ -1,4 +1,4 @@
-import { getProducts } from "@/app/_lib/data-service";
+import { getProducts } from "@/app/_lib/data-services";
 import ProductsSwiper from "../../Common/ProductsSwiper";
 import SectionHeader from "../../Common/SectionHeader";
 

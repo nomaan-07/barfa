@@ -1,4 +1,4 @@
-import { useQueryFilters } from "@/app/_components/_hooks/useQueryFilters";
+import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
 import { Chip } from "@heroui/chip";
 import { ReactNode } from "react";
 

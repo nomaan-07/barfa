@@ -1,8 +1,6 @@
 "use client";
 
-import { useQueryFilters } from "@/app/_components/_hooks/useQueryFilters";
-import { useProducts } from "@/app/_contexts/ProductsContext";
-import { convertToPersian } from "@/app/_utils/helper";
+import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
 import { Button } from "@heroui/button";
 import {
   Drawer,
@@ -18,8 +16,6 @@ import FilterPanel from "./FilterPanel";
 
 function FilterDrawer() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { products } = useProducts();
-
   const { clearAll, hasAnyFilter } = useQueryFilters();
 
   function handleClearFilters(onClose: () => void) {
@@ -57,9 +53,7 @@ function FilterDrawer() {
               </DrawerBody>
               <DrawerFooter className="border-t-default-300 grid grid-cols-2 gap-2 border-t">
                 <Button color="primary" onPress={onClose}>
-                  {hasAnyFilter()
-                    ? `مشاهده ${convertToPersian(products.length)} محصول`
-                    : "مشاهده همه محصولات"}
+                  مشاهده محصولات
                 </Button>
                 <Button
                   color={hasAnyFilter() ? "danger" : "default"}

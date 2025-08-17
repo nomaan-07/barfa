@@ -1,21 +1,18 @@
 import PageBreadCrumbs from "@/app/_components/Common/PageBreadCrumbs";
-import { ProductsProvider } from "@/app/_contexts/ProductsContext";
+
+import { FiltersProvider } from "@/app/_contexts/FiltersContext";
 import {
   getMinAndMaxPrice,
-  getProducts,
   getProductsBrands,
   getProductsColors,
-} from "@/app/_lib/data-service";
+} from "@/app/_lib/data-services";
 import { categoryParamsValidation, normalizeParam } from "@/app/_utils/helper";
-import {
-  CategoryParams,
-  CategorySearchParams,
-  ListProduct,
-} from "@/app/_utils/types";
+import { CategoryParams, CategorySearchParams } from "@/app/_utils/types";
+import { Suspense } from "react";
 import FilterAndSort from "../Common/FilterAndSort";
 import FilterSidebar from "../Common/FilterAndSort/Filter/FilterSidebar";
 import ProductsList from "../Common/ProductsList";
-import NoProductsFound from "./components/NoProductsFound";
+import ProductsListFallback from "../Common/ProductsList/components/ProductsListFallback";
 
 interface CategoryProps {
   params: CategoryParams;
@@ -34,25 +31,12 @@ async function Category({ params, searchParams }: CategoryProps) {
   const brands = normalizeParam(brand);
   const colors = normalizeParam(color);
 
-  const products: ListProduct[] = await getProducts({
-    category: slug,
-    variation: "list",
-    sort,
-    discounted,
-    available,
-    minPrice,
-    maxPrice,
-    brands,
-    colors,
-  });
-
   const productsBrands = await getProductsBrands({ category: slug });
   const productColors = await getProductsColors({ category: slug });
   const prices = await getMinAndMaxPrice({ category: slug });
 
   return (
-    <ProductsProvider
-      products={products}
+    <FiltersProvider
       brands={productsBrands}
       colors={productColors}
       prices={prices}
@@ -63,15 +47,34 @@ async function Category({ params, searchParams }: CategoryProps) {
           <FilterSidebar />
           <div className="w-full space-y-4">
             <FilterAndSort />
-            {products.length > 0 ? (
-              <ProductsList products={products} />
-            ) : (
-              <NoProductsFound />
-            )}
+            <Suspense
+              key={JSON.stringify({
+                slug,
+                sort,
+                discounted,
+                available,
+                minPrice,
+                maxPrice,
+                brands,
+                colors,
+              })}
+              fallback={<ProductsListFallback />}
+            >
+              <ProductsList
+                category={slug}
+                sort={sort}
+                discounted={discounted}
+                available={available}
+                minPrice={minPrice}
+                maxPrice={maxPrice}
+                brands={brands}
+                colors={colors}
+              />
+            </Suspense>
           </div>
         </div>
       </div>
-    </ProductsProvider>
+    </FiltersProvider>
   );
 }
 

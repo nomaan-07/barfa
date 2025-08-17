@@ -1,4 +1,5 @@
 import { Button } from "@heroui/button";
+import clsx from "clsx";
 import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
 
 interface SwiperButtonProps {
@@ -10,12 +11,15 @@ function SwiperButton({ className, direction }: SwiperButtonProps) {
   const isPrevButton = direction === "prev";
 
   const Icon = isPrevButton ? LucideChevronRight : LucideChevronLeft;
-  const positionClass = isPrevButton ? "right-1" : "left-1";
 
   return (
     <Button
       isIconOnly
-      className={`absolute top-2/5 z-40 hidden lg:flex ${className} ${positionClass}`}
+      className={clsx(
+        "absolute top-2/5 z-40 hidden lg:flex",
+        className,
+        isPrevButton ? "right-1" : "left-1",
+      )}
     >
       <Icon />
     </Button>

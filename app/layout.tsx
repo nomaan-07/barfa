@@ -3,7 +3,7 @@ import { Vazirmatn } from "next/font/google";
 import Head from "next/head";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
-import MobileHeader from "./_components/Header/MobileHeader";
+import MobileHeader from "./_components/Header/components/MobileHeader";
 import { Providers } from "./_providers/providers";
 import "./_styles/globals.css";
 

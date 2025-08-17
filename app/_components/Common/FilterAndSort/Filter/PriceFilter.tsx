@@ -1,31 +1,21 @@
-import { useQueryFilters } from "@/app/_components/_hooks/useQueryFilters";
-import { useProducts } from "@/app/_contexts/ProductsContext";
+import { useFilters } from "@/app/_contexts/FiltersContext";
+import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
 import { convertToEnglish, convertToPersian } from "@/app/_utils/helper";
+import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Slider } from "@heroui/slider";
-import { useEffect, useState } from "react";
-
-function useDebouncedValue<T>(val: T, delay = 500) {
-  const [debouncedVal, setDebouncedVal] = useState(val);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setDebouncedVal(val), delay);
-    return () => clearTimeout(timer);
-  }, [val, delay]);
-
-  return debouncedVal;
-}
+import { useState } from "react";
 
 function PriceFilter() {
-  const { minPrice, maxPrice } = useProducts();
+  const { minPrice, maxPrice } = useFilters();
   const { updateParams } = useQueryFilters();
   const [value, setValue] = useState<[number, number]>([minPrice, maxPrice]);
+
   const minValue = convertToPersian(value[0]);
   const maxValue = convertToPersian(value[1]);
 
   function handleMinInput(e: React.ChangeEvent<HTMLInputElement>) {
-    const inputValue = e.target.value;
-    const newValue = convertToEnglish(inputValue).replace(/[^0-9]/g, "");
+    const newValue = convertToEnglish(e.target.value).replace(/[^0-9]/g, "");
     const numberedValue = Number(newValue);
 
     if (!isNaN(numberedValue) && numberedValue <= value[1]) {
@@ -34,8 +24,7 @@ function PriceFilter() {
   }
 
   function handleMaxInput(e: React.ChangeEvent<HTMLInputElement>) {
-    const inputValue = e.target.value;
-    const newValue = convertToEnglish(inputValue).replace(/[^0-9]/g, "");
+    const newValue = convertToEnglish(e.target.value).replace(/[^0-9]/g, "");
     const numberedValue = Number(newValue);
 
     if (!isNaN(numberedValue) && numberedValue <= 999_999_999) {
@@ -43,11 +32,9 @@ function PriceFilter() {
     }
   }
 
-  const debouncedValue = useDebouncedValue(value, 800);
-
-  useEffect(() => {
-    updateParams({ minPrice: debouncedValue[0], maxPrice: debouncedValue[1] });
-  }, [debouncedValue, updateParams]);
+  function handleApplyFilter() {
+    updateParams({ minPrice: value[0], maxPrice: value[1] });
+  }
 
   return (
     <div className="space-y-4" style={{ direction: "ltr" }}>
@@ -79,6 +66,14 @@ function PriceFilter() {
           <span>بیشترین</span>
         </div>
       </div>
+      <Button
+        color="primary"
+        fullWidth
+        onPress={handleApplyFilter}
+        isDisabled={value[0] === minPrice && value[1] === maxPrice}
+      >
+        اعمال فیلتر
+      </Button>
     </div>
   );
 }

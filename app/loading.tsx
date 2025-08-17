@@ -1,5 +1,5 @@
 import { Skeleton } from "@heroui/skeleton";
-import ProductsSwiperFallback from "./_components/Common/ProductsSwiper/ProductsSwiperFallback";
+import ProductsSwiperFallback from "./_components/Common/ProductsSwiper/components/ProductsSwiperFallback";
 
 function loading() {
   return (

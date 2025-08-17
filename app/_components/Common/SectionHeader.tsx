@@ -1,4 +1,5 @@
 import { Button } from "@heroui/button";
+import clsx from "clsx";
 import { LucideChevronLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -23,7 +24,7 @@ function SectionHeader({
     <div
       className={`mb-4 flex h-14 items-center justify-between rounded-md px-4 ${bgColor}`}
     >
-      <h3 className={`text-xl font-semibold sm:text-2xl ${textColor}`}>
+      <h3 className={clsx("text-xl font-semibold sm:text-2xl", textColor)}>
         {title}
       </h3>
       {link && (

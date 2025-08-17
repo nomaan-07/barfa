@@ -1,10 +1,11 @@
 "use client";
 
 import { Navbar, NavbarBrand, NavbarContent } from "@heroui/navbar";
-import { useScrollDirection } from "../_hooks/useScrollDirection";
+import clsx from "clsx";
+import { useScrollDirection } from "../../_hooks/useScrollDirection";
 import Logo from "../Logo";
-import HeaderButtons from "./HeaderButtons";
-import Navigation from "./Navigation";
+import HeaderButtons from "./components/HeaderButtons";
+import Navigation from "./components/Navigation";
 
 function Header() {
   const scrollDirection = useScrollDirection();
@@ -13,12 +14,11 @@ function Header() {
     <Navbar
       isBlurred={false}
       maxWidth="xl"
-      className="hidden transition-transform duration-500 lg:flex"
+      className={clsx("hidden transition-transform duration-500 lg:flex", {
+        "-translate-y-full": scrollDirection === "down",
+        "translate-y-0": scrollDirection === "up",
+      })}
       isBordered
-      style={{
-        transform:
-          scrollDirection === "down" ? "translateY(-100%)" : "translateY(0",
-      }}
     >
       <NavbarContent justify="start">
         <NavbarBrand>

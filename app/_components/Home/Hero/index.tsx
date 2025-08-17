@@ -22,6 +22,7 @@ interface Item {
   buttonContent: string;
 }
 
+// TODO: Get Hero data from supabase
 const items: Item[] = [
   {
     id: "1",

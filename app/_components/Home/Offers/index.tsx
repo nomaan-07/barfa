@@ -1,13 +1,13 @@
 import { Suspense } from "react";
-import ProductsSwiperFallback from "../../Common/ProductsSwiper/ProductsSwiperFallback";
+import ProductsSwiperFallback from "../../Common/ProductsSwiper/components/ProductsSwiperFallback";
 import SectionHeader from "../../Common/SectionHeader";
-import OffersContent from "./OffersContent";
+import OffersContent from "./components/OffersContent";
 
 async function Offers() {
   return (
     <>
       <SectionHeader
-        link="category/all?discounted=1"
+        link="category/all?discounted=1&available=1"
         buttonColor="danger"
         bgColor="bg-danger"
         textColor="text-white"

@@ -1,4 +1,4 @@
-import { useQueryFilters } from "@/app/_components/_hooks/useQueryFilters";
+import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
 import { Divider } from "@heroui/divider";
 import { Switch } from "@heroui/switch";
 

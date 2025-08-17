@@ -1,7 +1,7 @@
 "use client";
 
-import { useQueryFilters } from "@/app/_components/_hooks/useQueryFilters";
-import { useScrollDirection } from "@/app/_components/_hooks/useScrollDirection";
+import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
+import { useScrollDirection } from "@/app/_hooks/useScrollDirection";
 import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
 import { Tooltip } from "@heroui/tooltip";
