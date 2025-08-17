@@ -81,7 +81,7 @@ export async function getProducts({
   const { data, error } = await query;
 
   // For testing
-  await new Promise((res) => setTimeout(res, 2000));
+  // await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
