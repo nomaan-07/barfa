@@ -7,6 +7,7 @@ import {
   Color,
   ListProduct,
   ProductBrand,
+  ProductCategory,
   ProductsVariation,
 } from "@/app/_utils/types";
 import { supabase } from "../supabase";
@@ -101,8 +102,10 @@ export async function getProducts({
   return products;
 }
 
-export async function getProductsBrands({ category }: { category: string }) {
-  let query = supabase.from(TABLES.PRODUCTS).select("brand");
+export async function getProductsFilters({ category }: { category: string }) {
+  let query = supabase
+    .from(TABLES.PRODUCTS)
+    .select("brand, colors, discounted_price, quantity, category");
 
   if (category !== "all") {
     query = query.eq("category->>en", category);
@@ -112,36 +115,25 @@ export async function getProductsBrands({ category }: { category: string }) {
 
   if (error) {
     console.error(error);
-    throw new Error("brands could not be loaded");
+    throw new Error("products filters could not be loaded");
   }
+
+  // Extract current category
+
+  const currentCategory: ProductCategory =
+    category !== "all" && data[0]?.category;
 
   // Extract unique brands
   const brandMap = new Map<string, ProductBrand>();
-  data.forEach((item) => {
-    const b = item.brand;
+
+  data.forEach((row) => {
+    const b = row.brand;
     if (b?.en && !brandMap.has(b.en)) {
       brandMap.set(b.en, b);
     }
   });
 
-  return Array.from(brandMap.values());
-}
-
-export async function getProductsColors({ category }: { category: string }) {
-  let query = supabase.from(TABLES.PRODUCTS).select("colors");
-
-  if (category !== "all") {
-    query = query.eq("category->>en", category);
-  }
-
-  const { data, error } = await query;
-
-  if (error) {
-    console.error(error);
-    throw new Error("colors could not be loaded");
-  }
-
-  // Extract unique brands
+  // Extract unique colors
   const colorMap = new Map<string, Color>();
 
   data
@@ -152,27 +144,19 @@ export async function getProductsColors({ category }: { category: string }) {
       }
     });
 
-  return Array.from(colorMap.values());
-}
+  // Extract price range
 
-export async function getMinAndMaxPrice({ category }: { category: string }) {
-  let query = supabase.from(TABLES.PRODUCTS).select("discounted_price");
-
-  if (category !== "all") {
-    query = query.eq("category->>en", category);
-  }
-
-  const { data, error } = await query.gt("quantity", 0);
-
-  if (error) {
-    console.error(error);
-    throw new Error("prices could not be loaded");
-  }
-
-  const prices = data.map((row) => row.discounted_price);
+  const prices = data
+    .filter((row) => row.quantity > 0)
+    .map((row) => row.discounted_price);
 
   const min = Math.min(...prices);
   const max = Math.max(...prices);
 
-  return { min, max };
+  return {
+    currentCategory,
+    productsBrands: Array.from(brandMap.values()),
+    productsColors: Array.from(colorMap.values()),
+    priceRange: { min, max },
+  };
 }

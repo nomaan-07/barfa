@@ -25,7 +25,9 @@ export const convertToEnglish = (persian: string) => {
   return persian.replace(/[۰-۹]/g, (char) => persianToEnglishMap[char] || char);
 };
 
-function invalidSearchParams(params: Record<string, string | undefined>) {
+function invalidSearchParams(
+  params: Record<string, string | string[] | undefined>,
+) {
   const keys = Object.keys(params);
   const invalidKeys = keys.filter((key) => !VALID_SEARCHPARAMS.includes(key));
 
@@ -41,10 +43,10 @@ function isValidArrayParam(param?: string | string[]) {
 }
 
 export const categoryParamsValidation = (
-  slug: string,
-  searchParams: Record<string, string | undefined>,
+  category: string,
+  searchParams: Record<string, string | string[] | undefined>,
 ) => {
-  if (!VALID_CATEGORY_SLUGS.includes(slug)) notFound();
+  if (!VALID_CATEGORY_SLUGS.includes(category)) notFound();
 
   invalidSearchParams(searchParams);
 
@@ -74,7 +76,7 @@ export const categoryParamsValidation = (
     notFound();
 };
 
-export function normalizeParam(param?: string) {
+export function normalizeParam(param?: string | string[]) {
   if (!param) return;
   return Array.isArray(param) ? param : [param];
 }

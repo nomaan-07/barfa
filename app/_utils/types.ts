@@ -14,6 +14,11 @@ export type ProductBrand = {
   fa: string;
 };
 
+export type ProductCategory = {
+  en: string;
+  fa: string;
+};
+
 export type ListProduct = {
   created_at: string;
   id: number;
@@ -59,7 +64,7 @@ export type CategorySearchParams = Promise<{
   available?: string;
   minPrice?: string;
   maxPrice?: string;
-  brand?: string;
+  brand?: string[];
   color?: string;
 }>;
 
