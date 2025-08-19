@@ -4,7 +4,7 @@ import { SearchPanelProvider } from "@/app/_contexts/SearchPanelContext";
 import SearchPanelDrawer from "./components/SearchPanelDrawer";
 import SearchPanelOpenButton from "./components/SearchPanelOpenButton";
 
-function SearchButton() {
+function SearchPanel() {
   return (
     <SearchPanelProvider>
       <SearchPanelOpenButton />
@@ -13,4 +13,4 @@ function SearchButton() {
   );
 }
 
-export default SearchButton;
+export default SearchPanel;

@@ -7,11 +7,12 @@ import {
   NavbarMenu,
   NavbarMenuToggle,
 } from "@heroui/navbar";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Logo from "../../Logo";
 import CartButton from "./CartButton";
 import MobileMenu from "./MobileMenu";
 import SearchPanel from "./SearchPanel";
+import SearchPanelFallback from "./SearchPanel/components/SearchPanelFallback";
 
 function MobileHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +36,9 @@ function MobileHeader() {
         <Logo />
       </NavbarBrand>
       <NavbarContent justify="end">
-        <SearchPanel />
+        <Suspense fallback={<SearchPanelFallback />}>
+          <SearchPanel />
+        </Suspense>
         <CartButton />
       </NavbarContent>
 
