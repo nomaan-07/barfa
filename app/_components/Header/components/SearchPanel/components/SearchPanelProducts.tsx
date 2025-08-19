@@ -9,11 +9,12 @@ import SearchPanelProduct from "./SearchPanelProduct";
 function SearchPanelProducts() {
   const [results, setResults] = useState<SearchPanelProductsType>([]);
   const { value, onSearch } = useSearchPanel();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!value.trim()) {
       setResults([]);
+      setLoading(true);
       return;
     }
 
@@ -32,7 +33,7 @@ function SearchPanelProducts() {
 
   return (
     value && (
-      <section className="border-default-200 mx-auto w-full rounded-xl border p-4">
+      <section className="border-default-200 mx-auto w-full rounded-xl border px-2 py-4">
         <header className="border-b-default-200 mb-4 flex items-center justify-between border-b pb-4">
           <div className="flex gap-2 text-sm">
             <span>جستجو:</span>
@@ -48,7 +49,7 @@ function SearchPanelProducts() {
           </button>
         </header>
 
-        <div className="h-90 overflow-y-auto px-2 py-4">
+        <div className="h-90 overflow-y-auto px-1 py-4">
           {loading && (
             <div className="flex items-center justify-center">
               <Spinner />
