@@ -32,10 +32,21 @@ export type ListProduct = {
   brand: ProductBrand;
 };
 
+export type SearchPanelProductType = {
+  title_fa: string;
+  id: number;
+  main: string;
+};
+
+export type SearchPanelProductsType = {
+  title_fa: string;
+  id: number;
+  main: string;
+}[];
+
 export type Product = ListProduct & {
   title_en: string;
   introduction: string;
-
   category: {
     en: string;
     fa: string;
@@ -58,14 +69,22 @@ export type PopularBrand = {
 
 export type CategoryParams = Promise<{ slug: string }>;
 
-export type CategorySearchParams = Promise<{
+type BaseSearchParams = {
   sort?: string;
   discounted?: string;
   available?: string;
   minPrice?: string;
   maxPrice?: string;
-  brand?: string[];
-  color?: string;
-}>;
+  brand?: string | string[];
+  color?: string | string[];
+};
+
+export type CategorySearchParams = Promise<BaseSearchParams>;
+
+export type SearchPageSearchParams = Promise<
+  BaseSearchParams & {
+    query: string;
+  }
+>;
 
 export type SortChangeHandler = (sort: string, onClose?: () => void) => void;

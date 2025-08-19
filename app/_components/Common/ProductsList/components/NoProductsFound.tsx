@@ -1,11 +1,13 @@
-function Illustration() {
+import clsx from "clsx";
+
+function Illustration({ size = 240 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 400 400"
       id="Add-Products-To-Cart-Or-Basket--Streamline-Free-Illustrations"
-      height="240"
-      width="240"
+      height={`${size}`}
+      width={`${size}`}
     >
       <desc>
         Add Products To Cart Or Basket Streamline Illustration:
@@ -88,10 +90,26 @@ function Illustration() {
   );
 }
 
-function NoProductsFound() {
+interface NoProductsFoundProps {
+  size: "medium" | "small";
+  variant: "search-panel" | "products-list";
+}
+
+function NoProductsFound({ size, variant }: NoProductsFoundProps) {
+  let iconSize: number = 240;
+
+  if (size === "small") iconSize = 180;
+
   return (
-    <div className="flex w-full flex-col items-center justify-center p-6 text-center">
-      <Illustration />
+    <div
+      className={clsx(
+        "flex w-full flex-col items-center justify-center text-center",
+        {
+          "p-6": variant === "products-list",
+        },
+      )}
+    >
+      <Illustration size={iconSize} />
       <p className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">
         هیچ کالایی با این مشخصات وجود ندارد
       </p>

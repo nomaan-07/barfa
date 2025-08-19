@@ -1,4 +1,5 @@
 import {
+  SEARCH_PANEL_PRODUCTS_LIMIT,
   SWIPER_PRODUCTS_LIMIT,
   TABLES,
   TABLE_FIELDS,
@@ -9,6 +10,7 @@ import {
   ProductBrand,
   ProductCategory,
   ProductsVariation,
+  SearchPanelProductsType,
 } from "@/app/_utils/types";
 import { supabase } from "../supabase";
 
@@ -24,6 +26,7 @@ interface getProductsOptions {
   maxPrice?: string;
   brands?: string[];
   colors?: string[];
+  query?: string;
 }
 
 export async function getProducts({
@@ -36,53 +39,78 @@ export async function getProducts({
   maxPrice,
   brands,
   colors,
+  query,
 }: getProductsOptions) {
-  const isSwiper = variation === "swiper";
+  let supabaseQuery = supabase
+    .from(TABLES.PRODUCTS)
+    .select(TABLE_FIELDS.LIST_PRODUCT);
 
-  let query = supabase.from(TABLES.PRODUCTS).select(TABLE_FIELDS.LIST_PRODUCT);
+  // Search page
+  if (query) {
+    const keywords = query.split(" ").filter(Boolean);
+
+    if (keywords.length === 0) return [];
+
+    const filters: string[] = [];
+
+    keywords.forEach((word) => {
+      filters.push(
+        `category->>en.ilike.%${word}%,category->>fa.ilike.%${word}%,brand->>en.ilike.%${word}%,brand->>fa.ilike.%${word}%,title_en.ilike.%${word}%,title_fa.ilike.%${word}%`,
+      );
+    });
+
+    const orClause = filters.join(",");
+
+    supabaseQuery = supabaseQuery.or(orClause);
+  }
 
   if (category !== "all") {
-    query = query.eq("category->>en", category);
+    supabaseQuery = supabaseQuery.eq("category->>en", category);
   }
 
   // Filter
-  if (discounted) query = query.gt("discount_percent", 0).gt("quantity", 0);
-  if (available) query = query.gt("quantity", 0);
-  if (brands?.length) query = query.in("brand->>en", brands);
+  if (discounted)
+    supabaseQuery = supabaseQuery.gt("discount_percent", 0).gt("quantity", 0);
+  if (available) supabaseQuery = supabaseQuery.gt("quantity", 0);
+  if (brands?.length) supabaseQuery = supabaseQuery.in("brand->>en", brands);
   if (minPrice !== undefined)
-    query = query.gte("discounted_price", Number(minPrice)).gt("quantity", 0);
+    supabaseQuery = supabaseQuery
+      .gte("discounted_price", Number(minPrice))
+      .gt("quantity", 0);
   if (maxPrice !== undefined)
-    query = query.lte("discounted_price", Number(maxPrice)).gt("quantity", 0);
+    supabaseQuery = supabaseQuery
+      .lte("discounted_price", Number(maxPrice))
+      .gt("quantity", 0);
 
   // Sort
   switch (sort) {
     case "newest":
-      query = query.order("created_at", { ascending: false });
+      supabaseQuery = supabaseQuery.order("created_at", { ascending: false });
       break;
     case "oldest":
-      query = query.order("created_at", { ascending: true });
+      supabaseQuery = supabaseQuery.order("created_at", { ascending: true });
       break;
     case "cheapest":
-      query = query
+      supabaseQuery = supabaseQuery
         .order("discounted_price", { ascending: true })
         .gt("quantity", 0);
       break;
     case "expensive":
-      query = query
+      supabaseQuery = supabaseQuery
         .order("discounted_price", { ascending: false })
         .gt("quantity", 0);
       break;
     default:
-      query = query.order("quantity", { ascending: false });
+      supabaseQuery = supabaseQuery.order("quantity", { ascending: false });
       break;
   }
 
-  if (isSwiper) query = query.gt("quantity", 0).limit(SWIPER_PRODUCTS_LIMIT);
+  if (variation === "swiper")
+    supabaseQuery = supabaseQuery
+      .gt("quantity", 0)
+      .limit(SWIPER_PRODUCTS_LIMIT);
 
-  const { data, error } = await query;
-
-  // For testing
-  // await new Promise((res) => setTimeout(res, 2000));
+  const { data, error } = await supabaseQuery;
 
   if (error) {
     console.error(error);
@@ -100,6 +128,37 @@ export async function getProducts({
   }
 
   return products;
+}
+
+export async function getSearchPanelProducts(query: string) {
+  let supabaseQuery = supabase
+    .from(TABLES.PRODUCTS)
+    .select(TABLE_FIELDS.SEARCH_PANEL_PRODUCTS);
+
+  const keywords = query.split(" ").filter(Boolean);
+
+  if (keywords.length === 0) return [];
+
+  const filters: string[] = [];
+
+  keywords.forEach((word) => {
+    filters.push(
+      `category->>en.ilike.%${word}%,category->>fa.ilike.%${word}%,brand->>en.ilike.%${word}%,brand->>fa.ilike.%${word}%,title_en.ilike.%${word}%,title_fa.ilike.%${word}%`,
+    );
+  });
+
+  const orClause = filters.join(",");
+
+  supabaseQuery = supabaseQuery.or(orClause).limit(SEARCH_PANEL_PRODUCTS_LIMIT);
+
+  const { data, error } = await supabaseQuery;
+
+  if (error) {
+    console.error(error);
+    throw new Error(`searched products could not be loaded`);
+  }
+
+  return data as unknown as SearchPanelProductsType;
 }
 
 export async function getProductsFilters({ category }: { category: string }) {

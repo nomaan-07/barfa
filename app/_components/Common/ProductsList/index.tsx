@@ -12,6 +12,7 @@ interface ProductsListProps {
   maxPrice?: string;
   brands?: string[];
   colors?: string[];
+  query?: string;
 }
 
 async function ProductsList({
@@ -23,8 +24,11 @@ async function ProductsList({
   maxPrice,
   brands,
   colors,
+  query,
 }: ProductsListProps) {
-  const products: ListProduct[] = await getProducts({
+  let products: ListProduct[] = [];
+
+  products = await getProducts({
     category,
     variation: "list",
     sort,
@@ -34,9 +38,11 @@ async function ProductsList({
     maxPrice,
     brands,
     colors,
+    query,
   });
 
-  if (products.length === 0) return <NoProductsFound />;
+  if (products.length === 0)
+    return <NoProductsFound size="medium" variant="products-list" />;
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">

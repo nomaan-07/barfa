@@ -28,7 +28,8 @@ export function useQueryFilters() {
   }
 
   function hasAnyFilter() {
-    return Array.from(searchParams.keys()).some((key) => key !== "sort");
+    const ignore = ["sort", "query"];
+    return Array.from(searchParams.keys()).some((key) => !ignore.includes(key));
   }
 
   function updateParams(
@@ -68,10 +69,21 @@ export function useQueryFilters() {
   }
 
   function clearAll(options: { replace?: boolean } = {}) {
+    const params = new URLSearchParams();
+    const queryValue = searchParams.get("query");
+
+    if (queryValue) {
+      params.set("query", queryValue);
+    }
+
+    const newUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
+
     if (options.replace) {
-      router.replace(pathname);
+      router.replace(newUrl);
     } else {
-      router.push(pathname);
+      router.push(newUrl);
     }
   }
 

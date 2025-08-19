@@ -10,7 +10,7 @@ import {
   DrawerHeader,
 } from "@heroui/drawer";
 import { useDisclosure } from "@heroui/react";
-import DrawerCloseButton from "../Drawer/DrawerCloseButton";
+import DrawerCloseButton from "../../DrawerCloseButton";
 import DrawerOpenButton from "../Drawer/DrawerOpenButton";
 import FilterPanel from "./FilterPanel";
 

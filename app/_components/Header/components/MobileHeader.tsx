@@ -11,7 +11,7 @@ import { useState } from "react";
 import Logo from "../../Logo";
 import CartButton from "./CartButton";
 import MobileMenu from "./MobileMenu";
-import SearchButton from "./SearchButton";
+import SearchPanel from "./SearchPanel";
 
 function MobileHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +35,7 @@ function MobileHeader() {
         <Logo />
       </NavbarBrand>
       <NavbarContent justify="end">
-        <SearchButton />
+        <SearchPanel />
         <CartButton />
       </NavbarContent>
 
