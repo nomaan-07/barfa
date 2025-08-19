@@ -2,7 +2,7 @@ import ProductsListFallback from "../_components/Common/ProductsList/components/
 import BreadCrumbsSkeleton from "../_components/Common/Skeletons/BreadCrumbsSkeleton";
 import DesktopSortSkeleton from "../_components/Common/Skeletons/DesktopSortSkeleton";
 import FilterSidebarSkeleton from "../_components/Common/Skeletons/FilterSidebarSkeleton";
-import MobileFilterSortButtonsSkeleton from "../_components/Common/Skeletons/MobileFIlterSortButtonsSkeleton";
+import MobileFilterSortButtonsSkeleton from "../_components/Common/Skeletons/MobileFilterSortButtonsSkeleton";
 
 function CategoryLoading() {
   return (
