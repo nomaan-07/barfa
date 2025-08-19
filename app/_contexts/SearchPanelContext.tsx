@@ -1,3 +1,5 @@
+"use client";
+
 import { useDisclosure } from "@heroui/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
