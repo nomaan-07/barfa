@@ -14,7 +14,7 @@ interface ProductImageProps {
 function ProductImage({ src, alt, id }: ProductImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
-    <Link href={`product/${id}`} className="mx-auto size-48 p-2 select-none">
+    <Link href={`/product/${id}`} className="mx-auto size-48 p-2 select-none">
       <Skeleton className="rounded-lg" isLoaded={isLoaded}>
         <Image
           isZoomed

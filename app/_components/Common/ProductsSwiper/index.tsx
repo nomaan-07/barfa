@@ -1,7 +1,7 @@
 "use client";
 
 import { ListProduct } from "@/app/_utils/types";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "../ProductCard";
 import SwiperButton from "../SwiperButton";
@@ -12,8 +12,8 @@ interface ProductsSwiperProps {
 }
 
 function ProductsSwiper({ products, uniqueId }: ProductsSwiperProps) {
-  const prevButtonClass = `swiper-prev-button-${uniqueId}`;
-  const nextButtonClass = `swiper-next-button-${uniqueId}`;
+  const prevButtonClass = `swiper-prev-button--${uniqueId}`;
+  const nextButtonClass = `swiper-next-button--${uniqueId}`;
 
   return (
     <Swiper
@@ -25,7 +25,7 @@ function ProductsSwiper({ products, uniqueId }: ProductsSwiperProps) {
         nextEl: `.${nextButtonClass}`,
         disabledClass: "swiper-button-disabled",
       }}
-      modules={[Navigation, Pagination]}
+      modules={[Navigation]}
     >
       {products.map((product) => (
         <SwiperSlide key={product.id} className="!w-56 not-last:!ml-3">

@@ -6,11 +6,11 @@ import ProductsListFallback from "@/app/_components/Common/ProductsList/componen
 import { FiltersProvider } from "@/app/_contexts/FiltersContext";
 import { getProductsFilters } from "@/app/_lib/data-services";
 import { categoryParamsValidation, normalizeParam } from "@/app/_utils/helper";
-import { CategoryParams, CategorySearchParams } from "@/app/_utils/types";
+import { CategorySearchParams } from "@/app/_utils/types";
 import { Suspense } from "react";
 
 interface CategoryPageProps {
-  params: CategoryParams;
+  params: Promise<{ slug: string }>;
   searchParams: CategorySearchParams;
 }
 
@@ -40,7 +40,11 @@ async function CategoryPage({ params, searchParams }: CategoryPageProps) {
       prices={priceRange}
     >
       <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">
-        <PageBreadCrumbs category={currentCategory} brand={currentBrandArr} />
+        <PageBreadCrumbs
+          page="category"
+          category={currentCategory}
+          brand={currentBrandArr}
+        />
         <div className="flex gap-4">
           <FilterSidebar />
           <div className="w-full space-y-4">

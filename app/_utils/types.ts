@@ -44,13 +44,13 @@ export type SearchPanelProductsType = {
   main: string;
 }[];
 
-export type Product = ListProduct & {
+export type ProductSpecs = Record<string, Record<string, string | string[]>>;
+
+export type ProductType = ListProduct & {
   title_en: string;
   introduction: string;
-  category: {
-    en: string;
-    fa: string;
-  };
+  category: ProductCategory;
+  specifications: ProductSpecs;
 };
 
 export type Banner = {
@@ -66,8 +66,6 @@ export type PopularBrand = {
   link: string;
   image_src: string;
 };
-
-export type CategoryParams = Promise<{ slug: string }>;
 
 type BaseSearchParams = {
   sort?: string;

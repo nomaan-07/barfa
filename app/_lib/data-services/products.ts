@@ -219,3 +219,18 @@ export async function getProductsFilters({ category }: { category: string }) {
     priceRange: { min, max },
   };
 }
+
+export async function getProduct(id: number) {
+  const { data, error } = await supabase
+    .from(TABLES.PRODUCTS)
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error(`product could not be loaded`);
+  }
+
+  return data;
+}
