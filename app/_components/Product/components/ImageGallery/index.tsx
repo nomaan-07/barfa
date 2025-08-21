@@ -39,8 +39,6 @@ function ImageGallery({ imageSources, colors }: ImageGalleryProps) {
 
   return (
     <>
-      <CurrentColorLine activeImage={images[activeIndex]} />
-
       <ImageModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -50,12 +48,19 @@ function ImageGallery({ imageSources, colors }: ImageGalleryProps) {
         swiperRef={modalSwiperRef}
       />
 
-      <div className="relative w-full lg:mt-2 lg:pr-8">
+      <CurrentColorLine activeImage={images[activeIndex]} />
+
+      <div className="relative w-full space-y-2 lg:order-2 lg:pr-8">
         <ImageSwiper
           images={images}
           onSelect={handleSelect}
           swiperRef={swiperRef}
           onOpenModal={onOpen}
+        />
+
+        <SlideCounter
+          currentSlide={activeIndex + 1}
+          totalImages={images.length}
         />
 
         <ImageThumbnails
@@ -68,11 +73,6 @@ function ImageGallery({ imageSources, colors }: ImageGalleryProps) {
           colors={colorsArr}
           activeIndex={activeIndex}
           onSelect={handleSelect}
-        />
-
-        <SlideCounter
-          currentSlide={activeIndex + 1}
-          totalImages={images.length}
         />
       </div>
     </>

@@ -8,7 +8,7 @@ function ImageThumbnails({
   onSelect,
 }: ImageThumbnailsProps) {
   return (
-    <div className="mt-2 hidden justify-center gap-2 lg:flex">
+    <div className="hidden justify-center gap-2 lg:flex">
       {images.map((image, index) => (
         <div
           key={index}
@@ -23,7 +23,7 @@ function ImageThumbnails({
         >
           <Image
             src={image.url}
-            alt={`تصویر ${image.fa} محصول`}
+            alt={image.fa}
             className="size-full object-cover select-none"
           />
         </div>

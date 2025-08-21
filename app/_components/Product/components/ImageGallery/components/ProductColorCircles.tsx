@@ -7,7 +7,7 @@ function ProductColorCircles({
   onSelect,
 }: ProductColorCirclesProps) {
   return (
-    <div className="absolute top-1 right-1 z-10 hidden flex-col gap-2 lg:flex">
+    <div className="flex max-h-120 flex-wrap gap-2 lg:absolute lg:top-1 lg:right-1 lg:z-10 lg:flex-col">
       {colors.map((color, index) => (
         <button
           key={index}

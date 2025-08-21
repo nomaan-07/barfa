@@ -53,7 +53,7 @@ function ImageModal({
                     <div className="flex items-center justify-center p-10">
                       <Image
                         src={image.url}
-                        alt={`تصویر ${image.fa} محصول`}
+                        alt={image.fa}
                         className="sm:max-h-[75vh]"
                       />
                     </div>

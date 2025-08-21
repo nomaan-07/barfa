@@ -17,7 +17,7 @@ function SlideCounter({
       startContent={<LucideImage className={IconClasses} />}
       className={clsx("absolute z-10 bg-black/50 text-white select-none", {
         "bottom-2 left-2": isModal,
-        "bottom-0 left-0 lg:hidden": !isModal,
+        "top-0 left-0 lg:hidden": !isModal,
       })}
     >
       {convertToPersian(currentSlide)} از {convertToPersian(totalImages)}

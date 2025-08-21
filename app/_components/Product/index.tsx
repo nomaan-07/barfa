@@ -90,16 +90,11 @@ function Product({ raw, product2 }: ProductProps) {
               />
             </CardFooter>
           </Card>
-
-          <ProductTabs
-            introduction={product2.introduction}
-            specs={product2.specifications}
-          />
         </section>
 
-        {/* Purchase panel */}
-        <aside className="space-y-6 lg:col-span-6">
-          <Card className="lg:sticky lg:top-4 lg:z-30">
+        <section className="space-y-6 lg:col-span-6">
+          {/* Purchase panel */}
+          <Card className="hidden lg:sticky lg:top-4 lg:z-30 lg:block">
             <CardHeader className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <Chip
@@ -194,6 +189,9 @@ function Product({ raw, product2 }: ProductProps) {
             </CardFooter>
           </Card>
 
+          {/* Mobile Color Selector */}
+          <Card className="lg:hidden">color</Card>
+
           {/* Quick features */}
           {featuresList?.length > 0 && (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -209,7 +207,15 @@ function Product({ raw, product2 }: ProductProps) {
               ))}
             </div>
           )}
-        </aside>
+
+          {/* Mobile Options */}
+          <Card className="lg:hidden">insurance - warranty</Card>
+
+          <ProductTabs
+            introduction={product2.introduction}
+            specs={product2.specifications}
+          />
+        </section>
       </main>
       {/* Mobile sticky buy bar */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/90 p-3 backdrop-blur md:hidden">

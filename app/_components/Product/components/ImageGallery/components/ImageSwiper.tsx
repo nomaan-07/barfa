@@ -18,7 +18,7 @@ function ImageSwiper({
           <div className="flex items-center justify-center">
             <Image
               src={image.url}
-              alt={`تصویر ${image.fa} محصول`}
+              alt={image.fa}
               className="size-full max-h-52 rounded-lg select-none sm:max-h-64 md:max-h-72 lg:max-h-135"
             />
           </div>

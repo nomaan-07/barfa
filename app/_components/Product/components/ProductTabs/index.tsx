@@ -11,8 +11,12 @@ interface ProductTabsProps {
 function ProductTabs({ introduction, specs }: ProductTabsProps) {
   return (
     <Card>
-      <CardBody className="p-0">
-        <Tabs aria-label="جزئیات محصول" variant="underlined" className="px-4">
+      <CardBody className="px-0">
+        <Tabs
+          aria-label="جزئیات محصول"
+          variant={introduction ? "solid" : "light"}
+          className="px-4"
+        >
           {introduction && (
             <Tab key="intro" title="معرفی">
               <div className="p-4 leading-8 text-gray-700">{introduction}</div>
@@ -24,6 +28,7 @@ function ProductTabs({ introduction, specs }: ProductTabsProps) {
                 variant="splitted"
                 selectionMode="multiple"
                 defaultExpandedKeys={["عمومی"]}
+                className="w-full"
               >
                 {Object.entries(specs).map(([group, content]) => (
                   <AccordionItem
@@ -43,11 +48,6 @@ function ProductTabs({ introduction, specs }: ProductTabsProps) {
                   </AccordionItem>
                 ))}
               </Accordion>
-            </div>
-          </Tab>
-          <Tab key="reviews" title="نظرات">
-            <div className="p-4 text-gray-600">
-              هنوز نظری برای این کالا ثبت نشده است.
             </div>
           </Tab>
         </Tabs>
