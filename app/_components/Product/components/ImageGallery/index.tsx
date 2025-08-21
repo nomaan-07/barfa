@@ -4,11 +4,11 @@ import { Colors, ImageSources } from "@/app/_utils/types";
 import { useDisclosure } from "@heroui/react";
 import { useRef, useState } from "react";
 import { Swiper as SwiperType } from "swiper";
-import ColorCircles from "./components/ColorCircles";
-import CurrentColor from "./components/CurrentColor";
+import CurrentColorLine from "./components/CurrentColorLine";
 import ImageModal from "./components/ImageModal";
 import ImageSwiper from "./components/ImageSwiper";
 import ImageThumbnails from "./components/ImageThumbnails";
+import ProductColorCircles from "./components/ProductColorCircles";
 import SlideCounter from "./components/SlideCounter";
 
 interface ImageGalleryProps {
@@ -39,7 +39,7 @@ function ImageGallery({ imageSources, colors }: ImageGalleryProps) {
 
   return (
     <>
-      <CurrentColor activeImage={images[activeIndex]} />
+      <CurrentColorLine activeImage={images[activeIndex]} />
 
       <ImageModal
         isOpen={isOpen}
@@ -64,7 +64,7 @@ function ImageGallery({ imageSources, colors }: ImageGalleryProps) {
           onSelect={handleSelect}
         />
 
-        <ColorCircles
+        <ProductColorCircles
           colors={colorsArr}
           activeIndex={activeIndex}
           onSelect={handleSelect}

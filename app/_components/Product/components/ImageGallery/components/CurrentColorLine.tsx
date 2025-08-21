@@ -1,6 +1,6 @@
-import { CurrentColorProps } from "../types";
+import { CurrentColorLineProps } from "../types";
 
-function CurrentColor({ activeImage }: CurrentColorProps) {
+function CurrentColorLine({ activeImage }: CurrentColorLineProps) {
   return (
     <div className="hidden items-center gap-2 font-medium lg:flex">
       <span className="shrink-0">{activeImage.fa}</span>
@@ -12,4 +12,4 @@ function CurrentColor({ activeImage }: CurrentColorProps) {
   );
 }
 
-export default CurrentColor;
+export default CurrentColorLine;

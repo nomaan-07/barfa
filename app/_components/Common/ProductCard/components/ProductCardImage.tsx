@@ -5,13 +5,13 @@ import { Skeleton } from "@heroui/skeleton";
 import Link from "next/link";
 import { useState } from "react";
 
-interface ProductImageProps {
+interface ProductCardImageProps {
   src: string;
   alt: string;
   id: number;
 }
 
-function ProductImage({ src, alt, id }: ProductImageProps) {
+function ProductCardImage({ src, alt, id }: ProductCardImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
     <Link href={`/product/${id}`} className="mx-auto size-48 p-2 select-none">
@@ -30,4 +30,4 @@ function ProductImage({ src, alt, id }: ProductImageProps) {
   );
 }
 
-export default ProductImage;
+export default ProductCardImage;

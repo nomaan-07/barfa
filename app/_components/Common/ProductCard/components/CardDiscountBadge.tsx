@@ -1,15 +1,15 @@
 import { convertToPersian } from "@/app/_utils/helper";
 import clsx from "clsx";
 
-interface DiscountBadgeProps {
+interface CardDiscountBadgeProps {
   discountPercent: number;
   className?: string;
 }
 
-function DiscountBadge({
+function CardDiscountBadge({
   discountPercent,
   className = "",
-}: DiscountBadgeProps) {
+}: CardDiscountBadgeProps) {
   return (
     <div
       className={clsx(
@@ -22,4 +22,4 @@ function DiscountBadge({
   );
 }
 
-export default DiscountBadge;
+export default CardDiscountBadge;

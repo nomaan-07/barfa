@@ -12,11 +12,11 @@ export type ProductImages = ProductImage[];
 
 export type OnSelect = (index: number) => void;
 
-export interface CurrentColorProps {
+export interface CurrentColorLineProps {
   activeImage: ProductImage;
 }
 
-export interface ColorCirclesProps {
+export interface ProductColorCirclesProps {
   colors: string[];
   activeIndex: number;
   onSelect: OnSelect;

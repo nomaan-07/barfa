@@ -1,10 +1,10 @@
 import { Colors } from "@/app/_utils/types";
 
-interface ColorCirclesProps {
+interface CardColorCirclesProps {
   colors: Colors;
 }
 
-function ColorCircles({ colors }: ColorCirclesProps) {
+function CardColorCircles({ colors }: CardColorCirclesProps) {
   return (
     <div className="flex gap-1">
       {colors.map((color) => (
@@ -18,4 +18,4 @@ function ColorCircles({ colors }: ColorCirclesProps) {
   );
 }
 
-export default ColorCircles;
+export default CardColorCircles;

@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-interface TitleProps {
+interface ProductCardTitleProps {
   title: string;
   id: number;
 }
 
-function Title({ title, id }: TitleProps) {
+function ProductCardTitle({ title, id }: ProductCardTitleProps) {
   return (
     <Link
       href={`/product/${id}`}
@@ -16,4 +16,4 @@ function Title({ title, id }: TitleProps) {
   );
 }
 
-export default Title;
+export default ProductCardTitle;

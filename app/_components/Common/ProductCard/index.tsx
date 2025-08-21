@@ -3,13 +3,13 @@ import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
 import clsx from "clsx";
 import { ShoppingCart } from "lucide-react";
-import ColorCircles from "./components/ColorCircles";
-import DiscountBadge from "./components/DiscountBadge";
-import FinalPrice from "./components/FinalPrice";
-import OriginalPrice from "./components/OriginalPrice";
-import ProductImage from "./components/ProductImage";
-import QuantityText from "./components/QuantityText";
-import Title from "./components/Title";
+import CardColorCircles from "./components/CardColorCircles";
+import CardDiscountBadge from "./components/CardDiscountBadge";
+import CardFinalPrice from "./components/CardFinalPrice";
+import CardOriginalPrice from "./components/CardOriginalPrice";
+import CardQuantityText from "./components/CardQuantityText";
+import ProductCardImage from "./components/ProductCardImage";
+import ProductCardTitle from "./components/ProductCardTitle";
 
 interface ProductCardProps {
   product: ListProduct;
@@ -30,34 +30,32 @@ function ProductCard({ product, variation }: ProductCardProps) {
         grayscale: isFinished,
       })}
     >
-      {product.image_sources && (
-        <ProductImage
-          src={product.image_sources.main}
-          alt={product.title_fa}
-          id={product.id}
-        />
-      )}
+      <ProductCardImage
+        src={product.image_sources.main}
+        alt={product.title_fa}
+        id={product.id}
+      />
 
       <div className="flex flex-grow flex-col space-y-4 p-2">
-        <Title id={product.id} title={product.title_fa} />
+        <ProductCardTitle id={product.id} title={product.title_fa} />
 
         {!isFinished && (
           <>
             <div className="flex h-13 flex-col justify-end">
-              <div className="flex items-center justify-between pl-8">
-                <ColorCircles colors={product.colors} />
-                {haveDiscount && <OriginalPrice price={product.price} />}
+              <div className="flex h-6 items-center justify-between pl-8">
+                <CardColorCircles colors={product.colors} />
+                {haveDiscount && <CardOriginalPrice price={product.price} />}
               </div>
 
               <div className="flex items-center justify-end">
                 {haveDiscount && (
-                  <DiscountBadge
+                  <CardDiscountBadge
                     discountPercent={product.discount_percent}
                     className={clsx(!isSwiper && "absolute top-2 left-2")}
                   />
                 )}
-                {!isSwiper && <QuantityText quantity={product.quantity!} />}
-                <FinalPrice price={product.discounted_price} />
+                {!isSwiper && <CardQuantityText quantity={product.quantity!} />}
+                <CardFinalPrice price={product.discounted_price} />
               </div>
             </div>
             <Button
@@ -70,7 +68,7 @@ function ProductCard({ product, variation }: ProductCardProps) {
           </>
         )}
 
-        {isFinished && <QuantityText quantity={0} />}
+        {isFinished && <CardQuantityText quantity={0} />}
       </div>
     </Card>
   );

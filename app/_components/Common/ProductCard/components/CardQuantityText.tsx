@@ -1,8 +1,8 @@
-interface QuantityTextProps {
+interface CardQuantityTextProps {
   quantity: number;
 }
 
-function QuantityText({ quantity }: QuantityTextProps) {
+function CardQuantityText({ quantity }: CardQuantityTextProps) {
   if (quantity === 0)
     return (
       <div className="mt-6 flex items-center gap-2">
@@ -24,4 +24,4 @@ function QuantityText({ quantity }: QuantityTextProps) {
   return null;
 }
 
-export default QuantityText;
+export default CardQuantityText;

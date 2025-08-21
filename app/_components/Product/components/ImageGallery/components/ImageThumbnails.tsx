@@ -9,7 +9,7 @@ function ImageThumbnails({
 }: ImageThumbnailsProps) {
   return (
     <div className="mt-2 hidden justify-center gap-2 lg:flex">
-      {images.map((img, index) => (
+      {images.map((image, index) => (
         <div
           key={index}
           className={clsx(
@@ -22,8 +22,8 @@ function ImageThumbnails({
           onClick={() => onSelect(index)}
         >
           <Image
-            src={img.url}
-            alt={`تصویر ${img.fa} محصول`}
+            src={image.url}
+            alt={`تصویر ${image.fa} محصول`}
             className="size-full object-cover select-none"
           />
         </div>

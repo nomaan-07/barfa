@@ -1,10 +1,10 @@
 import { convertToPersian } from "@/app/_utils/helper";
 
-interface FinalPriceProps {
+interface CardFinalPriceProps {
   price: number;
 }
 
-function FinalPrice({ price }: FinalPriceProps) {
+function CardFinalPrice({ price }: CardFinalPriceProps) {
   const convertedPrice = convertToPersian(price);
 
   return (
@@ -15,4 +15,4 @@ function FinalPrice({ price }: FinalPriceProps) {
   );
 }
 
-export default FinalPrice;
+export default CardFinalPrice;

@@ -1,13 +1,17 @@
 import clsx from "clsx";
-import { ColorCirclesProps } from "../types";
+import { ProductColorCirclesProps } from "../types";
 
-function ColorCircles({ colors, activeIndex, onSelect }: ColorCirclesProps) {
+function ProductColorCircles({
+  colors,
+  activeIndex,
+  onSelect,
+}: ProductColorCirclesProps) {
   return (
     <div className="absolute top-1 right-1 z-10 hidden flex-col gap-2 lg:flex">
       {colors.map((color, index) => (
         <button
           key={index}
-          className={clsx("size-6 rounded-full", {
+          className={clsx("size-6 cursor-pointer rounded-full", {
             "ring-primary ring-1 ring-offset-2": activeIndex === index,
             "border-default-300 border-1": activeIndex !== index,
           })}
@@ -19,4 +23,4 @@ function ColorCircles({ colors, activeIndex, onSelect }: ColorCirclesProps) {
   );
 }
 
-export default ColorCircles;
+export default ProductColorCircles;

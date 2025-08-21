@@ -48,12 +48,12 @@ function ImageModal({
                 }}
                 modules={[Navigation]}
               >
-                {images.map((img, index) => (
+                {images.map((image, index) => (
                   <SwiperSlide key={index}>
                     <div className="flex items-center justify-center p-10">
                       <Image
-                        src={img.url}
-                        alt={`تصویر ${img.fa} محصول`}
+                        src={image.url}
+                        alt={`تصویر ${image.fa} محصول`}
                         className="sm:max-h-[75vh]"
                       />
                     </div>
