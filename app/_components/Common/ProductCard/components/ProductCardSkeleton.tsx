@@ -38,7 +38,7 @@ function ProductCardSkeleton({ variation }: ProductCardSkeletonProps) {
           <div className="flex h-7 items-center justify-end">
             {/* Discount Badge */}
             <Skeleton
-              className={clsx("bg-danger h-5 w-6 rounded-md", {
+              className={clsx("bg-danger h-5 w-8 rounded-full", {
                 "absolute top-2 left-2": variation === "list",
                 "ml-auto": variation === "swiper",
               })}

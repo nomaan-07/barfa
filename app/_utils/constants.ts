@@ -1,5 +1,6 @@
 export const SWIPER_PRODUCTS_LIMIT = 10;
 export const SEARCH_PANEL_PRODUCTS_LIMIT = 20;
+export const LOW_PRODUCT_QUANTITY = 3;
 
 export const TABLES = {
   PRODUCTS: "barfa-products",

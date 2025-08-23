@@ -12,6 +12,8 @@ import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import ImageGallery from "./components/ImageGallery";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
+import PurchasePanel from "./components/PurchasePanel";
+import FinishedPanel from "./components/FinishedPanel";
 
 // ---- Helpers ----------------------------------------------------------------
 function parseJSONSafe(str: string, fallback: object) {
@@ -45,8 +47,6 @@ function Product({ raw, product2 }: ProductProps) {
     () => parseJSONSafe(product.main_features, {}),
     [product.main_features],
   );
-
-  const [qty, setQty] = useState(1);
 
   const price = Number(product.price);
   const discountPercent = Number(product.discount_percent || 0);
@@ -93,104 +93,11 @@ function Product({ raw, product2 }: ProductProps) {
         </section>
 
         <section className="space-y-6 lg:col-span-6">
-          {/* Purchase panel */}
-          <Card className="hidden lg:sticky lg:top-4 lg:z-30 lg:block">
-            <CardHeader className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <Chip
-                  variant="flat"
-                  className="text-primary border-primary/20 border"
-                >
-                  {parseJSONSafe(product.brand, {}).fa || "برند"}
-                </Chip>
-                <Divider orientation="vertical" className="h-5" />
-                <span className="text-sm text-gray-500">
-                  کد کالا: #{product2.id}
-                </span>
-              </div>
-              <Tooltip content={product.warranty} placement="bottom">
-                <Chip variant="flat">{product.warranty}</Chip>
-              </Tooltip>
-            </CardHeader>
-            <Divider />
-            <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="space-y-2">
-                <div className="text-xs text-gray-500">قیمت</div>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-3xl font-extrabold tracking-tight text-gray-900">
-                    {formatIRR(discountedPrice)}
-                    <span className="mr-1 text-sm font-medium text-gray-500">
-                      تومان
-                    </span>
-                  </span>
-                  {hasDiscount && (
-                    <span className="text-sm text-gray-400 line-through">
-                      {formatIRR(price)}
-                    </span>
-                  )}
-                </div>
-                {hasDiscount && (
-                  <Chip
-                    color="danger"
-                    variant="flat"
-                    size="sm"
-                    className="w-max"
-                  >
-                    {discountPercent}% تخفیف
-                  </Chip>
-                )}
-              </div>
-              <div className="space-y-2">
-                <div className="text-xs text-gray-500">تعداد</div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    size="sm"
-                    variant="flat"
-                    onPress={() => setQty((q) => Math.max(1, q - 1))}
-                  >
-                    −
-                  </Button>
-                  <Input
-                    value={String(qty)}
-                    onChange={(e) => {
-                      const val = Number(e.target.value.replace(/[^\d]/g, ""));
-                      setQty(val > 0 ? val : 1);
-                    }}
-                    className="w-20 text-center"
-                  />
-                  <Button
-                    size="sm"
-                    variant="flat"
-                    onPress={() => setQty((q) => q + 1)}
-                  >
-                    +
-                  </Button>
-                </div>
-                <div className="text-xs text-gray-500">
-                  موجودی:{" "}
-                  <span className="font-semibold text-gray-700">
-                    {product.quantity}
-                  </span>{" "}
-                  عدد
-                </div>
-              </div>
-            </CardBody>
-            <CardFooter className="flex flex-col gap-3 md:flex-row">
-              <Button radius="lg" className="bg-primary flex-1 text-white">
-                افزودن به سبد خرید
-              </Button>
-              <Button
-                radius="lg"
-                variant="bordered"
-                className="border-primary text-primary flex-1"
-              >
-                خرید فوری
-              </Button>
-            </CardFooter>
-          </Card>
-
-          {/* Mobile Color Selector */}
-          <Card className="lg:hidden">color</Card>
+          {product2.quantity > 0 ? (
+            <PurchasePanel product={product2} />
+          ) : (
+            <FinishedPanel />
+          )}
 
           {/* Quick features */}
           {featuresList?.length > 0 && (

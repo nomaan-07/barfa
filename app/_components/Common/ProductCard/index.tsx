@@ -1,13 +1,12 @@
 import { ListProduct, ProductsVariation } from "@/app/_utils/types";
-import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
 import clsx from "clsx";
-import { ShoppingCart } from "lucide-react";
+import AddToCartButton from "../AddToCartButton";
+import DiscountBadge from "../DiscountBadge";
+import FinalPrice from "../FinalPrice";
+import OriginalPrice from "../OriginalPrice";
+import QuantityText from "../QuantityText";
 import CardColorCircles from "./components/CardColorCircles";
-import CardDiscountBadge from "./components/CardDiscountBadge";
-import CardFinalPrice from "./components/CardFinalPrice";
-import CardOriginalPrice from "./components/CardOriginalPrice";
-import CardQuantityText from "./components/CardQuantityText";
 import ProductCardImage from "./components/ProductCardImage";
 import ProductCardTitle from "./components/ProductCardTitle";
 
@@ -19,7 +18,7 @@ interface ProductCardProps {
 function ProductCard({ product, variation }: ProductCardProps) {
   const isSwiper = variation === "swiper";
   const isFinished = product.quantity === 0;
-  const haveDiscount = product.discount_percent > 0;
+  const hasDiscount = product.discount_percent > 0;
 
   return (
     <Card
@@ -44,31 +43,29 @@ function ProductCard({ product, variation }: ProductCardProps) {
             <div className="flex h-13 flex-col justify-end">
               <div className="flex h-6 items-center justify-between pl-8">
                 <CardColorCircles colors={product.colors} />
-                {haveDiscount && <CardOriginalPrice price={product.price} />}
+                {hasDiscount && (
+                  <OriginalPrice variant="card" price={product.price} />
+                )}
               </div>
 
               <div className="flex items-center justify-end">
-                {haveDiscount && (
-                  <CardDiscountBadge
+                {hasDiscount && (
+                  <DiscountBadge
                     discountPercent={product.discount_percent}
-                    className={clsx(!isSwiper && "absolute top-2 left-2")}
+                    isAbsolute={!isSwiper}
                   />
                 )}
-                {!isSwiper && <CardQuantityText quantity={product.quantity!} />}
-                <CardFinalPrice price={product.discounted_price} />
+                {!isSwiper && (
+                  <QuantityText variant="card" quantity={product.quantity!} />
+                )}
+                <FinalPrice variant="card" price={product.discounted_price} />
               </div>
             </div>
-            <Button
-              color="primary"
-              endContent={<ShoppingCart className="size-4.5" />}
-              fullWidth
-            >
-              افزودن به سبد خرید
-            </Button>
+            <AddToCartButton />
           </>
         )}
 
-        {isFinished && <CardQuantityText quantity={0} />}
+        {isFinished && <QuantityText variant="card" quantity={0} />}
       </div>
     </Card>
   );

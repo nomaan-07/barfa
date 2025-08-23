@@ -46,11 +46,19 @@ export type SearchPanelProductsType = {
 
 export type ProductSpecs = Record<string, Record<string, string | string[]>>;
 
+export type InsuranceType = {
+  title: string;
+  price?: number;
+  percent?: number;
+};
+
 export type ProductType = ListProduct & {
   title_en: string;
   introduction: string;
   category: ProductCategory;
   specifications: ProductSpecs;
+  warranty: string;
+  insurance: InsuranceType;
 };
 
 export type Banner = {
