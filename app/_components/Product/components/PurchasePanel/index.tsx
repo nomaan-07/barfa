@@ -24,7 +24,7 @@ function PurchasePanel() {
       </CardHeader>
 
       <CardBody className="space-y-6">
-        <Insurance />
+        <Insurance variant="desktop" />
 
         <div className="flex items-center justify-between">
           <QuantitySelector />

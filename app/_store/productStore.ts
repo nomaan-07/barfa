@@ -131,6 +131,7 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
     })),
 
   toggleInsurance: () => {
+    console.log("test");
     set((state) => ({
       hasInsurance: !state.hasInsurance,
     }));

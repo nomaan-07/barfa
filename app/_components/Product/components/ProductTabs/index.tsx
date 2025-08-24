@@ -16,11 +16,11 @@ function ProductTabs() {
           className="px-4"
         >
           {introduction && (
-            <Tab key="intro" title="معرفی">
+            <Tab title="معرفی">
               <ProductIntroduction />
             </Tab>
           )}
-          <Tab key="specs" title="مشخصات فنی">
+          <Tab title="مشخصات فنی">
             <ProductSpecifications />
           </Tab>
         </Tabs>

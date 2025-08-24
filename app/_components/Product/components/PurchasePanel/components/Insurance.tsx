@@ -4,24 +4,48 @@ import { Card, CardBody } from "@heroui/card";
 import { Checkbox } from "@heroui/checkbox";
 import clsx from "clsx";
 
-function Insurance() {
+interface InsuranceProps {
+  variant: "mobile" | "desktop";
+}
+
+function Insurance({ variant }: InsuranceProps) {
   const insurancePrice = useProductsStore((state) => state.insurancePrice);
   const insuranceTitle = useProductsStore((state) => state.insurance.title);
   const hasInsurance = useProductsStore((state) => state.hasInsurance);
+  const quantity = useProductsStore((state) => state.quantity);
   const toggleInsurance = useProductsStore((state) => state.toggleInsurance);
 
+  if (quantity === 0) return null;
+
   return (
-    <Card shadow="sm" className={clsx(hasInsurance && "bg-primary-50")}>
-      <CardBody>
-        <div className="divide-default-300 flex items-center justify-between gap-4 divide-x text-right">
-          <Checkbox isSelected={hasInsurance} onValueChange={toggleInsurance}>
+    <Card
+      shadow="sm"
+      className={clsx({
+        "hidden lg:block": variant === "desktop",
+        "lg:hidden": variant === "mobile",
+        "bg-primary-50": hasInsurance,
+      })}
+    >
+      <CardBody className="text-right">
+        <div
+          onClick={toggleInsurance}
+          className="divide-default-200 flex flex-col justify-between gap-2 overflow-hidden sm:flex-row sm:items-center sm:gap-4 sm:divide-x"
+        >
+          <Checkbox
+            aria-label={insuranceTitle}
+            onValueChange={toggleInsurance}
+            isSelected={hasInsurance}
+            classNames={{
+              label: "text-sm sm:text-base",
+            }}
+          >
             {insuranceTitle}
           </Checkbox>
-          <div>
-            <span className="ml-1 text-lg font-semibold">
+          <div className="flex items-center justify-end gap-1">
+            <span className="text-sm font-semibold sm:text-lg">
               {convertToPersian(insurancePrice)}
             </span>
-            <span className="text-sm">تومان</span>
+            <span className="text-xs sm:text-sm">تومان</span>
           </div>
         </div>
       </CardBody>

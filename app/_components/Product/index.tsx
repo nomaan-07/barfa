@@ -13,6 +13,7 @@ import MobileSpecialOffer from "./components/MobileSpecialOffer";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
 import PurchasePanel from "./components/PurchasePanel";
+import Insurance from "./components/PurchasePanel/components/Insurance";
 
 interface ProductProps {
   product: ProductType;
@@ -51,17 +52,17 @@ function Product({ product }: ProductProps) {
         </section>
 
         <section className="space-y-6 lg:col-span-6">
+          {/* Mobile Options */}
+          <Insurance variant="mobile" />
+
           <PurchasePanel />
           <MainFeatures />
-
-          {/* Mobile Options */}
-          <Card className="lg:hidden">insurance - warranty</Card>
 
           <ProductTabs />
         </section>
       </main>
       {/* Mobile sticky buy bar */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/90 p-3 backdrop-blur md:hidden">
+      {/* <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200 bg-white/90 p-3 backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
           <div className="flex flex-col">
             <span className="text-xs text-gray-500">قیمت</span>
@@ -74,7 +75,7 @@ function Product({ product }: ProductProps) {
             افزودن
           </Button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
