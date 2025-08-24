@@ -9,7 +9,7 @@ function ProductTabs() {
 
   return (
     <Card>
-      <CardBody className="px-0 text-right">
+      <CardBody className="overflow-hidden px-0 text-right">
         <Tabs
           aria-label="جزئیات محصول"
           variant={introduction ? "solid" : "light"}

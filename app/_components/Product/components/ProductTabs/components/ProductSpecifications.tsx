@@ -32,7 +32,7 @@ function ProductSpecifications() {
               </span>
             }
           >
-            <div className="space-y-2">
+            <div className="w-full space-y-2">
               {Array.isArray(content)
                 ? content.map((v, i) => (
                     <Specification key={i} label="•" value={v} />
@@ -45,11 +45,13 @@ function ProductSpecifications() {
         ))}
       </Accordion>
 
-      <ToggleButton
-        openText="مشاهده همه مشخصات"
-        isOpen={isOpen}
-        onToggle={onToggle}
-      />
+      {Object.entries(specifications).length > 3 && (
+        <ToggleButton
+          openText="مشاهده همه مشخصات"
+          isOpen={isOpen}
+          onToggle={onToggle}
+        />
+      )}
     </div>
   );
 }

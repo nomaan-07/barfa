@@ -3,6 +3,9 @@ import { Card } from "@heroui/card";
 
 function MainFeatures() {
   const features = useProductsStore((state) => state.mainFeatures);
+
+  if (!features) return null;
+
   const featuresArr = Object.entries(features);
 
   return (
