@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import ImageGallery from "./components/ImageGallery";
 import MainFeatures from "./components/MainFeatures";
+import MobileSpecialOffer from "./components/MobileSpecialOffer";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
 import PurchasePanel from "./components/PurchasePanel";
@@ -44,6 +45,8 @@ function Product({ product }: ProductProps) {
             <CardFooter className="block">
               <ProductTitle variant="mobile" />
             </CardFooter>
+
+            <MobileSpecialOffer />
           </Card>
         </section>
 
