@@ -7,8 +7,8 @@ import { Button } from "@heroui/button";
 import { Card, CardBody, CardFooter } from "@heroui/card";
 import { useEffect } from "react";
 import PageBreadCrumbs from "../Common/PageBreadCrumbs";
-import FinishedPanel from "./components/FinishedPanel";
 import ImageGallery from "./components/ImageGallery";
+import MainFeatures from "./components/MainFeatures";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
 import PurchasePanel from "./components/PurchasePanel";
@@ -28,8 +28,6 @@ function Product({ product }: ProductProps) {
     setInitialProduct(product);
   }, [product, setInitialProduct]);
 
-  const featuresList = Object.entries(product.main_features);
-
   return (
     <div className="mx-auto mt-4 max-w-7xl space-y-6 px-6">
       <PageBreadCrumbs page="product" category={category} brand={brand} />
@@ -43,30 +41,15 @@ function Product({ product }: ProductProps) {
             <CardBody className="p-4 text-right">
               <ImageGallery />
             </CardBody>
-            <CardFooter>
+            <CardFooter className="block">
               <ProductTitle variant="mobile" />
             </CardFooter>
           </Card>
         </section>
 
         <section className="space-y-6 lg:col-span-6">
-          {product.quantity > 0 ? <PurchasePanel /> : <FinishedPanel />}
-
-          {/* Quick features */}
-          {featuresList?.length > 0 && (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {featuresList.map(([k, v]) => (
-                <Card key={k}>
-                  <div className="p-3">
-                    <div className="text-xs text-gray-500">{k}</div>
-                    <div className="mt-1 text-sm font-semibold text-gray-800">
-                      {String(v)}
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          )}
+          <PurchasePanel />
+          <MainFeatures />
 
           {/* Mobile Options */}
           <Card className="lg:hidden">insurance - warranty</Card>

@@ -6,6 +6,7 @@ import { useProductsStore } from "@/app/_store/productStore";
 import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import clsx from "clsx";
+import FinishedPanel from "../FinishedPanel";
 import Insurance from "./components/Insurance";
 import ProductPanelHeaderChips from "./components/ProductPanelHeaderChips";
 import ProductPanelPrice from "./components/ProductPanelPrice";
@@ -13,6 +14,8 @@ import QuantitySelector from "./components/QuantitySelector";
 
 function PurchasePanel() {
   const quantity = useProductsStore((state) => state.quantity);
+
+  if (quantity === 0) return <FinishedPanel />;
 
   return (
     <Card className="hidden lg:sticky lg:top-4 lg:z-30 lg:block">
