@@ -1,18 +1,16 @@
+"use client";
+
+import { useProductsStore } from "@/app/_store/productStore";
 import { Chip } from "@heroui/chip";
 import { LucideGift, LucideShieldCheck } from "lucide-react";
 
-interface ProductPanelHeaderChipsProps {
-  hasDiscount: boolean;
-  warranty: string;
-}
+function ProductPanelHeaderChips() {
+  const discountPercent = useProductsStore((state) => state.discountPercent);
+  const warranty = useProductsStore((state) => state.warranty);
 
-function ProductPanelHeaderChips({
-  hasDiscount,
-  warranty,
-}: ProductPanelHeaderChipsProps) {
   return (
     <div className="flex w-full flex-wrap justify-between gap-2">
-      {hasDiscount && (
+      {discountPercent > 0 && (
         <Chip
           color="danger"
           variant="flat"

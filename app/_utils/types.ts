@@ -44,6 +44,7 @@ export type SearchPanelProductsType = {
   main: string;
 }[];
 
+export type ProductMainFeatures = Record<string, string>;
 export type ProductSpecs = Record<string, Record<string, string | string[]>>;
 
 export type InsuranceType = {
@@ -54,8 +55,9 @@ export type InsuranceType = {
 
 export type ProductType = ListProduct & {
   title_en: string;
-  introduction: string;
+  introduction?: string;
   category: ProductCategory;
+  main_features: ProductMainFeatures;
   specifications: ProductSpecs;
   warranty: string;
   insurance: InsuranceType;

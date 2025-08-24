@@ -1,12 +1,15 @@
+import {
+  selectorActiveIndex,
+  useProductsStore,
+} from "@/app/_store/productStore";
 import { Image } from "@heroui/image";
 import clsx from "clsx";
 import { ImageThumbnailsProps } from "../types";
 
-function ImageThumbnails({
-  images,
-  activeIndex,
-  onSelect,
-}: ImageThumbnailsProps) {
+function ImageThumbnails({ onSelect }: ImageThumbnailsProps) {
+  const activeIndex = useProductsStore(selectorActiveIndex);
+  const images = useProductsStore((state) => state.galleryImages);
+
   return (
     <div className="hidden justify-center gap-2 lg:flex">
       {images.map((image, index) => (

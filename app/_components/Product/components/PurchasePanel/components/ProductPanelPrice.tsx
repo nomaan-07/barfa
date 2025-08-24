@@ -1,27 +1,26 @@
 import DiscountBadge from "@/app/_components/Common/DiscountBadge";
 import FinalPrice from "@/app/_components/Common/FinalPrice";
 import OriginalPrice from "@/app/_components/Common/OriginalPrice";
+import {
+  selectorTotalFinalPrice,
+  selectorTotalOriginalPrice,
+  useProductsStore,
+} from "@/app/_store/productStore";
 
-interface ProductPanelPriceProps {
-  price: number;
-  discountPercent: number;
-  discountedPrice: number;
-}
+function ProductPanelPrice() {
+  const discountPercent = useProductsStore((state) => state.discountPercent);
+  const totalOriginalPrice = useProductsStore(selectorTotalOriginalPrice);
+  const totalFinalPrice = useProductsStore(selectorTotalFinalPrice);
 
-function ProductPanelPrice({
-  price,
-  discountPercent,
-  discountedPrice,
-}: ProductPanelPriceProps) {
   return (
     <div>
       {discountPercent > 0 && (
         <div className="flex gap-4">
-          <OriginalPrice variant="panel" price={price} />
+          <OriginalPrice variant="panel" price={totalOriginalPrice} />
           <DiscountBadge discountPercent={discountPercent} />
         </div>
       )}
-      <FinalPrice variant="panel" price={discountedPrice} />
+      <FinalPrice variant="panel" price={totalFinalPrice} />
     </div>
   );
 }

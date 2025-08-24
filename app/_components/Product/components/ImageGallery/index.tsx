@@ -1,8 +1,8 @@
 "use client";
 
-import { Colors, ImageSources } from "@/app/_utils/types";
+import { useProductsStore } from "@/app/_store/productStore";
 import { useDisclosure } from "@heroui/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Swiper as SwiperType } from "swiper";
 import CurrentColorLine from "./components/CurrentColorLine";
 import ImageModal from "./components/ImageModal";
@@ -11,28 +11,24 @@ import ImageThumbnails from "./components/ImageThumbnails";
 import ProductColorCircles from "./components/ProductColorCircles";
 import SlideCounter from "./components/SlideCounter";
 
-interface ImageGalleryProps {
-  imageSources: ImageSources;
-  colors: Colors;
-}
-
-function ImageGallery({ imageSources, colors }: ImageGalleryProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+function ImageGallery() {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const swiperRef = useRef<SwiperType | null>(null);
   const modalSwiperRef = useRef<SwiperType | null>(null);
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const images = useProductsStore((state) => state.galleryImages);
+  const selectedColor = useProductsStore((state) => state.selectedColor);
+  const setSelectedColor = useProductsStore((state) => state.setSelectedColor);
 
-  const images = colors.map((color) => ({
-    ...color,
-    url: imageSources.colors[color.en],
-  }));
-
-  const colorsArr = images.map((image) => image.value);
+  useEffect(() => {
+    if (images.length > 0 && selectedColor === "") {
+      setSelectedColor(images[0].en);
+    }
+  }, [images, setSelectedColor, selectedColor]);
 
   const handleSelect = (index: number) => {
-    setActiveIndex(index);
+    setSelectedColor(images[index].en);
     swiperRef.current?.slideTo(index);
     modalSwiperRef.current?.slideTo(index);
   };
@@ -42,38 +38,21 @@ function ImageGallery({ imageSources, colors }: ImageGalleryProps) {
       <ImageModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        activeIndex={activeIndex}
-        images={images}
         onSelect={handleSelect}
         swiperRef={modalSwiperRef}
       />
 
-      <CurrentColorLine activeImage={images[activeIndex]} />
+      <CurrentColorLine />
 
       <div className="relative w-full space-y-2 lg:order-2 lg:pr-8">
         <ImageSwiper
-          images={images}
           onSelect={handleSelect}
           swiperRef={swiperRef}
           onOpenModal={onOpen}
         />
-
-        <SlideCounter
-          currentSlide={activeIndex + 1}
-          totalImages={images.length}
-        />
-
-        <ImageThumbnails
-          images={images}
-          activeIndex={activeIndex}
-          onSelect={handleSelect}
-        />
-
-        <ProductColorCircles
-          colors={colorsArr}
-          activeIndex={activeIndex}
-          onSelect={handleSelect}
-        />
+        <SlideCounter />
+        <ImageThumbnails onSelect={handleSelect} />
+        <ProductColorCircles onSelect={handleSelect} />
       </div>
     </>
   );

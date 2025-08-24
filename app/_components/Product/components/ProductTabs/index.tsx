@@ -1,14 +1,11 @@
-import { ProductSpecs } from "@/app/_utils/types";
+import { useProductsStore } from "@/app/_store/productStore";
 import { Accordion, AccordionItem } from "@heroui/accordion";
 import { Card, CardBody } from "@heroui/card";
 import { Tab, Tabs } from "@heroui/tabs";
 
-interface ProductTabsProps {
-  introduction?: string;
-  specs: ProductSpecs;
-}
-
-function ProductTabs({ introduction, specs }: ProductTabsProps) {
+function ProductTabs() {
+  const introduction = useProductsStore((state) => state.introduction);
+  const specifications = useProductsStore((state) => state.specifications);
   return (
     <Card>
       <CardBody className="px-0">
@@ -30,7 +27,7 @@ function ProductTabs({ introduction, specs }: ProductTabsProps) {
                 defaultExpandedKeys={["عمومی"]}
                 className="w-full"
               >
-                {Object.entries(specs).map(([group, content]) => (
+                {Object.entries(specifications).map(([group, content]) => (
                   <AccordionItem
                     key={group}
                     aria-label={group}

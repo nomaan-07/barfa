@@ -1,7 +1,9 @@
+"use client";
+
 import AddToCartButton from "@/app/_components/Common/AddToCartButton";
 import QuantityText from "@/app/_components/Common/QuantityText";
+import { useProductsStore } from "@/app/_store/productStore";
 import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
-import { ProductType } from "@/app/_utils/types";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import clsx from "clsx";
 import Insurance from "./components/Insurance";
@@ -9,41 +11,21 @@ import ProductPanelHeaderChips from "./components/ProductPanelHeaderChips";
 import ProductPanelPrice from "./components/ProductPanelPrice";
 import QuantitySelector from "./components/QuantitySelector";
 
-interface PurchasePanelProps {
-  product: ProductType;
-}
-
-function PurchasePanel({ product }: PurchasePanelProps) {
-  const {
-    discounted_price: discountedPrice,
-    insurance,
-    warranty,
-    quantity,
-    discount_percent: discountPercent,
-    price,
-  } = product;
-
-  const hasDiscount = discountedPrice > 0;
+function PurchasePanel() {
+  const quantity = useProductsStore((state) => state.quantity);
 
   return (
     <Card className="hidden lg:sticky lg:top-4 lg:z-30 lg:block">
       <CardHeader>
-        <ProductPanelHeaderChips
-          hasDiscount={hasDiscount}
-          warranty={warranty}
-        />
+        <ProductPanelHeaderChips />
       </CardHeader>
 
       <CardBody className="space-y-6">
-        <Insurance discountedPrice={discountPercent} insurance={insurance} />
+        <Insurance />
 
         <div className="flex items-center justify-between">
-          <QuantitySelector maxQuantity={quantity} />
-          <ProductPanelPrice
-            discountPercent={discountPercent}
-            discountedPrice={discountedPrice}
-            price={price}
-          />
+          <QuantitySelector />
+          <ProductPanelPrice />
         </div>
       </CardBody>
 

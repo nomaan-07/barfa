@@ -1,15 +1,22 @@
-import { CurrentColorLineProps } from "../types";
+import {
+  selectorCurrentImage,
+  useProductsStore,
+} from "@/app/_store/productStore";
 
-function CurrentColorLine({ activeImage }: CurrentColorLineProps) {
+function CurrentColorLine() {
+  const currentImage = useProductsStore(selectorCurrentImage);
+
+  if (!currentImage) return null;
+
   return (
     <div className="order-2 mt-2 flex items-center gap-2 lg:order-1 lg:mt-0 lg:mb-2">
       <div className="shrink-0 text-xs sm:text-sm lg:text-base">
         <span className="ml-1 font-medium">رنگ انتخاب شده:</span>
-        <span>{activeImage.fa}</span>
+        <span>{currentImage.fa}</span>
       </div>
       <div
         className="h-1 w-full rounded-full lg:h-1.5"
-        style={{ backgroundColor: activeImage.value }}
+        style={{ backgroundColor: currentImage.value }}
       ></div>
     </div>
   );

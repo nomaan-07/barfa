@@ -1,20 +1,17 @@
+import { useProductsStore } from "@/app/_store/productStore";
 import { convertToPersian } from "@/app/_utils/helper";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import { LucideMinus, LucidePlus } from "lucide-react";
-import { useState } from "react";
 
-interface QuantitySelectorProps {
-  maxQuantity: number;
-}
+function QuantitySelector() {
+  const quantity = useProductsStore((state) => state.quantity);
+  const selectedQuantity = useProductsStore((state) => state.selectedQuantity);
+  const increaseQuantity = useProductsStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useProductsStore((state) => state.decreaseQuantity);
 
-function QuantitySelector({ maxQuantity }: QuantitySelectorProps) {
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
-
-  const isIncreaseForbidden = selectedQuantity >= maxQuantity;
-
-  const increaseQuantity = () => setSelectedQuantity((prev) => prev + 1);
-  const decreaseQuantity = () => setSelectedQuantity((prev) => prev - 1);
+  const canIncreaseQuantity = quantity > selectedQuantity;
+  const canDecreaseQuantity = selectedQuantity > 1;
 
   return (
     <Card className="shrink-0" shadow="sm">
@@ -25,13 +22,13 @@ function QuantitySelector({ maxQuantity }: QuantitySelectorProps) {
             variant="light"
             color="success"
             onPress={increaseQuantity}
-            isDisabled={isIncreaseForbidden}
+            isDisabled={!canIncreaseQuantity}
           >
             <LucidePlus className="size-5" />
           </Button>
           <div className="flex flex-col items-center select-none">
             <span>{convertToPersian(selectedQuantity)}</span>
-            {isIncreaseForbidden && (
+            {!canIncreaseQuantity && (
               <span className="text-default-400 text-sm">حداکثر</span>
             )}
           </div>
@@ -40,7 +37,7 @@ function QuantitySelector({ maxQuantity }: QuantitySelectorProps) {
             variant="light"
             color="danger"
             onPress={decreaseQuantity}
-            isDisabled={selectedQuantity <= 1}
+            isDisabled={!canDecreaseQuantity}
           >
             {/* <LucideTrash2 className="size-5" /> */}
             <LucideMinus className="size-5" />

@@ -2,6 +2,10 @@
 
 import DrawerCloseButton from "@/app/_components/Common/DrawerCloseButton";
 import SwiperButton from "@/app/_components/Common/SwiperButton";
+import {
+  selectorActiveIndex,
+  useProductsStore,
+} from "@/app/_store/productStore";
 import { Image } from "@heroui/image";
 import { Modal, ModalContent } from "@heroui/modal";
 import { Navigation } from "swiper/modules";
@@ -10,13 +14,14 @@ import { ImageModalProps } from "../types";
 import SlideCounter from "./SlideCounter";
 
 function ImageModal({
-  images,
-  activeIndex,
   onOpenChange,
   isOpen,
   swiperRef,
   onSelect,
 }: ImageModalProps) {
+  const activeIndex = useProductsStore(selectorActiveIndex);
+  const images = useProductsStore((state) => state.galleryImages);
+
   const prevButtonClass = `swiper-prev-button--image-modal`;
   const nextButtonClass = `swiper-next-button--image-modal`;
 
@@ -65,11 +70,7 @@ function ImageModal({
               </Swiper>
             </div>
 
-            <SlideCounter
-              currentSlide={activeIndex + 1}
-              totalImages={images.length}
-              isModal
-            />
+            <SlideCounter isModal />
           </>
         )}
       </ModalContent>

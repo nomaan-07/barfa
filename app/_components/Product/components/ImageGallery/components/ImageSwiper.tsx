@@ -1,13 +1,11 @@
+import { useProductsStore } from "@/app/_store/productStore";
 import { Image } from "@heroui/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ImageSwiperProps } from "../types";
 
-function ImageSwiper({
-  images,
-  swiperRef,
-  onSelect,
-  onOpenModal,
-}: ImageSwiperProps) {
+function ImageSwiper({ swiperRef, onSelect, onOpenModal }: ImageSwiperProps) {
+  const images = useProductsStore((state) => state.galleryImages);
+
   return (
     <Swiper
       onSwiper={(swiper) => (swiperRef.current = swiper)}

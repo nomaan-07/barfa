@@ -1,14 +1,17 @@
+import {
+  selectorActiveIndex,
+  useProductsStore,
+} from "@/app/_store/productStore";
 import { convertToPersian } from "@/app/_utils/helper";
 import { Chip } from "@heroui/chip";
 import clsx from "clsx";
 import { LucideImage } from "lucide-react";
 import { SlideCounterProps } from "../types";
 
-function SlideCounter({
-  currentSlide,
-  totalImages,
-  isModal,
-}: SlideCounterProps) {
+function SlideCounter({ isModal }: SlideCounterProps) {
+  const currentSlide = useProductsStore(selectorActiveIndex) + 1;
+  const totalImages = useProductsStore((state) => state.galleryImages).length;
+
   const IconClasses = clsx(isModal ? "size-5" : "size-4");
 
   return (
