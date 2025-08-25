@@ -20,7 +20,9 @@ function CurrentColorLine() {
       <div
         className={clsx(
           "w-full rounded-full",
-          isImageWhite ? "border-default-200 h-2 border" : "h-1 lg:h-1.5",
+          isImageWhite
+            ? "border-default-200 h-1.5 border lg:h-2"
+            : "h-1 lg:h-1.5",
         )}
         style={{ backgroundColor: currentImage.value }}
       ></div>
