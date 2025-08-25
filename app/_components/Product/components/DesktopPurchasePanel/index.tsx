@@ -7,12 +7,12 @@ import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import clsx from "clsx";
 import FinishedPanel from "../FinishedPanel";
+import Insurance from "../Insurance";
 import ProductChips from "../ProductChips";
-import Insurance from "./components/Insurance";
 import ProductPanelPrice from "./components/ProductPanelPrice";
 import QuantitySelector from "./components/QuantitySelector";
 
-function PurchasePanel() {
+function DesktopPurchasePanel() {
   const quantity = useProductsStore((state) => state.quantity);
 
   if (quantity === 0) return <FinishedPanel />;
@@ -45,4 +45,4 @@ function PurchasePanel() {
   );
 }
 
-export default PurchasePanel;
+export default DesktopPurchasePanel;
