@@ -11,6 +11,7 @@ import MainFeatures from "./components/MainFeatures";
 import MobilePurchaseBar from "./components/MobilePurchaseBar";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
+import MobileProductSpecialOffer from "./components/MobileProductSpecialOffer";
 
 interface ProductProps {
   product: ProductType;
@@ -42,6 +43,7 @@ function Product({ product }: ProductProps) {
             <CardFooter className="block">
               <ProductTitle variant="mobile" />
             </CardFooter>
+            <MobileProductSpecialOffer />
           </Card>
         </section>
 
