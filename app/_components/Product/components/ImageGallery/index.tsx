@@ -2,7 +2,7 @@
 
 import { useProductsStore } from "@/app/_store/productStore";
 import { useDisclosure } from "@heroui/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Swiper as SwiperType } from "swiper";
 import CurrentColorLine from "../CurrentColorLine";
 import ImageModal from "./components/ImageModal";
@@ -18,14 +18,7 @@ function ImageGallery() {
   const modalSwiperRef = useRef<SwiperType | null>(null);
 
   const images = useProductsStore((state) => state.galleryImages);
-  const selectedColor = useProductsStore((state) => state.selectedColor);
   const setSelectedColor = useProductsStore((state) => state.setSelectedColor);
-
-  useEffect(() => {
-    if (images.length > 0 && selectedColor === "") {
-      setSelectedColor(images[0].en);
-    }
-  }, [images, setSelectedColor, selectedColor]);
 
   const handleSelect = (index: number) => {
     setSelectedColor(images[index].en);

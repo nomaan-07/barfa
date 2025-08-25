@@ -1,4 +1,4 @@
-import Product from "@/app/_components/Product";
+import ProductInitializer from "@/app/_components/Product/ProductInitializer";
 import { getProduct } from "@/app/_lib/data-services";
 import { notFound } from "next/navigation";
 
@@ -12,7 +12,7 @@ async function ProductPage({ params }: ProductPageProps) {
 
   if (!product) notFound();
 
-  return <Product key={id} product={product} />;
+  return <ProductInitializer key={id} product={product} />;
 }
 
 export default ProductPage;

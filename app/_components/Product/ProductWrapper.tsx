@@ -1,7 +1,4 @@
-"use client";
-
 import { useProductsStore } from "@/app/_store/productStore";
-import { ProductType } from "@/app/_utils/types";
 import { Card, CardBody, CardFooter } from "@heroui/card";
 import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import DesktopPurchasePanel from "./components/DesktopPurchasePanel";
@@ -9,21 +6,16 @@ import ImageGallery from "./components/ImageGallery";
 import MainFeatures from "./components/MainFeatures";
 import MobileProductSpecialOffer from "./components/MobileProductSpecialOffer";
 import MobilePurchaseBar from "./components/MobilePurchaseBar";
+import ProductSkeleton from "./components/ProductSkeleton";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
 
-interface ProductProps {
-  product: ProductType;
-}
+function ProductWrapper() {
+  const category = useProductsStore((state) => state.category);
+  const brand = useProductsStore((state) => state.brand);
+  const status = useProductsStore((state) => state.status);
 
-function Product({ product }: ProductProps) {
-  const { category, brand } = product;
-
-  const setInitialProduct = useProductsStore(
-    (state) => state.setInitialProduct,
-  );
-
-  setInitialProduct(product);
+  if (status === "loading") return <ProductSkeleton />;
 
   return (
     <div className="mx-auto mt-4 max-w-7xl space-y-6 px-6">
@@ -56,4 +48,4 @@ function Product({ product }: ProductProps) {
   );
 }
 
-export default Product;
+export default ProductWrapper;

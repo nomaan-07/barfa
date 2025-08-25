@@ -227,6 +227,9 @@ export async function getProduct(id: number) {
     .eq("id", id)
     .single();
 
+  // For testing
+  // await new Promise((resolve) => setTimeout(resolve, 2000));
+
   if (error) {
     console.error(error);
     throw new Error(`product could not be loaded`);

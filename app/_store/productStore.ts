@@ -38,6 +38,7 @@ interface ProductStoreState {
   selectedQuantity: number;
   hasInsurance: boolean;
   insurancePrice: number;
+  status: "loading" | "success";
 }
 
 type VoidFn = () => void;
@@ -77,6 +78,7 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
   selectedQuantity: 1,
   hasInsurance: false,
   insurancePrice: 0,
+  status: "loading",
 
   setInitialProduct: (productData: ProductType) => {
     const {
@@ -116,7 +118,8 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
       galleryImages,
       selectedQuantity: 1,
       hasInsurance: false,
-      selectedColor: "",
+      selectedColor: galleryImages[0]?.en || "",
+      status: "success",
     });
   },
 
