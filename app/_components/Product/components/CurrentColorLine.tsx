@@ -2,11 +2,14 @@ import {
   selectorCurrentImage,
   useProductsStore,
 } from "@/app/_store/productStore";
+import clsx from "clsx";
 
 function CurrentColorLine() {
   const currentImage = useProductsStore(selectorCurrentImage);
 
   if (!currentImage) return null;
+
+  const isImageWhite = currentImage.en === "white";
 
   return (
     <div className="order-2 flex w-full items-center gap-2 lg:order-1 lg:mb-2">
@@ -15,7 +18,10 @@ function CurrentColorLine() {
         <span>{currentImage.fa}</span>
       </div>
       <div
-        className="h-1 w-full rounded-full lg:h-1.5"
+        className={clsx(
+          "w-full rounded-full",
+          isImageWhite ? "border-default-200 h-2 border" : "h-1 lg:h-1.5",
+        )}
         style={{ backgroundColor: currentImage.value }}
       ></div>
     </div>

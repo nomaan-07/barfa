@@ -8,10 +8,10 @@ import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import DesktopPurchasePanel from "./components/DesktopPurchasePanel";
 import ImageGallery from "./components/ImageGallery";
 import MainFeatures from "./components/MainFeatures";
+import MobileProductSpecialOffer from "./components/MobileProductSpecialOffer";
 import MobilePurchaseBar from "./components/MobilePurchaseBar";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
-import MobileProductSpecialOffer from "./components/MobileProductSpecialOffer";
 
 interface ProductProps {
   product: ProductType;
