@@ -3,7 +3,6 @@
 import { useProductsStore } from "@/app/_store/productStore";
 import { ProductType } from "@/app/_utils/types";
 import { Card, CardBody, CardFooter } from "@heroui/card";
-import { useEffect } from "react";
 import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import DesktopPurchasePanel from "./components/DesktopPurchasePanel";
 import ImageGallery from "./components/ImageGallery";
@@ -24,9 +23,7 @@ function Product({ product }: ProductProps) {
     (state) => state.setInitialProduct,
   );
 
-  useEffect(() => {
-    setInitialProduct(product);
-  }, [product, setInitialProduct]);
+  setInitialProduct(product);
 
   return (
     <div className="mx-auto mt-4 max-w-7xl space-y-6 px-6">

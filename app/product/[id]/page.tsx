@@ -12,7 +12,7 @@ async function ProductPage({ params }: ProductPageProps) {
 
   if (!product) notFound();
 
-  return <Product product={product} />;
+  return <Product key={id} product={product} />;
 }
 
 export default ProductPage;
