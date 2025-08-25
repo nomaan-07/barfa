@@ -7,8 +7,8 @@ import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import clsx from "clsx";
 import FinishedPanel from "../FinishedPanel";
+import ProductChips from "../ProductChips";
 import Insurance from "./components/Insurance";
-import ProductPanelHeaderChips from "./components/ProductPanelHeaderChips";
 import ProductPanelPrice from "./components/ProductPanelPrice";
 import QuantitySelector from "./components/QuantitySelector";
 
@@ -20,7 +20,7 @@ function PurchasePanel() {
   return (
     <Card className="hidden lg:sticky lg:top-4 lg:z-30 lg:block">
       <CardHeader>
-        <ProductPanelHeaderChips />
+        <ProductChips variant="desktop" />
       </CardHeader>
 
       <CardBody className="space-y-6">

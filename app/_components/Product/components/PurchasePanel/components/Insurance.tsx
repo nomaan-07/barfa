@@ -20,7 +20,7 @@ function Insurance({ variant }: InsuranceProps) {
   return (
     <Card
       shadow="sm"
-      className={clsx({
+      className={clsx("md:cursor-pointer", {
         "hidden lg:block": variant === "desktop",
         "lg:hidden": variant === "mobile",
         "bg-primary-50": hasInsurance,

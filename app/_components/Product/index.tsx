@@ -1,15 +1,13 @@
 "use client";
 
 import { useProductsStore } from "@/app/_store/productStore";
-import { convertToPersian } from "@/app/_utils/helper";
 import { ProductType } from "@/app/_utils/types";
-import { Button } from "@heroui/button";
 import { Card, CardBody, CardFooter } from "@heroui/card";
 import { useEffect } from "react";
 import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import ImageGallery from "./components/ImageGallery";
 import MainFeatures from "./components/MainFeatures";
-import MobileSpecialOffer from "./components/MobileSpecialOffer";
+import ProductChips from "./components/ProductChips";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
 import PurchasePanel from "./components/PurchasePanel";
@@ -38,7 +36,7 @@ function Product({ product }: ProductProps) {
 
       <main className="grid grid-cols-1 gap-6 pb-24 lg:grid-cols-12">
         {/* Gallery */}
-        <section className="space-y-6 lg:col-span-6">
+        <section className="lg:col-span-6">
           <Card>
             <CardBody className="p-4 text-right">
               <ImageGallery />
@@ -46,13 +44,12 @@ function Product({ product }: ProductProps) {
             <CardFooter className="block">
               <ProductTitle variant="mobile" />
             </CardFooter>
-
-            <MobileSpecialOffer />
           </Card>
         </section>
 
         <section className="space-y-6 lg:col-span-6">
           {/* Mobile Options */}
+          <ProductChips variant="mobile" />
           <Insurance variant="mobile" />
 
           <PurchasePanel />
