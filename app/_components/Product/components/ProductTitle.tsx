@@ -5,8 +5,8 @@ interface ProductTitleProps {
   variant: "mobile" | "desktop";
 }
 function ProductTitle({ variant }: ProductTitleProps) {
-  const titleFa = useProductsStore((state) => state.titleFa);
-  const titleEn = useProductsStore((state) => state.titleEn);
+  const titleFa = useProductsStore((state) => state.title_fa);
+  const titleEn = useProductsStore((state) => state.title_en);
 
   return (
     <div

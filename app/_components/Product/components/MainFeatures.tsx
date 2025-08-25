@@ -2,7 +2,7 @@ import { useProductsStore } from "@/app/_store/productStore";
 import { Card } from "@heroui/card";
 
 function MainFeatures() {
-  const features = useProductsStore((state) => state.mainFeatures);
+  const features = useProductsStore((state) => state.main_features);
 
   if (!features) return null;
 

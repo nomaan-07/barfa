@@ -2,7 +2,7 @@ import { useProductsStore } from "@/app/_store/productStore";
 import { convertToPersian } from "@/app/_utils/helper";
 
 function MobileProductSpecialOffer() {
-  const discountedPercent = useProductsStore((state) => state.discountPercent);
+  const discountedPercent = useProductsStore((state) => state.discount_percent);
 
   if (discountedPercent === 0) return null;
 

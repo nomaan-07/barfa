@@ -1,38 +1,11 @@
 import { create } from "zustand";
-import {
-  Color,
-  Colors,
-  ImageSources,
-  InsuranceType,
-  ProductBrand,
-  ProductCategory,
-  ProductMainFeatures,
-  ProductSpecs,
-  ProductType,
-} from "../_utils/types";
+import { Color, ProductType } from "../_utils/types";
 
 type GalleryImage = Color & {
   url: string;
 };
 
-interface ProductStoreState {
-  id: number;
-  imageSources: ImageSources;
-  colors: Colors;
-  price: number;
-  discountPercent: number;
-  mainFeatures: ProductMainFeatures;
-  specifications: ProductSpecs;
-  titleFa: string;
-  titleEn: string;
-  introduction?: string;
-  category: ProductCategory;
-  warranty: string;
-  brand: ProductBrand;
-  quantity: number;
-  discountedPrice: number;
-  insurance: InsuranceType;
-
+interface ProductStoreState extends Omit<ProductType, "created_at"> {
   galleryImages: GalleryImage[];
   selectedColor: string;
   selectedQuantity: number;
@@ -53,20 +26,20 @@ interface Actions {
 
 export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
   id: 1,
-  imageSources: { main: "", colors: {} },
+  image_sources: { main: "", colors: {} },
   colors: [],
   price: 0,
-  discountPercent: 0,
-  mainFeatures: {},
+  discount_percent: 0,
+  main_features: {},
   specifications: {},
-  titleFa: "",
-  titleEn: "",
+  title_fa: "",
+  title_en: "",
   introduction: "",
   category: { en: "", fa: "" },
   warranty: "",
   brand: { en: "", fa: "" },
   quantity: 0,
-  discountedPrice: 0,
+  discounted_price: 0,
   insurance: {
     title: "",
     price: 0,
@@ -81,39 +54,19 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
   status: "loading",
 
   setInitialProduct: (productData: ProductType) => {
-    const {
-      image_sources,
-      discount_percent,
-      main_features,
-      title_fa,
-      title_en,
-      discounted_price,
-      insurance,
-      colors,
-    } = productData;
-
-    const insurancePrice = insurance.price
-      ? insurance.price
-      : insurance.percent
-        ? (insurance.percent / 100) * discounted_price
+    const insurancePrice = productData.insurance.price
+      ? productData.insurance.price
+      : productData.insurance.percent
+        ? (productData.insurance.percent / 100) * productData.discounted_price
         : 0;
 
-    const galleryImages = colors.map((color) => ({
+    const galleryImages = productData.colors.map((color) => ({
       ...color,
-      url: image_sources.colors[color.en],
+      url: productData.image_sources.colors[color.en],
     }));
 
     set({
       ...productData,
-      imageSources: image_sources,
-      discountPercent: discount_percent,
-      mainFeatures: main_features,
-      titleFa: title_fa,
-      titleEn: title_en,
-      discountedPrice: discounted_price,
-      colors,
-      insurance,
-
       insurancePrice,
       galleryImages,
       selectedQuantity: 1,
@@ -133,18 +86,15 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
       selectedQuantity: state.selectedQuantity - 1,
     })),
 
-  toggleInsurance: () => {
-    console.log("test");
+  toggleInsurance: () =>
     set((state) => ({
       hasInsurance: !state.hasInsurance,
-    }));
-  },
+    })),
 
-  setSelectedColor: (color) => {
+  setSelectedColor: (color) =>
     set(() => ({
       selectedColor: color,
-    }));
-  },
+    })),
 }));
 
 export const selectorCurrentImage = (state: ProductStoreState) => {
@@ -160,10 +110,10 @@ export const selectorActiveIndex = (state: ProductStoreState) => {
 };
 
 export const selectorTotalFinalPrice = (state: ProductStoreState) => {
-  const { discountedPrice, selectedQuantity, hasInsurance, insurancePrice } =
+  const { discounted_price, selectedQuantity, hasInsurance, insurancePrice } =
     state;
 
-  const quantityPrice = discountedPrice * selectedQuantity;
+  const quantityPrice = discounted_price * selectedQuantity;
 
   return hasInsurance ? quantityPrice + insurancePrice : quantityPrice;
 };

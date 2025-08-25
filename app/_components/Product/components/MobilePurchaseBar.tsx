@@ -18,7 +18,7 @@ import QuantitySelector from "./QuantitySelector";
 function MobilePurchaseBar() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const quantity = useProductsStore((state) => state.quantity);
-  const titleFa = useProductsStore((state) => state.titleFa);
+  const titleFa = useProductsStore((state) => state.title_fa);
   const currentImage = useProductsStore(selectorCurrentImage);
 
   if (quantity === 0) return null;

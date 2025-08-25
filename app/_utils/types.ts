@@ -32,18 +32,6 @@ export type ListProduct = {
   brand: ProductBrand;
 };
 
-export type SearchPanelProductType = {
-  title_fa: string;
-  id: number;
-  main: string;
-};
-
-export type SearchPanelProductsType = {
-  title_fa: string;
-  id: number;
-  main: string;
-}[];
-
 export type ProductMainFeatures = Record<string, string>;
 export type ProductSpecs = Record<string, Record<string, string | string[]>>;
 
@@ -62,6 +50,14 @@ export type ProductType = ListProduct & {
   warranty: string;
   insurance: InsuranceType;
 };
+
+export type SearchPanelProductType = {
+  title_fa: string;
+  id: number;
+  main: string;
+};
+
+export type SearchPanelProductsType = SearchPanelProductType[];
 
 export type Banner = {
   id: number;
