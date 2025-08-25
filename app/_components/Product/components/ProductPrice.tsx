@@ -7,7 +7,7 @@ import {
   useProductsStore,
 } from "@/app/_store/productStore";
 
-function ProductPanelPrice() {
+function ProductPrice() {
   const discountPercent = useProductsStore((state) => state.discountPercent);
   const totalOriginalPrice = useProductsStore(selectorTotalOriginalPrice);
   const totalFinalPrice = useProductsStore(selectorTotalFinalPrice);
@@ -25,4 +25,4 @@ function ProductPanelPrice() {
   );
 }
 
-export default ProductPanelPrice;
+export default ProductPrice;

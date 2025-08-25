@@ -14,7 +14,6 @@ import MainFeatures from "./components/MainFeatures";
 import ProductChips from "./components/ProductChips";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
-// import Insurance from "./components/DesktopPurchasePanel/components/Insurance";
 
 interface ProductProps {
   product: ProductType;

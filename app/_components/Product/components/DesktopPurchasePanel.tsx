@@ -6,11 +6,11 @@ import { useProductsStore } from "@/app/_store/productStore";
 import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import clsx from "clsx";
-import FinishedPanel from "../FinishedPanel";
-import Insurance from "../Insurance";
-import ProductChips from "../ProductChips";
-import ProductPanelPrice from "./components/ProductPanelPrice";
-import QuantitySelector from "./components/QuantitySelector";
+import FinishedPanel from "./FinishedPanel";
+import Insurance from "./Insurance";
+import ProductChips from "./ProductChips";
+import ProductPrice from "./ProductPrice";
+import QuantitySelector from "./QuantitySelector";
 
 function DesktopPurchasePanel() {
   const quantity = useProductsStore((state) => state.quantity);
@@ -28,7 +28,7 @@ function DesktopPurchasePanel() {
 
         <div className="flex items-center justify-between">
           <QuantitySelector />
-          <ProductPanelPrice />
+          <ProductPrice />
         </div>
       </CardBody>
 
