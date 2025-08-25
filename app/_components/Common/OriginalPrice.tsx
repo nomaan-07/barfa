@@ -10,11 +10,8 @@ function OriginalPrice({ price, variant }: OriginalPriceProps) {
   return (
     <div
       className={clsx(
-        "decoration-default-400 text-default-400 mr-auto self-end line-through",
-        {
-          "text-sm": variant === "card",
-          "text-lg": variant === "panel",
-        },
+        "decoration-default-400 text-default-400 mr-auto self-end text-sm line-through",
+        variant === "panel" && "sm:text-lg",
       )}
     >
       {convertToPersian(price)}

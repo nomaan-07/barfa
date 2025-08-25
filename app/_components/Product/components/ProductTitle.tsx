@@ -10,7 +10,7 @@ function ProductTitle({ variant }: ProductTitleProps) {
 
   return (
     <div
-      className={clsx({
+      className={clsx("w-full", {
         "lg:hidden": variant === "mobile",
         "hidden lg:block": variant === "desktop",
       })}

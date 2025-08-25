@@ -10,7 +10,7 @@ function ProductColorCircles({ onSelect }: ProductColorCirclesProps) {
   const images = useProductsStore((state) => state.galleryImages);
 
   return (
-    <div className="flex max-h-120 flex-wrap gap-2 lg:absolute lg:top-1 lg:right-1 lg:z-10 lg:flex-col">
+    <div className="mb-2 flex max-h-120 flex-wrap gap-2 lg:absolute lg:top-1 lg:right-1 lg:z-10 lg:mb-0 lg:flex-col">
       {images.map((image, index) => (
         <button
           key={index}

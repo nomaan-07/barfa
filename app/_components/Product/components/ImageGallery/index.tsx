@@ -4,7 +4,7 @@ import { useProductsStore } from "@/app/_store/productStore";
 import { useDisclosure } from "@heroui/react";
 import { useEffect, useRef } from "react";
 import { Swiper as SwiperType } from "swiper";
-import CurrentColorLine from "./components/CurrentColorLine";
+import CurrentColorLine from "../CurrentColorLine";
 import ImageModal from "./components/ImageModal";
 import ImageSwiper from "./components/ImageSwiper";
 import ImageThumbnails from "./components/ImageThumbnails";
