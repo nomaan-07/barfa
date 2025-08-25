@@ -4,11 +4,7 @@ import { Card, CardBody } from "@heroui/card";
 import { Checkbox } from "@heroui/checkbox";
 import clsx from "clsx";
 
-interface InsuranceProps {
-  variant: "mobile" | "desktop";
-}
-
-function Insurance({ variant }: InsuranceProps) {
+function Insurance() {
   const insurancePrice = useProductsStore((state) => state.insurancePrice);
   const insuranceTitle = useProductsStore((state) => state.insurance.title);
   const hasInsurance = useProductsStore((state) => state.hasInsurance);
@@ -21,8 +17,6 @@ function Insurance({ variant }: InsuranceProps) {
     <Card
       shadow="sm"
       className={clsx("w-full md:cursor-pointer", {
-        "hidden lg:block": variant === "desktop",
-        "lg:hidden": variant === "mobile",
         "bg-primary-50": hasInsurance,
       })}
     >

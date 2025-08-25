@@ -13,12 +13,12 @@ import CurrentColorLine from "./CurrentColorLine";
 import Insurance from "./Insurance";
 import ProductChips from "./ProductChips";
 import ProductPrice from "./ProductPrice";
-import ProductTitle from "./ProductTitle";
 import QuantitySelector from "./QuantitySelector";
 
 function MobilePurchaseBar() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const quantity = useProductsStore((state) => state.quantity);
+  const titleFa = useProductsStore((state) => state.titleFa);
   const currentImage = useProductsStore(selectorCurrentImage);
 
   if (quantity === 0) return null;
@@ -51,22 +51,24 @@ function MobilePurchaseBar() {
                     <DrawerCloseButton onClose={onClose} />
                   </div>
 
-                  <div className="flex w-full items-center gap-2">
+                  <div className="flex w-full gap-2">
                     <Image
                       src={currentImage?.url}
                       alt={currentImage?.fa}
-                      className="max-h-26"
+                      className="max-h-32"
                     />
-                    <ProductTitle variant="mobile" />
+                    <div className="flex w-full flex-col justify-between gap-3 py-3">
+                      <p className="line-clamp-2 text-sm font-bold sm:text-lg sm:leading-7 md:text-xl md:leading-8">
+                        {titleFa}
+                      </p>
+                      <CurrentColorLine />
+                    </div>
                   </div>
 
                   <ProductChips variant="mobile" />
-                  <Insurance variant="mobile" />
+                  <Insurance />
 
-                  <div className="flex w-full items-center justify-between">
-                    <QuantityText quantity={quantity} variant="card" />
-                    <CurrentColorLine />
-                  </div>
+                  <QuantityText quantity={quantity} variant="card" />
 
                   <QuantitySelector />
                   <ProductPrice />

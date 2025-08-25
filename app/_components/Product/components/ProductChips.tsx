@@ -2,7 +2,6 @@
 
 import { useProductsStore } from "@/app/_store/productStore";
 import { Chip } from "@heroui/chip";
-import clsx from "clsx";
 import { LucideGift, LucideShieldCheck } from "lucide-react";
 
 interface ProductChipsProps {
@@ -17,12 +16,7 @@ function ProductChips({ variant }: ProductChipsProps) {
   const iconSize = variant === "mobile" ? 16 : 24;
 
   return (
-    <div
-      className={clsx("w-full flex-wrap justify-between gap-2", {
-        "flex lg:hidden": variant === "mobile",
-        "hidden lg:flex": variant === "desktop",
-      })}
-    >
+    <div className="flex w-full flex-wrap justify-between gap-2">
       {discountPercent > 0 && (
         <Chip
           color="danger"
