@@ -12,10 +12,10 @@ function FinalPrice({ price, variant }: FinalPriceProps) {
   return (
     <div className="flex items-center gap-1">
       <span
-        className={clsx(
-          "text-lg font-bold",
-          variant === "panel" && "sm:text-xl",
-        )}
+        className={clsx("font-bold", {
+          "text-lg sm:text-xl": variant === "panel",
+          "leading-4 sm:text-lg": variant === "card",
+        })}
       >
         {convertedPrice}
       </span>

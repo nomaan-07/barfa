@@ -1,7 +1,6 @@
 import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { convertToPersian } from "@/app/_utils/helper";
 import { Chip } from "@heroui/chip";
-import clsx from "clsx";
 
 interface QuantityTextProps {
   quantity: number;
@@ -11,9 +10,9 @@ interface QuantityTextProps {
 function QuantityText({ quantity, variant }: QuantityTextProps) {
   if (quantity === 0 && variant === "card")
     return (
-      <div className="mt-6 flex items-center gap-2">
+      <div className="flex items-center gap-2 sm:mt-2 sm:mb-4">
         <div className="bg-default-300 h-px w-full rounded-full"></div>
-        <p className="text-default-500 text-center text-lg font-semibold">
+        <p className="text-default-500 text-center font-semibold sm:text-lg">
           ناموجود
         </p>
         <div className="bg-default-300 h-px w-full rounded-full"></div>
@@ -24,7 +23,7 @@ function QuantityText({ quantity, variant }: QuantityTextProps) {
     return (
       <>
         {variant === "card" && (
-          <p className={clsx("text-danger w-full text-xs")}>
+          <p className="text-danger h-4 w-full text-xs">
             {convertToPersian(quantity)} عدد در انبار باقی مانده
           </p>
         )}

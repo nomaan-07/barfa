@@ -13,15 +13,18 @@ interface ProductCardImageProps {
 
 function ProductCardImage({ src, alt, id }: ProductCardImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+
   return (
-    <Link href={`/product/${id}`} className="mx-auto size-48 p-2 select-none">
+    <Link
+      href={`/product/${id}`}
+      className="mx-auto hidden size-48 p-2 select-none sm:block"
+    >
       <Skeleton className="rounded-lg" isLoaded={isLoaded}>
         <Image
           isZoomed
           src={src}
           alt={alt}
-          height={176}
-          width="100%"
+          className="size-44"
           onLoad={() => setIsLoaded(true)}
           onError={() => setIsLoaded(true)}
         />

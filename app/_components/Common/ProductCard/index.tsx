@@ -8,6 +8,7 @@ import QuantityText from "../QuantityText";
 import CardColorCircles from "./components/CardColorCircles";
 import ProductCardImage from "./components/ProductCardImage";
 import ProductCardTitle from "./components/ProductCardTitle";
+import ProductFinishedCard from "./components/ProductFinishedCard";
 
 interface ProductCardProps {
   product: ListProduct;
@@ -15,55 +16,53 @@ interface ProductCardProps {
 }
 
 function ProductCard({ product, variation }: ProductCardProps) {
-  const isSwiper = variation === "swiper";
-  const isFinished = product.quantity === 0;
+  const {
+    id,
+    quantity,
+    title_fa: titleFa,
+    image_sources: { main: imageSrc },
+    colors,
+    price,
+    discount_percent: discountPercent,
+    discounted_price: discountedPrice,
+  } = product;
+
   const hasDiscount = product.discount_percent > 0;
+
+  if (quantity === 0)
+    return <ProductFinishedCard id={id} imageSrc={imageSrc} title={titleFa} />;
 
   return (
     <Card
-      shadow={isSwiper ? "none" : "sm"}
+      shadow={variation === "swiper" ? "none" : "sm"}
       className={clsx({
-        "border-default-200 border": isSwiper,
-        relative: !isSwiper,
-        grayscale: isFinished,
+        "border-default-200 border": variation === "swiper",
+        "relative hidden sm:flex": variation === "list",
       })}
     >
-      <ProductCardImage
-        src={product.image_sources.main}
-        alt={product.title_fa}
-        id={product.id}
-      />
-
+      <ProductCardImage src={imageSrc} alt={titleFa} id={id} />
       <div className="flex flex-grow flex-col space-y-4 p-2">
-        <ProductCardTitle id={product.id} title={product.title_fa} />
+        <ProductCardTitle id={id} title={titleFa} />
 
-        {!isFinished && (
-          <>
-            <div className="flex h-13 flex-col justify-end">
-              <div className="flex h-6 items-center justify-between pl-8">
-                <CardColorCircles colors={product.colors} />
-                {hasDiscount && (
-                  <OriginalPrice variant="card" price={product.price} />
-                )}
-              </div>
+        <div className="flex h-13 flex-col justify-end">
+          <div className="flex h-6 items-center justify-between">
+            <CardColorCircles colors={colors} variant="desktop" />
+            {hasDiscount && <OriginalPrice variant="card" price={price} />}
+          </div>
 
-              <div className="flex items-center justify-end">
-                {hasDiscount && (
-                  <DiscountBadge
-                    discountPercent={product.discount_percent}
-                    isAbsolute={!isSwiper}
-                  />
-                )}
-                {!isSwiper && (
-                  <QuantityText variant="card" quantity={product.quantity!} />
-                )}
-                <FinalPrice variant="card" price={product.discounted_price} />
-              </div>
-            </div>
-          </>
-        )}
-
-        {isFinished && <QuantityText variant="card" quantity={0} />}
+          <div className="flex items-center justify-end">
+            {hasDiscount && (
+              <DiscountBadge
+                discountPercent={discountPercent}
+                isAbsolute={variation === "list"}
+              />
+            )}
+            {variation === "list" && (
+              <QuantityText variant="card" quantity={quantity!} />
+            )}
+            <FinalPrice variant="card" price={discountedPrice} />
+          </div>
+        </div>
       </div>
     </Card>
   );

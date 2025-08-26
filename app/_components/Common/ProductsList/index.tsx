@@ -1,5 +1,6 @@
 import { getProducts } from "@/app/_lib/data-services";
 import { ListProduct } from "@/app/_utils/types";
+import MobileProductCard from "../MobileProductCard";
 import ProductCard from "../ProductCard";
 import NoProductsFound from "./components/NoProductsFound";
 
@@ -47,7 +48,10 @@ async function ProductsList({
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} variation="list" />
+        <div key={product.id}>
+          <ProductCard product={product} variation="list" />
+          <MobileProductCard product={product} />
+        </div>
       ))}
     </div>
   );

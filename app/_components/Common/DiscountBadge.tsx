@@ -13,7 +13,7 @@ function DiscountBadge({ discountPercent, isAbsolute }: DiscountBadgeProps) {
       color="danger"
       size="sm"
       className={clsx(
-        "ml-auto h-fit text-sm",
+        "ml-auto h-fit sm:text-sm",
         isAbsolute && "absolute top-2 left-2",
       )}
     >
