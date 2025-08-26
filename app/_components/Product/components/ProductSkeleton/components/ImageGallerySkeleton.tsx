@@ -10,8 +10,8 @@ function ImageGallerySkeleton() {
       </div>
       {/* Image */}
       <div className="relative w-full space-y-2 lg:order-2 lg:px-12">
-        <div className="flex items-center justify-center">
-          <Skeleton className="h-52 w-1/2 rounded-lg select-none sm:h-62 md:h-70 lg:h-100 lg:w-full xl:h-135" />
+        <div className="flex h-52 items-center justify-center sm:h-64 md:h-72 lg:h-100 lg:p-10 xl:h-135">
+          <Skeleton className="aspect-square max-h-full w-1/2 rounded-lg lg:aspect-auto lg:h-full lg:w-full" />
         </div>
 
         {/* Color Circles */}
