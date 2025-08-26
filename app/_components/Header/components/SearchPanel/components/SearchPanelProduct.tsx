@@ -1,3 +1,4 @@
+import { useSearchPanel } from "@/app/_contexts/SearchPanelContext";
 import { SearchPanelProductType } from "@/app/_utils/types";
 import { Image } from "@heroui/image";
 import Link from "next/link";
@@ -7,9 +8,17 @@ interface SearchPanelProductProps {
 }
 
 function SearchPanelProduct({ product }: SearchPanelProductProps) {
+  const { onClose, onClear } = useSearchPanel();
+
+  function handleClick() {
+    onClose();
+    onClear();
+  }
+
   return (
     <Link
       href={`/product/${product.id}`}
+      onClick={handleClick}
       className="md:hover:bg-primary-50 shadow-small grid grid-cols-[3rem_1fr] gap-2 rounded-xl p-2 transition-colors select-none sm:grid-cols-[4rem_1fr]"
     >
       <Image

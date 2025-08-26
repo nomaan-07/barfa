@@ -50,6 +50,7 @@ export function SearchPanelProvider({ children }: { children: ReactNode }) {
     if (q) {
       router.push(`/search?query=${encodeURIComponent(q)}`);
       onClose();
+      onClear();
     }
   }, [onClose, router, value]);
 
