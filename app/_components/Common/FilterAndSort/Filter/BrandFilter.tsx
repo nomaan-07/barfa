@@ -1,12 +1,13 @@
 "use client";
 
-import { useFilters } from "@/app/_contexts/FiltersContext";
 import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
+import { useFilterStore } from "@/app/_store/filterStore";
 import { Checkbox, CheckboxGroup } from "@heroui/checkbox";
 
 function BrandFilter() {
-  const { brands } = useFilters();
   const { updateParams, getAllParams } = useQueryFilters();
+
+  const brands = useFilterStore((state) => state.brands);
 
   const selectedBrands = getAllParams("brand");
 

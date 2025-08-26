@@ -2,16 +2,38 @@
 
 import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
 import { useScrollDirection } from "@/app/_hooks/useScrollDirection";
+import { useFilterStore } from "@/app/_store/filterStore";
+import { Colors, ProductBrand } from "@/app/_utils/types";
 import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
 import { Tooltip } from "@heroui/tooltip";
 import { LucideX } from "lucide-react";
+import { useEffect } from "react";
 import FilterPanel from "./FilterPanel";
 
-function FilterSidebar() {
-  const scrollDirection = useScrollDirection();
+interface FilterSidebarProps {
+  brands: ProductBrand[];
+  colors: Colors;
+  prices: {
+    min: number;
+    max: number;
+  };
+}
 
+function FilterSidebar({ brands, colors, prices }: FilterSidebarProps) {
+  const scrollDirection = useScrollDirection();
   const { clearAll, hasAnyFilter } = useQueryFilters();
+
+  const setInitialFilters = useFilterStore((state) => state.setInitialFilters);
+
+  useEffect(() => {
+    setInitialFilters({
+      brands,
+      colors,
+      minPrice: prices.min,
+      maxPrice: prices.max,
+    });
+  }, [brands, colors, prices.min, prices.max, setInitialFilters]);
 
   return (
     <Card

@@ -1,10 +1,11 @@
-import { useFilters } from "@/app/_contexts/FiltersContext";
 import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
+import { useFilterStore } from "@/app/_store/filterStore";
 import { Checkbox, CheckboxGroup } from "@heroui/checkbox";
 
 function ColorFilter() {
-  const { colors } = useFilters();
   const { updateParams, getAllParams } = useQueryFilters();
+
+  const colors = useFilterStore((state) => state.colors);
 
   const selectedColors = getAllParams("color");
 

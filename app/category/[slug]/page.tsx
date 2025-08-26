@@ -3,7 +3,6 @@ import FilterSidebar from "@/app/_components/Common/FilterAndSort/Filter/FilterS
 import PageBreadCrumbs from "@/app/_components/Common/PageBreadCrumbs";
 import ProductsList from "@/app/_components/Common/ProductsList";
 import ProductsListFallback from "@/app/_components/Common/ProductsList/components/ProductsListFallback";
-import { FiltersProvider } from "@/app/_contexts/FiltersContext";
 import { getProductsFilters } from "@/app/_lib/data-services";
 import { categoryParamsValidation, normalizeParam } from "@/app/_utils/helper";
 import { CategorySearchParams } from "@/app/_utils/types";
@@ -34,49 +33,47 @@ async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   );
 
   return (
-    <FiltersProvider
-      brands={productsBrands}
-      colors={productsColors}
-      prices={priceRange}
-    >
-      <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">
-        <PageBreadCrumbs
-          page="category"
-          category={currentCategory}
-          brand={currentBrandArr}
+    <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">
+      <PageBreadCrumbs
+        page="category"
+        category={currentCategory}
+        brand={currentBrandArr}
+      />
+      <div className="flex gap-4">
+        <FilterSidebar
+          brands={productsBrands}
+          colors={productsColors}
+          prices={priceRange}
         />
-        <div className="flex gap-4">
-          <FilterSidebar />
-          <div className="w-full space-y-4">
-            <FilterAndSort />
-            <Suspense
-              key={JSON.stringify({
-                category,
-                sort,
-                discounted,
-                available,
-                minPrice,
-                maxPrice,
-                brands,
-                colors,
-              })}
-              fallback={<ProductsListFallback />}
-            >
-              <ProductsList
-                category={category}
-                sort={sort}
-                discounted={discounted}
-                available={available}
-                minPrice={minPrice}
-                maxPrice={maxPrice}
-                brands={brands}
-                colors={colors}
-              />
-            </Suspense>
-          </div>
+        <div className="w-full space-y-4">
+          <FilterAndSort />
+          <Suspense
+            key={JSON.stringify({
+              category,
+              sort,
+              discounted,
+              available,
+              minPrice,
+              maxPrice,
+              brands,
+              colors,
+            })}
+            fallback={<ProductsListFallback />}
+          >
+            <ProductsList
+              category={category}
+              sort={sort}
+              discounted={discounted}
+              available={available}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+              brands={brands}
+              colors={colors}
+            />
+          </Suspense>
         </div>
       </div>
-    </FiltersProvider>
+    </div>
   );
 }
 

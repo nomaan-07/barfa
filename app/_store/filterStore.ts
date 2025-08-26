@@ -8,13 +8,17 @@ interface FilterStoreState {
   maxPrice: number;
 }
 
-export const useFilterStore = create<FilterStoreState>((set) => ({
+interface Actions {
+  setInitialFilters: (filters: FilterStoreState) => void;
+}
+
+export const useFilterStore = create<FilterStoreState & Actions>((set) => ({
   brands: [],
   colors: [],
   minPrice: 0,
   maxPrice: 0,
 
-  setInitialFilters: (filters: FilterStoreState) => {
+  setInitialFilters: (filters) => {
     set({
       brands: filters.brands,
       colors: filters.colors,

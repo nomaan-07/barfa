@@ -53,7 +53,7 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
   insurancePrice: 0,
   status: "loading",
 
-  setInitialProduct: (productData: ProductType) => {
+  setInitialProduct: (productData) => {
     const insurancePrice = productData.insurance.price
       ? productData.insurance.price
       : productData.insurance.percent

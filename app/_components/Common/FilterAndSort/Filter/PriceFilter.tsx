@@ -1,5 +1,5 @@
-import { useFilters } from "@/app/_contexts/FiltersContext";
 import { useQueryFilters } from "@/app/_hooks/useQueryFilters";
+import { useFilterStore } from "@/app/_store/filterStore";
 import { convertToEnglish, convertToPersian } from "@/app/_utils/helper";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
@@ -7,14 +7,16 @@ import { Slider } from "@heroui/slider";
 import { useState } from "react";
 
 function PriceFilter() {
-  const { minPrice: dbMin, maxPrice: dbMax } = useFilters();
+  const dbMin = useFilterStore((state) => state.minPrice);
+  const dbMax = useFilterStore((state) => state.maxPrice);
+
   const { updateParams, getParam } = useQueryFilters();
 
   const minParam = Number(getParam("minPrice")) || dbMin;
   const maxParam = Number(getParam("maxPrice")) || dbMax;
 
   const [value, setValue] = useState<[number, number]>([
-    Math.max(0, minParam), // min input can start at 0
+    Math.max(0, minParam),
     Math.min(dbMax, maxParam),
   ]);
 
