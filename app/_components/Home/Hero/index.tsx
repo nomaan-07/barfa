@@ -147,7 +147,7 @@ function Hero() {
         ))}
       </Swiper>
 
-      <div className="absolute bottom-16 left-6 z-30 flex items-center gap-3 transition-all lg:invisible lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
+      <div className="invisible absolute bottom-16 left-6 z-30 hidden items-center gap-3 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:flex">
         <Button isIconOnly className="hero-prev-btn">
           <LucideChevronRight />
         </Button>
