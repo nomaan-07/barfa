@@ -56,9 +56,9 @@ function FilterDrawer() {
                   مشاهده محصولات
                 </Button>
                 <Button
-                  color={hasAnyFilter() ? "danger" : "default"}
+                  color="danger"
                   onPress={() => handleClearFilters(onClose)}
-                  disabled={!hasAnyFilter()}
+                  isDisabled={!hasAnyFilter()}
                 >
                   حذف فیلتر‌ها
                 </Button>
