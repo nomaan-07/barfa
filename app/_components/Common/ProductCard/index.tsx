@@ -1,7 +1,6 @@
 import { ListProduct, ProductsVariation } from "@/app/_utils/types";
 import { Card } from "@heroui/card";
 import clsx from "clsx";
-import AddToCartButton from "../AddToCartButton";
 import DiscountBadge from "../DiscountBadge";
 import FinalPrice from "../FinalPrice";
 import OriginalPrice from "../OriginalPrice";
@@ -61,7 +60,6 @@ function ProductCard({ product, variation }: ProductCardProps) {
                 <FinalPrice variant="card" price={product.discounted_price} />
               </div>
             </div>
-            <AddToCartButton />
           </>
         )}
 

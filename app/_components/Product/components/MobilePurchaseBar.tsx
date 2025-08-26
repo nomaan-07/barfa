@@ -6,9 +6,9 @@ import { Button } from "@heroui/button";
 import { Drawer, DrawerBody, DrawerContent } from "@heroui/drawer";
 import { Image, useDisclosure } from "@heroui/react";
 import { LucideChevronUp } from "lucide-react";
-import AddToCartButton from "../../Common/AddToCartButton";
 import DrawerCloseButton from "../../Common/DrawerCloseButton";
 import QuantityText from "../../Common/QuantityText";
+import AddToCartButton from "./AddToCartButton";
 import CurrentColorLine from "./CurrentColorLine";
 import Insurance from "./Insurance";
 import ProductChips from "./ProductChips";
@@ -67,15 +67,10 @@ function MobilePurchaseBar() {
 
                   <ProductChips variant="mobile" />
                   <Insurance />
-
                   <QuantityText quantity={quantity} variant="card" />
-
                   <QuantitySelector />
                   <ProductPrice />
-
-                  <div className="w-full sm:w-auto">
-                    <AddToCartButton />
-                  </div>
+                  <AddToCartButton className="w-full sm:w-auto" />
                 </div>
               </DrawerBody>
             </>

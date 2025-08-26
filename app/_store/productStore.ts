@@ -25,7 +25,7 @@ interface Actions {
 }
 
 export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
-  id: 1,
+  id: 0,
   image_sources: { main: "", colors: {} },
   colors: [],
   price: 0,

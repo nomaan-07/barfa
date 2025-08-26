@@ -47,9 +47,6 @@ function ProductCardSkeleton({ variation }: ProductCardSkeletonProps) {
             <Skeleton className="h-4 w-28 rounded-full" />
           </div>
         </div>
-
-        {/* Button */}
-        <Skeleton className="bg-primary h-10 rounded-lg" />
       </div>
     </div>
   );

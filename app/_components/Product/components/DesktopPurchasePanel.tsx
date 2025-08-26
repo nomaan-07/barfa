@@ -1,7 +1,7 @@
 "use client";
 
-import AddToCartButton from "@/app/_components/Common/AddToCartButton";
 import QuantityText from "@/app/_components/Common/QuantityText";
+import AddToCartButton from "@/app/_components/Product/components/AddToCartButton";
 import { useProductsStore } from "@/app/_store/productStore";
 import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
