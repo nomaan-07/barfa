@@ -1,4 +1,3 @@
-import DrawerCloseButton from "@/app/_components/Common/DrawerCloseButton";
 import { useSearchPanel } from "@/app/_contexts/SearchPanelContext";
 import {
   Drawer,
@@ -10,7 +9,7 @@ import SearchInput from "./SearchInput";
 import SearchPanelProducts from "./SearchPanelProducts";
 
 function SearchPanelDrawer() {
-  const { isOpen, onOpenChange, onClose } = useSearchPanel();
+  const { isOpen, onOpenChange } = useSearchPanel();
 
   return (
     <Drawer
@@ -24,9 +23,8 @@ function SearchPanelDrawer() {
       }}
     >
       <DrawerContent>
-        <DrawerHeader className="gap-2">
+        <DrawerHeader>
           <SearchInput />
-          <DrawerCloseButton onClose={onClose} />
         </DrawerHeader>
         <DrawerBody>
           <SearchPanelProducts />

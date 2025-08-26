@@ -1,10 +1,10 @@
+import DrawerCloseButton from "@/app/_components/Common/DrawerCloseButton";
 import { useSearchPanel } from "@/app/_contexts/SearchPanelContext";
 import { Input } from "@heroui/input";
-import { LucideSearch } from "lucide-react";
 import ClearButton from "./ClearButton";
 
 function SearchInput() {
-  const { value, onChange, onKeyDown } = useSearchPanel();
+  const { value, onChange, onKeyDown, onClose } = useSearchPanel();
   return (
     <Input
       placeholder="محصول مورد نظر خود را جستجو کنید."
@@ -19,11 +19,7 @@ function SearchInput() {
           "focus-within:ring-default",
         ],
       }}
-      startContent={
-        <div className="flex size-10 shrink-0 items-center justify-center">
-          <LucideSearch className="text-default-400 size-5" />
-        </div>
-      }
+      startContent={<DrawerCloseButton onClose={onClose} />}
       endContent={value && <ClearButton />}
     />
   );
