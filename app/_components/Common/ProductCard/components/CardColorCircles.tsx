@@ -1,19 +1,18 @@
 import { Colors } from "@/app/_utils/types";
 import clsx from "clsx";
+import { LucidePlus } from "lucide-react";
 
 interface CardColorCirclesProps {
   colors: Colors;
   variant: "mobile" | "desktop";
 }
 
-// FIXME: + for colors more than 4
-
 function CardColorCircles({ colors, variant }: CardColorCirclesProps) {
   return (
     <div
       className={clsx("flex gap-1", variant === "mobile" && "justify-center")}
     >
-      {colors.map((color) => (
+      {colors.slice(0, 4).map((color) => (
         <div
           key={color.en}
           className={clsx("border-default-300 rounded-full border", {
@@ -23,6 +22,8 @@ function CardColorCircles({ colors, variant }: CardColorCirclesProps) {
           style={{ backgroundColor: color.value }}
         ></div>
       ))}
+
+      {colors.length > 4 && <LucidePlus className="size-2.5" />}
     </div>
   );
 }
