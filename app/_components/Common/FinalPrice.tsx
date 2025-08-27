@@ -14,7 +14,7 @@ function FinalPrice({ price, variant }: FinalPriceProps) {
       <span
         className={clsx("font-bold", {
           "text-lg sm:text-xl": variant === "panel",
-          "leading-4 sm:text-lg": variant === "card",
+          "leading-4 sm:text-lg sm:leading-normal": variant === "card",
         })}
       >
         {convertedPrice}

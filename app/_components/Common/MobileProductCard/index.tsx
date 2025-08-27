@@ -1,13 +1,13 @@
 import { ListProduct } from "@/app/_utils/types";
 import { Card, CardBody } from "@heroui/card";
-import { Image } from "@heroui/image";
 import Link from "next/link";
 import DiscountBadge from "../DiscountBadge";
 import FinalPrice from "../FinalPrice";
 import OriginalPrice from "../OriginalPrice";
 import CardColorCircles from "../ProductCard/components/CardColorCircles";
 import QuantityText from "../QuantityText";
-import MobileFinishedCard from "./MobileFinishedCard";
+import MobileFinishedCard from "./components/MobileFinishedCard";
+import MobileProductCardImage from "./components/MobileProductCardImage";
 
 interface MobileProductCardProps {
   product: ListProduct;
@@ -39,7 +39,7 @@ function MobileProductCard({ product }: MobileProductCardProps) {
     >
       <CardBody className="flex-row gap-1 text-right">
         <div className="shrink-0 space-y-2">
-          <Image src={imageSrc} alt={titleFa} className="size-20" />
+          <MobileProductCardImage src={imageSrc} alt={titleFa} />
           <CardColorCircles colors={colors} variant="mobile" />
         </div>
 
@@ -53,7 +53,7 @@ function MobileProductCard({ product }: MobileProductCardProps) {
           <div className="flex items-end justify-between">
             {hasDiscount && <DiscountBadge discountPercent={discountPercent} />}
 
-            <div className="flex w-full flex-col items-end">
+            <div className="flex h-9 w-full flex-col items-end justify-end">
               {hasDiscount && <OriginalPrice price={price} variant="card" />}
               <FinalPrice price={discountedPrice} variant="card" />
             </div>

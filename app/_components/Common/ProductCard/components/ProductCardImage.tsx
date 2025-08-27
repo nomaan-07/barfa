@@ -15,10 +15,7 @@ function ProductCardImage({ src, alt, id }: ProductCardImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <Link
-      href={`/product/${id}`}
-      className="mx-auto hidden size-48 p-2 select-none sm:block"
-    >
+    <Link href={`/product/${id}`} className="mx-auto size-48 p-2 select-none">
       <Skeleton className="rounded-lg" isLoaded={isLoaded}>
         <Image
           isZoomed
