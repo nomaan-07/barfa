@@ -20,6 +20,11 @@ function RootLoading() {
         </div>
 
         <BannersSkeleton />
+
+        <div>
+          <SectionHeaderSkeleton />
+          <ProductsSwiperFallback />
+        </div>
       </div>
     </>
   );
