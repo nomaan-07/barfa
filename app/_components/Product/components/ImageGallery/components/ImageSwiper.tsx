@@ -17,7 +17,7 @@ function ImageSwiper({ swiperRef, onSelect, onOpenModal }: ImageSwiperProps) {
             <Image
               src={image.url}
               alt={image.fa}
-              className="size-full h-52 rounded-lg select-none sm:h-64 md:h-72 lg:h-100 xl:h-135"
+              className="h-52 w-full select-none sm:h-64 md:h-72 lg:h-100 xl:h-135"
             />
           </div>
         </SwiperSlide>
