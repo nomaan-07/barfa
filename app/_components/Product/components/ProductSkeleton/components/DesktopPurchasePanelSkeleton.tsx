@@ -24,7 +24,7 @@ function DesktopPurchasePanelSkeleton() {
           <div>
             <div className="mb-2 flex gap-4">
               <Skeleton className="h-5 w-19 rounded-full" />
-              <Skeleton className="bg-danger h-5 w-8 rounded-full" />
+              <Skeleton className="h-5 w-8 rounded-full" />
             </div>
             <Skeleton className="h-5 w-31 rounded-full" />
           </div>
@@ -33,7 +33,7 @@ function DesktopPurchasePanelSkeleton() {
 
       <CardFooter className="justify-end">
         {/* Add to cart button */}
-        <Skeleton className="bg-primary h-10 w-1/2 rounded-xl" />
+        <Skeleton className="h-10 w-1/2 rounded-xl" />
       </CardFooter>
     </Card>
   );

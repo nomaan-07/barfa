@@ -24,7 +24,7 @@ function MobilePurchaseBar() {
   if (quantity === 0) return null;
 
   return (
-    <div className="border-default-200 fixed inset-x-0 bottom-0 z-40 space-y-3 border-t bg-white p-3 lg:hidden">
+    <div className="border-t-default-200 fixed inset-x-0 bottom-0 z-40 space-y-3 border-t bg-white p-3 lg:hidden">
       <Button
         color="success"
         className="mx-auto w-full text-white sm:w-auto"
