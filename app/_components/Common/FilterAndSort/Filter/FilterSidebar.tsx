@@ -44,7 +44,7 @@ function FilterSidebar({ brands, colors, prices }: FilterSidebarProps) {
           scrollDirection === "down" ? "translateY(-64px)" : "translateY(0)",
       }}
     >
-      <div className="mx-2 flex justify-between border-b py-4">
+      <div className="mx-2 flex h-16 items-center justify-between border-b py-4">
         <h2 className="text-lg font-semibold">فیلتر‌ها</h2>
         {hasAnyFilter() && (
           <Tooltip content="حذف همه‌ی فیلترها">
