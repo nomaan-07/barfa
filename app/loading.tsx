@@ -1,6 +1,7 @@
 import { Skeleton } from "@heroui/skeleton";
 import ProductsSwiperFallback from "./_components/Common/ProductsSwiper/components/ProductsSwiperFallback";
 import BannersSkeleton from "./_components/Common/Skeletons/BannersSkeleton";
+import BrandsSkeleton from "./_components/Common/Skeletons/BrandsSkeleton";
 import CategoriesSkeleton from "./_components/Common/Skeletons/CategoriesSkeleton";
 import SectionHeaderSkeleton from "./_components/Common/Skeletons/SectionHeaderSkeleton";
 
@@ -24,6 +25,11 @@ function RootLoading() {
         <div>
           <SectionHeaderSkeleton />
           <ProductsSwiperFallback />
+        </div>
+
+        <div>
+          <SectionHeaderSkeleton />
+          <BrandsSkeleton />
         </div>
       </div>
     </>
