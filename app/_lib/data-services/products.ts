@@ -11,6 +11,7 @@ import {
   ProductsVariation,
   SearchPanelProductsType,
 } from "@/app/_utils/types";
+import { notFound } from "next/navigation";
 import { cache } from "react";
 import { supabase } from "../supabase";
 
@@ -223,9 +224,9 @@ async function _getProduct(id: number) {
     .eq("id", id)
     .single();
 
-  if (error) {
+  if (error || !data) {
     console.error(error);
-    throw new Error(`product could not be loaded`);
+    return notFound();
   }
 
   return data;
