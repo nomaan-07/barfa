@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import FilterAndSort from "../_components/Common/FilterAndSort";
 import FilterSidebar from "../_components/Common/FilterAndSort/Filter/FilterSidebar";
+import NotFoundPage from "../_components/Common/NotFoundPage";
 import ProductsList from "../_components/Common/ProductsList";
 import ProductsListFallback from "../_components/Common/ProductsList/components/ProductsListFallback";
 import { getProductsFilters } from "../_lib/data-services";
@@ -25,7 +25,10 @@ async function SearchPage({ searchParams }: SearchPageProps) {
     color,
   } = searchParamsObj;
 
-  if (!query) return notFound();
+  if (!query)
+    return (
+      <NotFoundPage description="از نوار جستجو برای پیدا کردن محصول استفاده کنید" />
+    );
 
   const decodedQuery = decodeURIComponent(query);
   const brands = normalizeParam(brand);

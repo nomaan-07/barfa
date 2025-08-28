@@ -16,7 +16,7 @@ function NotFoundPage({
   href = "/",
 }: NotFoundPageProps) {
   return (
-    <div className="flex flex-col items-center justify-center p-6">
+    <div className="flex flex-col items-center justify-center p-6 text-center">
       <div className="relative size-64 sm:size-68 md:size-72 lg:size-78 xl:size-86">
         <Image
           src="/not-found.png"
