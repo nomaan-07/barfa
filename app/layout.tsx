@@ -16,7 +16,7 @@ const vazirmatn = Vazirmatn({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | برفا",
+    template: "برفا | %s",
     default: "برفا | فروشگاه اینترنتی تکنولوژی",
   },
   description:

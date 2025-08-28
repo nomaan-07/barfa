@@ -1,6 +1,5 @@
 import ProductInitializer from "@/app/_components/Product/ProductInitializer";
 import { getProduct } from "@/app/_lib/data-services";
-import { notFound } from "next/navigation";
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
@@ -9,8 +8,6 @@ interface ProductPageProps {
 async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
   const product = await getProduct(Number(id));
-
-  if (!product) notFound();
 
   return <ProductInitializer key={id} product={product} />;
 }

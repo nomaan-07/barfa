@@ -12,6 +12,7 @@ import {
   ProductsVariation,
   SearchPanelProductsType,
 } from "@/app/_utils/types";
+import { cache } from "react";
 import { supabase } from "../supabase";
 
 // -------- GET --------
@@ -222,12 +223,14 @@ export async function getProductsFilters({ category }: { category: string }) {
   };
 }
 
-export async function getProduct(id: number) {
+async function _getProduct(id: number) {
   const { data, error } = await supabase
     .from(TABLES.PRODUCTS)
     .select("*")
     .eq("id", id)
     .single();
+
+  console.log(id);
 
   // For testing
   // await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -239,3 +242,5 @@ export async function getProduct(id: number) {
 
   return data;
 }
+
+export const getProduct = cache(_getProduct);
