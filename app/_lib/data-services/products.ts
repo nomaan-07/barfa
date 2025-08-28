@@ -8,7 +8,6 @@ import {
   Color,
   ListProduct,
   ProductBrand,
-  ProductCategory,
   ProductsVariation,
   SearchPanelProductsType,
 } from "@/app/_utils/types";
@@ -167,7 +166,7 @@ export async function getSearchPanelProducts(query: string) {
 export async function getProductsFilters({ category }: { category: string }) {
   let query = supabase
     .from(TABLES.PRODUCTS)
-    .select("brand, colors, discounted_price, quantity, category");
+    .select("brand, colors, discounted_price, quantity");
 
   if (category !== "all") {
     query = query.eq("category->>en", category);
@@ -179,11 +178,6 @@ export async function getProductsFilters({ category }: { category: string }) {
     console.error(error);
     throw new Error("products filters could not be loaded");
   }
-
-  // Extract current category
-
-  const currentCategory: ProductCategory =
-    category !== "all" && data[0]?.category;
 
   // Extract unique brands
   const brandMap = new Map<string, ProductBrand>();
@@ -216,7 +210,6 @@ export async function getProductsFilters({ category }: { category: string }) {
   const max = Math.max(...prices);
 
   return {
-    currentCategory,
     productsBrands: Array.from(brandMap.values()),
     productsColors: Array.from(colorMap.values()),
     priceRange: { min, max },
@@ -229,11 +222,6 @@ async function _getProduct(id: number) {
     .select("*")
     .eq("id", id)
     .single();
-
-  console.log(id);
-
-  // For testing
-  // await new Promise((resolve) => setTimeout(resolve, 2000));
 
   if (error) {
     console.error(error);

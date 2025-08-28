@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import {
   SORT_OPTIONS,
-  VALID_CATEGORY_SLUGS,
+  VALID_CATEGORIES,
   VALID_SEARCHPARAMS,
 } from "./constants";
 
@@ -43,11 +43,8 @@ function isValidArrayParam(param?: string | string[]) {
 }
 
 export const categoryParamsValidation = (
-  category: string,
   searchParams: Record<string, string | string[] | undefined>,
 ) => {
-  if (!VALID_CATEGORY_SLUGS.includes(category)) notFound();
-
   invalidSearchParams(searchParams);
 
   const { sort, discounted, available, brand, color, minPrice, maxPrice } =
@@ -80,3 +77,11 @@ export function normalizeParam(param?: string | string[]) {
   if (!param) return;
   return Array.isArray(param) ? param : [param];
 }
+
+export const getCategoryBySlug = (slug: string) => {
+  const category = VALID_CATEGORIES.find((c) => c.en === slug);
+
+  if (!category) return notFound();
+
+  return category;
+};

@@ -16,15 +16,14 @@ export const TABLE_FIELDS = {
   BANNERS: "id, image_src, link, title",
 };
 
-export const VALID_CATEGORY_SLUGS = [
-  "all",
-  "discounted",
-  "mobile",
-  "laptop",
-  "tablet",
-  "headphone",
-  "accessories",
-  "smartwatch",
+export const VALID_CATEGORIES = [
+  { en: "all", fa: "همه‌ی محصولات" },
+  { en: "mobile", fa: "موبایل" },
+  { en: "laptop", fa: "لپ تاپ" },
+  { en: "tablet", fa: "تبلت" },
+  { en: "headphone", fa: "هدفون" },
+  { en: "accessories", fa: "لوازم جانبی" },
+  { en: "smartwatch", fa: "ساعت هوشمند" },
 ];
 
 export const VALID_SEARCHPARAMS = [

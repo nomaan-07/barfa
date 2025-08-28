@@ -38,6 +38,7 @@ function PageBreadCrumbs({ category, brand, page }: PageBreadCrumbsProps) {
 
           {!isProductPage &&
             category &&
+            category.en !== "all" &&
             (brandArr.length === 1 ? (
               <BreadcrumbItem>
                 <Link href={category.en}>{category.fa}</Link>

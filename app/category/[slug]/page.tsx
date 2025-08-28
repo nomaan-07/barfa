@@ -4,7 +4,11 @@ import PageBreadCrumbs from "@/app/_components/Common/PageBreadCrumbs";
 import ProductsList from "@/app/_components/Common/ProductsList";
 import ProductsListFallback from "@/app/_components/Common/ProductsList/components/ProductsListFallback";
 import { getProductsFilters } from "@/app/_lib/data-services";
-import { categoryParamsValidation, normalizeParam } from "@/app/_utils/helper";
+import {
+  categoryParamsValidation,
+  getCategoryBySlug,
+  normalizeParam,
+} from "@/app/_utils/helper";
 import { CategorySearchParams } from "@/app/_utils/types";
 import { Suspense } from "react";
 
@@ -17,7 +21,7 @@ async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const { slug: category } = await params;
   const searchParamsObj = await searchParams;
 
-  categoryParamsValidation(category, searchParamsObj);
+  categoryParamsValidation(searchParamsObj);
 
   const { sort, discounted, available, minPrice, maxPrice, brand, color } =
     searchParamsObj;
@@ -25,12 +29,14 @@ async function CategoryPage({ params, searchParams }: CategoryPageProps) {
   const brands = normalizeParam(brand);
   const colors = normalizeParam(color);
 
-  const { currentCategory, productsBrands, productsColors, priceRange } =
+  const { productsBrands, productsColors, priceRange } =
     await getProductsFilters({ category });
 
   const currentBrandArr = productsBrands.filter((obj) =>
     brands?.includes(obj.en),
   );
+
+  const currentCategory = getCategoryBySlug(category);
 
   return (
     <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">
