@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import FilterAndSort from "../_components/Common/FilterAndSort";
 import FilterSidebar from "../_components/Common/FilterAndSort/Filter/FilterSidebar";
@@ -23,6 +24,8 @@ async function SearchPage({ searchParams }: SearchPageProps) {
     brand,
     color,
   } = searchParamsObj;
+
+  if (!query) return notFound();
 
   const decodedQuery = decodeURIComponent(query);
   const brands = normalizeParam(brand);
