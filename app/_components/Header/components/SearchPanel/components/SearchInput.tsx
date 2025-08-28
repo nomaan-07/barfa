@@ -19,7 +19,7 @@ function SearchInput() {
           "focus-within:ring-default",
         ],
       }}
-      startContent={<DrawerCloseButton onClose={onClose} />}
+      startContent={<DrawerCloseButton onClose={onClose} icon="arrow" />}
       endContent={value && <ClearButton />}
     />
   );

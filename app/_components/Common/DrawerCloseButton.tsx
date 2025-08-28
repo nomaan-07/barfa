@@ -1,16 +1,18 @@
 import { Button } from "@heroui/button";
 import { Tooltip } from "@heroui/tooltip";
-import { LucideArrowRight } from "lucide-react";
+import { LucideArrowRight, LucideX } from "lucide-react";
 
 interface DrawerCloseButtonProps {
   onClose: () => void;
+  icon?: "x" | "arrow";
 }
 
-function DrawerCloseButton({ onClose }: DrawerCloseButtonProps) {
+function DrawerCloseButton({ onClose, icon = "x" }: DrawerCloseButtonProps) {
   return (
     <Tooltip content="بستن">
       <Button variant="light" isIconOnly onPress={onClose}>
-        <LucideArrowRight className="size-5" />
+        {icon === "arrow" && <LucideArrowRight className="size-5" />}
+        {icon === "x" && <LucideX className="size-5" />}
       </Button>
     </Tooltip>
   );
