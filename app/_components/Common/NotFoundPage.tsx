@@ -2,18 +2,22 @@ import { Button } from "@heroui/button";
 import Image from "next/image";
 import Link from "next/link";
 
-interface NotFoundPageProps {
+interface BaseProps {
   title?: string;
   description?: string;
-  buttonText?: string;
-  href?: string;
 }
+
+type ButtonProps =
+  | { buttonText: string; href: string }
+  | { buttonText?: never; href?: never };
+
+type NotFoundPageProps = BaseProps & ButtonProps;
 
 function NotFoundPage({
   title = "صفحه‌ی مورد نظر پیدا نشد!",
   description = "احتمالا لینک اشتباه وارد کردید یا صفحه حذف شده است.",
-  buttonText = " بازگشت به صفحه اصلی",
-  href = "/",
+  buttonText,
+  href,
 }: NotFoundPageProps) {
   return (
     <div className="flex flex-col items-center justify-center p-6 text-center">
@@ -34,9 +38,22 @@ function NotFoundPage({
       <h1 className="mt-6 text-2xl font-bold">{title}</h1>
       <p className="text-default-600 mt-2">{description}</p>
 
-      <Button as={Link} size="lg" href={href} color="primary" className="mt-6">
-        {buttonText}
-      </Button>
+      <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+        {buttonText && href && (
+          <Button
+            as={Link}
+            size="lg"
+            href={href}
+            color="primary"
+            variant="flat"
+          >
+            {buttonText}
+          </Button>
+        )}
+        <Button as={Link} size="lg" href="/" color="primary">
+          بازگشت به صفحه اصلی
+        </Button>
+      </div>
     </div>
   );
 }
