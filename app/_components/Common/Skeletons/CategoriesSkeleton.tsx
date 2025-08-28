@@ -10,10 +10,7 @@ function CategoriesSkeleton() {
           className="border-default-100 h-31 rounded-2xl border bg-white/60 shadow-md backdrop-blur-lg sm:h-45"
         >
           <CardBody className="flex flex-col items-center justify-center p-2 sm:p-6">
-            {/* FIXME */}
             <Skeleton className="size-16 rounded-full shadow-lg sm:size-20" />
-
-            {/* FIXME */}
             <Skeleton className="mt-5 h-3 w-14 rounded-full sm:h-5" />
           </CardBody>
         </Card>
