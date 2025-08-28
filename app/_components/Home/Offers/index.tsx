@@ -7,7 +7,7 @@ async function Offers() {
   return (
     <>
       <SectionHeader
-        link="category/all?discounted=1&available=1"
+        link="category/all?discounted=1"
         buttonColor="danger"
         bgColor="bg-danger"
         textColor="text-white"

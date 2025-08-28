@@ -60,7 +60,7 @@ export const items: Item[] = [
   {
     id: "2",
     title: "پیشنهاد ویژه",
-    href: "/category/all?discounted=1&available=1",
+    href: "/category/all?discounted=1",
     icon: <LucideBadgePercent className={iconsStyles} />,
   },
   {
