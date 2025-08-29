@@ -25,9 +25,7 @@ function Navigation() {
           >
             {item.title}
           </Button>
-          {item.subItems && (
-            <SubMenu variation="desktop" items={item.subItems} />
-          )}
+          {item.subItems && <SubMenu variant="desktop" items={item.subItems} />}
         </NavbarItem>
       ))}
     </>

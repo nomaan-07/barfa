@@ -13,26 +13,25 @@ interface SubItem {
 }
 
 interface SubMenuProps {
-  variation: "desktop" | "mobile";
+  variant: "desktop" | "mobile";
   items: SubItem[];
 }
 
-function SubMenu({ variation = "desktop", items }: SubMenuProps) {
-  const isMobile = variation === "mobile";
+function SubMenu({ variant, items }: SubMenuProps) {
   return (
     <div
-      className={
-        isMobile
-          ? "mt-3"
-          : "invisible absolute top-9.5 right-0 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100"
-      }
+      className={clsx({
+        "mt-3": variant === "mobile",
+        "invisible absolute top-9.5 right-0 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100":
+          variant === "desktop",
+      })}
     >
       <div
-        className={
-          isMobile
-            ? "px-4"
-            : "border-small rounded-small border-default-300 bg-background w-32 px-1 py-2"
-        }
+        className={clsx({
+          "px-4": variant === "mobile",
+          "border-small rounded-small border-default-300 bg-background w-32 px-1 py-2":
+            variant === "desktop",
+        })}
       >
         <Listbox aria-label="products">
           {items.map((item) => (
@@ -43,7 +42,7 @@ function SubMenu({ variation = "desktop", items }: SubMenuProps) {
               href={item.href}
               startContent={item.icon}
               className={clsx(
-                isMobile &&
+                variant === "mobile" &&
                   "mt-3 flex items-center gap-3 data-[hover=true]:bg-transparent",
               )}
             >

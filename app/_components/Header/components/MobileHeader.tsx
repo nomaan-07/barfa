@@ -9,7 +9,7 @@ import {
 } from "@heroui/navbar";
 import { Suspense, useState } from "react";
 import Logo from "../../Logo";
-import CartButton from "./CartButton";
+import CartPanel from "./CartPanel";
 import MobileMenu from "./MobileMenu";
 import SearchPanel from "./SearchPanel";
 import SearchPanelFallback from "./SearchPanel/components/SearchPanelFallback";
@@ -39,7 +39,7 @@ function MobileHeader() {
         <Suspense fallback={<SearchPanelFallback />}>
           <SearchPanel />
         </Suspense>
-        <CartButton />
+        <CartPanel />
       </NavbarContent>
 
       <NavbarMenu>

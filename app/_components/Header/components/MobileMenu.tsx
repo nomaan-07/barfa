@@ -20,9 +20,7 @@ function MobileMenu({ onCloseMenu }: MobileMenuProps) {
             {item.icon}
             {item.title}
           </Link>
-          {item.subItems && (
-            <SubMenu variation="mobile" items={item.subItems} />
-          )}
+          {item.subItems && <SubMenu variant="mobile" items={item.subItems} />}
         </NavbarMenuItem>
       ))}
       <NavbarMenuItem className="mt-6">
