@@ -42,8 +42,7 @@ async function ProductsList({
     query,
   });
 
-  if (products.length === 0)
-    return <NoProductsFound size="medium" variant="products-list" />;
+  if (products.length === 0) return <NoProductsFound size="lg" />;
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">

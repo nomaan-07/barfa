@@ -91,27 +91,33 @@ function Illustration({ size = 240 }) {
 }
 
 interface NoProductsFoundProps {
-  size: "medium" | "small";
-  variant: "search-panel" | "products-list";
+  size: "lg" | "sm";
+  title?: string;
 }
 
-function NoProductsFound({ size, variant }: NoProductsFoundProps) {
-  let iconSize: number = 240;
-
-  if (size === "small") iconSize = 180;
+function NoProductsFound({
+  size,
+  title = "هیچ کالایی با این مشخصات وجود ندارد!",
+}: NoProductsFoundProps) {
+  const iconSize = size === "sm" ? 180 : 240;
 
   return (
     <div
       className={clsx(
         "flex w-full flex-col items-center justify-center text-center",
         {
-          "p-6": variant === "products-list",
+          "p-6": size === "lg",
         },
       )}
     >
       <Illustration size={iconSize} />
-      <p className="mt-4 text-lg font-medium text-gray-700 dark:text-gray-300">
-        هیچ کالایی با این مشخصات وجود ندارد
+      <p
+        className={clsx(
+          "mt-4 font-medium text-gray-700 dark:text-gray-300",
+          size === "lg" && "text-lg",
+        )}
+      >
+        {title}
       </p>
     </div>
   );

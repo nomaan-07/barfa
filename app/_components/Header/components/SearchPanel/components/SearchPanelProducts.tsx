@@ -55,9 +55,7 @@ function SearchPanelProducts() {
               <Spinner />
             </div>
           )}
-          {!loading && results.length === 0 && (
-            <NoProductsFound size="small" variant="search-panel" />
-          )}
+          {!loading && results.length === 0 && <NoProductsFound size="sm" />}
 
           {!loading && results.length > 0 && (
             <div className="space-y-3">
