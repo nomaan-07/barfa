@@ -19,7 +19,7 @@ function ProductFinishedCard({
       <ProductCardImage src={imageSrc} alt={title} id={id} />
       <div className="space-y-4">
         <ProductCardTitle id={id} title={title} />
-        <QuantityText variant="card" quantity={0} />
+        <QuantityText variant="normal" quantity={0} />
       </div>
     </Card>
   );

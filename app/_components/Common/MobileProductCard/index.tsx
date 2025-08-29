@@ -45,7 +45,7 @@ function MobileProductCard({ product }: MobileProductCardProps) {
 
         <div className="flex w-full flex-col justify-between">
           <div className="h-4">
-            <QuantityText quantity={quantity} variant="card" />
+            <QuantityText quantity={quantity} variant="normal" />
           </div>
 
           <p className="line-clamp-2 min-h-10 text-xs/relaxed">{titleFa}</p>

@@ -62,7 +62,7 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
               style={{ backgroundColor: colorHex }}
             ></div>
           </div>
-          <QuantityText quantity={quantity} variant="card" />
+          <QuantityText quantity={quantity} variant="normal" />
         </div>
       </div>
       <ProductBadges

@@ -87,7 +87,7 @@ function MobilePurchaseBar() {
 
                   <PurchasePanelBadges size="sm" />
                   <ProductInsurance />
-                  <QuantityText quantity={quantity} variant="card" />
+                  <QuantityText quantity={quantity} variant="normal" />
                   <PurchasePanelQuantitySelector />
                   <PurchasePanelProductPrice />
                   <AddToCartButton className="w-full sm:w-auto" />

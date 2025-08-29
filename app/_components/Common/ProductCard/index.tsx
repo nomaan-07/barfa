@@ -58,7 +58,7 @@ function ProductCard({ product, variation }: ProductCardProps) {
               />
             )}
             {variation === "list" && (
-              <QuantityText variant="card" quantity={quantity!} />
+              <QuantityText variant="normal" quantity={quantity} />
             )}
             <FinalPrice variant="card" price={discountedPrice} />
           </div>

@@ -22,7 +22,7 @@ function MobileFinishedCard({ id, title, imageSrc }: MobileFinishedCardProps) {
           <Image src={imageSrc} alt={title} height={86} width={86} />
         </div>
         <div className="space-y-2">
-          <QuantityText quantity={0} variant="card" />
+          <QuantityText quantity={0} variant="normal" />
           <p className="line-clamp-2 min-h-10 text-xs/relaxed">{title}</p>
         </div>
       </CardBody>
