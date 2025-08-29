@@ -12,10 +12,10 @@ import DrawerCloseButton from "../../Common/DrawerCloseButton";
 import QuantityText from "../../Common/QuantityText";
 import AddToCartButton from "./AddToCartButton";
 import CurrentColorLine from "./CurrentColorLine";
-import Insurance from "./Insurance";
-import ProductChips from "./ProductChips";
-import ProductPrice from "./ProductPrice";
-import QuantitySelector from "./QuantitySelector";
+import ProductInsurance from "./ProductInsurance";
+import PurchasePanelBadges from "./PurchasePanelBadges";
+import PurchasePanelProductPrice from "./PurchasePanelProductPrice";
+import PurchasePanelQuantitySelector from "./PurchasePanelQuantitySelector";
 
 function MobilePurchaseBar() {
   const [isHidden, setIsHidden] = useState(false);
@@ -85,11 +85,11 @@ function MobilePurchaseBar() {
                     </div>
                   </div>
 
-                  <ProductChips variant="mobile" />
-                  <Insurance />
+                  <PurchasePanelBadges size="sm" />
+                  <ProductInsurance />
                   <QuantityText quantity={quantity} variant="card" />
-                  <QuantitySelector />
-                  <ProductPrice />
+                  <PurchasePanelQuantitySelector />
+                  <PurchasePanelProductPrice />
                   <AddToCartButton className="w-full sm:w-auto" />
                 </div>
               </DrawerBody>

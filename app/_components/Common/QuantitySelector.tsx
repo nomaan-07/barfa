@@ -1,15 +1,21 @@
-import { useProductsStore } from "@/app/_store/productStore";
 import { convertToPersian } from "@/app/_utils/helper";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import { LucideMinus, LucidePlus } from "lucide-react";
 
-function QuantitySelector() {
-  const quantity = useProductsStore((state) => state.quantity);
-  const selectedQuantity = useProductsStore((state) => state.selectedQuantity);
-  const increaseQuantity = useProductsStore((state) => state.increaseQuantity);
-  const decreaseQuantity = useProductsStore((state) => state.decreaseQuantity);
+interface QuantitySelectorProps {
+  selectedQuantity: number;
+  quantity: number;
+  onIncrease: () => void;
+  onDecrease: () => void;
+}
 
+function QuantitySelector({
+  selectedQuantity,
+  quantity,
+  onIncrease,
+  onDecrease,
+}: QuantitySelectorProps) {
   const canIncreaseQuantity = quantity > selectedQuantity;
   const canDecreaseQuantity = selectedQuantity > 1;
 
@@ -24,7 +30,7 @@ function QuantitySelector() {
             isIconOnly
             variant="light"
             color="success"
-            onPress={increaseQuantity}
+            onPress={onIncrease}
             isDisabled={!canIncreaseQuantity}
             className={buttonStyles}
           >
@@ -42,7 +48,7 @@ function QuantitySelector() {
             isIconOnly
             variant="light"
             color="danger"
-            onPress={decreaseQuantity}
+            onPress={onDecrease}
             isDisabled={!canDecreaseQuantity}
             className={buttonStyles}
           >

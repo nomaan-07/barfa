@@ -7,10 +7,10 @@ import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import clsx from "clsx";
 import FinishedPanel from "./FinishedPanel";
-import Insurance from "./Insurance";
-import ProductChips from "./ProductChips";
-import ProductPrice from "./ProductPrice";
-import QuantitySelector from "./QuantitySelector";
+import ProductInsurance from "./ProductInsurance";
+import PurchasePanelBadges from "./PurchasePanelBadges";
+import PurchasePanelProductPrice from "./PurchasePanelProductPrice";
+import PurchasePanelQuantitySelector from "./PurchasePanelQuantitySelector";
 
 function DesktopPurchasePanel() {
   const quantity = useProductsStore((state) => state.quantity);
@@ -20,15 +20,15 @@ function DesktopPurchasePanel() {
   return (
     <Card className="hidden lg:block">
       <CardHeader>
-        <ProductChips variant="desktop" />
+        <PurchasePanelBadges size="lg" />
       </CardHeader>
 
       <CardBody className="space-y-6">
-        <Insurance />
+        <ProductInsurance />
 
         <div className="flex items-center justify-between">
-          <QuantitySelector />
-          <ProductPrice />
+          <PurchasePanelQuantitySelector />
+          <PurchasePanelProductPrice />
         </div>
       </CardBody>
 
