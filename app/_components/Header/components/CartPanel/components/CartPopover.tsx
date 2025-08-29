@@ -3,8 +3,11 @@ import { Button } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import Link from "next/link";
 import CartPanelProducts from "./CartPanelProducts";
+import { selectorCartCount, useCartStore } from "@/app/_store/cartStore";
 
 function CartPopover() {
+  const productsCount = useCartStore(selectorCartCount);
+
   return (
     <div className="invisible absolute top-9.5 left-0 hidden pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:block">
       {/* <div className="absolute top-9.5 left-0 hidden pt-2 transition-all lg:block"> */}

@@ -85,3 +85,17 @@ export const getCategoryBySlug = (slug: string) => {
 
   return category;
 };
+
+export const calculateFinalPrice = (
+  discountedPrice: number,
+  selectedQuantity: number,
+  hasInsurance: boolean,
+  insurancePrice: number,
+) => {
+  const basePrice = discountedPrice * selectedQuantity;
+
+  return hasInsurance ? basePrice + insurancePrice : basePrice;
+};
+
+export const calculateOriginalPrice = (price: number, quantity: number) =>
+  price * quantity;

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { calculateFinalPrice, calculateOriginalPrice } from "../_utils/helper";
 import { Color, ProductType } from "../_utils/types";
 
 type GalleryImage = Color & {
@@ -109,14 +110,13 @@ export const selectorActiveIndex = (state: ProductStoreState) => {
   return index >= 0 ? index : 0;
 };
 
-export const selectorTotalFinalPrice = (state: ProductStoreState) => {
-  const { discounted_price, selectedQuantity, hasInsurance, insurancePrice } =
-    state;
-
-  const quantityPrice = discounted_price * selectedQuantity;
-
-  return hasInsurance ? quantityPrice + insurancePrice : quantityPrice;
-};
+export const selectorTotalFinalPrice = (state: ProductStoreState) =>
+  calculateFinalPrice(
+    state.discounted_price,
+    state.selectedQuantity,
+    state.hasInsurance,
+    state.insurancePrice,
+  );
 
 export const selectorTotalOriginalPrice = (state: ProductStoreState) =>
-  state.price * state.selectedQuantity;
+  calculateOriginalPrice(state.price, state.selectedQuantity);

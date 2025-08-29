@@ -92,3 +92,22 @@ export type SearchPageSearchParams = Promise<
 >;
 
 export type SortChangeHandler = (sort: string, onClose?: () => void) => void;
+
+export type CartProduct = {
+  id: number;
+  imageSrc: string;
+  title: string;
+  color: {
+    fa: string;
+    value: string;
+  };
+  insuranceTitle: string;
+  insurancePrice: number;
+  hasInsurance: boolean;
+  warranty: string;
+  quantity: number;
+  selectedQuantity: number;
+  discountPercent: number;
+  discountedPrice: number;
+  price: number;
+};

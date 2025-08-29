@@ -3,44 +3,28 @@ import ProductBadges from "@/app/_components/Common/ProductBadges";
 import ProductPrice from "@/app/_components/Common/ProductPrice";
 import QuantitySelector from "@/app/_components/Common/QuantitySelector";
 import QuantityText from "@/app/_components/Common/QuantityText";
+import { CartProduct } from "@/app/_utils/types";
 import Image from "next/image";
 
 interface CartPanelProductProps {
-  product: {
-    id: number;
-    imageSrc: string;
-    title: string;
-
-    color: {
-      fa: string;
-      en: string;
-      value: string;
-    };
-    insurance: {
-      title: string;
-      price: number;
-    };
-    warranty: string;
-    quantity: number;
-    selectedQuantity: number;
-    discountPercent: number;
-    originalPrice: number;
-    finalPrice: number;
-  };
+  product: CartProduct;
 }
 
 function CartPanelProduct({ product }: CartPanelProductProps) {
   const {
+    id,
     title,
     imageSrc,
-    insurance: { price: insurancePrice, title: insuranceTitle },
+    insuranceTitle,
+    insurancePrice,
+    hasInsurance,
     quantity,
     selectedQuantity,
     discountPercent,
     warranty,
-    color: { fa: colorFa, en: colorEn, value: colorHex },
-    originalPrice,
-    finalPrice,
+    color: { fa: colorFa, value: colorHex },
+    price,
+    discountedPrice,
   } = product;
   return (
     <div className="space-y-4 py-3">
@@ -73,7 +57,7 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
 
       {/* Insurance */}
       <Insurance
-        hasInsurance={false}
+        hasInsurance={hasInsurance}
         onClick={() => {}}
         price={insurancePrice}
         title={insuranceTitle}
@@ -90,8 +74,8 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
 
         <ProductPrice
           discountPercent={discountPercent}
-          finalPrice={finalPrice}
-          originalPrice={originalPrice}
+          finalPrice={discountedPrice}
+          originalPrice={price}
         />
       </div>
     </div>
