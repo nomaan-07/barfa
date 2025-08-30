@@ -59,13 +59,9 @@ export const useCartStore = create<cartState>()(
       },
 
       addProduct: (product) => {
-        if (get().existingProduct(product.id)) {
-          get().increaseQuantity(product.id);
-        } else {
-          set({
-            products: [...get().products, { ...product, selectedQuantity: 1 }],
-          });
-        }
+        set({
+          products: [...get().products, { ...product, selectedQuantity: 1 }],
+        });
       },
 
       clearCart: () => set({ products: [] }),
@@ -78,7 +74,7 @@ export const useCartStore = create<cartState>()(
 
 export const selectorCartCount = (state: cartState) => state.products.length;
 
-export const selectorFinalPrice = (state: cartState, id: number) => {
+export const selectorProductFinalPrice = (state: cartState, id: number) => {
   const product = state.existingProduct(id);
 
   return product
@@ -91,7 +87,7 @@ export const selectorFinalPrice = (state: cartState, id: number) => {
     : 0;
 };
 
-export const selectorOriginalPrice = (state: cartState, id: number) => {
+export const selectorProductOriginalPrice = (state: cartState, id: number) => {
   const product = state.existingProduct(id);
 
   return product
@@ -101,6 +97,6 @@ export const selectorOriginalPrice = (state: cartState, id: number) => {
 
 export const selectorTotalPrice = (state: cartState) =>
   state.products.reduce(
-    (sum, product) => sum + selectorFinalPrice(state, product.id),
+    (sum, product) => sum + selectorProductFinalPrice(state, product.id),
     0,
   );

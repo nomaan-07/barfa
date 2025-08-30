@@ -1,11 +1,13 @@
 "use client";
 
 import AddToCartButton from "@/app/_components/Product/components/AddToCartButton";
+import { useCartStore } from "@/app/_store/cartStore";
 import { useProductsStore } from "@/app/_store/productStore";
 import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import clsx from "clsx";
 import QuantityText from "../../Common/QuantityText";
+import ExistInCartPanel from "./ExistInCartPanel";
 import FinishedPanel from "./FinishedPanel";
 import ProductInsurance from "./ProductInsurance";
 import PurchasePanelBadges from "./PurchasePanelBadges";
@@ -14,7 +16,10 @@ import PurchasePanelQuantitySelector from "./PurchasePanelQuantitySelector";
 
 function DesktopPurchasePanel() {
   const quantity = useProductsStore((state) => state.quantity);
+  const id = useProductsStore((state) => state.id);
+  const existingProduct = useCartStore((state) => state.existingProduct(id));
 
+  if (existingProduct) return <ExistInCartPanel />;
   if (quantity === 0) return <FinishedPanel />;
 
   return (
