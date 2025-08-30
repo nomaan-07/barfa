@@ -8,6 +8,7 @@ import {
 import { convertToPersian } from "@/app/_utils/helper";
 import { Button } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { addToast } from "@heroui/toast";
 import { LucideTrash2 } from "lucide-react";
 import Link from "next/link";
 import CartPanelProducts from "./CartPanelProducts";
@@ -16,6 +17,15 @@ function CartPanelWrapper() {
   const productsCount = useCartStore(selectorCartCount);
   const totalPrice = useCartStore(selectorTotalPrice);
   const clearCart = useCartStore((state) => state.clearCart);
+
+  function handleClearCart() {
+    clearCart();
+    addToast({
+      title: "سبد خرید خالی شد.",
+      color: "danger",
+      variant: "solid",
+    });
+  }
 
   return (
     <div className="invisible absolute top-9.5 left-0 hidden pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:block">
@@ -30,7 +40,7 @@ function CartPanelWrapper() {
                 variant="light"
                 color="danger"
                 endContent={<LucideTrash2 className="size-3.5" />}
-                onPress={clearCart}
+                onPress={handleClearCart}
               >
                 خالی کردن سبد خرید
               </Button>

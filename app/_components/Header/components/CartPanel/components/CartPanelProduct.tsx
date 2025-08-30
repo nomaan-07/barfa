@@ -5,6 +5,7 @@ import QuantitySelector from "@/app/_components/Common/QuantitySelector";
 import QuantityText from "@/app/_components/Common/QuantityText";
 import { useCartStore } from "@/app/_store/cartStore";
 import { CartProduct } from "@/app/_utils/types";
+import { addToast } from "@heroui/toast";
 import Image from "next/image";
 import CartCurrentColor from "./CartCurrentColor";
 
@@ -31,6 +32,17 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
   const toggleInsurance = useCartStore((state) => state.toggleInsurance);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+
+  function handleDecreaseQuantity() {
+    decreaseQuantity(id);
+    if (selectedQuantity === 1) {
+      addToast({
+        title: "محصول از سبد خرید حذف شد.",
+        color: "warning",
+        variant: "solid",
+      });
+    }
+  }
 
   return (
     <div className="space-y-4 py-3">
@@ -64,7 +76,7 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
           quantity={quantity}
           selectedQuantity={selectedQuantity}
           onIncrease={() => increaseQuantity(id)}
-          onDecrease={() => decreaseQuantity(id)}
+          onDecrease={handleDecreaseQuantity}
           allowRemove
         />
 

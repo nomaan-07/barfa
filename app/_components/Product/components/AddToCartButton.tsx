@@ -4,6 +4,7 @@ import {
   useProductsStore,
 } from "@/app/_store/productStore";
 import { Button } from "@heroui/button";
+import { addToast } from "@heroui/toast";
 import clsx from "clsx";
 import { ShoppingCart } from "lucide-react";
 import { useShallow } from "zustand/shallow";
@@ -66,6 +67,12 @@ function AddToCartButton({ className }: AddToCartButtonProps) {
     };
 
     addToCart(product);
+
+    addToast({
+      title: "محصول به سبد خرید اضافه شد.",
+      color: "success",
+      variant: "solid",
+    });
   }
 
   return (
