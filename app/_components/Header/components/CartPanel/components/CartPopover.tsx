@@ -5,6 +5,7 @@ import {
   selectorTotalPrice,
   useCartStore,
 } from "@/app/_store/cartStore";
+import { convertToPersian } from "@/app/_utils/helper";
 import { Button } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import Link from "next/link";
@@ -21,7 +22,7 @@ function CartPopover() {
           <>
             <CardHeader>
               <span className="text-default-500 text-sm">
-                {productsCount} کالا
+                {convertToPersian(productsCount)} کالا
               </span>
             </CardHeader>
             <CardBody className="text-right">

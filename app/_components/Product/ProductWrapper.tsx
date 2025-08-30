@@ -1,7 +1,10 @@
+import { useCartStore } from "@/app/_store/cartStore";
 import { useProductsStore } from "@/app/_store/productStore";
 import { Card, CardBody, CardFooter } from "@heroui/card";
 import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import DesktopPurchasePanel from "./components/DesktopPurchasePanel";
+import ExistInCartPanel from "./components/ExistInCartPanel";
+import FinishedPanel from "./components/FinishedPanel";
 import ImageGallery from "./components/ImageGallery";
 import MainFeatures from "./components/MainFeatures";
 import MobileProductSpecialOffer from "./components/MobileProductSpecialOffer";
@@ -11,11 +14,16 @@ import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
 
 function ProductWrapper() {
+  const id = useProductsStore((state) => state.id);
   const category = useProductsStore((state) => state.category);
   const brand = useProductsStore((state) => state.brand);
   const status = useProductsStore((state) => state.status);
+  const productExistInCart = useCartStore((state) => state.existingProduct(id));
+  const quantity = useProductsStore((state) => state.quantity);
 
   if (status === "loading") return <ProductSkeleton />;
+
+  const isPurchasePanelAvailable = !productExistInCart && quantity > 0;
 
   return (
     <div className="mx-auto mt-4 max-w-7xl space-y-6 px-6">
@@ -37,13 +45,16 @@ function ProductWrapper() {
         </section>
 
         <section className="space-y-6 lg:col-span-6">
-          <DesktopPurchasePanel />
+          {isPurchasePanelAvailable && <DesktopPurchasePanel />}
+          {productExistInCart && <ExistInCartPanel />}
+          {quantity === 0 && <FinishedPanel />}
+
           <MainFeatures />
           <ProductTabs />
         </section>
       </main>
 
-      <MobilePurchaseBar />
+      {isPurchasePanelAvailable && <MobilePurchaseBar />}
     </div>
   );
 }
