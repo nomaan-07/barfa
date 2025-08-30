@@ -1,6 +1,10 @@
 import FinalPrice from "@/app/_components/Common/FinalPrice";
 import NoProductsFound from "@/app/_components/Common/ProductsList/components/NoProductsFound";
-import { selectorCartCount, useCartStore } from "@/app/_store/cartStore";
+import {
+  selectorCartCount,
+  selectorTotalPrice,
+  useCartStore,
+} from "@/app/_store/cartStore";
 import { Button } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import Link from "next/link";
@@ -8,6 +12,7 @@ import CartPanelProducts from "./CartPanelProducts";
 
 function CartPopover() {
   const productsCount = useCartStore(selectorCartCount);
+  const totalPrice = useCartStore(selectorTotalPrice);
 
   return (
     <div className="invisible absolute top-9.5 left-0 hidden pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:block">
@@ -15,7 +20,9 @@ function CartPopover() {
         {productsCount > 0 ? (
           <>
             <CardHeader>
-              <span className="text-default-500 text-sm">۴ کالا</span>
+              <span className="text-default-500 text-sm">
+                {productsCount} کالا
+              </span>
             </CardHeader>
             <CardBody className="text-right">
               <CartPanelProducts />
@@ -25,7 +32,7 @@ function CartPopover() {
                 <span className="text-default-500 text-sm">
                   مبلغ قابل پرداخت
                 </span>
-                <FinalPrice price={4535000} variant="panel" />
+                <FinalPrice price={totalPrice} variant="panel" />
               </div>
 
               <Button as={Link} href="/cart" color="primary" size="lg">

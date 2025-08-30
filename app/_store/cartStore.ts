@@ -60,7 +60,7 @@ export const useCartStore = create<cartState>()(
 
       addProduct: (product) => {
         set({
-          products: [...get().products, { ...product, selectedQuantity: 1 }],
+          products: [...get().products, product],
         });
       },
 
