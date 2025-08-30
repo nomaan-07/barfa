@@ -9,7 +9,7 @@ function CurrentColorLine() {
 
   if (!currentImage) return null;
 
-  const isImageWhite = currentImage.en === "white";
+  const isWhiteImage = currentImage.en === "white";
 
   return (
     <div className="order-2 flex w-full items-center gap-2 lg:order-1 lg:mb-2">
@@ -20,7 +20,7 @@ function CurrentColorLine() {
       <div
         className={clsx(
           "w-full rounded-full",
-          isImageWhite
+          isWhiteImage
             ? "border-default-200 h-1.5 border lg:h-2"
             : "h-1 lg:h-1.5",
         )}

@@ -100,7 +100,14 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
 
 export const selectorCurrentImage = (state: ProductStoreState) => {
   const { galleryImages, selectedColor } = state;
-  return galleryImages.find((image) => image.en === selectedColor) ?? null;
+  return (
+    galleryImages.find((image) => image.en === selectedColor) ?? {
+      en: "",
+      fa: "",
+      value: "",
+      url: "",
+    }
+  );
 };
 
 export const selectorActiveIndex = (state: ProductStoreState) => {
