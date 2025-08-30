@@ -1,11 +1,11 @@
 import CartButton from "./components/CartButton";
-import CartPopover from "./components/CartPopover";
+import CartPanelWrapper from "./components/CartPanelWrapper";
 
 function CartPanel() {
   return (
     <div className="group relative">
       <CartButton />
-      <CartPopover />
+      <CartPanelWrapper />
     </div>
   );
 }

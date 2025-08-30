@@ -11,7 +11,7 @@ import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import Link from "next/link";
 import CartPanelProducts from "./CartPanelProducts";
 
-function CartPopover() {
+function CartPanelWrapper() {
   const productsCount = useCartStore(selectorCartCount);
   const totalPrice = useCartStore(selectorTotalPrice);
 
@@ -49,4 +49,4 @@ function CartPopover() {
   );
 }
 
-export default CartPopover;
+export default CartPanelWrapper;
