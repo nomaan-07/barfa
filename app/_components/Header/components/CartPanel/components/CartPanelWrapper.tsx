@@ -8,22 +8,32 @@ import {
 import { convertToPersian } from "@/app/_utils/helper";
 import { Button } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { LucideTrash2 } from "lucide-react";
 import Link from "next/link";
 import CartPanelProducts from "./CartPanelProducts";
 
 function CartPanelWrapper() {
   const productsCount = useCartStore(selectorCartCount);
   const totalPrice = useCartStore(selectorTotalPrice);
+  const clearCart = useCartStore((state) => state.clearCart);
 
   return (
     <div className="invisible absolute top-9.5 left-0 hidden pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:block">
       <Card className="border-small rounded-small border-default-300 divide-default-200 w-112 divide-y px-1 py-2">
         {productsCount > 0 ? (
           <>
-            <CardHeader>
+            <CardHeader className="justify-between">
               <span className="text-default-500 text-sm">
                 {convertToPersian(productsCount)} کالا
               </span>
+              <Button
+                variant="light"
+                color="danger"
+                endContent={<LucideTrash2 className="size-3.5" />}
+                onPress={clearCart}
+              >
+                خالی کردن سبد خرید
+              </Button>
             </CardHeader>
             <CardBody className="text-right">
               <CartPanelProducts />
