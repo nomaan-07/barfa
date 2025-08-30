@@ -1,10 +1,18 @@
 import { Button } from "@heroui/button";
+import { Badge } from "@heroui/badge";
 import { LucideShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { selectorCartCount, useCartStore } from "@/app/_store/cartStore";
+import { convertToPersian } from "@/app/_utils/helper";
 
 function CartButton() {
+  const productsCount = useCartStore(selectorCartCount);
+
   return (
-    <>
+    <Badge
+      color="primary"
+      content={productsCount > 0 && convertToPersian(productsCount)}
+    >
       <Button
         as={Link}
         href="/cart"
@@ -24,7 +32,7 @@ function CartButton() {
       >
         <LucideShoppingCart className="size-5" />
       </Button>
-    </>
+    </Badge>
   );
 }
 
