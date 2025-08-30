@@ -49,13 +49,25 @@ export const useCartStore = create<cartState>()(
       },
 
       decreaseQuantity: (id) => {
-        set((state) => ({
-          products: state.products.map((product) =>
-            product.id === id && product.selectedQuantity > 1
-              ? { ...product, selectedQuantity: product.selectedQuantity - 1 }
-              : product,
-          ),
-        }));
+        set((state) => {
+          const product = state.products.find((p) => p.id === id);
+
+          if (!product) return state;
+
+          if (product.selectedQuantity === 1) {
+            return {
+              products: state.products.filter((p) => p.id !== id),
+            };
+          } else {
+            return {
+              products: state.products.map((p) =>
+                p.id === id
+                  ? { ...p, selectedQuantity: p.selectedQuantity - 1 }
+                  : p,
+              ),
+            };
+          }
+        });
       },
 
       addProduct: (product) => {
