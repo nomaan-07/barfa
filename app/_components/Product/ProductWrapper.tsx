@@ -3,8 +3,6 @@ import { useProductsStore } from "@/app/_store/productStore";
 import { Card, CardBody, CardFooter } from "@heroui/card";
 import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import DesktopPurchasePanel from "./components/DesktopPurchasePanel";
-import ExistInCartPanel from "./components/ExistInCartPanel";
-import FinishedPanel from "./components/FinishedPanel";
 import ImageGallery from "./components/ImageGallery";
 import MainFeatures from "./components/MainFeatures";
 import MobileProductSpecialOffer from "./components/MobileProductSpecialOffer";
@@ -12,6 +10,7 @@ import MobilePurchaseBar from "./components/MobilePurchaseBar";
 import ProductSkeleton from "./components/ProductSkeleton";
 import ProductTabs from "./components/ProductTabs";
 import ProductTitle from "./components/ProductTitle";
+import PurchaseStatusPanel from "./components/PurchaseStatusPanel";
 
 function ProductWrapper() {
   const id = useProductsStore((state) => state.id);
@@ -45,9 +44,11 @@ function ProductWrapper() {
         </section>
 
         <section className="space-y-6 lg:col-span-6">
-          {isPurchasePanelAvailable && <DesktopPurchasePanel />}
-          {productExistInCart && <ExistInCartPanel />}
-          {quantity === 0 && <FinishedPanel />}
+          {isPurchasePanelAvailable ? (
+            <DesktopPurchasePanel />
+          ) : (
+            <PurchaseStatusPanel />
+          )}
 
           <MainFeatures />
           <ProductTabs />
