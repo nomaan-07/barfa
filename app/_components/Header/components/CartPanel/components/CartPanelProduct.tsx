@@ -3,7 +3,11 @@ import ProductBadges from "@/app/_components/Common/ProductBadges";
 import ProductPrice from "@/app/_components/Common/ProductPrice";
 import QuantitySelector from "@/app/_components/Common/QuantitySelector";
 import QuantityText from "@/app/_components/Common/QuantityText";
-import { useCartStore } from "@/app/_store/cartStore";
+import {
+  selectorProductFinalPrice,
+  selectorProductOriginalPrice,
+  useCartStore,
+} from "@/app/_store/cartStore";
 import { CartProduct } from "@/app/_utils/types";
 import { addToast } from "@heroui/toast";
 import Image from "next/image";
@@ -26,12 +30,16 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
     discountPercent,
     warranty,
     color: { fa: colorFa, value: colorValue },
-    price,
-    discountedPrice,
   } = product;
   const toggleInsurance = useCartStore((state) => state.toggleInsurance);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+  const finalPrice = useCartStore((state) =>
+    selectorProductFinalPrice(state, cartId),
+  );
+  const originalPrice = useCartStore((state) =>
+    selectorProductOriginalPrice(state, cartId),
+  );
 
   function handleDecreaseQuantity() {
     decreaseQuantity(cartId);
@@ -82,8 +90,8 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
 
         <ProductPrice
           discountPercent={discountPercent}
-          finalPrice={discountedPrice}
-          originalPrice={price}
+          finalPrice={finalPrice}
+          originalPrice={originalPrice}
         />
       </div>
     </div>
