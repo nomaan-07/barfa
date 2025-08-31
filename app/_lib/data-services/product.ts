@@ -1,4 +1,5 @@
 import { TABLES } from "@/app/_utils/constants";
+import { ProductType } from "@/app/_utils/types";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import { supabase } from "../supabase";
@@ -15,7 +16,7 @@ async function _getProduct(id: number) {
     return notFound();
   }
 
-  return data;
+  return data as unknown as ProductType;
 }
 
 export const getProduct = cache(_getProduct);
