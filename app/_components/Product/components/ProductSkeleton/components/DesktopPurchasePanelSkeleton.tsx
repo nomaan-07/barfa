@@ -3,7 +3,7 @@ import { Skeleton } from "@heroui/skeleton";
 
 function DesktopPurchasePanelSkeleton() {
   return (
-    <Card className="hidden lg:sticky lg:top-4 lg:z-30 lg:block">
+    <Card className="hidden lg:block">
       <CardHeader>
         {/* Chips */}
         <div className="flex w-full justify-between">
