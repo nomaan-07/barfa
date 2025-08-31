@@ -10,7 +10,7 @@ export const TABLES = {
 
 export const TABLE_FIELDS = {
   LIST_PRODUCT:
-    "id,created_at, title_fa, image_sources, price, discount_percent, discounted_price, colors, quantity, brand",
+    "id, created_at, title_fa, image_sources, price, discount_percent, discounted_price, colors, quantity, brand",
   SEARCH_PANEL_PRODUCTS: "id, title_fa, image_sources->>main",
   POPULAR_BRANDS: "id, image_src, link, name",
   BANNERS: "id, image_src, link, title",
