@@ -26,8 +26,8 @@ function QuantitySelector({
 
   return (
     <Card className="shrink-0" shadow="sm">
-      <CardBody>
-        <div className="flex h-10 w-28 items-center justify-between sm:h-11 sm:w-36">
+      <CardBody className="p-1 sm:p-3">
+        <div className="flex h-10 w-30 items-center justify-between sm:h-11 sm:w-36">
           <Button
             isIconOnly
             variant="light"

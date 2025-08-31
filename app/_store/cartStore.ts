@@ -1,16 +1,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { calculateFinalPrice, calculateOriginalPrice } from "../_utils/helper";
-import { CartProduct } from "../_utils/types";
+import { CartProductType } from "../_utils/types";
 
 interface cartState {
-  products: CartProduct[];
-  existingProduct: (id: string) => CartProduct | undefined;
+  products: CartProductType[];
+  existingProduct: (id: string) => CartProductType | undefined;
   removeProduct: (id: string) => void;
   toggleInsurance: (id: string) => void;
   increaseQuantity: (id: string) => void;
   decreaseQuantity: (id: string) => void;
-  addProduct: (product: CartProduct) => void;
+  addProduct: (product: CartProductType) => void;
   clearCart: () => void;
 }
 
@@ -92,7 +92,7 @@ export const useCartStore = create<cartState>()(
 
 export const selectorCartCount = (state: cartState) => state.products.length;
 
-export const selectorProductFinalPrice = (state: cartState, id: string) => {
+export const selectorCartProductFinalPrice = (state: cartState, id: string) => {
   const product = state.existingProduct(id);
 
   return product
@@ -105,7 +105,10 @@ export const selectorProductFinalPrice = (state: cartState, id: string) => {
     : 0;
 };
 
-export const selectorProductOriginalPrice = (state: cartState, id: string) => {
+export const selectorCartProductOriginalPrice = (
+  state: cartState,
+  id: string,
+) => {
   const product = state.existingProduct(id);
 
   return product
@@ -113,8 +116,9 @@ export const selectorProductOriginalPrice = (state: cartState, id: string) => {
     : 0;
 };
 
-export const selectorTotalPrice = (state: cartState) =>
+export const selectorCartTotalPrice = (state: cartState) =>
   state.products.reduce(
-    (sum, product) => sum + selectorProductFinalPrice(state, product.cartId),
+    (sum, product) =>
+      sum + selectorCartProductFinalPrice(state, product.cartId),
     0,
   );

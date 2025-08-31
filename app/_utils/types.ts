@@ -93,7 +93,7 @@ export type SearchPageSearchParams = Promise<
 
 export type SortChangeHandler = (sort: string, onClose?: () => void) => void;
 
-export type CartProduct = {
+export type CartProductType = {
   id: number;
   cartId: string;
   imageSrc: string;

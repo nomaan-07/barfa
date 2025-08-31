@@ -1,7 +1,4 @@
-interface CartCurrentColorProps {
-  name: string;
-  value: string;
-}
+import { CartCurrentColorProps } from "../types";
 
 function CartCurrentColor({ name, value }: CartCurrentColorProps) {
   return (

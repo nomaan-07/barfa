@@ -1,3 +1,4 @@
+import { useIsAtBottom } from "@/app/_hooks/useIsAtBottom";
 import {
   selectorCurrentImage,
   useProductsStore,
@@ -7,7 +8,6 @@ import { Drawer, DrawerBody, DrawerContent } from "@heroui/drawer";
 import { Image, useDisclosure } from "@heroui/react";
 import clsx from "clsx";
 import { LucideChevronUp } from "lucide-react";
-import { useEffect, useState } from "react";
 import DrawerCloseButton from "../../Common/DrawerCloseButton";
 import QuantityText from "../../Common/QuantityText";
 import AddToCartButton from "./AddToCartButton";
@@ -18,30 +18,19 @@ import PurchasePanelProductPrice from "./PurchasePanelProductPrice";
 import PurchasePanelQuantitySelector from "./PurchasePanelQuantitySelector";
 
 function MobilePurchaseBar() {
-  const [isHidden, setIsHidden] = useState(false);
+  const isAtBottom = useIsAtBottom();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const quantity = useProductsStore((state) => state.quantity);
   const titleFa = useProductsStore((state) => state.title_fa);
   const currentImage = useProductsStore(selectorCurrentImage);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isAtBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 60;
-      setIsHidden(isAtBottom);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <div
       className={clsx(
         "border-t-default-200 fixed inset-x-0 bottom-0 z-40 space-y-3 border-t bg-white p-3 transition-all lg:hidden",
         {
-          "pointer-events-none translate-y-6 opacity-0": isHidden,
-          "translate-y-0 opacity-100": !isHidden,
+          "pointer-events-none translate-y-6 opacity-0": isAtBottom,
+          "translate-y-0 opacity-100": !isAtBottom,
         },
       )}
     >

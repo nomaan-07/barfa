@@ -135,5 +135,5 @@ export const selectorTotalFinalPrice = (state: ProductStoreState) =>
     state.insurancePrice,
   );
 
-export const selectorTotalOriginalPrice = (state: ProductStoreState) =>
+export const selectorProductTotalOriginalPrice = (state: ProductStoreState) =>
   calculateOriginalPrice(state.price, state.selectedQuantity);

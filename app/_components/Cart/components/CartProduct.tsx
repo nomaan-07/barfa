@@ -4,21 +4,21 @@ import ProductPrice from "@/app/_components/Common/ProductPrice";
 import QuantitySelector from "@/app/_components/Common/QuantitySelector";
 import QuantityText from "@/app/_components/Common/QuantityText";
 import {
-  selectorProductFinalPrice,
-  selectorProductOriginalPrice,
+  selectorCartProductFinalPrice,
+  selectorCartProductOriginalPrice,
   useCartStore,
 } from "@/app/_store/cartStore";
-import { CartProduct } from "@/app/_utils/types";
 import { addToast } from "@heroui/toast";
+import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
+import { variantClasses } from "../cartVariants";
+import { CartProductProps } from "../types";
 import CartCurrentColor from "./CartCurrentColor";
 
-interface CartPanelProductProps {
-  product: CartProduct;
-}
-
-function CartPanelProduct({ product }: CartPanelProductProps) {
+function CartProduct({ product, variant }: CartProductProps) {
   const {
+    id,
     cartId,
     title,
     imageSrc,
@@ -35,10 +35,10 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const finalPrice = useCartStore((state) =>
-    selectorProductFinalPrice(state, cartId),
+    selectorCartProductFinalPrice(state, cartId),
   );
   const originalPrice = useCartStore((state) =>
-    selectorProductOriginalPrice(state, cartId),
+    selectorCartProductOriginalPrice(state, cartId),
   );
 
   function handleDecreaseQuantity() {
@@ -53,14 +53,21 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
   }
 
   return (
-    <div className="space-y-4 py-3">
-      <div className="grid grid-cols-3 gap-2">
-        <div className="col-span-1">
-          <Image src={imageSrc} alt={title} width={128} height={128} />
+    <div
+      className={clsx("space-y-4 py-4", variantClasses.cartProduct[variant])}
+    >
+      <div className="flex gap-2">
+        <div className="shrink-0">
+          <Image src={imageSrc} alt={title} width={112} height={112} />
         </div>
 
-        <div className="col-span-2 mt-2 space-y-2">
-          <div className="text-sm/loose font-bold">{title}</div>
+        <div className="mt-2 space-y-2">
+          <Link
+            href={`/product/${id}`}
+            className="text-xs/relaxed font-bold sm:text-sm/loose"
+          >
+            {title}
+          </Link>
           <CartCurrentColor name={colorFa} value={colorValue} />
           <QuantityText quantity={quantity} variant="normal" />
         </div>
@@ -98,4 +105,4 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
   );
 }
 
-export default CartPanelProduct;
+export default CartProduct;

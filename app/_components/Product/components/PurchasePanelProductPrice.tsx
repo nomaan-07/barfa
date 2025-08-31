@@ -1,13 +1,15 @@
 import {
+  selectorProductTotalOriginalPrice,
   selectorTotalFinalPrice,
-  selectorTotalOriginalPrice,
   useProductsStore,
 } from "@/app/_store/productStore";
 import ProductPrice from "../../Common/ProductPrice";
 
 function PurchasePanelProductPrice() {
   const discountPercent = useProductsStore((state) => state.discount_percent);
-  const totalOriginalPrice = useProductsStore(selectorTotalOriginalPrice);
+  const totalOriginalPrice = useProductsStore(
+    selectorProductTotalOriginalPrice,
+  );
   const totalFinalPrice = useProductsStore(selectorTotalFinalPrice);
 
   return (
