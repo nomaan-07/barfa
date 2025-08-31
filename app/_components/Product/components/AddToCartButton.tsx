@@ -42,18 +42,25 @@ function AddToCartButton({ className }: AddToCartButtonProps) {
       insurancePrice: state.insurancePrice,
     })),
   );
-  const currentImage = useProductsStore(selectorCurrentImage);
+  const {
+    url: imageSrc,
+    fa: colorFa,
+    en: colorEn,
+    value: colorValue,
+  } = useProductsStore(selectorCurrentImage);
 
   const addToCart = useCartStore((state) => state.addProduct);
 
   function handleClick() {
     const product = {
-      id,
-      imageSrc: currentImage.url,
+      id: id,
+      cartId: `${id}-${colorEn}`,
+      imageSrc,
       title: title,
       color: {
-        fa: currentImage.fa,
-        value: currentImage.value,
+        fa: colorFa,
+        en: colorEn,
+        value: colorValue,
       },
       insuranceTitle,
       insurancePrice,

@@ -8,8 +8,10 @@ import Link from "next/link";
 
 function PurchaseStatusPanel({}) {
   const quantity = useProductsStore((state) => state.quantity);
-  const id = useProductsStore((state) => state.id);
-  const productExistInCart = useCartStore((state) => state.existingProduct(id));
+  const cartId = useProductsStore((state) => state.cartId);
+  const productExistInCart = useCartStore((state) =>
+    state.existingProduct(cartId),
+  );
 
   const variant = productExistInCart
     ? "in-cart"

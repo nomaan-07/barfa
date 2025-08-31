@@ -5,11 +5,11 @@ import { CartProduct } from "../_utils/types";
 
 interface cartState {
   products: CartProduct[];
-  existingProduct: (id: number) => CartProduct | undefined;
-  removeProduct: (id: number) => void;
-  toggleInsurance: (id: number) => void;
-  increaseQuantity: (id: number) => void;
-  decreaseQuantity: (id: number) => void;
+  existingProduct: (id: string) => CartProduct | undefined;
+  removeProduct: (id: string) => void;
+  toggleInsurance: (id: string) => void;
+  increaseQuantity: (id: string) => void;
+  decreaseQuantity: (id: string) => void;
   addProduct: (product: CartProduct) => void;
   clearCart: () => void;
 }
@@ -20,18 +20,18 @@ export const useCartStore = create<cartState>()(
       products: [],
 
       existingProduct: (id) =>
-        get().products.find((product) => product.id === id),
+        get().products.find((product) => product.cartId === id),
 
       removeProduct: (id) => {
         set((state) => ({
-          products: state.products.filter((product) => product.id !== id),
+          products: state.products.filter((product) => product.cartId !== id),
         }));
       },
 
       toggleInsurance: (id) => {
         set((state) => ({
           products: state.products.map((product) =>
-            product.id === id
+            product.cartId === id
               ? { ...product, hasInsurance: !product.hasInsurance }
               : product,
           ),
@@ -41,7 +41,7 @@ export const useCartStore = create<cartState>()(
       increaseQuantity: (id) => {
         set((state) => ({
           products: state.products.map((product) =>
-            product.id === id
+            product.cartId === id
               ? { ...product, selectedQuantity: product.selectedQuantity + 1 }
               : product,
           ),
@@ -50,18 +50,18 @@ export const useCartStore = create<cartState>()(
 
       decreaseQuantity: (id) => {
         set((state) => {
-          const product = state.products.find((p) => p.id === id);
+          const product = state.products.find((p) => p.cartId === id);
 
           if (!product) return state;
 
           if (product.selectedQuantity === 1) {
             return {
-              products: state.products.filter((p) => p.id !== id),
+              products: state.products.filter((p) => p.cartId !== id),
             };
           } else {
             return {
               products: state.products.map((p) =>
-                p.id === id
+                p.cartId === id
                   ? { ...p, selectedQuantity: p.selectedQuantity - 1 }
                   : p,
               ),
@@ -71,9 +71,15 @@ export const useCartStore = create<cartState>()(
       },
 
       addProduct: (product) => {
-        set({
-          products: [...get().products, product],
-        });
+        const existingProduct = get().existingProduct(product.cartId);
+
+        if (existingProduct) {
+          get().increaseQuantity(product.cartId);
+        } else {
+          set((state) => ({
+            products: [...state.products, product],
+          }));
+        }
       },
 
       clearCart: () => set({ products: [] }),
@@ -86,7 +92,7 @@ export const useCartStore = create<cartState>()(
 
 export const selectorCartCount = (state: cartState) => state.products.length;
 
-export const selectorProductFinalPrice = (state: cartState, id: number) => {
+export const selectorProductFinalPrice = (state: cartState, id: string) => {
   const product = state.existingProduct(id);
 
   return product
@@ -99,7 +105,7 @@ export const selectorProductFinalPrice = (state: cartState, id: number) => {
     : 0;
 };
 
-export const selectorProductOriginalPrice = (state: cartState, id: number) => {
+export const selectorProductOriginalPrice = (state: cartState, id: string) => {
   const product = state.existingProduct(id);
 
   return product
@@ -109,6 +115,6 @@ export const selectorProductOriginalPrice = (state: cartState, id: number) => {
 
 export const selectorTotalPrice = (state: cartState) =>
   state.products.reduce(
-    (sum, product) => sum + selectorProductFinalPrice(state, product.id),
+    (sum, product) => sum + selectorProductFinalPrice(state, product.cartId),
     0,
   );

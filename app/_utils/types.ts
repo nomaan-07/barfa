@@ -95,12 +95,10 @@ export type SortChangeHandler = (sort: string, onClose?: () => void) => void;
 
 export type CartProduct = {
   id: number;
+  cartId: string;
   imageSrc: string;
   title: string;
-  color: {
-    fa: string;
-    value: string;
-  };
+  color: Color;
   insuranceTitle: string;
   insurancePrice: number;
   hasInsurance: boolean;

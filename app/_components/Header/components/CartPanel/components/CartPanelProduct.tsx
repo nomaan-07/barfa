@@ -15,7 +15,7 @@ interface CartPanelProductProps {
 
 function CartPanelProduct({ product }: CartPanelProductProps) {
   const {
-    id,
+    cartId,
     title,
     imageSrc,
     insuranceTitle,
@@ -34,7 +34,7 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
 
   function handleDecreaseQuantity() {
-    decreaseQuantity(id);
+    decreaseQuantity(cartId);
     if (selectedQuantity === 1) {
       addToast({
         title: "محصول از سبد خرید حذف شد.",
@@ -65,7 +65,7 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
       />
       <Insurance
         hasInsurance={hasInsurance}
-        onClick={() => toggleInsurance(id)}
+        onClick={() => toggleInsurance(cartId)}
         price={insurancePrice}
         title={insuranceTitle}
         quantity={quantity}
@@ -75,7 +75,7 @@ function CartPanelProduct({ product }: CartPanelProductProps) {
         <QuantitySelector
           quantity={quantity}
           selectedQuantity={selectedQuantity}
-          onIncrease={() => increaseQuantity(id)}
+          onIncrease={() => increaseQuantity(cartId)}
           onDecrease={handleDecreaseQuantity}
           allowRemove
         />

@@ -7,8 +7,9 @@ type GalleryImage = Color & {
 };
 
 interface ProductStoreState extends Omit<ProductType, "created_at"> {
+  cartId: string;
   galleryImages: GalleryImage[];
-  selectedColor: string;
+  selectedColorEn: string;
   selectedQuantity: number;
   hasInsurance: boolean;
   insurancePrice: number;
@@ -22,7 +23,7 @@ interface Actions {
   increaseQuantity: VoidFn;
   decreaseQuantity: VoidFn;
   toggleInsurance: VoidFn;
-  setSelectedColor: (color: string) => void;
+  selectColorVariant: (color: string) => void;
 }
 
 export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
@@ -47,8 +48,9 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
     percent: 0,
   },
 
+  cartId: "",
   galleryImages: [],
-  selectedColor: "",
+  selectedColorEn: "",
   selectedQuantity: 1,
   hasInsurance: false,
   insurancePrice: 0,
@@ -66,13 +68,16 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
       url: productData.image_sources.colors[color.en],
     }));
 
+    const defaultColorEn = galleryImages[0].en ?? "";
+
     set({
       ...productData,
+      cartId: defaultColorEn ? `${productData.id}-${defaultColorEn}` : "",
       insurancePrice,
       galleryImages,
       selectedQuantity: 1,
       hasInsurance: false,
-      selectedColor: galleryImages[0]?.en || "",
+      selectedColorEn: defaultColorEn,
       status: "success",
     });
   },
@@ -84,7 +89,7 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
 
   decreaseQuantity: () =>
     set((state) => ({
-      selectedQuantity: state.selectedQuantity - 1,
+      selectedQuantity: Math.max(1, state.selectedQuantity - 1),
     })),
 
   toggleInsurance: () =>
@@ -92,16 +97,19 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
       hasInsurance: !state.hasInsurance,
     })),
 
-  setSelectedColor: (color) =>
-    set(() => ({
-      selectedColor: color,
+  selectColorVariant: (color) =>
+    set((state) => ({
+      selectedColorEn: color,
+      cartId: `${state.id}-${color}`,
+      selectedQuantity: 1,
+      hasInsurance: false,
     })),
 }));
 
 export const selectorCurrentImage = (state: ProductStoreState) => {
-  const { galleryImages, selectedColor } = state;
+  const { galleryImages, selectedColorEn } = state;
   return (
-    galleryImages.find((image) => image.en === selectedColor) ?? {
+    galleryImages.find((image) => image.en === selectedColorEn) ?? {
       en: "",
       fa: "",
       value: "",
@@ -111,8 +119,10 @@ export const selectorCurrentImage = (state: ProductStoreState) => {
 };
 
 export const selectorActiveIndex = (state: ProductStoreState) => {
-  const { galleryImages, selectedColor } = state;
-  const index = galleryImages.findIndex((image) => image.en === selectedColor);
+  const { galleryImages, selectedColorEn } = state;
+  const index = galleryImages.findIndex(
+    (image) => image.en === selectedColorEn,
+  );
 
   return index >= 0 ? index : 0;
 };

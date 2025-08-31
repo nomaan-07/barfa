@@ -13,12 +13,14 @@ import ProductTitle from "./components/ProductTitle";
 import PurchaseStatusPanel from "./components/PurchaseStatusPanel";
 
 function ProductWrapper() {
-  const id = useProductsStore((state) => state.id);
+  const cartId = useProductsStore((state) => state.cartId);
   const category = useProductsStore((state) => state.category);
   const brand = useProductsStore((state) => state.brand);
   const status = useProductsStore((state) => state.status);
-  const productExistInCart = useCartStore((state) => state.existingProduct(id));
   const quantity = useProductsStore((state) => state.quantity);
+  const productExistInCart = useCartStore((state) =>
+    state.existingProduct(cartId),
+  );
 
   if (status === "loading") return <ProductSkeleton />;
 

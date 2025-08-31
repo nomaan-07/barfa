@@ -18,10 +18,12 @@ function ImageGallery() {
   const modalSwiperRef = useRef<SwiperType | null>(null);
 
   const images = useProductsStore((state) => state.galleryImages);
-  const setSelectedColor = useProductsStore((state) => state.setSelectedColor);
+  const selectColorVariant = useProductsStore(
+    (state) => state.selectColorVariant,
+  );
 
   const handleSelect = (index: number) => {
-    setSelectedColor(images[index].en);
+    selectColorVariant(images[index].en);
     swiperRef.current?.slideTo(index);
     modalSwiperRef.current?.slideTo(index);
   };

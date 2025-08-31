@@ -7,7 +7,7 @@ function CartPanelProducts() {
   return (
     <div className="divide-default-200 h-96 divide-y">
       {products.map((product) => (
-        <CartPanelProduct key={product.id} product={product} />
+        <CartPanelProduct key={product.cartId} product={product} />
       ))}
     </div>
   );
