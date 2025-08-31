@@ -47,7 +47,7 @@ function CartProduct({ product, variant }: CartProductProps) {
       addToast({
         title: "محصول از سبد خرید حذف شد.",
         color: "warning",
-        variant: "solid",
+        variant: "bordered",
       });
     }
   }

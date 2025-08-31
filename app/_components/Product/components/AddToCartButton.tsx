@@ -78,7 +78,7 @@ function AddToCartButton({ className }: AddToCartButtonProps) {
     addToast({
       title: "محصول به سبد خرید اضافه شد.",
       color: "success",
-      variant: "solid",
+      variant: "bordered",
     });
   }
 

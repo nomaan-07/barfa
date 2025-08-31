@@ -16,7 +16,7 @@ function CartHeader({ variant }: CartBaseProps) {
     addToast({
       title: "سبد خرید خالی شد.",
       color: "danger",
-      variant: "solid",
+      variant: "bordered",
     });
   }
 
