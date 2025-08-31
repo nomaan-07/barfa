@@ -26,7 +26,7 @@ function PurchaseStatusPanel({}) {
   return (
     <Card
       className={clsx(
-        "fixed right-0 bottom-0 left-0 z-30 mb-0 rounded-none lg:sticky lg:top-4 lg:mb-6 lg:block lg:rounded-xl",
+        "fixed right-0 bottom-0 left-0 z-30 mb-0 rounded-none lg:static lg:mb-6 lg:block lg:rounded-xl",
         {
           "bg-danger-50": variant === "finished",
           "bg-primary-50": variant === "in-cart",
