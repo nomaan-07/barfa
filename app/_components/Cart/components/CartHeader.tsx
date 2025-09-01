@@ -2,7 +2,6 @@ import { selectorCartCount, useCartStore } from "@/app/_store/cartStore";
 import { convertToPersian } from "@/app/_utils/helper";
 import { Button } from "@heroui/button";
 import { addToast } from "@heroui/toast";
-import clsx from "clsx";
 import { LucideTrash2 } from "lucide-react";
 import { variantClasses } from "../cartVariants";
 import { CartBaseProps } from "../types";
@@ -21,23 +20,23 @@ function CartHeader({ variant }: CartBaseProps) {
   }
 
   return (
-    <div
-      className={clsx(
-        "flex items-center justify-between",
-        variantClasses.cartHeader[variant],
+    <div className={variantClasses.cartHeader[variant]}>
+      {variant === "page" && (
+        <h2 className="font-black sm:text-lg">سبد خرید شما</h2>
       )}
-    >
-      <span className="text-default-500 text-sm">
-        {convertToPersian(productsCount)} کالا
-      </span>
-      <Button
-        variant="light"
-        color="danger"
-        endContent={<LucideTrash2 className="size-4" />}
-        onPress={handleClearCart}
-      >
-        حذف همه
-      </Button>
+      <div className="flex items-center justify-between">
+        <span className="text-default-500 text-sm">
+          {convertToPersian(productsCount)} کالا
+        </span>
+        <Button
+          variant="light"
+          color="danger"
+          endContent={<LucideTrash2 className="size-4" />}
+          onPress={handleClearCart}
+        >
+          حذف همه
+        </Button>
+      </div>
     </div>
   );
 }
