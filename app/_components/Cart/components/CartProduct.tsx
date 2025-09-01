@@ -70,7 +70,7 @@ function CartProduct({ product, variant, index }: CartProductProps) {
         <div className="mt-2 space-y-2">
           <Link
             href={`/product/${id}`}
-            className="text-xs/relaxed font-bold sm:text-sm/loose"
+            className="hover:text-primary text-xs/relaxed font-bold transition-colors sm:text-sm/loose"
           >
             {title}
           </Link>
