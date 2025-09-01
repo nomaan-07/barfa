@@ -1,5 +1,5 @@
 import { useProductsStore } from "@/app/_store/productStore";
-import { Image } from "@heroui/image";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ImageSwiperProps } from "../types";
 
@@ -13,13 +13,14 @@ function ImageSwiper({ swiperRef, onSelect, onOpenModal }: ImageSwiperProps) {
     >
       {images.map((image, index) => (
         <SwiperSlide key={index} onClick={onOpenModal}>
-          <div className="flex items-center justify-center">
-            <Image
-              src={image.url}
-              alt={image.fa}
-              className="h-52 w-full select-none sm:h-64 md:h-72 lg:h-100 xl:h-135"
-            />
-          </div>
+          <Image
+            src={image.url}
+            alt={image.fa}
+            width={1200}
+            height={1200}
+            className="h-52 w-full object-contain select-none sm:h-64 md:h-72 lg:h-100 xl:h-135"
+            priority={index === 0}
+          />
         </SwiperSlide>
       ))}
     </Swiper>
