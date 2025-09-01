@@ -25,10 +25,10 @@ function ColorFilter() {
         >
           <span className="shrink-0">{color.fa}</span>
           <span className="flex h-full w-full justify-end">
-            <span
-              className="size-5 rounded-lg"
+            <div
+              className="border-default-200 size-6 rounded-full border"
               style={{ backgroundColor: color.value }}
-            ></span>
+            ></div>
           </span>
         </Checkbox>
       ))}
