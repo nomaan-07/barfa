@@ -6,8 +6,8 @@ import {
   selectorActiveIndex,
   useProductsStore,
 } from "@/app/_store/productStore";
-import { Image } from "@heroui/image";
 import { Modal, ModalContent } from "@heroui/modal";
+import Image from "next/image";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ImageModalProps } from "../types";
@@ -59,7 +59,9 @@ function ImageModal({
                       <Image
                         src={image.url}
                         alt={image.fa}
-                        className="sm:max-h-[75vh]"
+                        width={1200}
+                        height={1200}
+                        className="max-h-[75vh]"
                       />
                     </div>
                   </SwiperSlide>
