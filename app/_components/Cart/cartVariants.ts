@@ -1,6 +1,6 @@
 export const variantClasses = {
   cartWrapper: {
-    page: "relative flex gap-4",
+    page: "relative flex gap-4 mx-auto mt-4 max-w-7xl px-6",
     panel: "shadow-medium w-112 rounded-2xl bg-white",
   },
 

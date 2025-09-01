@@ -14,7 +14,7 @@ function CartSkeleton({ variant }: CartBaseProps) {
     );
   }
   return (
-    <div className="flex gap-4">
+    <div className="mx-auto mt-4 flex max-w-7xl gap-4 px-6">
       <div className="divide-default-200 w-full divide-y sm:space-y-4 sm:divide-none">
         {/* Header */}
         <div className="sm:shadow-medium h-20 py-2 sm:h-25 sm:rounded-2xl sm:p-4">
