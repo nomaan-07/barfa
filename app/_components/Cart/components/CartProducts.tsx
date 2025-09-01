@@ -14,8 +14,13 @@ function CartProducts({ variant }: CartBaseProps) {
         variantClasses.cartProducts[variant],
       )}
     >
-      {products.map((product) => (
-        <CartProduct key={product.cartId} product={product} variant={variant} />
+      {products.map((product, index) => (
+        <CartProduct
+          key={product.cartId}
+          product={product}
+          variant={variant}
+          index={index}
+        />
       ))}
     </div>
   );

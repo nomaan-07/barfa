@@ -16,7 +16,7 @@ import { variantClasses } from "../cartVariants";
 import { CartProductProps } from "../types";
 import CartCurrentColor from "./CartCurrentColor";
 
-function CartProduct({ product, variant }: CartProductProps) {
+function CartProduct({ product, variant, index }: CartProductProps) {
   const {
     id,
     cartId,
@@ -58,7 +58,13 @@ function CartProduct({ product, variant }: CartProductProps) {
     >
       <div className="flex gap-2">
         <div className="shrink-0">
-          <Image src={imageSrc} alt={title} width={112} height={112} />
+          <Image
+            src={imageSrc}
+            alt={title}
+            width={112}
+            height={112}
+            priority={index === 0}
+          />
         </div>
 
         <div className="mt-2 space-y-2">

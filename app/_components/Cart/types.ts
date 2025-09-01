@@ -8,6 +8,7 @@ export interface CartBaseProps {
 
 export interface CartProductProps extends CartBaseProps {
   product: CartProductType;
+  index: number;
 }
 
 export interface CartCurrentColorProps {
