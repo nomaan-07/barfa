@@ -25,7 +25,7 @@ function PageCartSummary() {
   return (
     <div
       className={clsx(
-        "lg:shadow-medium border-t-default-200 fixed inset-x-0 bottom-0 z-30 h-fit w-full shrink-0 space-y-4 border-t bg-white p-4 transition-all duration-500 sm:flex sm:items-center sm:justify-between lg:sticky lg:inset-x-auto lg:top-20 lg:bottom-auto lg:block lg:w-80 lg:rounded-2xl",
+        "lg:shadow-medium border-t-default-200 fixed inset-x-0 bottom-0 z-30 h-fit w-full shrink-0 space-y-4 border-t bg-white p-4 transition-all duration-500 sm:flex sm:items-center sm:justify-between sm:space-y-0 lg:sticky lg:inset-x-auto lg:top-20 lg:bottom-auto lg:block lg:w-80 lg:space-y-4 lg:rounded-2xl",
         isAtBottom &&
           "pointer-events-none translate-y-6 opacity-0 lg:pointer-events-auto lg:translate-y-0 lg:opacity-100",
       )}
