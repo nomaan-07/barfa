@@ -1,8 +1,8 @@
+import ProductsListFallback from "@/app/_components/Common/ProductsList/components/ProductsListFallback";
+import DesktopSortSkeleton from "@/app/_components/Common/Skeletons/DesktopSortSkeleton";
+import FilterSidebarSkeleton from "@/app/_components/Common/Skeletons/FilterSidebarSkeleton";
+import MobileFilterSortButtonsSkeleton from "@/app/_components/Common/Skeletons/MobileFilterSortButtonsSkeleton";
 import { Skeleton } from "@heroui/react";
-import ProductsListFallback from "../_components/Common/ProductsList/components/ProductsListFallback";
-import DesktopSortSkeleton from "../_components/Common/Skeletons/DesktopSortSkeleton";
-import FilterSidebarSkeleton from "../_components/Common/Skeletons/FilterSidebarSkeleton";
-import MobileFilterSortButtonsSkeleton from "../_components/Common/Skeletons/MobileFilterSortButtonsSkeleton";
 
 function SearchLoading() {
   return (

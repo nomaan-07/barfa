@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import Head from "next/head";
-import Footer from "./_components/Footer";
-import Header from "./_components/Header";
-import MobileHeader from "./_components/Header/components/MobileHeader";
 import { Providers } from "./_providers/providers";
 import "./_styles/globals.css";
 
@@ -77,14 +74,7 @@ export default function RootLayout({
         />
       </Head>
       <body className={`${vazirmatn.variable} font-vazirmatn`}>
-        <Providers>
-          <Header />
-          <MobileHeader />
-          <main className="mb-16 space-y-16 md:bottom-24 md:space-y-24">
-            {children}
-          </main>
-          <Footer />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -1,12 +1,12 @@
+import FilterAndSort from "@/app/_components/Common/FilterAndSort";
+import FilterSidebar from "@/app/_components/Common/FilterAndSort/Filter/FilterSidebar";
+import NotFoundPage from "@/app/_components/Common/NotFoundPage";
+import ProductsList from "@/app/_components/Common/ProductsList";
+import ProductsListFallback from "@/app/_components/Common/ProductsList/components/ProductsListFallback";
+import { getProductsFilters } from "@/app/_lib/data-services";
+import { normalizeParam } from "@/app/_utils/helper";
+import { SearchPageSearchParams } from "@/app/_utils/types";
 import { Suspense } from "react";
-import FilterAndSort from "../_components/Common/FilterAndSort";
-import FilterSidebar from "../_components/Common/FilterAndSort/Filter/FilterSidebar";
-import NotFoundPage from "../_components/Common/NotFoundPage";
-import ProductsList from "../_components/Common/ProductsList";
-import ProductsListFallback from "../_components/Common/ProductsList/components/ProductsListFallback";
-import { getProductsFilters } from "../_lib/data-services";
-import { normalizeParam } from "../_utils/helper";
-import { SearchPageSearchParams } from "../_utils/types";
 
 interface SearchPageProps {
   searchParams: SearchPageSearchParams;

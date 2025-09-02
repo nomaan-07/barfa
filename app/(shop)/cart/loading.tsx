@@ -1,4 +1,4 @@
-import CartSkeleton from "../_components/Cart/components/CartSkeleton";
+import CartSkeleton from "@/app/_components/Cart/components/CartSkeleton";
 
 function CartLoading() {
   return <CartSkeleton variant="page" />;
