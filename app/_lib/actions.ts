@@ -13,7 +13,6 @@ export async function fetchSearchedProducts(query: string) {
 // ----- SIGNUP -----
 
 export async function signupUser(formData: FormData) {
-  await new Promise((res) => setTimeout(res, 2000));
   const firstName = formData.get("firstName") as string;
   const lastName = formData.get("lastName") as string;
   const email = formData.get("email") as string;
@@ -37,7 +36,33 @@ export async function signupUser(formData: FormData) {
   if (error) throw new Error(error.message);
 
   const cookieStore = await cookies();
+  cookieStore.set({
+    name: "session",
+    value: data.id,
+    httpOnly: true,
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
+}
 
+// ----- SIGNUP -----
+
+export async function loginUser(formData: FormData) {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  const { data, error } = await supabase
+    .from(TABLES.USERS)
+    .select("id, password")
+    .eq("email", email)
+    .single();
+
+  if (!data || error) throw new Error("Invalid credentials");
+
+  const valid = await argon2.verify(data.password, password);
+  if (!valid) throw new Error("Invalid credentials");
+
+  const cookieStore = await cookies();
   cookieStore.set({
     name: "session",
     value: data.id,
