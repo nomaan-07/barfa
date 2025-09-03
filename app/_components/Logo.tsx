@@ -7,7 +7,10 @@ interface LogoProps {
 
 function Logo({ color = "primary" }: LogoProps) {
   return (
-    <Link href="/" className="relative h-10 w-26 select-none sm:w-30">
+    <Link
+      href="/"
+      className="relative inline-block h-10 w-26 select-none sm:w-30"
+    >
       <Image
         priority
         src={color === "primary" ? "/logo/logo.png" : "/logo/logo-white.png"}
