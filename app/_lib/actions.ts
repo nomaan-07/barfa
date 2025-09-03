@@ -2,6 +2,7 @@
 
 import argon2 from "argon2";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { TABLES } from "../_utils/constants";
 import { getSearchPanelProducts } from "./data-services";
 import { supabase } from "./supabase";
@@ -43,6 +44,8 @@ export async function signupUser(formData: FormData) {
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
   });
+
+  redirect("/");
 }
 
 // ----- LOGIN -----
@@ -70,6 +73,8 @@ export async function loginUser(formData: FormData) {
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
   });
+
+  redirect("/");
 }
 
 // ----- LOGOUT -----

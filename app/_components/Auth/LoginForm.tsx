@@ -1,17 +1,15 @@
 "use client";
 
+import { loginUser } from "@/app/_lib/actions";
 import { Form } from "@heroui/form";
+import { useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import SubmitButton from "./components/SubmitButton";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { loginUser } from "@/app/_lib/actions";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -31,7 +29,6 @@ function LoginForm() {
 
     try {
       await loginUser(formData);
-      router.push("/");
     } catch (err) {
       console.error(err);
     } finally {

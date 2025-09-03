@@ -7,12 +7,10 @@ import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import SubmitButton from "./components/SubmitButton";
 import TextInput from "./components/TextInput";
-import { useRouter } from "next/navigation";
 
 function SignupForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,7 +30,6 @@ function SignupForm() {
 
     try {
       await signupUser(formData);
-      router.push("/");
     } catch (err) {
       console.error(err);
     } finally {
