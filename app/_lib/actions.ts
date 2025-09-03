@@ -86,3 +86,19 @@ export async function logoutUser() {
     path: "/",
   });
 }
+
+// ----- GET USER -----
+
+export async function GetUserFromCookie() {
+  const session = (await cookies()).get("session")?.value;
+
+  if (!session) return false;
+
+  const { data } = await supabase
+    .from(TABLES.USERS)
+    .select("id")
+    .eq("id", session)
+    .single();
+
+  return !!data;
+}

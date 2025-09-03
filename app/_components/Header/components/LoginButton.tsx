@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@heroui/button";
 import { LucideLogIn } from "lucide-react";
 import Link from "next/link";
