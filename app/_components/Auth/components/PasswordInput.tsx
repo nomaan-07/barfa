@@ -23,6 +23,7 @@ function PasswordInput({ variant }: PasswordInputProps) {
         labelPlacement="outside-top"
         style={{ direction: "ltr" }}
         type={isHidden ? "password" : "text"}
+        name="password"
         placeholder="••••••••"
         startContent={
           <Icon

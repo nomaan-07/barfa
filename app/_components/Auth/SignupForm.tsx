@@ -1,17 +1,41 @@
+"use client";
+
+import { signupUser } from "@/app/_lib/actions";
 import { Form } from "@heroui/form";
+import { useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import SubmitButton from "./components/SubmitButton";
 import TextInput from "./components/TextInput";
 
 function SignupForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    setIsLoading(true);
+
+    try {
+      await signupUser(formData);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
-    <Form className="my-6">
-      <TextInput label="نام" />
-      <TextInput label="نام خانوادگی" />
+    <Form className="my-6" onSubmit={handleSubmit} validationErrors={errors}>
+      <TextInput label="نام" name="firstName" />
+      <TextInput label="نام خانوادگی" name="lastName" />
+      <TextInput label="شماره تلفن" name="phone" />
       <EmailInput />
       <PasswordInput variant="signup" />
-      <SubmitButton title="ثبت نام" />
+      <SubmitButton title="ثبت نام" isLoading={isLoading} />
     </Form>
   );
 }

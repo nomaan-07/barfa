@@ -2,10 +2,18 @@ import { Input } from "@heroui/input";
 
 interface TextInputProps {
   label: string;
+  name: string;
 }
 
-function TextInput({ label }: TextInputProps) {
-  return <Input label={`${label}:`} labelPlacement="outside-top" type="text" />;
+function TextInput({ label, name }: TextInputProps) {
+  return (
+    <Input
+      label={`${label}:`}
+      name={name}
+      labelPlacement="outside-top"
+      type="text"
+    />
+  );
 }
 
 export default TextInput;

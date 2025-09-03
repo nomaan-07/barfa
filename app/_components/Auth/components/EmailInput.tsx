@@ -7,6 +7,7 @@ function EmailInput() {
       labelPlacement="outside-top"
       style={{ direction: "ltr" }}
       type="email"
+      name="email"
       placeholder="example@email.com"
     />
   );
