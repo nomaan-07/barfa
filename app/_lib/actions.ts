@@ -45,7 +45,7 @@ export async function signupUser(formData: FormData) {
   });
 }
 
-// ----- SIGNUP -----
+// ----- LOGIN -----
 
 export async function loginUser(formData: FormData) {
   const email = formData.get("email") as string;
@@ -69,5 +69,15 @@ export async function loginUser(formData: FormData) {
     httpOnly: true,
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
+  });
+}
+
+// ----- LOGOUT -----
+
+export async function logoutUser() {
+  const cookieStore = await cookies();
+  cookieStore.delete({
+    name: "session",
+    path: "/",
   });
 }
