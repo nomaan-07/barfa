@@ -34,7 +34,10 @@ export async function signupUser(formData: FormData) {
     .single();
 
   if (userError) {
-    if (userError.code === "23505") {
+    if (userError.details.includes("phone")) {
+      return { error: "این شماره تلفن قبلاً استفاده شده است" };
+    }
+    if (userError.details.includes("email")) {
       return { error: "این ایمیل قبلاً استفاده شده است" };
     }
     return { error: "مشکلی در ثبت‌نام پیش آمد، لطفاً دوباره تلاش کنید" };
