@@ -7,6 +7,7 @@ export const TABLES = {
   POPULAR_BRANDS: "barfa-popular-brands",
   BANNERS: "barfa-home-banners",
   USERS: "barfa-users",
+  SESSIONS: "barfa-sessions",
 };
 
 export const TABLE_FIELDS = {

@@ -1,8 +1,8 @@
-import { GetUserFromCookie } from "@/app/_lib/actions";
 import HeaderClient from "./HeaderClient";
 
 async function Header() {
-  const isUserLoggedIn = await GetUserFromCookie();
+  // FIXME
+  const isUserLoggedIn = false;
 
   return <HeaderClient isUserLoggedIn={isUserLoggedIn} />;
 }

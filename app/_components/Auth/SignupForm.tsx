@@ -2,6 +2,8 @@
 
 import { signupUser } from "@/app/_lib/actions";
 import { Form } from "@heroui/form";
+import { addToast } from "@heroui/toast";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
@@ -11,6 +13,7 @@ import TextInput from "./components/TextInput";
 function SignupForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -21,6 +24,7 @@ function SignupForm() {
 
     const firstName = data.firstName as string;
 
+    // TODO: Validation
     if (!firstName.trim()) {
       setErrors({ firstName: "این فیلد نمی‌تواند خالی باشد" });
       return;
@@ -28,12 +32,23 @@ function SignupForm() {
 
     setIsLoading(true);
 
-    try {
-      await signupUser(formData);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
+    const { error } = await signupUser(formData);
+
+    setIsLoading(false);
+
+    if (error) {
+      addToast({
+        title: error,
+        variant: "bordered",
+        color: "danger",
+      });
+    } else {
+      addToast({
+        title: "ثبت‌نام شما با موفقیت انجام شد",
+        variant: "bordered",
+        color: "success",
+      });
+      router.push("/");
     }
   }
 

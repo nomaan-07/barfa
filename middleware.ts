@@ -6,7 +6,9 @@ const authRoutes = ["/login", "/signup"];
 
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
-  const isProtectedRoute = protectRoutes.includes(path);
+  const isProtectedRoute = protectRoutes.some((route) =>
+    path.startsWith(route),
+  );
   const isAuthRoute = authRoutes.includes(path);
 
   const session = (await cookies()).get("session")?.value;
@@ -23,5 +25,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/account", "/checkout", "/login", "/signup"],
+  matcher: ["/account/:path*", "/checkout", "/login", "/signup"],
 };
