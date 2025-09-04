@@ -11,13 +11,13 @@ export default async function middleware(req: NextRequest) {
   );
   const isAuthRoute = authRoutes.includes(path);
 
-  const session = (await cookies()).get("session")?.value;
+  const sessionId = (await cookies()).get("session")?.value;
 
-  if (isProtectedRoute && !session) {
+  if (isProtectedRoute && !sessionId) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
   }
 
-  if (isAuthRoute && session) {
+  if (isAuthRoute && sessionId) {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 
