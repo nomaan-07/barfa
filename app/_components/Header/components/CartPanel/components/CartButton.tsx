@@ -12,6 +12,7 @@ function CartButton() {
     <Badge
       color="primary"
       content={productsCount > 0 && convertToPersian(productsCount)}
+      isInvisible={productsCount === 0}
     >
       <Button
         as={Link}
