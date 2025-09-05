@@ -54,11 +54,11 @@ export function signupValidation({
   const errors: Record<string, string> = {};
 
   if (!nameValidation(firstName))
-    errors.firstName = "نام باید بیشتر از ۲ حرف و فقط شامل حروف فارسی باشد";
+    errors.firstName = "نام باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد";
 
   if (!nameValidation(lastName))
     errors.lastName =
-      "نام خانوادگی باید بیشتر از ۲ حرف و فقط شامل حروف فارسی باشد";
+      "نام خانوادگی باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد";
 
   if (!phoneValidation(phone))
     errors.phone = "شماره تلفن باید ۱۱ رقم باشد و با ۰۹ شروع شود";
@@ -68,7 +68,7 @@ export function signupValidation({
       "ایمیل معتبر وارد کنید (مثال: example@email.com)";
 
   if (!minLengthValidation(password, 8))
-    errors.password = "پسورد باید حداقل ۸ کاراکتر باشد";
+    errors.password = "رمز عبور باید حداقل ۸ کاراکتر باشد";
 
   return errors;
 }
@@ -86,7 +86,7 @@ export function loginValidation({ email, password }: loginOptions) {
       "ایمیل معتبر وارد کنید (مثال: example@email.com)";
 
   if (!minLengthValidation(password, 8))
-    errors.password = "پسورد باید حداقل ۸ کاراکتر باشد";
+    errors.password = "رمز عبور باید حداقل ۸ کاراکتر باشد";
 
   return errors;
 }
