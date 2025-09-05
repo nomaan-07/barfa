@@ -1,15 +1,14 @@
-import { logoutUser } from "@/app/_lib/actions";
 import { Card, CardBody } from "@heroui/card";
 import { Listbox, ListboxItem } from "@heroui/listbox";
 import {
   LucideHeart,
-  LucideLogOut,
   LucideMapPin,
   LucideShoppingBag,
   LucideUserCog2,
 } from "lucide-react";
 import Link from "next/link";
 import AccountPopoverHeader from "./AccountPopoverHeader";
+import AccountPopoverLogout from "./AccountPopoverLogout";
 
 const items = [
   {
@@ -38,52 +37,43 @@ const items = [
   },
 ];
 
-function AccountPopoverCard({
-  user,
-}: {
+interface AccountPopoverCardProps {
   user: {
     first_name: string;
     last_name: string;
     email: string;
     phone: string;
   };
-}) {
+  onClose: () => void;
+}
+function AccountPopoverCard({ user, onClose }: AccountPopoverCardProps) {
   return (
     <Card className="w-52" shadow="none">
       <AccountPopoverHeader user={user} />
       <CardBody>
         <Listbox
+          className="text-right"
           itemClasses={{
-            base: "rounded-lg gap-3 h-12 text-right",
+            base: "rounded-lg gap-3 h-12 ",
           }}
           aria-label="منوی حساب کاربری"
         >
-          <>
-            {items.map((item) => (
-              <ListboxItem
-                key={item.id}
-                as={Link}
-                href={item.href}
-                startContent={<item.Icon size={20} />}
-                color="primary"
-                variant="flat"
-              >
-                {item.title}
-              </ListboxItem>
-            ))}
-            {/* TODO: Add confirm modal */}
+          {items.map((item) => (
             <ListboxItem
-              key="logout"
-              onClick={logoutUser}
-              startContent={<LucideLogOut size={20} />}
-              className="text-right"
-              color="danger"
+              key={item.id}
+              as={Link}
+              href={item.href}
+              startContent={<item.Icon size={20} />}
+              color="primary"
               variant="flat"
+              onClick={onClose}
             >
-              خروج از حساب کاربری
+              {item.title}
             </ListboxItem>
-          </>
+          ))}
         </Listbox>
+
+        <AccountPopoverLogout onClosePopover={onClose} />
       </CardBody>
     </Card>
   );
