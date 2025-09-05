@@ -6,7 +6,7 @@ interface AuthSwitchLinkProps {
 
 function AuthSwitchLink({ variant }: AuthSwitchLinkProps) {
   return (
-    <div className="flex items-center gap-1 text-sm">
+    <div className="flex items-center justify-center gap-1 text-sm">
       <span>
         {variant === "login"
           ? "حساب کاربری ندارید؟‌"
