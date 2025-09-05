@@ -155,7 +155,7 @@ export async function getUserFromCookie() {
 
   const { data: user } = await supabase
     .from(TABLES.USERS)
-    .select("id, first_name, last_name, email")
+    .select("id, first_name, last_name,phone, email")
     .eq("id", session.user_id)
     .single();
 

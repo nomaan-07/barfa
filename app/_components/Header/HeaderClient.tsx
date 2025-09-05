@@ -8,10 +8,15 @@ import HeaderButtons from "./components/HeaderButtons";
 import Navigation from "./components/Navigation";
 
 interface HeaderProps {
-  isUserLoggedIn: boolean;
+  user: {
+    first_name: string;
+    last_name: string;
+    phone: string;
+    email: string;
+  } | null;
 }
 
-function HeaderClient({ isUserLoggedIn }: HeaderProps) {
+function HeaderClient({ user }: HeaderProps) {
   const scrollDirection = useScrollDirection();
 
   return (
@@ -33,7 +38,7 @@ function HeaderClient({ isUserLoggedIn }: HeaderProps) {
         </NavbarContent>
       </NavbarContent>
       <NavbarContent justify="end">
-        <HeaderButtons isUserLoggedIn={isUserLoggedIn} />
+        <HeaderButtons user={user} />
       </NavbarContent>
     </Navbar>
   );
