@@ -1,21 +1,30 @@
 import { Input } from "@heroui/input";
-import clsx from "clsx";
 
 interface TextInputProps {
   label: string;
   name: string;
   direction?: "ltr" | "rtl";
+  maxLength: number;
+  placeholder?: string;
 }
 
-function TextInput({ label, name, direction }: TextInputProps) {
+function TextInput({
+  label,
+  name,
+  maxLength,
+  placeholder,
+  direction = "rtl",
+}: TextInputProps) {
   return (
     <Input
       label={`${label}:`}
       name={name}
       labelPlacement="outside-top"
       type="text"
-      classNames={{
-        input: clsx(direction === "ltr" && "text-left"),
+      maxLength={maxLength}
+      placeholder={placeholder}
+      style={{
+        direction: direction === "ltr" ? "ltr" : "rtl",
       }}
     />
   );

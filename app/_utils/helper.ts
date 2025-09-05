@@ -9,7 +9,7 @@ export const convertToPersian = (number: number) => {
   return number.toLocaleString("fa-IR");
 };
 
-export const convertToEnglish = (persian: string) => {
+export const convertToEnglish = (number: string) => {
   const persianToEnglishMap: { [key: string]: string } = {
     "۰": "0",
     "۱": "1",
@@ -22,7 +22,7 @@ export const convertToEnglish = (persian: string) => {
     "۸": "8",
     "۹": "9",
   };
-  return persian.replace(/[۰-۹]/g, (char) => persianToEnglishMap[char] || char);
+  return number.replace(/[۰-۹]/g, (char) => persianToEnglishMap[char] || char);
 };
 
 function invalidSearchParams(
