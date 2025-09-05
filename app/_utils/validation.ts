@@ -63,7 +63,27 @@ export function signupValidation({
   if (!phoneValidation(phone))
     errors.phone = "شماره تلفن باید ۱۱ رقم باشد و با ۰۹ شروع شود";
 
-  if (!emailValidation(email)) errors.email = "ایمیل معتبر وارد کنید";
+  if (!emailValidation(email))
+    errors.email = errors.email =
+      "ایمیل معتبر وارد کنید (مثال: example@email.com)";
+
+  if (!minLengthValidation(password, 8))
+    errors.password = "پسورد باید حداقل ۸ کاراکتر باشد";
+
+  return errors;
+}
+
+interface loginOptions {
+  email: string;
+  password: string;
+}
+
+export function loginValidation({ email, password }: loginOptions) {
+  const errors: Record<string, string> = {};
+
+  if (!emailValidation(email))
+    errors.email = errors.email =
+      "ایمیل معتبر وارد کنید (مثال: example@email.com)";
 
   if (!minLengthValidation(password, 8))
     errors.password = "پسورد باید حداقل ۸ کاراکتر باشد";

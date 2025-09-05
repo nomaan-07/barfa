@@ -1,17 +1,18 @@
 "use client";
 
 import { loginUser } from "@/app/_lib/actions";
+import { loginValidation } from "@/app/_utils/validation";
 import { Form } from "@heroui/form";
 import { addToast } from "@heroui/toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import EmailInput from "./components/EmailInput";
 import PasswordInput from "./components/PasswordInput";
 import SubmitButton from "./components/SubmitButton";
+import TextInput from "./components/TextInput";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -19,15 +20,23 @@ function LoginForm() {
 
     const formData = new FormData(e.currentTarget);
 
-    const data = Object.fromEntries(formData);
+    const { email, password } = Object.fromEntries(formData) as {
+      email: string;
+      password: string;
+    };
 
-    const password = data.password as string;
+    const validationErrors = loginValidation({
+      email,
+      password,
+    });
 
-    // TODO: Validation
-    if (!password.trim()) {
-      setErrors({ password: "این فیلد نمی‌تواند خالی باشد" });
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
       return;
     }
+
+    setErrors({});
 
     setIsLoading(true);
 
@@ -53,7 +62,13 @@ function LoginForm() {
 
   return (
     <Form className="my-6" onSubmit={handleSubmit} validationErrors={errors}>
-      <EmailInput />
+      <TextInput
+        label="ایمیل"
+        name="email"
+        direction="ltr"
+        maxLength={254}
+        placeholder="example@email.com"
+      />
       <PasswordInput variant="login" />
       <SubmitButton title="ورود" isLoading={isLoading} />
     </Form>

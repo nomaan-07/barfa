@@ -30,7 +30,6 @@ function SignupForm() {
       password: string;
     };
 
-    // TODO: Validation
     const validationErrors = signupValidation({
       firstName,
       lastName,
@@ -87,7 +86,6 @@ function SignupForm() {
         maxLength={254}
         placeholder="example@email.com"
       />
-
       <PasswordInput variant="signup" />
       <SubmitButton title="ثبت نام" isLoading={isLoading} />
     </Form>
