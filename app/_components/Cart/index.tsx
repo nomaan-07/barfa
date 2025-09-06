@@ -1,12 +1,11 @@
 "use client";
 
 import { selectorCartCount, useCartStore } from "@/app/_store/cartStore";
-import NoProductsFound from "../Common/ProductsList/components/NoProductsFound";
+import { useEffect, useState } from "react";
 import { variantClasses } from "./cartVariants";
 import CartContent from "./components/CartContent";
-import { CartBaseProps } from "./types";
-import { useEffect, useState } from "react";
 import CartSkeleton from "./components/CartSkeleton";
+import { CartBaseProps } from "./types";
 
 function Cart({ variant }: CartBaseProps) {
   const productsCount = useCartStore(selectorCartCount);
@@ -17,17 +16,11 @@ function Cart({ variant }: CartBaseProps) {
   }, []);
 
   if (!hydrated) return <CartSkeleton variant={variant} />;
+  if (productsCount === 0) return null;
 
   return (
     <div className={variantClasses.cartWrapper[variant]}>
-      {productsCount > 0 ? (
-        <CartContent variant={variant} />
-      ) : (
-        <NoProductsFound
-          size={variant === "page" ? "lg" : "sm"}
-          title="سبد خرید شما خالی است."
-        />
-      )}
+      <CartContent variant={variant} />
     </div>
   );
 }
