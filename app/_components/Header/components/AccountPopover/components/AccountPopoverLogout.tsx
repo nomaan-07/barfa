@@ -10,8 +10,8 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/modal";
-import { addToast } from "@heroui/react";
 import { Spinner } from "@heroui/spinner";
+import { addToast } from "@heroui/toast";
 import { LucideLogOut } from "lucide-react";
 import { useState } from "react";
 
@@ -52,13 +52,15 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
 
   return (
     <>
-      <div
+      <button
+        aria-label="خروج از حساب کاربری"
         onClick={onOpen}
         className="hover:bg-danger-100 hover:text-danger m-1 flex h-12 cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 transition-colors"
       >
         <LucideLogOut size={20} />
         <span>خروج از حساب کاربری</span>
-      </div>
+      </button>
+
       <Modal
         isOpen={isOpen}
         backdrop="blur"
