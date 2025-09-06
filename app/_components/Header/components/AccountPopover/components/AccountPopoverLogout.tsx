@@ -1,24 +1,53 @@
 import DrawerCloseButton from "@/app/_components/Common/DrawerCloseButton";
 import { logoutUser } from "@/app/_lib/actions";
+import { useCartStore } from "@/app/_store/cartStore";
+import { Button } from "@heroui/button";
 import {
   Modal,
+  ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
   useDisclosure,
 } from "@heroui/modal";
-import { Button } from "@heroui/react";
+import { addToast } from "@heroui/react";
+import { Spinner } from "@heroui/spinner";
 import { LucideLogOut } from "lucide-react";
+import { useState } from "react";
 
 interface AccountPopoverLogoutProps {
   onClosePopover: () => void;
 }
 function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
+  const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+  const clearCart = useCartStore((state) => state.clearCart);
 
   function handleClose() {
     onClose();
     onClosePopover();
+  }
+
+  async function handleLogout() {
+    setIsLoading(true);
+    try {
+      await logoutUser();
+      clearCart();
+      addToast({
+        variant: "bordered",
+        color: "success",
+        title: "با موفقیت از حساب کاربری خود خارج شدید",
+      });
+    } catch {
+      addToast({
+        variant: "bordered",
+        color: "danger",
+        title: "خروج از حساب کاربری ناموفق بود",
+      });
+    } finally {
+      handleClose();
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -42,13 +71,20 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
       >
         <ModalContent>
           <ModalHeader className="items-center justify-between">
-            <span> از حساب کاربری خارج می‌شوید؟</span>
+            <span>خروج از حساب کاربری</span>
             <DrawerCloseButton onClose={handleClose} />
           </ModalHeader>
+          <ModalBody className="text-right">
+            با خروج از حساب کاربری،‌ سبد خرید شما حذف می‌شود،‌ آیا مطمئن هستید؟
+          </ModalBody>
           <ModalFooter>
             <Button onPress={handleClose}>انصراف</Button>
-            <Button color="danger" onPress={logoutUser}>
-              خروج از حساب
+            <Button
+              isDisabled={isLoading}
+              color="danger"
+              onPress={handleLogout}
+            >
+              {isLoading ? <Spinner color="white" size="sm" /> : "خروج از حساب"}
             </Button>
           </ModalFooter>
         </ModalContent>

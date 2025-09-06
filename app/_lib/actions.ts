@@ -132,7 +132,14 @@ export async function logoutUser() {
   const sessionId = cookieStore.get("session")?.value;
 
   if (sessionId) {
-    await supabase.from(TABLES.SESSIONS).delete().eq("id", sessionId);
+    const { error } = await supabase
+      .from(TABLES.SESSIONS)
+      .delete()
+      .eq("id", sessionId);
+
+    if (error) {
+      throw new Error(error.message);
+    }
   }
 
   cookieStore.delete("session");
