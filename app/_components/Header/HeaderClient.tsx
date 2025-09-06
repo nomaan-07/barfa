@@ -1,23 +1,34 @@
 "use client";
 
+import { useUserStore } from "@/app/_store/userStore";
 import { Navbar, NavbarBrand, NavbarContent } from "@heroui/navbar";
 import clsx from "clsx";
+import { useEffect } from "react";
 import { useScrollDirection } from "../../_hooks/useScrollDirection";
 import Logo from "../Logo";
 import HeaderButtons from "./components/HeaderButtons";
 import Navigation from "./components/Navigation";
 
 interface HeaderProps {
-  user: {
-    first_name: string;
-    last_name: string;
-    phone: string;
-    email: string;
-  } | null;
+  user:
+    | {
+        id: string;
+        first_name: string;
+        last_name: string;
+        phone: string;
+        email: string;
+      }
+    | undefined;
 }
 
 function HeaderClient({ user }: HeaderProps) {
+  const setInitialUser = useUserStore((state) => state.setInitialUser);
+
   const scrollDirection = useScrollDirection();
+
+  useEffect(() => {
+    if (user) setInitialUser(user);
+  }, [user, setInitialUser]);
 
   return (
     <Navbar
@@ -38,7 +49,7 @@ function HeaderClient({ user }: HeaderProps) {
         </NavbarContent>
       </NavbarContent>
       <NavbarContent justify="end">
-        <HeaderButtons user={user} />
+        <HeaderButtons />
       </NavbarContent>
     </Navbar>
   );

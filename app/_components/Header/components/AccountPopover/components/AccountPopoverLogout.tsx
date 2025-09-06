@@ -1,6 +1,7 @@
 import DrawerCloseButton from "@/app/_components/Common/DrawerCloseButton";
 import { logoutUser } from "@/app/_lib/actions";
 import { useCartStore } from "@/app/_store/cartStore";
+import { useUserStore } from "@/app/_store/userStore";
 import { Button } from "@heroui/button";
 import {
   Modal,
@@ -22,6 +23,7 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const clearCart = useCartStore((state) => state.clearCart);
+  const clearUser = useUserStore((state) => state.clearUser);
 
   function handleClose() {
     onClose();
@@ -33,6 +35,7 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
     try {
       await logoutUser();
       clearCart();
+      clearUser();
       addToast({
         variant: "bordered",
         color: "success",

@@ -38,18 +38,13 @@ const items = [
 ];
 
 interface AccountPopoverCardProps {
-  user: {
-    first_name: string;
-    last_name: string;
-    email: string;
-    phone: string;
-  };
   onClose: () => void;
 }
-function AccountPopoverCard({ user, onClose }: AccountPopoverCardProps) {
+
+function AccountPopoverCard({ onClose }: AccountPopoverCardProps) {
   return (
     <Card className="w-52" shadow="none">
-      <AccountPopoverHeader user={user} />
+      <AccountPopoverHeader />
       <CardBody>
         <Listbox
           className="text-right"

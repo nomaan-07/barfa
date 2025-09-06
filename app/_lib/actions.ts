@@ -150,7 +150,7 @@ export async function logoutUser() {
 export async function getUserFromCookie() {
   const sessionId = (await cookies()).get("session")?.value;
 
-  if (!sessionId) return null;
+  if (!sessionId) return;
 
   const { data: session } = await supabase
     .from(TABLES.SESSIONS)
@@ -158,13 +158,13 @@ export async function getUserFromCookie() {
     .eq("id", sessionId)
     .single();
 
-  if (!session || new Date(session.expires_at) < new Date()) return null;
+  if (!session || new Date(session.expires_at) < new Date()) return;
 
   const { data: user } = await supabase
     .from(TABLES.USERS)
-    .select("id, first_name, last_name,phone, email")
+    .select("id, first_name, last_name, phone, email")
     .eq("id", session.user_id)
     .single();
 
-  return user || null;
+  return user || undefined;
 }

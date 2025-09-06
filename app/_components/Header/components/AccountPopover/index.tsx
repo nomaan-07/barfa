@@ -1,19 +1,10 @@
 import { Button } from "@heroui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
 import { LucideUser2 } from "lucide-react";
-import AccountPopoverCard from "./components/AccountPopoverCard";
 import { useState } from "react";
+import AccountPopoverCard from "./components/AccountPopoverCard";
 
-interface AccountPopoverProps {
-  user: {
-    first_name: string;
-    last_name: string;
-    phone: string;
-    email: string;
-  };
-}
-
-function AccountPopover({ user }: AccountPopoverProps) {
+function AccountPopover() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => setIsOpen((prev) => !prev);
@@ -27,7 +18,7 @@ function AccountPopover({ user }: AccountPopoverProps) {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="p-1">
-        <AccountPopoverCard user={user} onClose={handleClose} />
+        <AccountPopoverCard onClose={handleClose} />
       </PopoverContent>
     </Popover>
   );
