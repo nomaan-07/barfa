@@ -14,6 +14,7 @@ import {
 import { Spinner } from "@heroui/spinner";
 import { addToast } from "@heroui/toast";
 import { LucideLogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface AccountPopoverLogoutProps {
@@ -22,6 +23,7 @@ interface AccountPopoverLogoutProps {
 function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+  const router = useRouter();
   const clearCart = useCartStore((state) => state.clearCart);
   const clearUser = useUserStore((state) => state.clearUser);
 
@@ -36,6 +38,7 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
       await logoutUser();
       clearCart();
       clearUser();
+      router.push("/");
       addToast({
         variant: "bordered",
         color: "success",
