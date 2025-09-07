@@ -4,7 +4,16 @@ import HeaderClient from "./HeaderClient";
 async function Header() {
   const user = await getUserFromCookie();
 
-  return <HeaderClient user={user} />;
+  const safeUser = user
+    ? {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        phone: user.phone,
+        email: user.email,
+      }
+    : undefined;
+
+  return <HeaderClient user={safeUser} />;
 }
 
 export default Header;

@@ -12,7 +12,6 @@ import Navigation from "./components/Navigation";
 interface HeaderProps {
   user:
     | {
-        id: string;
         first_name: string;
         last_name: string;
         phone: string;

@@ -2,8 +2,9 @@
 
 import argon2 from "argon2";
 import { cookies } from "next/headers";
-import { TABLES } from "../_utils/constants";
+import { TABLE_FIELDS, TABLES } from "../_utils/constants";
 import { convertToPersian } from "../_utils/helper";
+import { Address } from "../_utils/types";
 import { getSearchPanelProducts } from "./data-services";
 import { supabase } from "./supabase";
 
@@ -163,9 +164,38 @@ export async function getUserFromCookie() {
 
   const { data: user } = await supabase
     .from(TABLES.USERS)
-    .select("id, first_name, last_name, phone, email")
+    .select(TABLE_FIELDS.USER)
     .eq("id", session.user_id)
     .single();
 
   return user || undefined;
+}
+
+// ----- SUBMIT ORDER -----
+
+type OrderProduct = {
+  id: number;
+  color: string;
+  quantity: number;
+};
+
+type OrderType = {
+  address: Address;
+  products: OrderProduct[];
+  price: number;
+};
+
+export async function submitOrder(order: OrderType) {
+  const user = await getUserFromCookie();
+
+  if (!user?.id) throw new Error("submit order failed");
+
+  const orderRow = { ...order, user_id: user.id };
+
+  const { error } = await supabase
+    .from(TABLES.ORDERS)
+    .insert(orderRow)
+    .select();
+
+  if (error) throw error;
 }

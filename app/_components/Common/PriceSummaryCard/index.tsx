@@ -3,6 +3,7 @@ import { useScrollDirection } from "@/app/_hooks/useScrollDirection";
 import { selectorCartTotalPrice, useCartStore } from "@/app/_store/cartStore";
 import { SHIPPING_PRICE } from "@/app/_utils/constants";
 import { Button } from "@heroui/button";
+import { Spinner } from "@heroui/spinner";
 import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -14,14 +15,25 @@ type BaseProps = {
 };
 
 type PriceSummaryCardProps =
-  | (BaseProps & { href: string; onClick?: never; isDisabled?: never })
-  | (BaseProps & { href?: never; onClick: () => void; isDisabled?: boolean });
+  | (BaseProps & {
+      href: string;
+      onClick?: never;
+      isDisabled?: never;
+      isLoading?: never;
+    })
+  | (BaseProps & {
+      href?: never;
+      onClick: () => void;
+      isDisabled: boolean;
+      isLoading: boolean;
+    });
 
 function PriceSummaryCard({
   page,
   buttonText,
   href,
   isDisabled,
+  isLoading,
   onClick,
 }: PriceSummaryCardProps) {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -70,7 +82,7 @@ function PriceSummaryCard({
         className="w-full sm:w-auto lg:w-full"
         {...(href ? { as: Link, href } : { onPress: onClick, isDisabled })}
       >
-        {buttonText}
+        {isLoading ? <Spinner color="white" size="sm" /> : buttonText}
       </Button>
     </div>
   );

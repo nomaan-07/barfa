@@ -1,7 +1,6 @@
 import { create } from "zustand";
 
 interface initialState {
-  id: string;
   first_name: string;
   last_name: string;
   email: string;
@@ -9,7 +8,6 @@ interface initialState {
 }
 
 interface UserStoreState {
-  id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -22,7 +20,6 @@ interface Actions {
   clearUser: () => void;
 }
 export const useUserStore = create<UserStoreState & Actions>((set) => ({
-  id: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -31,7 +28,6 @@ export const useUserStore = create<UserStoreState & Actions>((set) => ({
 
   setInitialUser: (user) => {
     set({
-      id: user.id,
       firstName: user.first_name,
       lastName: user.last_name,
       email: user.email,
@@ -42,7 +38,6 @@ export const useUserStore = create<UserStoreState & Actions>((set) => ({
 
   clearUser: () => {
     set({
-      id: "",
       firstName: "",
       lastName: "",
       email: "",

@@ -8,6 +8,7 @@ export const TABLES = {
   BANNERS: "barfa-home-banners",
   USERS: "barfa-users",
   SESSIONS: "barfa-sessions",
+  ORDERS: "barfa-orders",
 };
 
 export const TABLE_FIELDS = {
@@ -16,7 +17,8 @@ export const TABLE_FIELDS = {
   SEARCH_PANEL_PRODUCTS: "id, title_fa, image_sources->>main",
   POPULAR_BRANDS: "id, image_src, link, name",
   BANNERS: "id, image_src, link, title",
-};
+  USER: "id, first_name, last_name, phone, email",
+} as const;
 
 export const VALID_CATEGORIES = [
   { en: "all", fa: "همه‌ی محصولات" },
