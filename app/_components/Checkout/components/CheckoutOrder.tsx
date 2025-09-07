@@ -1,10 +1,15 @@
-import { selectorCartCount, useCartStore } from "@/app/_store/cartStore";
+import { useCartStore } from "@/app/_store/cartStore";
 import { convertToPersian } from "@/app/_utils/helper";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import CheckoutProducts from "./CheckoutProducts";
 
 function CheckoutOrder() {
-  const productsCount = useCartStore(selectorCartCount);
+  const products = useCartStore((state) => state.products);
+
+  const productsCount = products.reduce(
+    (sum, product) => sum + product.selectedQuantity,
+    0,
+  );
 
   return (
     <Card className="w-full">
