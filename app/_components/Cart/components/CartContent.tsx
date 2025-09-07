@@ -1,9 +1,9 @@
 import clsx from "clsx";
+import PriceSummaryCard from "../../Common/PriceSummaryCard";
 import { variantClasses } from "../cartVariants";
 import { CartBaseProps } from "../types";
 import CartHeader from "./CartHeader";
 import CartProducts from "./CartProducts";
-import PageCartSummary from "./PageCartSummary";
 import PanelCartSummary from "./PanelCartSummary";
 
 function CartContent({ variant }: CartBaseProps) {
@@ -19,7 +19,13 @@ function CartContent({ variant }: CartBaseProps) {
         <CartProducts variant={variant} />
         {variant === "panel" && <PanelCartSummary />}
       </div>
-      {variant === "page" && <PageCartSummary />}
+      {variant === "page" && (
+        <PriceSummaryCard
+          buttonText="تایید و تکمیل سفارش"
+          page="cart"
+          href="/checkout"
+        />
+      )}
     </>
   );
 }

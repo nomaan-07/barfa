@@ -6,9 +6,9 @@ import { Form } from "@heroui/form";
 import { addToast } from "@heroui/toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import PasswordInput from "./components/PasswordInput";
+import EmailInput from "../Common/FormInputs/EmailInput";
+import PasswordInput from "../Common/FormInputs/PasswordInput";
 import SubmitButton from "./components/SubmitButton";
-import TextInput from "./components/TextInput";
 
 function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -62,13 +62,7 @@ function LoginForm() {
 
   return (
     <Form className="my-6" onSubmit={handleSubmit} validationErrors={errors}>
-      <TextInput
-        label="ایمیل"
-        name="email"
-        direction="ltr"
-        maxLength={254}
-        placeholder="example@email.com"
-      />
+      <EmailInput />
       <PasswordInput variant="login" />
       <SubmitButton title="ورود" isLoading={isLoading} />
     </Form>

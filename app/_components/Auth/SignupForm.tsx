@@ -6,9 +6,12 @@ import { Form } from "@heroui/form";
 import { addToast } from "@heroui/toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import PasswordInput from "./components/PasswordInput";
+import EmailInput from "../Common/FormInputs/EmailInput";
+import FirstNameInput from "../Common/FormInputs/FirstNameInput";
+import LastNameInput from "../Common/FormInputs/LastNameInput";
+import PasswordInput from "../Common/FormInputs/PasswordInput";
+import PhoneInput from "../Common/FormInputs/PhoneInput";
 import SubmitButton from "./components/SubmitButton";
-import TextInput from "./components/TextInput";
 
 function SignupForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -70,22 +73,10 @@ function SignupForm() {
 
   return (
     <Form className="my-6" onSubmit={handleSubmit} validationErrors={errors}>
-      <TextInput label="نام" name="firstName" maxLength={15} />
-      <TextInput label="نام خانوادگی" name="lastName" maxLength={15} />
-      <TextInput
-        label="شماره تلفن"
-        name="phone"
-        direction="ltr"
-        maxLength={11}
-        placeholder="09*********"
-      />
-      <TextInput
-        label="ایمیل"
-        name="email"
-        direction="ltr"
-        maxLength={254}
-        placeholder="example@email.com"
-      />
+      <FirstNameInput />
+      <LastNameInput />
+      <PhoneInput />
+      <EmailInput />
       <PasswordInput variant="signup" />
       <SubmitButton title="ثبت نام" isLoading={isLoading} />
     </Form>

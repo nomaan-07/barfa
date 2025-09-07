@@ -6,6 +6,7 @@ interface TextInputProps {
   direction?: "ltr" | "rtl";
   maxLength: number;
   placeholder?: string;
+  defaultValue?: string;
 }
 
 function TextInput({
@@ -14,6 +15,7 @@ function TextInput({
   maxLength,
   placeholder,
   direction = "rtl",
+  defaultValue,
 }: TextInputProps) {
   return (
     <Input
@@ -23,6 +25,7 @@ function TextInput({
       type="text"
       maxLength={maxLength}
       placeholder={placeholder}
+      defaultValue={defaultValue}
       style={{
         direction: direction === "ltr" ? "ltr" : "rtl",
       }}

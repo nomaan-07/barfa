@@ -1,16 +1,35 @@
 import { useIsAtBottom } from "@/app/_hooks/useIsAtBottom";
 import { useScrollDirection } from "@/app/_hooks/useScrollDirection";
+import { selectorCartTotalPrice, useCartStore } from "@/app/_store/cartStore";
+import { SHIPPING_PRICE } from "@/app/_utils/constants";
 import { Button } from "@heroui/button";
 import clsx from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import CartSummaryPrice from "./CartSummaryPrice";
+import PriceRow from "./components/PriceRow";
 
-function PageCartSummary() {
+type BaseProps = {
+  page: "cart" | "checkout";
+  buttonText: string;
+};
+
+type PriceSummaryCardProps =
+  | (BaseProps & { href: string; onClick?: never })
+  | (BaseProps & { href?: never; onClick: () => void });
+
+function PriceSummaryCard({
+  page,
+  buttonText,
+  href,
+  onClick,
+}: PriceSummaryCardProps) {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const totalPrice = useCartStore(selectorCartTotalPrice);
 
   const scrollDirection = useScrollDirection();
   const isAtBottom = useIsAtBottom();
+  const finalPrice =
+    page === "checkout" ? totalPrice + SHIPPING_PRICE : totalPrice;
 
   useEffect(() => {
     const checkSize = () => setIsLargeScreen(window.innerWidth > 1024);
@@ -36,20 +55,35 @@ function PageCartSummary() {
             : "translateY(0)",
       }}
     >
-      <div className="flex items-center justify-between sm:block sm:space-y-2 lg:flex lg:space-y-0">
-        <CartSummaryPrice />
-      </div>
+      {page === "checkout" && (
+        <PriceRow
+          price={SHIPPING_PRICE}
+          title="هزینه بسته بندی و ارسال"
+          isBordered
+        />
+      )}
+      <PriceRow price={finalPrice} title="مبلغ قابل پرداخت" />
 
-      <Button
-        as={Link}
-        href="/checkout"
-        color="primary"
-        className="w-full sm:w-auto lg:w-full"
-      >
-        تایید و تکمیل سفارش
-      </Button>
+      {href ? (
+        <Button
+          as={Link}
+          href={href}
+          color="primary"
+          className="w-full sm:w-auto lg:w-full"
+        >
+          {buttonText}
+        </Button>
+      ) : (
+        <Button
+          onPress={onClick}
+          color="primary"
+          className="w-full sm:w-auto lg:w-full"
+        >
+          {buttonText}
+        </Button>
+      )}
     </div>
   );
 }
 
-export default PageCartSummary;
+export default PriceSummaryCard;

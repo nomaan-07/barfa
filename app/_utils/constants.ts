@@ -68,3 +68,5 @@ export const SORT_OPTIONS = [
     value: "oldest",
   },
 ];
+
+export const SHIPPING_PRICE = 89_000;
