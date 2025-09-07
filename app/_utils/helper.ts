@@ -5,12 +5,28 @@ import {
   VALID_SEARCHPARAMS,
 } from "./constants";
 
-export const convertToPersian = (number: number) => {
-  return number.toLocaleString("fa-IR");
+export const convertToPersian = (value: number, formatting = true) => {
+  if (formatting) return value.toLocaleString("fa-IR");
+
+  const numStr = String(value);
+
+  const englishToPersianMap: Record<string, string> = {
+    "0": "۰",
+    "1": "۱",
+    "2": "۲",
+    "3": "۳",
+    "4": "۴",
+    "5": "۵",
+    "6": "۶",
+    "7": "۷",
+    "8": "۸",
+    "9": "۹",
+  };
+  return numStr.replace(/[0-9]/g, (char) => englishToPersianMap[char] || char);
 };
 
-export const convertToEnglish = (number: string) => {
-  const persianToEnglishMap: { [key: string]: string } = {
+export const convertToEnglish = (value: string) => {
+  const persianToEnglishMap: Record<string, string> = {
     "۰": "0",
     "۱": "1",
     "۲": "2",
@@ -22,7 +38,7 @@ export const convertToEnglish = (number: string) => {
     "۸": "8",
     "۹": "9",
   };
-  return number.replace(/[۰-۹]/g, (char) => persianToEnglishMap[char] || char);
+  return value.replace(/[۰-۹]/g, (char) => persianToEnglishMap[char] || char);
 };
 
 function invalidSearchParams(
