@@ -9,14 +9,14 @@ import {
 } from "@/app/_store/cartStore";
 import { SHIPPING_PRICE } from "@/app/_utils/constants";
 import { Address } from "@/app/_utils/types";
-import { Spinner } from "@heroui/spinner";
 import { addToast } from "@heroui/toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import PriceSummaryCard from "../Common/PriceSummaryCard";
 import CheckoutAddressForm from "./components/CheckoutAddressForm";
 import CheckoutAddressSummary from "./components/CheckoutAddressSummary";
-import CheckoutOrder from "./components/CheckoutOrder";
+import CheckoutHeader from "./components/CheckoutHeader";
+import CheckoutSkeleton from "./components/CheckoutSkeleton";
 
 function Checkout() {
   const [address, setAddress] = useState<Address | null>(null);
@@ -29,7 +29,7 @@ function Checkout() {
   const products = useCartStore((state) => state.products);
   const clearCart = useCartStore((state) => state.clearCart);
 
-  if (!hydrated || !productsCount) return <Spinner size="lg" />;
+  if (!hydrated || !productsCount) return <CheckoutSkeleton />;
 
   const handleOpenForm = () => setIsFormOpen(true);
 
@@ -78,7 +78,7 @@ function Checkout() {
   return (
     <>
       <div className="w-full space-y-4">
-        <CheckoutOrder />
+        <CheckoutHeader />
 
         {isFormOpen ? (
           <CheckoutAddressForm address={address} onSaveAddress={saveAddress} />

@@ -73,7 +73,7 @@ export function CheckoutAddressForm({
   }
 
   return (
-    <Card className="w-full">
+    <Card>
       <CardHeader>
         <h2 className="font-black sm:text-lg">آدرس</h2>
       </CardHeader>

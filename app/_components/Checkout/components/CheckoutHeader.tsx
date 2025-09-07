@@ -3,7 +3,7 @@ import { convertToPersian } from "@/app/_utils/helper";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import CheckoutProducts from "./CheckoutProducts";
 
-function CheckoutOrder() {
+function CheckoutHeader() {
   const products = useCartStore((state) => state.products);
 
   const productsCount = products.reduce(
@@ -26,4 +26,4 @@ function CheckoutOrder() {
   );
 }
 
-export default CheckoutOrder;
+export default CheckoutHeader;
