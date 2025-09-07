@@ -1,20 +1,16 @@
 "use client";
 
+import { useHydratedCart } from "@/app/_hooks/useHydratedCart";
 import { selectorCartCount, useCartStore } from "@/app/_store/cartStore";
 import { Spinner } from "@heroui/spinner";
-import { useEffect, useState } from "react";
 import PriceSummaryCard from "../Common/PriceSummaryCard";
 import NoProductsFound from "../Common/ProductsList/components/NoProductsFound";
 import CheckoutAddressForm from "./components/CheckoutAddressForm";
 import CheckoutOrder from "./components/CheckoutOrder";
 
 function Checkout() {
-  const [hydrated, setHydrated] = useState(false);
   const productsCount = useCartStore(selectorCartCount);
-
-  useEffect(() => {
-    useCartStore.persist.rehydrate()?.then(() => setHydrated(true));
-  }, []);
+  const hydrated = useHydratedCart();
 
   if (!hydrated) return <Spinner size="lg" />;
 
