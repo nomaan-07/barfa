@@ -7,11 +7,14 @@ import { Spinner } from "@heroui/spinner";
 import { useState } from "react";
 import PriceSummaryCard from "../Common/PriceSummaryCard";
 import NoProductsFound from "../Common/ProductsList/components/NoProductsFound";
+
 import CheckoutAddressForm from "./components/CheckoutAddressForm";
+import CheckoutAddressSummary from "./components/CheckoutAddressSummary";
 import CheckoutOrder from "./components/CheckoutOrder";
 
 function Checkout() {
   const [address, setAddress] = useState<Address | null>(null);
+  const [isFormOpen, setIsFormOpen] = useState(true);
 
   const hydrated = useHydratedCart();
   const productsCount = useCartStore(selectorCartCount);
@@ -21,7 +24,14 @@ function Checkout() {
   if (!productsCount)
     return <NoProductsFound size="lg" title="شما هیچ سفارشی ثبت نکرده اید." />;
 
-  function handlePayment() {
+  const handleOpenForm = () => setIsFormOpen(true);
+
+  function saveAddress(address: Address) {
+    setAddress(address);
+    setIsFormOpen(false);
+  }
+
+  function processPayment() {
     setAddress(address);
   }
 
@@ -29,13 +39,21 @@ function Checkout() {
     <>
       <div className="w-full space-y-4">
         <CheckoutOrder />
-        <CheckoutAddressForm address={address} setAddress={setAddress} />
+
+        {isFormOpen ? (
+          <CheckoutAddressForm address={address} onSaveAddress={saveAddress} />
+        ) : (
+          <CheckoutAddressSummary
+            address={address}
+            onOpenForm={handleOpenForm}
+          />
+        )}
       </div>
       <PriceSummaryCard
         page="checkout"
-        buttonText={address ? "پرداخت" : "ابتدا آدرس را ثبت کنید"}
-        onClick={handlePayment}
-        isDisabled={!address}
+        buttonText={isFormOpen ? "ابتدا آدرس را ثبت کنید" : "پرداخت"}
+        onClick={processPayment}
+        isDisabled={isFormOpen}
       />
     </>
   );

@@ -16,11 +16,11 @@ import PhoneInput from "../../Common/FormInputs/PhoneInput";
 import PostalCodeInput from "../../Common/FormInputs/PostalCodeInput";
 
 export interface CheckoutAddressFormProps {
-  setAddress: (address: Address) => void;
+  onSaveAddress: (address: Address) => void;
   address: Address | null;
 }
 export function CheckoutAddressForm({
-  setAddress,
+  onSaveAddress,
   address,
 }: CheckoutAddressFormProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -67,7 +67,7 @@ export function CheckoutAddressForm({
 
     setErrors({});
 
-    setAddress(addressObj);
+    onSaveAddress(addressObj);
   }
 
   return (
