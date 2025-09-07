@@ -1,12 +1,13 @@
 import { NavbarMenuItem } from "@heroui/navbar";
-import { LucideLogIn } from "lucide-react";
 import Link from "next/link";
-import { items } from "./items";
-import SubMenu from "./SubMenu";
+import SubMenu from "../../SubMenu";
+import { items } from "../../items";
+import MobilMenuAuthActions from "./MobilMenuAuthActions";
 
 interface MobileMenuProps {
   onCloseMenu: () => void;
 }
+
 function MobileMenu({ onCloseMenu }: MobileMenuProps) {
   return (
     <>
@@ -23,12 +24,8 @@ function MobileMenu({ onCloseMenu }: MobileMenuProps) {
           {item.subItems && <SubMenu variant="mobile" items={item.subItems} />}
         </NavbarMenuItem>
       ))}
-      <NavbarMenuItem className="mt-6">
-        <Link href="/login" className="flex items-center gap-3">
-          <LucideLogIn className="size-5" />
-          ثبت نام | ورود
-        </Link>
-      </NavbarMenuItem>
+
+      <MobilMenuAuthActions />
     </>
   );
 }

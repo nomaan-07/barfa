@@ -1,5 +1,6 @@
 "use client";
 
+import Logo from "@/app/_components/Logo";
 import {
   Navbar,
   NavbarBrand,
@@ -8,11 +9,10 @@ import {
   NavbarMenuToggle,
 } from "@heroui/navbar";
 import { Suspense, useState } from "react";
-import Logo from "../../Logo";
-import CartPanel from "./CartPanel";
-import MobileMenu from "./MobileMenu";
-import SearchPanel from "./SearchPanel";
-import SearchPanelFallback from "./SearchPanel/components/SearchPanelFallback";
+import CartPanel from "../CartPanel";
+import SearchPanel from "../SearchPanel";
+import SearchPanelFallback from "../SearchPanel/components/SearchPanelFallback";
+import MobileMenu from "./components/MobileMenu";
 
 function MobileHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

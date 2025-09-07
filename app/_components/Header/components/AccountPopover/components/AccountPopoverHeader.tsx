@@ -15,7 +15,10 @@ function AccountPopoverHeader() {
       <span className="truncate text-lg font-semibold">
         {firstName} {lastName}
       </span>
-      <span className="text-default-400 w-full truncate text-left text-sm">
+      <span
+        className="text-default-400 w-full truncate text-sm"
+        style={{ direction: "ltr" }}
+      >
         {email}
       </span>
     </CardHeader>
