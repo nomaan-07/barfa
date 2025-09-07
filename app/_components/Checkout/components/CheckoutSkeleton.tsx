@@ -5,7 +5,7 @@ import InputSkeleton from "../../Common/FormInputs/InputSkeleton";
 
 function CheckoutSkeleton() {
   return (
-    <div className="mx-auto mt-4 flex max-w-7xl gap-4 px-6">
+    <>
       <div className="w-full space-y-4">
         {/* Header */}
         <Card>
@@ -70,7 +70,7 @@ function CheckoutSkeleton() {
         {/* Button */}
         <Skeleton className="h-10 w-full rounded-xl sm:w-38 lg:w-full" />
       </div>
-    </div>
+    </>
   );
 }
 
