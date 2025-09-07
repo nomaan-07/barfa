@@ -1,12 +1,14 @@
 import TextInput from "./TextInput";
+import { InputBaseTypes } from "./types";
 
-function PostalCodeInput() {
+function PostalCodeInput({ defaultValue }: InputBaseTypes) {
   return (
     <TextInput
       label="کد پستی"
       name="postal-code"
       maxLength={10}
       direction="ltr"
+      defaultValue={defaultValue}
     />
   );
 }

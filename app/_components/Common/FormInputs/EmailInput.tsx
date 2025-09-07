@@ -1,10 +1,7 @@
 import TextInput from "./TextInput";
+import { InputBaseTypes } from "./types";
 
-interface EmailInputProps {
-  defaultValue?: string;
-}
-
-function EmailInput({ defaultValue }: EmailInputProps) {
+function EmailInput({ defaultValue }: InputBaseTypes) {
   return (
     <TextInput
       label="ایمیل"

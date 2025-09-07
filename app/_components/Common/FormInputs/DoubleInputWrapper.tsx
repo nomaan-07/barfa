@@ -1,12 +1,8 @@
-interface DoubleInputWrapperProps {
-  children: React.ReactNode;
-}
+import { DoubleInputWrapperProps } from "./types";
 
 function DoubleInputWrapper({ children }: DoubleInputWrapperProps) {
   return (
-    <div className="flex w-full flex-col items-center gap-4 sm:flex-row">
-      {children}
-    </div>
+    <div className="flex w-full flex-col gap-4 sm:flex-row">{children}</div>
   );
 }
 

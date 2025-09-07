@@ -1,10 +1,7 @@
 import TextInput from "./TextInput";
+import { InputBaseTypes } from "./types";
 
-interface FirstNameInputProps {
-  defaultValue?: string;
-}
-
-function FirstNameInput({ defaultValue }: FirstNameInputProps) {
+function FirstNameInput({ defaultValue }: InputBaseTypes) {
   return (
     <TextInput
       label="نام"

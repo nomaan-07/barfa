@@ -1,10 +1,7 @@
 import TextInput from "./TextInput";
+import { InputBaseTypes } from "./types";
 
-interface LastNameInputProps {
-  defaultValue?: string;
-}
-
-function LastNameInput({ defaultValue }: LastNameInputProps) {
+function LastNameInput({ defaultValue }: InputBaseTypes) {
   return (
     <TextInput
       label="نام خانوادگی"

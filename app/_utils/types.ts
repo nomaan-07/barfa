@@ -109,3 +109,13 @@ export type CartProductType = {
   discountedPrice: number;
   price: number;
 };
+
+export type Address = {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  address: string;
+  postalCode: string;
+  buildingNumber: string;
+};

@@ -14,13 +14,14 @@ type BaseProps = {
 };
 
 type PriceSummaryCardProps =
-  | (BaseProps & { href: string; onClick?: never })
-  | (BaseProps & { href?: never; onClick: () => void });
+  | (BaseProps & { href: string; onClick?: never; isDisabled?: never })
+  | (BaseProps & { href?: never; onClick: () => void; isDisabled?: boolean });
 
 function PriceSummaryCard({
   page,
   buttonText,
   href,
+  isDisabled,
   onClick,
 }: PriceSummaryCardProps) {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -64,24 +65,13 @@ function PriceSummaryCard({
       )}
       <PriceRow price={finalPrice} title="مبلغ قابل پرداخت" />
 
-      {href ? (
-        <Button
-          as={Link}
-          href={href}
-          color="primary"
-          className="w-full sm:w-auto lg:w-full"
-        >
-          {buttonText}
-        </Button>
-      ) : (
-        <Button
-          onPress={onClick}
-          color="primary"
-          className="w-full sm:w-auto lg:w-full"
-        >
-          {buttonText}
-        </Button>
-      )}
+      <Button
+        color="primary"
+        className="w-full sm:w-auto lg:w-full"
+        {...(href ? { as: Link, href } : { onPress: onClick, isDisabled })}
+      >
+        {buttonText}
+      </Button>
     </div>
   );
 }

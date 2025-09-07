@@ -1,7 +1,15 @@
 import TextInput from "./TextInput";
+import { InputBaseTypes } from "./types";
 
-function AddressInput() {
-  return <TextInput label="آدرس کامل" name="address" maxLength={250} />;
+function AddressInput({ defaultValue }: InputBaseTypes) {
+  return (
+    <TextInput
+      label="آدرس کامل"
+      name="address"
+      maxLength={250}
+      defaultValue={defaultValue}
+    />
+  );
 }
 
 export default AddressInput;

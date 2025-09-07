@@ -1,10 +1,7 @@
 import TextInput from "./TextInput";
+import { InputBaseTypes } from "./types";
 
-interface PhoneInputProps {
-  defaultValue?: string;
-}
-
-function PhoneInput({ defaultValue }: PhoneInputProps) {
+function PhoneInput({ defaultValue }: InputBaseTypes) {
   return (
     <TextInput
       label="شماره تلفن"

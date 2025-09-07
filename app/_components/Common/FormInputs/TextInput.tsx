@@ -1,13 +1,5 @@
 import { Input } from "@heroui/input";
-
-interface TextInputProps {
-  label: string;
-  name: string;
-  direction?: "ltr" | "rtl";
-  maxLength: number;
-  placeholder?: string;
-  defaultValue?: string;
-}
+import { TextInputProps } from "./types";
 
 function TextInput({
   label,

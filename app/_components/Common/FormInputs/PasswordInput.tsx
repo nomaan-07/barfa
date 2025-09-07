@@ -4,10 +4,7 @@ import { Input } from "@heroui/input";
 import { LucideEye, LucideEyeClosed } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-
-interface PasswordInputProps {
-  variant: "login" | "signup";
-}
+import { PasswordInputProps } from "./types";
 
 function PasswordInput({ variant }: PasswordInputProps) {
   const [isHidden, setIsHidden] = useState(true);
