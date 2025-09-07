@@ -46,8 +46,7 @@ function FilterPanel() {
             minPrice &&
             maxPrice && (
               <p>
-                از {convertToPersian(Number(minPrice))} تا{" "}
-                {convertToPersian(Number(maxPrice))}
+                از {convertToPersian(minPrice)} تا {convertToPersian(maxPrice)}
               </p>
             )
           }

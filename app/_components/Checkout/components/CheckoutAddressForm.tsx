@@ -1,4 +1,5 @@
 import { useUserStore } from "@/app/_store/userStore";
+import { convertToPersian } from "@/app/_utils/helper";
 import { Address } from "@/app/_utils/types";
 import { AddressValidation } from "@/app/_utils/validation";
 import { Button } from "@heroui/button";
@@ -52,11 +53,12 @@ export function CheckoutAddressForm({
       firstName,
       lastName,
       email,
-      phone,
+      phone: convertToPersian(phone, false),
       address,
-      postalCode,
+      postalCode: convertToPersian(postalCode, false),
       buildingNumber,
     };
+
     const validationErrors = AddressValidation(addressObj);
 
     setErrors(validationErrors);
@@ -82,12 +84,12 @@ export function CheckoutAddressForm({
           validationErrors={errors}
         >
           <DoubleInputWrapper>
-            <FirstNameInput defaultValue={firstName || address?.firstName} />
-            <LastNameInput defaultValue={lastName || address?.lastName} />
+            <FirstNameInput defaultValue={address?.firstName || firstName} />
+            <LastNameInput defaultValue={address?.lastName || lastName} />
           </DoubleInputWrapper>
           <DoubleInputWrapper>
-            <PhoneInput defaultValue={phone || address?.phone} />
-            <EmailInput defaultValue={email || address?.email} />
+            <PhoneInput defaultValue={address?.phone || phone} />
+            <EmailInput defaultValue={address?.email || email} />
           </DoubleInputWrapper>
           <AddressInput defaultValue={address?.address} />
           <DoubleInputWrapper>

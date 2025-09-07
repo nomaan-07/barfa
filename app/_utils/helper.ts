@@ -5,26 +5,6 @@ import {
   VALID_SEARCHPARAMS,
 } from "./constants";
 
-export const convertToPersian = (value: number, formatting = true) => {
-  if (formatting) return value.toLocaleString("fa-IR");
-
-  const numStr = String(value);
-
-  const englishToPersianMap: Record<string, string> = {
-    "0": "۰",
-    "1": "۱",
-    "2": "۲",
-    "3": "۳",
-    "4": "۴",
-    "5": "۵",
-    "6": "۶",
-    "7": "۷",
-    "8": "۸",
-    "9": "۹",
-  };
-  return numStr.replace(/[0-9]/g, (char) => englishToPersianMap[char] || char);
-};
-
 export const convertToEnglish = (value: string) => {
   const persianToEnglishMap: Record<string, string> = {
     "۰": "0",
@@ -39,6 +19,28 @@ export const convertToEnglish = (value: string) => {
     "۹": "9",
   };
   return value.replace(/[۰-۹]/g, (char) => persianToEnglishMap[char] || char);
+};
+
+export const convertToPersian = (value: number | string, formatting = true) => {
+  const num = typeof value === "number" ? value : convertToEnglish(value);
+
+  if (formatting) return Number(num).toLocaleString("fa-IR");
+
+  const numStr = String(num);
+
+  const englishToPersianMap: Record<string, string> = {
+    "0": "۰",
+    "1": "۱",
+    "2": "۲",
+    "3": "۳",
+    "4": "۴",
+    "5": "۵",
+    "6": "۶",
+    "7": "۷",
+    "8": "۸",
+    "9": "۹",
+  };
+  return numStr.replace(/[0-9]/g, (char) => englishToPersianMap[char] || char);
 };
 
 function invalidSearchParams(

@@ -3,6 +3,7 @@
 import argon2 from "argon2";
 import { cookies } from "next/headers";
 import { TABLES } from "../_utils/constants";
+import { convertToPersian } from "../_utils/helper";
 import { getSearchPanelProducts } from "./data-services";
 import { supabase } from "./supabase";
 
@@ -27,7 +28,7 @@ export async function signupUser(formData: FormData) {
       first_name: firstName,
       last_name: lastName,
       email,
-      phone,
+      phone: convertToPersian(phone, false),
       password: hashedPassword,
     })
     .select()
