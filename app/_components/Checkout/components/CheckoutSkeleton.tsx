@@ -37,6 +37,10 @@ function CheckoutSkeleton() {
           <CardBody>
             <div className="space-y-4">
               <DoubleInputWrapper>
+                <InputSkeleton width={36} />
+                <InputSkeleton width={36} />
+              </DoubleInputWrapper>
+              <DoubleInputWrapper>
                 <InputSkeleton width={28} />
                 <InputSkeleton width={76} />
               </DoubleInputWrapper>
