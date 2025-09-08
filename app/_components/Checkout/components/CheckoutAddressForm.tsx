@@ -5,7 +5,7 @@ import { AddressValidation } from "@/app/_utils/validation";
 import { Button } from "@heroui/button";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Form } from "@heroui/form";
-import { useState } from "react";
+import { Key, useState } from "react";
 import { useShallow } from "zustand/shallow";
 import AddressInput from "../../Common/FormInputs/AddressInput";
 import BuildingNumberInput from "../../Common/FormInputs/BuildingNumberInput";
@@ -15,6 +15,7 @@ import FirstNameInput from "../../Common/FormInputs/FirstNameInput";
 import LastNameInput from "../../Common/FormInputs/LastNameInput";
 import PhoneInput from "../../Common/FormInputs/PhoneInput";
 import PostalCodeInput from "../../Common/FormInputs/PostalCodeInput";
+import CheckoutLocations from "./CheckoutLocations";
 
 export interface CheckoutAddressFormProps {
   onSaveAddress: (address: Address) => void;
@@ -25,6 +26,9 @@ export function CheckoutAddressForm({
   address,
 }: CheckoutAddressFormProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [province, setProvince] = useState<string>(address?.province || "");
+  const [city, setCity] = useState<string>(address?.city || "");
+
   const { firstName, lastName, email, phone } = useUserStore(
     useShallow((state) => ({
       firstName: state.firstName,
@@ -33,6 +37,16 @@ export function CheckoutAddressForm({
       phone: state.phone,
     })),
   );
+
+  function handleSelectProvince(key: Key | null) {
+    if (key === null) return;
+    setProvince(key.toString());
+  }
+
+  function handleSelectCity(key: Key | null) {
+    if (key === null) return;
+    setCity(key.toString());
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -57,6 +71,8 @@ export function CheckoutAddressForm({
       address,
       postalCode: convertToPersian(postalCode, false),
       buildingNumber,
+      province,
+      city,
     };
 
     const validationErrors = AddressValidation(addressObj);
@@ -83,6 +99,12 @@ export function CheckoutAddressForm({
           onSubmit={handleSubmit}
           validationErrors={errors}
         >
+          <CheckoutLocations
+            province={province}
+            city={city}
+            onSelectProvince={handleSelectProvince}
+            onSelectCity={handleSelectCity}
+          />
           <DoubleInputWrapper>
             <FirstNameInput defaultValue={address?.firstName || firstName} />
             <LastNameInput defaultValue={address?.lastName || lastName} />

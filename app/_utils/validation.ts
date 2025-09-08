@@ -114,6 +114,8 @@ export function AddressValidation({
   address,
   buildingNumber,
   postalCode,
+  province,
+  city,
 }: Address) {
   const errors: Record<string, string> = {};
 
@@ -139,6 +141,9 @@ export function AddressValidation({
 
   if (!postalCodeValidation(postalCode))
     errors["postal-code"] = "کد پستی یک عدد ۱۰ رقمی است";
+
+  if (!province) errors.province = "لطفا استان خود را انتخاب کنید";
+  if (!city) errors.city = "لطفا شهر خود را انتخاب کنید";
 
   return errors;
 }

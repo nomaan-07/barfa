@@ -118,4 +118,6 @@ export type Address = {
   address: string;
   postalCode: string;
   buildingNumber: string;
+  province: string;
+  city: string;
 };

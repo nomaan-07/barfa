@@ -13,7 +13,13 @@ function CheckoutAddressSummary({
 }: CheckoutAddressSummaryProps) {
   if (!address) return null;
 
-  const { postalCode, buildingNumber, address: fullAddress } = address;
+  const {
+    province,
+    city,
+    postalCode,
+    buildingNumber,
+    address: fullAddress,
+  } = address;
 
   return (
     <Card>
@@ -21,6 +27,8 @@ function CheckoutAddressSummary({
         <div className="text-right">
           <h2 className="font-black sm:text-lg">آدرس</h2>
           <div className="flex flex-wrap gap-1 text-xs sm:text-sm">
+            <span>استان {province}،</span>
+            <span>شهر {city}،</span>
             <span>{fullAddress}،</span>
             <span> پلاک {buildingNumber}،</span>
             <span> کد پستی: {postalCode}</span>
