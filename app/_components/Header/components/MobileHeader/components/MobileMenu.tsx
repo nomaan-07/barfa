@@ -25,7 +25,7 @@ function MobileMenu({ onCloseMenu }: MobileMenuProps) {
         </NavbarMenuItem>
       ))}
 
-      <MobilMenuAuthActions />
+      <MobilMenuAuthActions onCloseMenu={onCloseMenu} />
     </>
   );
 }
