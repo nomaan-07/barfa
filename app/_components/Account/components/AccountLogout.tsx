@@ -1,3 +1,5 @@
+"use client";
+
 import DrawerCloseButton from "@/app/_components/Common/DrawerCloseButton";
 import { logoutUser } from "@/app/_lib/actions";
 import { useCartStore } from "@/app/_store/cartStore";
@@ -16,11 +18,14 @@ import { addToast } from "@heroui/toast";
 import { LucideLogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AccountButtonSize, getButtonClasses, IconSize } from "../utils";
 
-interface AccountPopoverLogoutProps {
-  onClosePopover: () => void;
+interface AccountLogoutProps {
+  onClosePopover?: () => void;
+  size: AccountButtonSize;
 }
-function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
+
+function AccountLogout({ onClosePopover, size }: AccountLogoutProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const router = useRouter();
@@ -29,7 +34,7 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
 
   function handleClose() {
     onClose();
-    onClosePopover();
+    onClosePopover?.();
   }
 
   async function handleLogout() {
@@ -58,14 +63,18 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
 
   return (
     <>
-      <button
-        aria-label="خروج از حساب کاربری"
-        onClick={onOpen}
-        className="hover:bg-danger-100 hover:text-danger m-1 flex h-12 cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 transition-colors"
+      <Button
+        color="danger"
+        startContent={<LucideLogOut size={IconSize(size)} />}
+        variant="light"
+        fullWidth
+        size={size}
+        radius="sm"
+        onPress={onOpen}
+        className={getButtonClasses(size)}
       >
-        <LucideLogOut size={20} />
-        <span>خروج از حساب کاربری</span>
-      </button>
+        خروج از حساب کاربری
+      </Button>
 
       <Modal
         isOpen={isOpen}
@@ -86,11 +95,14 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
             با خروج از حساب کاربری،‌ سبد خرید شما حذف می‌شود،‌ آیا مطمئن هستید؟
           </ModalBody>
           <ModalFooter>
-            <Button onPress={handleClose}>انصراف</Button>
+            <Button onPress={handleClose} fullWidth>
+              انصراف
+            </Button>
             <Button
               isDisabled={isLoading}
               color="danger"
               onPress={handleLogout}
+              fullWidth
             >
               {isLoading ? <Spinner color="white" size="sm" /> : "خروج از حساب"}
             </Button>
@@ -101,4 +113,4 @@ function AccountPopoverLogout({ onClosePopover }: AccountPopoverLogoutProps) {
   );
 }
 
-export default AccountPopoverLogout;
+export default AccountLogout;
