@@ -40,15 +40,29 @@ function AccountForm() {
 
     const formData = new FormData(e.currentTarget);
 
-    const data = Object.fromEntries(formData) as Record<string, string>;
+    const {
+      firstName: firstNameInputValue,
+      lastName: lastNameInputValue,
+      email: emailInputValue,
+      phone: phoneInputValue,
+      newPassword: newPasswordInputValue,
+      repeatPassword: repeatPasswordInputValue,
+    } = Object.fromEntries(formData) as {
+      firstName: string;
+      lastName: string;
+      email: string;
+      phone: string;
+      newPassword: string;
+      repeatPassword: string;
+    };
 
     if (
-      data.firstName === firstName &&
-      data.lastName === lastName &&
-      data.email === email &&
-      convertToPersian(data.phone, false) === phone &&
-      !data.newPassword &&
-      !data.repeatPassword
+      firstNameInputValue.trim() === firstName &&
+      lastNameInputValue.trim() === lastName &&
+      emailInputValue.trim() === email &&
+      convertToPersian(phoneInputValue, false) === phone &&
+      !newPasswordInputValue &&
+      !repeatPasswordInputValue
     ) {
       addToast({
         title: "تغییری برای اعمال وجود ندارد",
@@ -59,16 +73,16 @@ function AccountForm() {
     }
 
     const toUpdateUser = {
-      firstName: data.firstName.trim(),
-      lastName: data.lastName.trim(),
-      email: data.email.trim(),
-      phone: convertToPersian(data.phone, false),
-      newPassword: data.newPassword,
+      firstName: firstNameInputValue.trim(),
+      lastName: lastNameInputValue.trim(),
+      email: emailInputValue.trim(),
+      phone: convertToPersian(phoneInputValue, false),
+      newPassword: newPasswordInputValue,
     };
 
     const validationErrors = updateUserValidation({
       ...toUpdateUser,
-      repeatPassword: data.repeatPassword,
+      repeatPassword: repeatPasswordInputValue,
     });
 
     setErrors(validationErrors);
