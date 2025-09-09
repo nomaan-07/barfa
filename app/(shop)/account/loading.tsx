@@ -1,10 +1,10 @@
-import AccountFormSkeleton from "@/app/_components/Account/components/skeleton/AccountFormSkeleton";
+import AccountEditButtonSkeleton from "@/app/_components/Account/components/skeleton/AccountEditButtonSkeleton";
 import AccountWrapperSkeleton from "@/app/_components/Account/components/skeleton/AccountWrapperSkeleton";
 
 function Loading() {
   return (
     <AccountWrapperSkeleton>
-      <AccountFormSkeleton />
+      <AccountEditButtonSkeleton />
     </AccountWrapperSkeleton>
   );
 }
