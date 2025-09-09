@@ -79,8 +79,7 @@ export function signupValidation({
     errors.phone = "شماره تلفن باید ۱۱ رقم باشد و با ۰۹ شروع شود";
 
   if (!emailValidation(email))
-    errors.email = errors.email =
-      "ایمیل معتبر وارد کنید (مثال: example@email.com)";
+    errors.email = "ایمیل معتبر وارد کنید (مثال: example@email.com)";
 
   if (!minLengthValidation(password, 8))
     errors.password = "رمز عبور باید حداقل ۸ کاراکتر باشد";
@@ -97,8 +96,7 @@ export function loginValidation({ email, password }: LoginOptions) {
   const errors: Record<string, string> = {};
 
   if (!emailValidation(email))
-    errors.email = errors.email =
-      "ایمیل معتبر وارد کنید (مثال: example@email.com)";
+    errors.email = "ایمیل معتبر وارد کنید (مثال: example@email.com)";
 
   if (!minLengthValidation(password, 8))
     errors.password = "رمز عبور باید حداقل ۸ کاراکتر باشد";
@@ -130,8 +128,7 @@ export function AddressValidation({
     errors.phone = "شماره تلفن باید ۱۱ رقم باشد و با ۰۹ شروع شود";
 
   if (!emailValidation(email))
-    errors.email = errors.email =
-      "ایمیل معتبر وارد کنید (مثال: example@email.com)";
+    errors.email = "ایمیل معتبر وارد کنید (مثال: example@email.com)";
 
   if (!minLengthValidation(address, 10))
     errors.address = " آدرس باید حداقل ۱۰ کاراکتر باشد";
@@ -144,6 +141,51 @@ export function AddressValidation({
 
   if (!province) errors.province = "لطفا استان خود را انتخاب کنید";
   if (!city) errors.city = "لطفا شهر خود را انتخاب کنید";
+
+  return errors;
+}
+
+interface UpdateUserOptions {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  newPassword: string;
+  repeatPassword: string;
+}
+
+export function updateUserValidation({
+  firstName,
+  lastName,
+  phone,
+  email,
+  newPassword,
+  repeatPassword,
+}: UpdateUserOptions) {
+  const errors: Record<string, string> = {};
+
+  if (!nameValidation(firstName))
+    errors.firstName = "نام باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد";
+
+  if (!nameValidation(lastName))
+    errors.lastName =
+      "نام خانوادگی باید حداقل ۳ حرف و فقط شامل حروف فارسی باشد";
+
+  if (!phoneValidation(phone))
+    errors.phone = "شماره تلفن باید ۱۱ رقم باشد و با ۰۹ شروع شود";
+
+  if (!emailValidation(email))
+    errors.email = "ایمیل معتبر وارد کنید (مثال: example@email.com)";
+
+  if (newPassword || repeatPassword) {
+    if (!minLengthValidation(newPassword, 8)) {
+      errors.newPassword = "رمز عبور باید حداقل ۸ کاراکتر باشد";
+      return errors;
+    }
+
+    if (newPassword !== repeatPassword)
+      errors.repeatPassword = "رمز عبور و تکرار آن یکسان نیستند";
+  }
 
   return errors;
 }

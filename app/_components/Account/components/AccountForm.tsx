@@ -1,8 +1,10 @@
 "use client";
 
+import { updateUserValidation } from "@/app/_utils/validation";
 import { Button } from "@heroui/button";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Form } from "@heroui/form";
+import { addToast } from "@heroui/toast";
 import { useState } from "react";
 import DoubleInputWrapper from "../../Common/FormInputs/DoubleInputWrapper";
 import EmailInput from "../../Common/FormInputs/EmailInput";
@@ -16,10 +18,58 @@ interface AccountFormProps {
 }
 
 function AccountForm({ user }: AccountFormProps) {
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const { firstName, lastName, email, phone, newPassword, repeatPassword } =
+      Object.fromEntries(formData) as {
+        firstName: string;
+        lastName: string;
+        email: string;
+        phone: string;
+        newPassword: string;
+        repeatPassword: string;
+      };
+
+    if (
+      firstName === user.firstName &&
+      lastName === user.lastName &&
+      email === user.email &&
+      phone === user.phone &&
+      !newPassword &&
+      !repeatPassword
+    ) {
+      addToast({
+        title: "تغییری برای ذخیره کردن وجود ندارد",
+        variant: "bordered",
+        color: "warning",
+      });
+      return;
+    }
+
+    const validationErrors = updateUserValidation({
+      firstName,
+      lastName,
+      email,
+      phone,
+      newPassword,
+      repeatPassword,
+    });
+
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
+    setErrors({});
+
+    setIsLoading(true);
   }
 
   return (
