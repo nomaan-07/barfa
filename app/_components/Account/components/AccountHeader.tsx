@@ -1,20 +1,32 @@
-import { getUserFromCookie } from "@/app/_lib/actions";
+"use client";
+
+import { useUserStore } from "@/app/_store/userStore";
 import { Card, CardBody } from "@heroui/card";
+import { useShallow } from "zustand/shallow";
 
-async function AccountHeader() {
-  const user = await getUserFromCookie();
+function AccountHeader() {
+  const { firstName, lastName, email, phone, isInitialized } = useUserStore(
+    useShallow((state) => ({
+      firstName: state.firstName,
+      lastName: state.lastName,
+      email: state.email,
+      phone: state.phone,
+      isInitialized: state.isInitialized,
+    })),
+  );
 
-  if (!user) return null;
+  // FIXME: Add skeleton later
+  if (!isInitialized) return <p>Loading...</p>;
 
   return (
     <Card>
       <CardBody className="flex-row flex-wrap justify-between">
         <h2 className="gap-2 text-right text-lg font-bold break-all sm:text-2xl">
-          {user.first_name} {user.last_name}
+          {firstName} {lastName}
         </h2>
         <div className="flex w-full flex-col items-end overflow-hidden text-xs sm:w-fit sm:text-base">
-          <span>{user.phone}</span>
-          <span className="break-all">{user.email}</span>
+          <span>{phone}</span>
+          <span className="break-all">{email}</span>
         </div>
       </CardBody>
     </Card>

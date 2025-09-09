@@ -26,9 +26,9 @@ export async function signupUser(formData: FormData) {
   const { data: user, error: userError } = await supabase
     .from(TABLES.USERS)
     .insert({
-      first_name: firstName,
-      last_name: lastName,
-      email,
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      email: email.trim(),
       phone: convertToPersian(phone, false),
       password: hashedPassword,
     })
@@ -169,6 +169,66 @@ export async function getUserFromCookie() {
     .single();
 
   return user || undefined;
+}
+
+// ----- UPDATE USER -----
+
+interface UpdateUserOptions {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  newPassword?: string;
+}
+
+export async function updateUser(updates: UpdateUserOptions) {
+  const currentUser = await getUserFromCookie();
+
+  if (!currentUser) return { error: "کاربری یافت نشد" };
+
+  const toUpdate: Record<string, string> = {};
+
+  if (updates.firstName !== currentUser.first_name)
+    toUpdate.first_name = updates.firstName;
+
+  if (updates.lastName !== currentUser.last_name)
+    toUpdate.last_name = updates.lastName;
+
+  if (updates.email !== currentUser.email) toUpdate.email = updates.email;
+
+  if (updates.phone !== currentUser.phone) toUpdate.phone = updates.phone;
+
+  if (updates.newPassword)
+    toUpdate.password = await argon2.hash(updates.newPassword);
+
+  const { data: updatedUser, error } = await supabase
+    .from(TABLES.USERS)
+    .update(toUpdate)
+    .eq("id", currentUser.id)
+    .select()
+    .single();
+
+  if (error) {
+    if (error.details.includes("phone")) {
+      return { error: "این شماره تلفن قبلاً استفاده شده است" };
+    }
+    if (error.details.includes("email")) {
+      return { error: "این ایمیل قبلاً استفاده شده است" };
+    }
+    return {
+      error: "مشکلی در بروز رسانی اطلاعات پیش آمد، لطفاً دوباره تلاش کنید",
+    };
+  }
+
+  return {
+    success: true,
+    updatedUser: {
+      first_name: updatedUser.first_name,
+      last_name: updatedUser.last_name,
+      email: updatedUser.email,
+      phone: updatedUser.phone,
+    },
+  };
 }
 
 // ----- SUBMIT ORDER -----
