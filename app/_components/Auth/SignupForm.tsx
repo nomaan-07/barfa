@@ -77,7 +77,7 @@ function SignupForm() {
       <LastNameInput />
       <PhoneInput />
       <EmailInput />
-      <PasswordInput variant="signup" />
+      <PasswordInput />
       <SubmitButton title="ثبت نام" isLoading={isLoading} />
     </Form>
   );

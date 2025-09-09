@@ -7,7 +7,9 @@ export interface DoubleInputWrapperProps {
 }
 
 export interface PasswordInputProps {
-  variant: "login" | "signup";
+  showForgotPassword?: boolean;
+  name?: string;
+  label?: string;
 }
 
 export interface TextInputProps {

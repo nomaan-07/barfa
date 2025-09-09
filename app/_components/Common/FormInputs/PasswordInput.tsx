@@ -6,7 +6,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { PasswordInputProps } from "./types";
 
-function PasswordInput({ variant }: PasswordInputProps) {
+function PasswordInput({
+  showForgotPassword,
+  name = "password",
+  label = "رمز عبور:",
+}: PasswordInputProps) {
   const [isHidden, setIsHidden] = useState(true);
 
   const Icon = isHidden ? LucideEyeClosed : LucideEye;
@@ -16,20 +20,24 @@ function PasswordInput({ variant }: PasswordInputProps) {
   return (
     <div className="mb-2 w-full">
       <Input
-        label="رمز عبور:"
+        label={label}
         labelPlacement="outside-top"
-        style={{ direction: "ltr" }}
+        dir="ltr"
         type={isHidden ? "password" : "text"}
-        name="password"
+        name={name}
         placeholder="••••••••"
         startContent={
-          <Icon
+          <button
+            type="button"
+            className="md:hover:text-primary p-1 transition-colors md:cursor-pointer"
+            aria-label={isHidden ? "نمایش رمز عبور" : "پنهان کردن رمز عبور"}
             onClick={handleToggleHidden}
-            className="md:hover:text-primary size-5 transition-colors md:cursor-pointer"
-          />
+          >
+            <Icon className="size-5" />
+          </button>
         }
       />
-      {variant === "login" && (
+      {showForgotPassword && (
         <Link
           href="/forgot-password"
           className="text-primary mt-2 block text-xs"

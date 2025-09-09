@@ -17,10 +17,11 @@ import PhoneInput from "../../Common/FormInputs/PhoneInput";
 import PostalCodeInput from "../../Common/FormInputs/PostalCodeInput";
 import CheckoutLocations from "./CheckoutLocations";
 
-export interface CheckoutAddressFormProps {
+interface CheckoutAddressFormProps {
   onSaveAddress: (address: Address) => void;
   address: Address | null;
 }
+
 export function CheckoutAddressForm({
   onSaveAddress,
   address,

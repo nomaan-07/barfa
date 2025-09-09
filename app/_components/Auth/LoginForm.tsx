@@ -63,7 +63,7 @@ function LoginForm() {
   return (
     <Form className="my-6" onSubmit={handleSubmit} validationErrors={errors}>
       <EmailInput />
-      <PasswordInput variant="login" />
+      <PasswordInput showForgotPassword />
       <SubmitButton title="ورود" isLoading={isLoading} />
     </Form>
   );
