@@ -31,11 +31,11 @@ function CheckoutSkeleton() {
 
         {/* Form */}
         <Card>
-          <CardHeader>
+          <CardHeader className="h-12 sm:h-13">
             <Skeleton className="h-6 w-9 rounded-full sm:w-10" />
           </CardHeader>
           <CardBody>
-            <div className="space-y-4">
+            <div className="space-y-6">
               <DoubleInputWrapper>
                 <InputSkeleton width={36} />
                 <InputSkeleton width={36} />

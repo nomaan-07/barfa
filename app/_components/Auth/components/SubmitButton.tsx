@@ -8,7 +8,13 @@ interface SubmitButtonProps {
 
 function SubmitButton({ title, isLoading }: SubmitButtonProps) {
   return (
-    <Button color="primary" fullWidth isDisabled={isLoading} type="submit">
+    <Button
+      color="primary"
+      className="mt-2"
+      fullWidth
+      isDisabled={isLoading}
+      type="submit"
+    >
       {isLoading ? <Spinner size="sm" color="white" /> : title}
     </Button>
   );

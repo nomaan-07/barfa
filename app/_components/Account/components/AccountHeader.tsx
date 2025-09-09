@@ -3,6 +3,7 @@
 import { useUserStore } from "@/app/_store/userStore";
 import { Card, CardBody } from "@heroui/card";
 import { useShallow } from "zustand/shallow";
+import AccountHeaderSkeleton from "./skeleton/AccountHeaderSkeleton";
 
 function AccountHeader() {
   const { firstName, lastName, email, phone, isInitialized } = useUserStore(
@@ -15,8 +16,7 @@ function AccountHeader() {
     })),
   );
 
-  // FIXME: Add skeleton later
-  if (!isInitialized) return <p>Loading...</p>;
+  if (!isInitialized) return <AccountHeaderSkeleton />;
 
   return (
     <Card>

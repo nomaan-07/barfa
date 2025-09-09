@@ -18,7 +18,7 @@ function PasswordInput({
   const handleToggleHidden = () => setIsHidden((prev) => !prev);
 
   return (
-    <div className="mb-2 w-full">
+    <div className="w-full">
       <Input
         label={label}
         labelPlacement="outside-top"

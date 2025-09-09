@@ -17,6 +17,7 @@ import FirstNameInput from "../../Common/FormInputs/FirstNameInput";
 import LastNameInput from "../../Common/FormInputs/LastNameInput";
 import PasswordInput from "../../Common/FormInputs/PasswordInput";
 import PhoneInput from "../../Common/FormInputs/PhoneInput";
+import AccountFormSkeleton from "./skeleton/AccountFormSkeleton";
 
 function AccountForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -117,8 +118,7 @@ function AccountForm() {
     }
   }
 
-  // FIXME: Add skeleton later
-  if (!isInitialized) return <p>Loading...</p>;
+  if (!isInitialized) return <AccountFormSkeleton />;
 
   return (
     <Card>
@@ -127,7 +127,7 @@ function AccountForm() {
       </CardHeader>
       <CardBody>
         <Form
-          className="space-y-4 text-right"
+          className="gap-6 text-right"
           onSubmit={handleSubmit}
           validationErrors={errors}
         >

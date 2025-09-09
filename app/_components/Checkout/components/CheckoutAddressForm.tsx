@@ -96,7 +96,7 @@ export function CheckoutAddressForm({
       </CardHeader>
       <CardBody>
         <Form
-          className="space-y-4 text-right"
+          className="gap-6 text-right"
           onSubmit={handleSubmit}
           validationErrors={errors}
         >
