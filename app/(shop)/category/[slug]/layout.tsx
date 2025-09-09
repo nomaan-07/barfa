@@ -26,7 +26,7 @@ function CategoryLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return children;
 }
 
 export default CategoryLayout;
