@@ -66,7 +66,7 @@ function Checkout() {
         color: "success",
         variant: "bordered",
       });
-      router.push("/");
+      router.push("/account/orders");
     } catch {
       addToast({
         title: "ثبت سفارش ناموفق بود",
