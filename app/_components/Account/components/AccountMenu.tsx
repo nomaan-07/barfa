@@ -2,7 +2,7 @@ import { ACCOUNT_ITEMS } from "@/app/_data/accountItems";
 import { Button } from "@heroui/button";
 import Link from "next/link";
 import { AccountButtonSize, getButtonClasses, IconSize } from "../utils";
-import AccountLogout from "./AccountLogout";
+import AccountMenuLogoutButton from "./AccountMenuLogoutButton";
 
 interface AccountMenuProps {
   pathname?: string;
@@ -28,7 +28,7 @@ function AccountMenu({ pathname, size, onClosePopover }: AccountMenuProps) {
           {item.title}
         </Button>
       ))}
-      <AccountLogout size={size} onClosePopover={onClosePopover} />
+      <AccountMenuLogoutButton size={size} onClosePopover={onClosePopover} />
     </div>
   );
 }

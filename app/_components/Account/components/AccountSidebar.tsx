@@ -8,7 +8,7 @@ function AccountSidebar() {
   const pathname = usePathname();
 
   return (
-    <Card className="shrink-0 md:w-64">
+    <Card className="hidden w-64 shrink-0 lg:block">
       <CardBody>
         <AccountMenu pathname={pathname} size="lg" />
       </CardBody>

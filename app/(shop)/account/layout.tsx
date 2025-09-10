@@ -1,4 +1,5 @@
 import AccountHeader from "@/app/_components/Account/components/AccountHeader";
+import AccountMobileNav from "@/app/_components/Account/components/AccountMobileNav";
 import AccountSidebar from "@/app/_components/Account/components/AccountSidebar";
 import { Metadata } from "next";
 
@@ -15,13 +16,14 @@ function AccountLayout({
 }>) {
   return (
     <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">
-      <div className="flex flex-col gap-4 md:flex-row-reverse">
+      <div className="flex gap-4">
+        <AccountSidebar />
         <div className="w-full space-y-4">
           <AccountHeader />
           {children}
         </div>
-        <AccountSidebar />
       </div>
+      <AccountMobileNav />
     </div>
   );
 }

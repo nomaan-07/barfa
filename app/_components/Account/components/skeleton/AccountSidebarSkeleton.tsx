@@ -2,9 +2,8 @@ import { Card, CardBody } from "@heroui/card";
 import { Skeleton } from "@heroui/skeleton";
 
 function AccountSidebarSkeleton() {
-  // FIXME: In mobile
   return (
-    <Card className="shrink-0 md:w-64">
+    <Card className="hidden w-64 shrink-0 lg:block">
       <CardBody>
         <div>
           {Array.from({ length: 4 }).map((_, index) => (
