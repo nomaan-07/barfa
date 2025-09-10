@@ -29,7 +29,7 @@ function OrderRow({ order }: OrderRowProps) {
           </span>
         </div>
 
-        <div className="w-full flex-shrink-0 sm:w-auto">
+        <div className="h-8 w-full flex-shrink-0 sm:w-auto">
           <OrderModal order={order} totalProducts={totalProducts} />
         </div>
       </CardBody>
