@@ -17,8 +17,8 @@ function Orders({ orders }: OrdersProps) {
             title={<OrdersTabTitle count={orders.length} title="جاری" />}
           >
             <div className="space-y-4">
-              {orders.map((order, index) => (
-                <OrderRow key={order.id} order={order} index={index} />
+              {orders.map((order) => (
+                <OrderRow key={order.id} order={order} />
               ))}
             </div>
           </Tab>

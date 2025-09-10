@@ -18,7 +18,6 @@ export interface OrdersTabTitleProps {
 
 export interface OrderRowProps {
   order: Order;
-  index: number;
 }
 
 export interface OrderModalProps {

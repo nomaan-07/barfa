@@ -52,7 +52,7 @@ function OrderModal({ order, totalProducts }: OrderModalProps) {
               <DrawerCloseButton position="left" isAbsolute onClose={onClose} />
               <ModalHeader className="flex flex-col gap-1">
                 <span className="text-lg font-bold">
-                  شماره پیگیری: #{convertToPersian(id)}
+                  سفارش شماره #{convertToPersian(id)}
                 </span>
                 <span className="text-default-500 text-sm">
                   تاریخ ثبت سفارش: {persianDate}
