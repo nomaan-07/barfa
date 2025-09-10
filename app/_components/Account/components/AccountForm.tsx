@@ -9,7 +9,6 @@ import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Form } from "@heroui/form";
 import { Spinner } from "@heroui/spinner";
 import { addToast } from "@heroui/toast";
-import { LucidePencil, LucideX } from "lucide-react";
 import { useState } from "react";
 import { useShallow } from "zustand/shallow";
 import DoubleInputWrapper from "../../Common/FormInputs/DoubleInputWrapper";
@@ -18,13 +17,12 @@ import FirstNameInput from "../../Common/FormInputs/FirstNameInput";
 import LastNameInput from "../../Common/FormInputs/LastNameInput";
 import PasswordInput from "../../Common/FormInputs/PasswordInput";
 import PhoneInput from "../../Common/FormInputs/PhoneInput";
-import AccountEditButtonSkeleton from "./skeleton/AccountEditButtonSkeleton";
+import AccountFormSkeleton from "./skeleton/AccountFormSkeleton";
 
 function AccountForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [passwordKey, setPasswordKey] = useState(0);
-  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const { firstName, lastName, email, phone, isInitialized, setInitialUser } =
     useUserStore(
@@ -117,80 +115,54 @@ function AccountForm() {
 
       setInitialUser(updatedUser);
       setPasswordKey((prev) => prev + 2);
-      setIsFormOpen(false);
     }
   }
 
-  if (!isInitialized) return <AccountEditButtonSkeleton />;
+  if (!isInitialized) return <AccountFormSkeleton />;
 
-  if (!isFormOpen)
-    return (
-      <Button
-        onPress={() => setIsFormOpen(true)}
-        color="warning"
-        startContent={<LucidePencil size={16} />}
-        size="lg"
-        className="text-sm sm:text-base"
-      >
-        ویرایش اطلاعات حساب کاربری
-      </Button>
-    );
-
-  if (isFormOpen)
-    return (
-      <Card>
-        <CardHeader className="justify-between">
-          <h3 className="font-black sm:text-lg">اطلاعات حساب کاربری</h3>
+  return (
+    <Card>
+      <CardHeader>
+        <h3 className="font-black sm:text-lg">اطلاعات حساب کاربری</h3>
+      </CardHeader>
+      <CardBody>
+        <Form
+          className="gap-6 text-right"
+          onSubmit={handleSubmit}
+          validationErrors={errors}
+        >
+          <DoubleInputWrapper>
+            <FirstNameInput defaultValue={firstName} />
+            <LastNameInput defaultValue={lastName} />
+          </DoubleInputWrapper>
+          <DoubleInputWrapper>
+            <PhoneInput defaultValue={phone} />
+            <EmailInput defaultValue={email} />
+          </DoubleInputWrapper>
+          <DoubleInputWrapper>
+            <PasswordInput
+              key={passwordKey}
+              name="newPassword"
+              label="رمز عبور جدید"
+            />
+            <PasswordInput
+              key={passwordKey + 1}
+              name="repeatPassword"
+              label="تکرار رمز عبور"
+            />
+          </DoubleInputWrapper>
           <Button
-            variant="flat"
-            isIconOnly
-            onPress={() => setIsFormOpen(false)}
+            className="mx-auto w-48"
+            color="primary"
+            type="submit"
+            isDisabled={isLoading}
           >
-            <LucideX size={20} />
+            {isLoading ? <Spinner size="sm" color="white" /> : "اعمال تغییرات"}
           </Button>
-        </CardHeader>
-        <CardBody>
-          <Form
-            className="gap-6 text-right"
-            onSubmit={handleSubmit}
-            validationErrors={errors}
-          >
-            <DoubleInputWrapper>
-              <FirstNameInput defaultValue={firstName} />
-              <LastNameInput defaultValue={lastName} />
-            </DoubleInputWrapper>
-            <DoubleInputWrapper>
-              <PhoneInput defaultValue={phone} />
-              <EmailInput defaultValue={email} />
-            </DoubleInputWrapper>
-            <DoubleInputWrapper>
-              <PasswordInput
-                key={passwordKey}
-                name="newPassword"
-                label="رمز عبور جدید"
-              />
-              <PasswordInput
-                key={passwordKey + 1}
-                name="repeatPassword"
-                label="تکرار رمز عبور"
-              />
-            </DoubleInputWrapper>
-            <Button
-              className="mx-auto w-48"
-              color="primary"
-              type="submit"
-              isDisabled={isLoading}
-            >
-              {isLoading ? (
-                <Spinner size="sm" color="white" />
-              ) : (
-                "اعمال تغییرات"
-              )}
-            </Button>
-          </Form>
-        </CardBody>
-      </Card>
-    );
+        </Form>
+      </CardBody>
+    </Card>
+  );
 }
 
 export default AccountForm;
