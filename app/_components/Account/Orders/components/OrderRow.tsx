@@ -4,7 +4,7 @@ import { Chip } from "@heroui/chip";
 import { OrderRowProps } from "../types";
 import OrderModal from "./OrderModal";
 
-function OrderRow({ order, currentOrder }: OrderRowProps) {
+function OrderRow({ order, index }: OrderRowProps) {
   const { id, price, products } = order;
 
   const totalProducts = products.reduce(
@@ -17,7 +17,7 @@ function OrderRow({ order, currentOrder }: OrderRowProps) {
       <CardBody>
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Chip radius="sm" variant="flat">
-            {currentOrder}
+            {convertToPersian(index + 1)}
           </Chip>
 
           <span className="text-primary text-sm">
@@ -32,11 +32,7 @@ function OrderRow({ order, currentOrder }: OrderRowProps) {
             {convertToPersian(price)} تومان
           </span>
 
-          <OrderModal
-            order={order}
-            currentOrder={currentOrder}
-            totalProducts={totalProducts}
-          />
+          <OrderModal order={order} totalProducts={totalProducts} />
         </div>
       </CardBody>
     </Card>

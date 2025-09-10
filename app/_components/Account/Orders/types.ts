@@ -4,6 +4,7 @@ type Order = {
   id: number;
   price: number;
   products: OrderProduct[];
+  created_at: string;
 };
 
 export interface OrdersProps {
@@ -17,12 +18,11 @@ export interface OrdersTabTitleProps {
 
 export interface OrderRowProps {
   order: Order;
-  currentOrder: string;
+  index: number;
 }
 
 export interface OrderModalProps {
   order: Order;
-  currentOrder: string;
   totalProducts: number;
 }
 

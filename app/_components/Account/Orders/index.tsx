@@ -1,6 +1,5 @@
 "use client";
 
-import { convertToPersian } from "@/app/_utils/helper";
 import { Card, CardBody } from "@heroui/card";
 import { Tab, Tabs } from "@heroui/tabs";
 import EmptyOrders from "./components/EmptyOrders";
@@ -19,11 +18,7 @@ function Orders({ orders }: OrdersProps) {
           >
             <div className="space-y-4">
               {orders.map((order, index) => (
-                <OrderRow
-                  key={order.id}
-                  order={order}
-                  currentOrder={convertToPersian(index + 1)}
-                />
+                <OrderRow key={order.id} order={order} index={index} />
               ))}
             </div>
           </Tab>

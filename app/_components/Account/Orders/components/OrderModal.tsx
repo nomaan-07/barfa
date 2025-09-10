@@ -14,10 +14,18 @@ import { LucideEye } from "lucide-react";
 import { OrderModalProps } from "../types";
 import OrderProductList from "./OrderProductList";
 
-function OrderModal({ order, currentOrder, totalProducts }: OrderModalProps) {
+function OrderModal({ order, totalProducts }: OrderModalProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const { id, price, products } = order;
+  const { id, created_at, price, products } = order;
+
+  const persianDate = new Date(created_at).toLocaleDateString("fa-IR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   return (
     <>
@@ -44,13 +52,12 @@ function OrderModal({ order, currentOrder, totalProducts }: OrderModalProps) {
               <DrawerCloseButton position="left" isAbsolute onClose={onClose} />
               <ModalHeader className="flex flex-col gap-1">
                 <span className="text-lg font-bold">
-                  سفارش شماره {convertToPersian(currentOrder)}
-                </span>
-
-                <span className="text-primary text-sm">
                   شماره پیگیری: #{convertToPersian(id)}
                 </span>
-                <span className="text-warning text-sm">در حال آماده سازی</span>
+                <span className="text-default-500 text-sm">
+                  تاریخ ثبت سفارش: {persianDate}
+                </span>
+                <span className="text-primary text-sm">در حال آماده سازی</span>
               </ModalHeader>
               <ModalBody className="max-h-[60vh] overflow-y-auto">
                 <div className="text-secondary flex items-center justify-between px-4 font-medium">
