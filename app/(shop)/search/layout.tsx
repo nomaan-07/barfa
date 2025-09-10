@@ -5,11 +5,7 @@ export const metadata: Metadata = {
   description: "جستجو در فروشگاه اینترنتی برفا برای محصولات دیجیتال",
 };
 
-function SearchLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+function SearchLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 

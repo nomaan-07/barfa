@@ -21,12 +21,8 @@ export async function generateMetadata({
   };
 }
 
-function CategoryLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return children;
+function CategoryLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
 export default CategoryLayout;

@@ -18,11 +18,7 @@ export async function generateMetadata({
   };
 }
 
-function ProductLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+function ProductLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 

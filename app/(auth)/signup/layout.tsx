@@ -10,5 +10,5 @@ export default function SignupLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <>{children}</>;
 }
