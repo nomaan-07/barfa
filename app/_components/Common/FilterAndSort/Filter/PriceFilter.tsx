@@ -50,7 +50,7 @@ function PriceFilter() {
   }
 
   return (
-    <div className="space-y-4" style={{ direction: "ltr" }}>
+    <div className="space-y-4" dir="ltr">
       <div className="space-y-2">
         <Input
           type="text"

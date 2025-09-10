@@ -18,9 +18,7 @@ function TextInput({
       maxLength={maxLength}
       placeholder={placeholder}
       defaultValue={defaultValue}
-      style={{
-        direction: direction === "ltr" ? "ltr" : "rtl",
-      }}
+      dir={direction}
     />
   );
 }
