@@ -1,16 +1,10 @@
 "use server";
 
+import { TABLE_FIELDS, TABLES } from "@/app/_utils/constants";
+import { convertToPersian } from "@/app/_utils/helper";
 import argon2 from "argon2";
 import { cookies } from "next/headers";
-import { TABLE_FIELDS, TABLES } from "../_utils/constants";
-import { convertToPersian } from "../_utils/helper";
-import { Address, OrderProduct } from "../_utils/types";
-import { getSearchPanelProducts } from "./data-services";
-import { supabase } from "./supabase";
-
-export async function fetchSearchedProducts(query: string) {
-  return await getSearchPanelProducts(query);
-}
+import { supabase } from "../supabase";
 
 // ----- SIGNUP -----
 
@@ -229,37 +223,4 @@ export async function updateUser(updates: UpdateUserOptions) {
       phone: updatedUser.phone,
     },
   };
-}
-
-// ----- CREATE ORDER -----
-
-type OrderType = {
-  address: Address;
-  products: OrderProduct[];
-  price: number;
-};
-
-export async function createOrder(order: OrderType) {
-  const user = await getUserFromCookie();
-
-  if (!user?.id) throw new Error("submit order failed");
-
-  const orderRow = { ...order, user_id: user.id };
-
-  const { error } = await supabase
-    .from(TABLES.ORDERS)
-    .insert(orderRow)
-    .select();
-
-  if (error) throw error;
-}
-
-// ----- GET CITIES -----
-
-export async function getCities(provinceId: number) {
-  const res = await fetch(
-    `https://iran-locations-api.ir/api/v1/fa/cities?state_id=${provinceId}`,
-  );
-  if (!res.ok) throw new Error("fetch cities failed");
-  return await res.json();
 }

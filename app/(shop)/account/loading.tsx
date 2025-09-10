@@ -1,7 +1,7 @@
 import AccountFormSkeleton from "@/app/_components/Account/components/skeleton/AccountFormSkeleton";
 import AccountWrapperSkeleton from "@/app/_components/Account/components/skeleton/AccountWrapperSkeleton";
 
-function Loading() {
+function AccountLoading() {
   return (
     <AccountWrapperSkeleton>
       <AccountFormSkeleton />
@@ -9,4 +9,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default AccountLoading;

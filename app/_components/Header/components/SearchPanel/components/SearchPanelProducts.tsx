@@ -1,6 +1,6 @@
 import NoProductsFound from "@/app/_components/Common/ProductsList/components/NoProductsFound";
 import { useSearchPanel } from "@/app/_contexts/SearchPanelContext";
-import { fetchSearchedProducts } from "@/app/_lib/actions";
+import { getSearchedProducts } from "@/app/_lib/actions";
 import { SearchPanelProductsType } from "@/app/_utils/types";
 import { Spinner } from "@heroui/spinner";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ function SearchPanelProducts() {
     const debounce = setTimeout(async () => {
       setLoading(true);
       try {
-        const products = await fetchSearchedProducts(value);
+        const products = await getSearchedProducts(value);
         setResults(products);
       } finally {
         setLoading(false);
