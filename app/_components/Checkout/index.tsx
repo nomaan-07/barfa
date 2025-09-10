@@ -1,7 +1,7 @@
 "use client";
 
 import { useHydratedCart } from "@/app/_hooks/useHydratedCart";
-import { submitOrder } from "@/app/_lib/actions";
+import { createOrder } from "@/app/_lib/actions";
 import {
   selectorCartCount,
   selectorCartTotalPrice,
@@ -45,8 +45,11 @@ function Checkout() {
     try {
       const orderedProducts = products.map((product) => ({
         id: product.id,
-        color: product.color.en,
+        cartId: product.cartId,
+        color: product.color.fa,
         quantity: product.selectedQuantity,
+        title: product.title,
+        imageSrc: product.imageSrc,
       }));
 
       const order = {
@@ -55,7 +58,7 @@ function Checkout() {
         price: totalPrice + SHIPPING_PRICE,
       };
 
-      await submitOrder(order);
+      await createOrder(order);
       clearCart();
 
       addToast({

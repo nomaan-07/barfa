@@ -18,6 +18,7 @@ export const TABLE_FIELDS = {
   POPULAR_BRANDS: "id, image_src, link, name",
   BANNERS: "id, image_src, link, title",
   USER: "id, first_name, last_name, phone, email",
+  ORDER: "id, price, products",
 } as const;
 
 export const VALID_CATEGORIES = [

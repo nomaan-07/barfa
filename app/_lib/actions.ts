@@ -4,7 +4,7 @@ import argon2 from "argon2";
 import { cookies } from "next/headers";
 import { TABLE_FIELDS, TABLES } from "../_utils/constants";
 import { convertToPersian } from "../_utils/helper";
-import { Address } from "../_utils/types";
+import { Address, OrderProduct } from "../_utils/types";
 import { getSearchPanelProducts } from "./data-services";
 import { supabase } from "./supabase";
 
@@ -231,13 +231,7 @@ export async function updateUser(updates: UpdateUserOptions) {
   };
 }
 
-// ----- SUBMIT ORDER -----
-
-type OrderProduct = {
-  id: number;
-  color: string;
-  quantity: number;
-};
+// ----- CREATE ORDER -----
 
 type OrderType = {
   address: Address;
@@ -245,7 +239,7 @@ type OrderType = {
   price: number;
 };
 
-export async function submitOrder(order: OrderType) {
+export async function createOrder(order: OrderType) {
   const user = await getUserFromCookie();
 
   if (!user?.id) throw new Error("submit order failed");

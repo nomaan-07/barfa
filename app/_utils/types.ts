@@ -110,6 +110,15 @@ export type CartProductType = {
   price: number;
 };
 
+export type OrderProduct = {
+  id: number;
+  cartId: string;
+  color: string;
+  quantity: number;
+  imageSrc: string;
+  title: string;
+};
+
 export type Address = {
   firstName: string;
   lastName: string;

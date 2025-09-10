@@ -37,9 +37,7 @@ function ImageModal({
       <ModalContent>
         {(onClose) => (
           <>
-            <div className="absolute top-2 right-2 z-10">
-              <DrawerCloseButton onClose={onClose} />
-            </div>
+            <DrawerCloseButton isAbsolute position="right" onClose={onClose} />
 
             <div>
               <Swiper
