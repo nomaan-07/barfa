@@ -10,9 +10,10 @@ export async function getOrders() {
   const { data: orders, error } = await supabase
     .from(TABLES.ORDERS)
     .select(TABLE_FIELDS.ORDER)
-    .eq("user_id", currentUser.id);
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending: false });
 
   if (error) throw new Error("getting orders failed");
 
-  return orders as [];
+  return orders;
 }
