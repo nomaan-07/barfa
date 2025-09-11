@@ -48,8 +48,8 @@ function ImageGallery() {
         />
         <SlideCounter />
         <ImageThumbnails onSelect={handleSelect} />
-        <ProductColorCircles onSelect={handleSelect} />
         <ProductActions />
+        <ProductColorCircles onSelect={handleSelect} />
       </div>
     </>
   );

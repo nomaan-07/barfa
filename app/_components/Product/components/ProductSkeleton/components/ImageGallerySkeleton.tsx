@@ -22,7 +22,7 @@ function ImageGallerySkeleton() {
         </div>
 
         {/* Product Actions */}
-        <div className="mb-2 flex justify-end gap-2 lg:absolute lg:top-1 lg:left-1 lg:z-10 lg:mb-0 lg:flex-col">
+        <div className="mb-2 flex justify-end gap-3 lg:absolute lg:top-1 lg:left-1 lg:z-10 lg:mb-0 lg:flex-col lg:gap-2">
           {Array.from({ length: 2 }).map((_, index) => (
             <Skeleton key={index} className="size-6 rounded-lg" />
           ))}
