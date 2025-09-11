@@ -14,10 +14,7 @@ function ShareButton() {
 
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: document.title,
-          url,
-        });
+        await navigator.share({ url });
       } catch {
         // Share failed - Ignored intentionally
       }
