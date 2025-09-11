@@ -10,17 +10,21 @@ function ImageGallerySkeleton() {
       </div>
       {/* Image */}
       <div className="relative w-full space-y-2 lg:order-2 lg:px-12">
-        <div className="flex h-52 items-center justify-center sm:h-64 md:h-72 lg:h-100 lg:p-10 xl:h-135">
-          <Skeleton className="aspect-square h-52 rounded-xl sm:h-64 md:h-72 lg:h-100 xl:h-135" />
+        <div className="flex h-52 items-center justify-center sm:h-64 md:h-72 lg:h-93 lg:p-10 xl:h-127">
+          <Skeleton className="aspect-square h-52 rounded-xl sm:h-64 md:h-72 lg:h-93 xl:h-127" />
         </div>
 
         {/* Color Circles */}
         <div className="mb-2 flex gap-2 lg:absolute lg:top-1 lg:right-1 lg:z-10 lg:mb-0 lg:flex-col">
           {Array.from({ length: 4 }).map((_, index) => (
-            <Skeleton
-              key={index}
-              className="size-6 cursor-pointer rounded-full"
-            />
+            <Skeleton key={index} className="size-6 rounded-full" />
+          ))}
+        </div>
+
+        {/* Product Actions */}
+        <div className="mb-2 flex justify-end gap-2 lg:absolute lg:top-1 lg:left-1 lg:z-10 lg:mb-0 lg:flex-col">
+          {Array.from({ length: 2 }).map((_, index) => (
+            <Skeleton key={index} className="size-6 rounded-lg" />
           ))}
         </div>
 
@@ -33,7 +37,7 @@ function ImageGallerySkeleton() {
           {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={index}
-              className="border-default-300 size-12 cursor-pointer overflow-hidden rounded-md border p-1"
+              className="border-default-300 size-12 overflow-hidden rounded-md border p-1"
             >
               <Skeleton className="size-full rounded-md" />
             </div>

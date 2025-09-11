@@ -18,7 +18,7 @@ function ImageSwiper({ swiperRef, onSelect, onOpenModal }: ImageSwiperProps) {
             alt={image.fa}
             width={1200}
             height={1200}
-            className="h-52 w-full object-contain select-none sm:h-64 md:h-72 lg:h-100 xl:h-135"
+            className="h-52 w-full object-contain select-none sm:h-64 md:h-72 lg:h-93 xl:h-127"
             priority={index === 0}
           />
         </SwiperSlide>

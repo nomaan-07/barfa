@@ -8,6 +8,7 @@ import CurrentColorLine from "../CurrentColorLine";
 import ImageModal from "./components/ImageModal";
 import ImageSwiper from "./components/ImageSwiper";
 import ImageThumbnails from "./components/ImageThumbnails";
+import ProductActions from "./components/ProductActions";
 import ProductColorCircles from "./components/ProductColorCircles";
 import SlideCounter from "./components/SlideCounter";
 
@@ -39,7 +40,7 @@ function ImageGallery() {
 
       <CurrentColorLine />
 
-      <div className="relative w-full space-y-2 lg:order-2 lg:pr-8">
+      <div className="relative w-full space-y-2 lg:order-2 lg:px-8">
         <ImageSwiper
           onSelect={handleSelect}
           swiperRef={swiperRef}
@@ -48,6 +49,7 @@ function ImageGallery() {
         <SlideCounter />
         <ImageThumbnails onSelect={handleSelect} />
         <ProductColorCircles onSelect={handleSelect} />
+        <ProductActions />
       </div>
     </>
   );
