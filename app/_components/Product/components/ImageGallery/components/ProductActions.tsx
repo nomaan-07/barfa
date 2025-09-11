@@ -1,5 +1,7 @@
+import dynamic from "next/dynamic";
 import FavoriteButton from "./FavoriteButton";
-import ShareButton from "./ShareButton";
+
+const ShareButton = dynamic(() => import("./ShareButton"), { ssr: false });
 
 function ProductActions() {
   return (

@@ -1,4 +1,4 @@
-import { Tooltip } from "@heroui/react";
+import { Tooltip } from "@heroui/tooltip";
 import { LucideHeart } from "lucide-react";
 
 function FavoriteButton() {
