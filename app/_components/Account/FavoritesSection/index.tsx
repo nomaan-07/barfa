@@ -6,6 +6,7 @@ import { LucideHeart } from "lucide-react";
 import AccountEmptyProducts from "../components/common/AccountEmptyProducts";
 import AccountSectionHeader from "../components/common/AccountSectionHeader";
 import FavoriteProductList from "./components/FavoriteProductList";
+import FavoritesSectionSkeleton from "./components/FavoritesSectionSkeleton";
 
 function FavoritesSection() {
   const products = useUserStore((state) => state.favorites);
@@ -15,8 +16,7 @@ function FavoritesSection() {
     <AccountSectionHeader>لیست علاقه‌مندی‌ها</AccountSectionHeader>
   );
 
-  // TODO: Favorites Skeleton
-  if (!isInitialized) return <p>...</p>;
+  if (!isInitialized) return <FavoritesSectionSkeleton />;
 
   if (!products.length)
     return (
