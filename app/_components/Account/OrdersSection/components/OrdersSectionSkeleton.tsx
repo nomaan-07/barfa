@@ -2,7 +2,7 @@ import { Card, CardBody } from "@heroui/card";
 import { Skeleton } from "@heroui/skeleton";
 import AccountSectionHeaderSkeleton from "../../components/skeleton/AccountSectionHeaderSkeleton";
 
-function OrdersSkeleton() {
+function OrdersSectionSkeleton() {
   return (
     <Card>
       <AccountSectionHeaderSkeleton />
@@ -36,4 +36,4 @@ function OrdersSkeleton() {
   );
 }
 
-export default OrdersSkeleton;
+export default OrdersSectionSkeleton;
