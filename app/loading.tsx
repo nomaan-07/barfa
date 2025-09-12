@@ -8,7 +8,11 @@ import BrandsFallback from "./_components/Home/Brands/components/BrandsFallback"
 function RootLoading() {
   return (
     <>
-      <Skeleton className="h-[50vh] w-full overflow-hidden sm:h-[60vh] lg:h-[70vh] xl:h-[80vh]" />
+      {/* Header */}
+      <Skeleton className="bg-default-300 h-16 w-full" />
+
+      {/* Hero Section */}
+      <Skeleton className="aspect-video w-full overflow-hidden xl:h-[80vh]" />
       <div className="mx-auto mt-16 max-w-7xl space-y-16 px-6 md:space-y-24">
         <div>
           <SectionHeaderSkeleton />
