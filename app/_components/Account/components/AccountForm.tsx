@@ -5,7 +5,7 @@ import { useUserStore } from "@/app/_store/userStore";
 import { convertToPersian } from "@/app/_utils/helper";
 import { updateUserValidation } from "@/app/_utils/validation";
 import { Button } from "@heroui/button";
-import { Card, CardBody, CardHeader } from "@heroui/card";
+import { Card, CardBody } from "@heroui/card";
 import { Form } from "@heroui/form";
 import { Spinner } from "@heroui/spinner";
 import { addToast } from "@heroui/toast";
@@ -16,6 +16,7 @@ import FirstNameInput from "../../Common/FormInputs/FirstNameInput";
 import LastNameInput from "../../Common/FormInputs/LastNameInput";
 import PasswordInput from "../../Common/FormInputs/PasswordInput";
 import PhoneInput from "../../Common/FormInputs/PhoneInput";
+import AccountSectionHeader from "./AccountSectionHeader";
 import AccountFormSkeleton from "./skeleton/AccountFormSkeleton";
 
 function AccountForm() {
@@ -116,9 +117,7 @@ function AccountForm() {
 
   return (
     <Card>
-      <CardHeader>
-        <h3 className="font-black sm:text-lg">اطلاعات حساب کاربری</h3>
-      </CardHeader>
+      <AccountSectionHeader>اطلاعات حساب کاربری</AccountSectionHeader>
       <CardBody>
         <Form
           className="gap-6 text-right"

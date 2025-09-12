@@ -16,7 +16,7 @@ export const ACCOUNT_ITEMS = [
   {
     id: 3,
     title: "مورد علاقه‌ها",
-    href: "/",
+    href: "/account/favorites",
     Icon: LucideHeart,
   },
 ];

@@ -1,13 +1,14 @@
 import { Card, CardBody } from "@heroui/card";
 import { Skeleton } from "@heroui/skeleton";
+import AccountSectionHeaderSkeleton from "../../components/skeleton/AccountSectionHeaderSkeleton";
 
 function OrdersSkeleton() {
   return (
     <Card>
+      <AccountSectionHeaderSkeleton />
       <CardBody className="flex flex-col gap-2">
         {/* Tabs */}
         <Skeleton className="h-10 w-59 rounded-xl" />
-
         {/* OrdersList */}
         <div className="mx-1 my-3 space-y-4">
           {Array.from({ length: 2 }).map((_, index) => (

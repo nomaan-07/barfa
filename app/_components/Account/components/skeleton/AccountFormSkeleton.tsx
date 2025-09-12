@@ -1,14 +1,13 @@
 import DoubleInputWrapper from "@/app/_components/Common/FormInputs/DoubleInputWrapper";
 import InputSkeleton from "@/app/_components/Common/FormInputs/InputSkeleton";
-import { Card, CardBody, CardHeader } from "@heroui/card";
+import { Card, CardBody } from "@heroui/card";
 import { Skeleton } from "@heroui/skeleton";
+import AccountSectionHeaderSkeleton from "./AccountSectionHeaderSkeleton";
 
 function AccountFormSkeleton() {
   return (
     <Card>
-      <CardHeader className="h-12 sm:h-13">
-        <Skeleton className="h-4 w-36 rounded-full sm:h-5 sm:w-41" />
-      </CardHeader>
+      <AccountSectionHeaderSkeleton />
       <CardBody>
         <div className="space-y-6">
           <DoubleInputWrapper>
