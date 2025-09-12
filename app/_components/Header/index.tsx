@@ -6,10 +6,11 @@ async function Header() {
 
   const safeUser = user
     ? {
-        first_name: user.first_name,
-        last_name: user.last_name,
+        firstName: user.first_name,
+        lastName: user.last_name,
         phone: user.phone,
         email: user.email,
+        favorites: user.favorite_products,
       }
     : undefined;
 

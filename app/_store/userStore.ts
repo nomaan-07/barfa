@@ -1,22 +1,20 @@
 import { create } from "zustand";
+import { FavoriteProducts } from "../_utils/types";
 
-interface initialState {
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-}
-
-interface UserStoreState {
+interface InitialUserState {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  isInitialized: boolean;
+  favorites: FavoriteProducts;
 }
 
+type UserStoreState = InitialUserState & {
+  isInitialized: boolean;
+};
+
 interface Actions {
-  setInitialUser: (user: initialState) => void;
+  setInitialUser: (user: InitialUserState) => void;
   clearUser: () => void;
 }
 export const useUserStore = create<UserStoreState & Actions>((set) => ({
@@ -24,14 +22,16 @@ export const useUserStore = create<UserStoreState & Actions>((set) => ({
   lastName: "",
   email: "",
   phone: "",
+  favorites: [],
   isInitialized: false,
 
   setInitialUser: (user) => {
     set({
-      firstName: user.first_name,
-      lastName: user.last_name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       phone: user.phone,
+      favorites: user.favorites,
       isInitialized: true,
     });
   },

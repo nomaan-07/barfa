@@ -1,6 +1,7 @@
 "use client";
 
 import { useUserStore } from "@/app/_store/userStore";
+import { FavoriteProducts } from "@/app/_utils/types";
 import { Navbar, NavbarBrand, NavbarContent } from "@heroui/navbar";
 import clsx from "clsx";
 import { useEffect } from "react";
@@ -12,10 +13,11 @@ import Navigation from "./components/Navigation";
 interface HeaderProps {
   user:
     | {
-        first_name: string;
-        last_name: string;
+        firstName: string;
+        lastName: string;
         phone: string;
         email: string;
+        favorites: FavoriteProducts;
       }
     | undefined;
 }

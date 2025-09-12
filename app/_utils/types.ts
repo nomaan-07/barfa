@@ -119,6 +119,14 @@ export type OrderProduct = {
   title: string;
 };
 
+type FavoriteProduct = {
+  id: number;
+  title: string;
+  imageSrc: string;
+};
+
+export type FavoriteProducts = FavoriteProduct[];
+
 export type Address = {
   firstName: string;
   lastName: string;

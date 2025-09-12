@@ -2,6 +2,7 @@
 
 import { TABLE_FIELDS, TABLES } from "@/app/_utils/constants";
 import { convertToPersian } from "@/app/_utils/helper";
+import { FavoriteProducts } from "@/app/_utils/types";
 import argon2 from "argon2";
 import { cookies } from "next/headers";
 import { supabase } from "../supabase";
@@ -168,11 +169,12 @@ export async function getUserFromCookie() {
 // ----- UPDATE USER -----
 
 interface UpdateUserOptions {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
   newPassword?: string;
+  favorites?: FavoriteProducts;
 }
 
 export async function updateUser(updates: UpdateUserOptions) {
@@ -180,20 +182,24 @@ export async function updateUser(updates: UpdateUserOptions) {
 
   if (!currentUser) return { error: "کاربری یافت نشد" };
 
-  const toUpdate: Record<string, string> = {};
+  const toUpdate: Record<string, string | FavoriteProducts> = {};
 
-  if (updates.firstName !== currentUser.first_name)
+  if (updates.firstName && updates.firstName !== currentUser.first_name)
     toUpdate.first_name = updates.firstName;
 
-  if (updates.lastName !== currentUser.last_name)
+  if (updates.lastName && updates.lastName !== currentUser.last_name)
     toUpdate.last_name = updates.lastName;
 
-  if (updates.email !== currentUser.email) toUpdate.email = updates.email;
+  if (updates.email && updates.email !== currentUser.email)
+    toUpdate.email = updates.email;
 
-  if (updates.phone !== currentUser.phone) toUpdate.phone = updates.phone;
+  if (updates.phone && updates.phone !== currentUser.phone)
+    toUpdate.phone = updates.phone;
 
   if (updates.newPassword)
     toUpdate.password = await argon2.hash(updates.newPassword);
+
+  if (updates.favorites) toUpdate.favorite_products = updates.favorites;
 
   const { data: updatedUser, error } = await supabase
     .from(TABLES.USERS)
@@ -215,12 +221,12 @@ export async function updateUser(updates: UpdateUserOptions) {
   }
 
   return {
-    success: true,
     updatedUser: {
-      first_name: updatedUser.first_name,
-      last_name: updatedUser.last_name,
+      firstName: updatedUser.first_name,
+      lastName: updatedUser.last_name,
       email: updatedUser.email,
       phone: updatedUser.phone,
+      favorites: updatedUser.favorite_products,
     },
   };
 }
