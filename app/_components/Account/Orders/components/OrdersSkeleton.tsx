@@ -9,9 +9,9 @@ function OrdersSkeleton() {
         <Skeleton className="h-10 w-59 rounded-xl" />
 
         {/* OrdersList */}
-        <div className="space-y-4">
+        <div className="mx-1 my-3 space-y-4">
           {Array.from({ length: 2 }).map((_, index) => (
-            <Card key={index} className="mx-1 my-3">
+            <Card key={index}>
               <CardBody className="flex flex-col items-start justify-between gap-4 p-4 sm:flex-row sm:items-center sm:p-6">
                 <div className="flex flex-1 flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
                   <Skeleton className="h-7 w-12 rounded-lg" />
