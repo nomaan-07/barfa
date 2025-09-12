@@ -10,7 +10,6 @@ import { Form } from "@heroui/form";
 import { Spinner } from "@heroui/spinner";
 import { addToast } from "@heroui/toast";
 import { useState } from "react";
-import { useShallow } from "zustand/shallow";
 import DoubleInputWrapper from "../../Common/FormInputs/DoubleInputWrapper";
 import EmailInput from "../../Common/FormInputs/EmailInput";
 import FirstNameInput from "../../Common/FormInputs/FirstNameInput";
@@ -24,17 +23,12 @@ function AccountForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [passwordKey, setPasswordKey] = useState(0);
 
-  const { firstName, lastName, email, phone, isInitialized, setInitialUser } =
-    useUserStore(
-      useShallow((state) => ({
-        firstName: state.firstName,
-        lastName: state.lastName,
-        email: state.email,
-        phone: state.phone,
-        isInitialized: state.isInitialized,
-        setInitialUser: state.setInitialUser,
-      })),
-    );
+  const firstName = useUserStore((state) => state.firstName);
+  const lastName = useUserStore((state) => state.lastName);
+  const email = useUserStore((state) => state.email);
+  const phone = useUserStore((state) => state.phone);
+  const isInitialized = useUserStore((state) => state.isInitialized);
+  const setInitialUser = useUserStore((state) => state.setInitialUser);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

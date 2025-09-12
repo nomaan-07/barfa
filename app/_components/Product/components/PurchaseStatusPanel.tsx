@@ -1,5 +1,5 @@
 import { useCartStore } from "@/app/_store/cartStore";
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import clsx from "clsx";
@@ -7,13 +7,13 @@ import { LucideBell, LucideShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 function PurchaseStatusPanel({}) {
-  const quantity = useProductsStore((state) => state.quantity);
-  const cartId = useProductsStore((state) => state.cartId);
-  const productExistInCart = useCartStore((state) =>
+  const quantity = useProductStore((state) => state.quantity);
+  const cartId = useProductStore((state) => state.cartId);
+  const isProductInCart = !!useCartStore((state) =>
     state.existingProduct(cartId),
   );
 
-  const variant = productExistInCart
+  const variant = isProductInCart
     ? "in-cart"
     : quantity === 0
       ? "finished"

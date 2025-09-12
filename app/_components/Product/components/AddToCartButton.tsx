@@ -1,53 +1,36 @@
 import { useCartStore } from "@/app/_store/cartStore";
 import {
   selectorCurrentImage,
-  useProductsStore,
+  useProductStore,
 } from "@/app/_store/productStore";
 import { Button } from "@heroui/button";
 import { addToast } from "@heroui/toast";
 import clsx from "clsx";
 import { ShoppingCart } from "lucide-react";
-import { useShallow } from "zustand/shallow";
 
 interface AddToCartButtonProps {
   className?: string;
 }
 
 function AddToCartButton({ className }: AddToCartButtonProps) {
-  const {
-    id,
-    title,
-    hasInsurance,
-    warranty,
-    quantity,
-    selectedQuantity,
-    discountPercent,
-    discountedPrice,
-    price,
-    insurancePrice,
-    insuranceTitle,
-  } = useProductsStore(
-    useShallow((state) => ({
-      id: state.id,
-      title: state.title_fa,
-      insurance: state.insurance,
-      hasInsurance: state.hasInsurance,
-      warranty: state.warranty,
-      quantity: state.quantity,
-      selectedQuantity: state.selectedQuantity,
-      discountPercent: state.discount_percent,
-      discountedPrice: state.discounted_price,
-      price: state.price,
-      insuranceTitle: state.insurance.title,
-      insurancePrice: state.insurancePrice,
-    })),
-  );
+  const id = useProductStore((state) => state.id);
+  const title = useProductStore((state) => state.title_fa);
+  const hasInsurance = useProductStore((state) => state.hasInsurance);
+  const warranty = useProductStore((state) => state.warranty);
+  const quantity = useProductStore((state) => state.quantity);
+  const selectedQuantity = useProductStore((state) => state.selectedQuantity);
+  const discountPercent = useProductStore((state) => state.discount_percent);
+  const discountedPrice = useProductStore((state) => state.discounted_price);
+  const price = useProductStore((state) => state.price);
+  const insuranceTitle = useProductStore((state) => state.insurance.title);
+  const insurancePrice = useProductStore((state) => state.insurancePrice);
+
   const {
     url: imageSrc,
     fa: colorFa,
     en: colorEn,
     value: colorValue,
-  } = useProductsStore(selectorCurrentImage);
+  } = useProductStore(selectorCurrentImage);
 
   const addToCart = useCartStore((state) => state.addProduct);
 

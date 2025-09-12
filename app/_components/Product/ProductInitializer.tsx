@@ -1,6 +1,6 @@
 "use client";
 
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { ProductType } from "@/app/_utils/types";
 import { useRef } from "react";
 import ProductWrapper from "./ProductWrapper";
@@ -13,7 +13,7 @@ function ProductInitializer({ product }: ProductInitializerProps) {
   const isInitialized = useRef(false);
 
   if (!isInitialized.current) {
-    const setInitialProduct = useProductsStore.getState().setInitialProduct;
+    const setInitialProduct = useProductStore.getState().setInitialProduct;
     setInitialProduct(product);
     isInitialized.current = true;
   }

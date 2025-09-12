@@ -1,6 +1,6 @@
 "use client";
 
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import ProductBadges from "../../Common/ProductBadges";
 
 interface PurchasePanelBadgesProps {
@@ -8,8 +8,8 @@ interface PurchasePanelBadgesProps {
 }
 
 function PurchasePanelBadges({ size }: PurchasePanelBadgesProps) {
-  const discountPercent = useProductsStore((state) => state.discount_percent);
-  const warranty = useProductsStore((state) => state.warranty);
+  const discountPercent = useProductStore((state) => state.discount_percent);
+  const warranty = useProductStore((state) => state.warranty);
 
   return (
     <ProductBadges

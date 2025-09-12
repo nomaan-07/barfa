@@ -1,7 +1,7 @@
 import { useIsAtBottom } from "@/app/_hooks/useIsAtBottom";
 import {
   selectorCurrentImage,
-  useProductsStore,
+  useProductStore,
 } from "@/app/_store/productStore";
 import { Button } from "@heroui/button";
 import { Drawer, DrawerBody, DrawerContent } from "@heroui/drawer";
@@ -18,11 +18,11 @@ import PurchasePanelProductPrice from "./PurchasePanelProductPrice";
 import PurchasePanelQuantitySelector from "./PurchasePanelQuantitySelector";
 
 function MobilePurchaseBar() {
+  const quantity = useProductStore((state) => state.quantity);
+  const title = useProductStore((state) => state.title_fa);
+  const currentImage = useProductStore(selectorCurrentImage);
   const isAtBottom = useIsAtBottom();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const quantity = useProductsStore((state) => state.quantity);
-  const titleFa = useProductsStore((state) => state.title_fa);
-  const currentImage = useProductsStore(selectorCurrentImage);
 
   return (
     <div
@@ -68,7 +68,7 @@ function MobilePurchaseBar() {
                     />
                     <div className="flex w-full flex-col justify-between gap-3 py-3">
                       <p className="line-clamp-2 text-sm font-bold sm:text-lg sm:leading-7 md:text-xl md:leading-8">
-                        {titleFa}
+                        {title}
                       </p>
                       <CurrentColorLine />
                     </div>

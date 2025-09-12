@@ -1,11 +1,11 @@
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { Card, CardBody } from "@heroui/card";
 import { Tab, Tabs } from "@heroui/tabs";
 import ProductIntroduction from "./components/ProductIntroduction";
 import ProductSpecifications from "./components/ProductSpecifications";
 
 function ProductTabs() {
-  const introduction = useProductsStore((state) => state.introduction);
+  const introduction = useProductStore((state) => state.introduction);
 
   return (
     <Card>

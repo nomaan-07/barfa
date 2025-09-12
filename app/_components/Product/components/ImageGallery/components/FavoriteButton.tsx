@@ -1,7 +1,7 @@
 "use client";
 
 import { updateUser } from "@/app/_lib/actions";
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { useUserStore } from "@/app/_store/userStore";
 import { FavoriteProducts } from "@/app/_utils/types";
 import { addToast } from "@heroui/toast";
@@ -15,24 +15,20 @@ import { useShallow } from "zustand/shallow";
 function FavoriteButton() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const product = useProductsStore(
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const isInitialized = useUserStore((state) => state.isInitialized);
+  const favoriteProducts = useUserStore((state) => state.favorites);
+  const setInitialUser = useUserStore((state) => state.setInitialUser);
+
+  const product = useProductStore(
     useShallow((state) => ({
       id: state.id,
       title: state.title_fa,
       imageSrc: state.image_sources.main,
     })),
   );
-
-  const { isInitialized, favoriteProducts, setInitialUser } = useUserStore(
-    useShallow((state) => ({
-      isInitialized: state.isInitialized,
-      favoriteProducts: state.favorites,
-      setInitialUser: state.setInitialUser,
-    })),
-  );
-
-  const router = useRouter();
-  const pathname = usePathname();
 
   const isFavorite = favoriteProducts.some((p) => p.id === product.id);
 

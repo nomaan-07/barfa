@@ -1,7 +1,7 @@
 "use client";
 
 import AddToCartButton from "@/app/_components/Product/components/AddToCartButton";
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { LOW_PRODUCT_QUANTITY } from "@/app/_utils/constants";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import clsx from "clsx";
@@ -12,7 +12,7 @@ import PurchasePanelProductPrice from "./PurchasePanelProductPrice";
 import PurchasePanelQuantitySelector from "./PurchasePanelQuantitySelector";
 
 function DesktopPurchasePanel() {
-  const quantity = useProductsStore((state) => state.quantity);
+  const quantity = useProductStore((state) => state.quantity);
 
   return (
     <Card className="hidden lg:block">

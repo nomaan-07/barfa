@@ -1,8 +1,8 @@
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { convertToPersian } from "@/app/_utils/helper";
 
 function MobileProductSpecialOffer() {
-  const discountedPercent = useProductsStore((state) => state.discount_percent);
+  const discountedPercent = useProductStore((state) => state.discount_percent);
 
   if (discountedPercent === 0) return null;
 

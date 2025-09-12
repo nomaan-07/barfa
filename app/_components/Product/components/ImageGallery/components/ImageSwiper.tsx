@@ -1,10 +1,10 @@
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ImageSwiperProps } from "../types";
 
 function ImageSwiper({ swiperRef, onSelect, onOpenModal }: ImageSwiperProps) {
-  const images = useProductsStore((state) => state.galleryImages);
+  const images = useProductStore((state) => state.galleryImages);
 
   return (
     <Swiper

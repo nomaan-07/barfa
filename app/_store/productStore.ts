@@ -26,8 +26,7 @@ interface Actions {
   selectColorVariant: (color: string) => void;
 }
 
-// FIXME: Rename to useProductStore
-export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
+export const useProductStore = create<ProductStoreState & Actions>((set) => ({
   id: 0,
   image_sources: { main: "", colors: {} },
   colors: [],
@@ -107,15 +106,12 @@ export const useProductsStore = create<ProductStoreState & Actions>((set) => ({
     })),
 }));
 
+const EMPTY_IMAGE: GalleryImage = { en: "", fa: "", value: "", url: "" };
+
 export const selectorCurrentImage = (state: ProductStoreState) => {
   const { galleryImages, selectedColorEn } = state;
   return (
-    galleryImages.find((image) => image.en === selectedColorEn) ?? {
-      en: "",
-      fa: "",
-      value: "",
-      url: "",
-    }
+    galleryImages.find((image) => image.en === selectedColorEn) ?? EMPTY_IMAGE
   );
 };
 

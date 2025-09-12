@@ -1,4 +1,4 @@
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { Accordion, AccordionItem } from "@heroui/accordion";
 import { useState } from "react";
 import Specification from "./Specification";
@@ -6,7 +6,7 @@ import ToggleButton from "./ToggleButton";
 
 function ProductSpecifications() {
   const [isOpen, setIsOpen] = useState(false);
-  const specifications = useProductsStore((state) => state.specifications);
+  const specifications = useProductStore((state) => state.specifications);
 
   const onToggle = () => setIsOpen((prev) => !prev);
 

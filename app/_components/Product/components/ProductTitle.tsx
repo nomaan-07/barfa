@@ -1,12 +1,17 @@
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import clsx from "clsx";
+import { useShallow } from "zustand/shallow";
 
 interface ProductTitleProps {
   variant: "mobile" | "desktop";
 }
 function ProductTitle({ variant }: ProductTitleProps) {
-  const titleFa = useProductsStore((state) => state.title_fa);
-  const titleEn = useProductsStore((state) => state.title_en);
+  const { titleFa, titleEn } = useProductStore(
+    useShallow((state) => ({
+      titleFa: state.title_fa,
+      titleEn: state.title_en,
+    })),
+  );
 
   return (
     <div

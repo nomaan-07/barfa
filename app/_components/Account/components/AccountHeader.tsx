@@ -2,19 +2,14 @@
 
 import { useUserStore } from "@/app/_store/userStore";
 import { Card, CardBody } from "@heroui/card";
-import { useShallow } from "zustand/shallow";
 import AccountHeaderSkeleton from "./skeleton/AccountHeaderSkeleton";
 
 function AccountHeader() {
-  const { firstName, lastName, email, phone, isInitialized } = useUserStore(
-    useShallow((state) => ({
-      firstName: state.firstName,
-      lastName: state.lastName,
-      email: state.email,
-      phone: state.phone,
-      isInitialized: state.isInitialized,
-    })),
-  );
+  const firstName = useUserStore((state) => state.firstName);
+  const lastName = useUserStore((state) => state.lastName);
+  const email = useUserStore((state) => state.email);
+  const phone = useUserStore((state) => state.phone);
+  const isInitialized = useUserStore((state) => state.isInitialized);
 
   if (!isInitialized) return <AccountHeaderSkeleton />;
 

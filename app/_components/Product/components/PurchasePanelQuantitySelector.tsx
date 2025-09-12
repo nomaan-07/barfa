@@ -1,11 +1,11 @@
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import QuantitySelector from "../../Common/QuantitySelector";
 
 function PurchasePanelQuantitySelector() {
-  const quantity = useProductsStore((state) => state.quantity);
-  const selectedQuantity = useProductsStore((state) => state.selectedQuantity);
-  const increaseQuantity = useProductsStore((state) => state.increaseQuantity);
-  const decreaseQuantity = useProductsStore((state) => state.decreaseQuantity);
+  const quantity = useProductStore((state) => state.quantity);
+  const selectedQuantity = useProductStore((state) => state.selectedQuantity);
+  const increaseQuantity = useProductStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useProductStore((state) => state.decreaseQuantity);
 
   return (
     <QuantitySelector

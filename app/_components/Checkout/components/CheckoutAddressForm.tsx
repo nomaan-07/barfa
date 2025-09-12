@@ -6,7 +6,6 @@ import { Button } from "@heroui/button";
 import { Card, CardBody, CardHeader } from "@heroui/card";
 import { Form } from "@heroui/form";
 import { Key, useState } from "react";
-import { useShallow } from "zustand/shallow";
 import AddressInput from "../../Common/FormInputs/AddressInput";
 import BuildingNumberInput from "../../Common/FormInputs/BuildingNumberInput";
 import DoubleInputWrapper from "../../Common/FormInputs/DoubleInputWrapper";
@@ -30,14 +29,10 @@ export function CheckoutAddressForm({
   const [province, setProvince] = useState<string>(address?.province || "");
   const [city, setCity] = useState<string>(address?.city || "");
 
-  const { firstName, lastName, email, phone } = useUserStore(
-    useShallow((state) => ({
-      firstName: state.firstName,
-      lastName: state.lastName,
-      email: state.email,
-      phone: state.phone,
-    })),
-  );
+  const firstName = useUserStore((state) => state.firstName);
+  const lastName = useUserStore((state) => state.lastName);
+  const email = useUserStore((state) => state.email);
+  const phone = useUserStore((state) => state.phone);
 
   function handleSelectProvince(key: Key | null) {
     if (key === null) return;

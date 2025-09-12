@@ -1,6 +1,7 @@
 import { useCartStore } from "@/app/_store/cartStore";
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { Card, CardBody, CardFooter } from "@heroui/card";
+import { useShallow } from "zustand/shallow";
 import PageBreadCrumbs from "../Common/PageBreadCrumbs";
 import DesktopPurchasePanel from "./components/DesktopPurchasePanel";
 import ImageGallery from "./components/ImageGallery";
@@ -13,13 +14,14 @@ import ProductTitle from "./components/ProductTitle";
 import PurchaseStatusPanel from "./components/PurchaseStatusPanel";
 
 function ProductWrapper() {
-  const cartId = useProductsStore((state) => state.cartId);
-  const category = useProductsStore((state) => state.category);
-  const brand = useProductsStore((state) => state.brand);
-  const status = useProductsStore((state) => state.status);
-  const quantity = useProductsStore((state) => state.quantity);
+  const cartId = useProductStore((state) => state.cartId);
+  const status = useProductStore((state) => state.status);
+  const quantity = useProductStore((state) => state.quantity);
   const productExistInCart = useCartStore((state) =>
     state.existingProduct(cartId),
+  );
+  const { category, brand } = useProductStore(
+    useShallow((state) => ({ category: state.category, brand: state.brand })),
   );
 
   if (status === "loading") return <ProductSkeleton />;

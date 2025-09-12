@@ -1,6 +1,6 @@
 "use client";
 
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import { useDisclosure } from "@heroui/react";
 import { useRef } from "react";
 import { Swiper as SwiperType } from "swiper";
@@ -18,8 +18,8 @@ function ImageGallery() {
   const swiperRef = useRef<SwiperType | null>(null);
   const modalSwiperRef = useRef<SwiperType | null>(null);
 
-  const images = useProductsStore((state) => state.galleryImages);
-  const selectColorVariant = useProductsStore(
+  const images = useProductStore((state) => state.galleryImages);
+  const selectColorVariant = useProductStore(
     (state) => state.selectColorVariant,
   );
 

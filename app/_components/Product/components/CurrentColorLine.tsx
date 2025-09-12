@@ -1,11 +1,11 @@
 import {
   selectorCurrentImage,
-  useProductsStore,
+  useProductStore,
 } from "@/app/_store/productStore";
 import clsx from "clsx";
 
 function CurrentColorLine() {
-  const currentImage = useProductsStore(selectorCurrentImage);
+  const currentImage = useProductStore(selectorCurrentImage);
 
   if (!currentImage) return null;
 

@@ -1,11 +1,11 @@
-import { useProductsStore } from "@/app/_store/productStore";
+import { useProductStore } from "@/app/_store/productStore";
 import clsx from "clsx";
 import { useState } from "react";
 import ToggleButton from "./ToggleButton";
 
 function ProductIntroduction() {
   const [isOpen, setIsOpen] = useState(false);
-  const introduction = useProductsStore((state) => state.introduction);
+  const introduction = useProductStore((state) => state.introduction);
 
   const onToggle = () => setIsOpen((prev) => !prev);
 
