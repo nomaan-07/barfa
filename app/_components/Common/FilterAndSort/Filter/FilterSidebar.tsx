@@ -54,6 +54,7 @@ function FilterSidebar({ brands, colors, prices }: FilterSidebarProps) {
               size="sm"
               color="danger"
               onPress={() => clearAll()}
+              aria-label="حذف همه‌ی فیلترها"
             >
               <LucideX className="size-5" />
             </Button>

@@ -4,10 +4,20 @@ import { LucideSearch } from "lucide-react";
 function SearchPanelFallback() {
   return (
     <>
-      <Button isIconOnly variant="light" className="hidden lg:flex">
+      <Button
+        isIconOnly
+        variant="light"
+        className="hidden lg:flex"
+        aria-label="باز کردن پنل جستجو"
+      >
         <LucideSearch className="size-5" />
       </Button>
-      <Button isIconOnly variant="bordered" className="border-small lg:hidden">
+      <Button
+        isIconOnly
+        variant="bordered"
+        className="border-small lg:hidden"
+        aria-label="باز کردن پنل جستجو"
+      >
         <LucideSearch className="size-5" />
       </Button>
     </>

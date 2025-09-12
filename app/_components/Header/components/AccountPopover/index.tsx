@@ -8,14 +8,20 @@ import AccountPopoverCard from "./components/AccountPopoverCard";
 function AccountPopover() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isAccountPage = pathname.startsWith("/account");
 
   const triggerButton = (
-    <Button isIconOnly variant="light">
+    <Button
+      isIconOnly
+      variant="light"
+      isDisabled={isAccountPage}
+      aria-label="باز کردن پنل حساب کاربری"
+    >
       <LucideUser2 className="size-5" />
     </Button>
   );
 
-  if (pathname.startsWith("/account")) return triggerButton;
+  if (isAccountPage) return triggerButton;
 
   return (
     <Popover

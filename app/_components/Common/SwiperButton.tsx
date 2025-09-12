@@ -15,6 +15,7 @@ function SwiperButton({ className, direction }: SwiperButtonProps) {
   return (
     <Button
       isIconOnly
+      aria-label={isPrevButton ? "اسلاید قبلی" : "اسلاید بعدی"}
       className={clsx(
         "absolute top-2/5 z-40 hidden lg:flex",
         className,

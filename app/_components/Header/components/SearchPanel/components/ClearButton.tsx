@@ -8,7 +8,12 @@ function ClearButton() {
 
   return (
     <Tooltip content="پاک کردن">
-      <Button variant="light" isIconOnly onPress={onClear}>
+      <Button
+        variant="light"
+        isIconOnly
+        onPress={onClear}
+        aria-label="پاک کردن جستجو"
+      >
         <LucideEraser className="size-5" />
       </Button>
     </Tooltip>

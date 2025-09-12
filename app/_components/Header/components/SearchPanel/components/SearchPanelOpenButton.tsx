@@ -12,6 +12,7 @@ function SearchPanelOpenButton() {
         variant="light"
         onPress={onOpen}
         className="hidden lg:flex"
+        aria-label="باز کردن پنل جستجو"
       >
         <LucideSearch className="size-5" />
       </Button>
@@ -21,6 +22,7 @@ function SearchPanelOpenButton() {
         variant="bordered"
         className="border-small lg:hidden"
         onPress={onOpen}
+        aria-label="باز کردن پنل جستجو"
       >
         <LucideSearch className="size-5" />
       </Button>

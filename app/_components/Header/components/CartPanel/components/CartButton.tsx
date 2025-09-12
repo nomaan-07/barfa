@@ -20,6 +20,7 @@ function CartButton() {
         isIconOnly
         variant="light"
         className="hidden lg:flex"
+        aria-label="سبد خرید"
       >
         <LucideShoppingCart className="size-5" />
       </Button>
@@ -30,6 +31,7 @@ function CartButton() {
         isIconOnly
         variant="bordered"
         className="border-small lg:hidden"
+        aria-label="سبد خرید"
       >
         <LucideShoppingCart className="size-5" />
       </Button>

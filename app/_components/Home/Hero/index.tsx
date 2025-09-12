@@ -80,10 +80,10 @@ function Hero() {
       </Swiper>
 
       <div className="invisible absolute bottom-16 left-6 z-30 hidden items-center gap-3 opacity-0 transition-all group-hover:visible group-hover:opacity-100 lg:flex">
-        <Button isIconOnly className="hero-prev-btn">
+        <Button isIconOnly className="hero-prev-btn" aria-label="اسلاید قبلی">
           <LucideChevronRight />
         </Button>
-        <Button isIconOnly className="hero-next-btn">
+        <Button isIconOnly className="hero-next-btn" aria-label="اسلاید بعدی">
           <LucideChevronLeft />
         </Button>
       </div>

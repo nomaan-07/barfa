@@ -54,6 +54,7 @@ function SortDrawer({ currentSort, onSortChange }: SortDrawerProps) {
                     )}
                     disabled={currentSort === option.value}
                     onClick={() => onSortChange(option.value, onClose)}
+                    aria-label={`مرتب‌سازی بر اساس ${option.name}`}
                   >
                     {option.name}
                     {currentSort === option.value && (

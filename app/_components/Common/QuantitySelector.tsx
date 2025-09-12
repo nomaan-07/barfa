@@ -20,6 +20,7 @@ function QuantitySelector({
 }: QuantitySelectorProps) {
   const isIncreaseDisabled = quantity === selectedQuantity;
   const isDecreaseDisabled = !allowRemove && selectedQuantity === 1;
+  const isRemovable = allowRemove && selectedQuantity === 1;
 
   const iconStyles = "size-4 sm:size-5";
   const buttonStyles = "min-w-8 size-8 sm:size-10";
@@ -35,6 +36,7 @@ function QuantitySelector({
             onPress={onIncrease}
             isDisabled={isIncreaseDisabled}
             className={buttonStyles}
+            aria-label="افزایش تعداد"
           >
             <LucidePlus className={iconStyles} />
           </Button>
@@ -53,8 +55,9 @@ function QuantitySelector({
             onPress={onDecrease}
             isDisabled={isDecreaseDisabled}
             className={buttonStyles}
+            aria-label={isRemovable ? "حذف محصول" : "کاهش تعداد"}
           >
-            {allowRemove && selectedQuantity === 1 ? (
+            {isRemovable ? (
               <LucideTrash2 className={iconStyles} />
             ) : (
               <LucideMinus className={iconStyles} />

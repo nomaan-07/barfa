@@ -25,6 +25,7 @@ function SortDesktop({ currentSort, onSortChange }: SortDesktopProps) {
             })}
             disabled={currentSort === option.value}
             onClick={() => onSortChange(option.value)}
+            aria-label={`مرتب‌سازی بر اساس ${option.name}`}
           >
             {option.name}
           </button>

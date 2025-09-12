@@ -31,7 +31,7 @@ function DrawerCloseButton({
           "right-2": position === "right",
         })}
       >
-        <Button variant="light" isIconOnly onPress={onClose}>
+        <Button variant="light" isIconOnly onPress={onClose} aria-label="بستن">
           {icon === "arrow" && <LucideArrowRight className="size-5" />}
           {icon === "x" && <LucideX className="size-5" />}
         </Button>

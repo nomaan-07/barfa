@@ -8,7 +8,7 @@ function SearchButton() {
 
   return (
     <Tooltip content="جستجو">
-      <Button isIconOnly variant="light" onPress={onSearch}>
+      <Button isIconOnly variant="light" onPress={onSearch} aria-label="جستجو">
         <LucideSearch className="size-5" />
       </Button>
     </Tooltip>
