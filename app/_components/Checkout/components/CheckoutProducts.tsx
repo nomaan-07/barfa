@@ -15,6 +15,7 @@ function CheckoutProducts() {
             width={64}
             height={64}
             priority={index === 0}
+            quality={40}
           />
           <div className="text-center text-sm">
             {convertToPersian(product.selectedQuantity)} عدد

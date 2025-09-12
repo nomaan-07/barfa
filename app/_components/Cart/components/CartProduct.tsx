@@ -64,6 +64,7 @@ function CartProduct({ product, variant, index }: CartProductProps) {
             width={112}
             height={112}
             priority={index === 0}
+            quality={50}
           />
         </div>
 

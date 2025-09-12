@@ -11,7 +11,14 @@ function OrderProduct({ product }: OrderProductProps) {
       href={`/product/${id}`}
       className="hover:bg-primary-50 flex flex-col gap-3 p-4 transition-colors sm:flex-row sm:items-center sm:gap-4"
     >
-      <Image src={imageSrc} alt={title} width={80} height={80} />
+      <Image
+        src={imageSrc}
+        alt={title}
+        width={80}
+        height={80}
+        className="rounded-xl"
+        quality={50}
+      />
 
       <div className="flex flex-1 flex-col">
         <p className="font-medium">{title}</p>
