@@ -14,17 +14,17 @@ function ImageGallerySkeleton() {
           <Skeleton className="aspect-square h-52 rounded-xl sm:h-64 md:h-72 lg:h-93 xl:h-127" />
         </div>
 
-        {/* Color Circles */}
-        <div className="mb-2 flex gap-2 lg:absolute lg:top-1 lg:right-1 lg:z-10 lg:mb-0 lg:flex-col">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <Skeleton key={index} className="size-6 rounded-full" />
-          ))}
-        </div>
-
         {/* Product Actions */}
         <div className="mb-2 flex justify-end gap-3 lg:absolute lg:top-1 lg:left-1 lg:z-10 lg:mb-0 lg:flex-col lg:gap-2">
           {Array.from({ length: 2 }).map((_, index) => (
             <Skeleton key={index} className="size-6 rounded-lg" />
+          ))}
+        </div>
+
+        {/* Color Circles */}
+        <div className="mb-2 flex gap-2 lg:absolute lg:top-1 lg:right-1 lg:z-10 lg:mb-0 lg:flex-col">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <Skeleton key={index} className="size-6 rounded-full" />
           ))}
         </div>
 
