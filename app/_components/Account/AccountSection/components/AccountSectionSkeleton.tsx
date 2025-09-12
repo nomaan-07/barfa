@@ -2,9 +2,9 @@ import DoubleInputWrapper from "@/app/_components/Common/FormInputs/DoubleInputW
 import InputSkeleton from "@/app/_components/Common/FormInputs/InputSkeleton";
 import { Card, CardBody } from "@heroui/card";
 import { Skeleton } from "@heroui/skeleton";
-import AccountSectionHeaderSkeleton from "./AccountSectionHeaderSkeleton";
+import AccountSectionHeaderSkeleton from "../../components/skeleton/AccountSectionHeaderSkeleton";
 
-function AccountFormSkeleton() {
+function AccountSectionSkeleton() {
   return (
     <Card>
       <AccountSectionHeaderSkeleton />
@@ -29,4 +29,4 @@ function AccountFormSkeleton() {
   );
 }
 
-export default AccountFormSkeleton;
+export default AccountSectionSkeleton;

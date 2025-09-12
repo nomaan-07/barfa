@@ -1,7 +1,7 @@
-import AccountForm from "@/app/_components/Account/components/AccountForm";
+import AccountSection from "@/app/_components/Account/AccountSection";
 
 async function AccountPage() {
-  return <AccountForm />;
+  return <AccountSection />;
 }
 
 export default AccountPage;

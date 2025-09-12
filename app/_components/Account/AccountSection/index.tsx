@@ -16,10 +16,10 @@ import FirstNameInput from "../../Common/FormInputs/FirstNameInput";
 import LastNameInput from "../../Common/FormInputs/LastNameInput";
 import PasswordInput from "../../Common/FormInputs/PasswordInput";
 import PhoneInput from "../../Common/FormInputs/PhoneInput";
-import AccountSectionHeader from "./common/AccountSectionHeader";
-import AccountFormSkeleton from "./skeleton/AccountFormSkeleton";
+import AccountSectionSkeleton from "../AccountSection/components/AccountSectionSkeleton";
+import AccountSectionHeader from "../components/common/AccountSectionHeader";
 
-function AccountForm() {
+function AccountSection() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [passwordKey, setPasswordKey] = useState(0);
@@ -113,7 +113,7 @@ function AccountForm() {
     }
   }
 
-  if (!isInitialized) return <AccountFormSkeleton />;
+  if (!isInitialized) return <AccountSectionSkeleton />;
 
   return (
     <Card>
@@ -158,4 +158,4 @@ function AccountForm() {
   );
 }
 
-export default AccountForm;
+export default AccountSection;
