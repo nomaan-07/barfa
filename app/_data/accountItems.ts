@@ -15,7 +15,7 @@ export const ACCOUNT_ITEMS = [
   },
   {
     id: 3,
-    title: "مورد علاقه‌ها",
+    title: "علاقه‌مندی‌ها",
     href: "/account/favorites",
     Icon: LucideHeart,
   },

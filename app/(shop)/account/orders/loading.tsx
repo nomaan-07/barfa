@@ -1,4 +1,4 @@
-import OrdersSkeleton from "@/app/_components/Account/Orders/components/OrdersSkeleton";
+import OrdersSkeleton from "@/app/_components/Account/OrdersSection/components/OrdersSkeleton";
 
 function OrdersLoading() {
   return <OrdersSkeleton />;

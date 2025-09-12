@@ -16,7 +16,7 @@ import FirstNameInput from "../../Common/FormInputs/FirstNameInput";
 import LastNameInput from "../../Common/FormInputs/LastNameInput";
 import PasswordInput from "../../Common/FormInputs/PasswordInput";
 import PhoneInput from "../../Common/FormInputs/PhoneInput";
-import AccountSectionHeader from "./AccountSectionHeader";
+import AccountSectionHeader from "./common/AccountSectionHeader";
 import AccountFormSkeleton from "./skeleton/AccountFormSkeleton";
 
 function AccountForm() {

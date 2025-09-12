@@ -2,13 +2,14 @@
 
 import { Card, CardBody } from "@heroui/card";
 import { Tab, Tabs } from "@heroui/tabs";
-import AccountSectionHeader from "../components/AccountSectionHeader";
-import EmptyOrders from "./components/EmptyOrders";
+import { LucidePackageX } from "lucide-react";
+import AccountEmptyProducts from "../components/common/AccountEmptyProducts";
+import AccountSectionHeader from "../components/common/AccountSectionHeader";
 import OrderRow from "./components/OrderRow";
 import OrdersTabTitle from "./components/OrdersTabTitle";
-import { OrdersProps } from "./types";
+import { OrdersSectionProps } from "./types";
 
-function Orders({ orders }: OrdersProps) {
+function OrdersSection({ orders }: OrdersSectionProps) {
   return (
     <Card>
       <AccountSectionHeader>تاریخچه سفارش‌ها</AccountSectionHeader>
@@ -28,13 +29,19 @@ function Orders({ orders }: OrdersProps) {
             key="delivered"
             title={<OrdersTabTitle count={0} title="تحویل شده" />}
           >
-            <EmptyOrders title="هیچ سفارشی تاکنون تحویل داده نشده است" />
+            <AccountEmptyProducts
+              title="هیچ سفارشی تاکنون تحویل داده نشده است"
+              Icon={LucidePackageX}
+            />
           </Tab>
           <Tab
             key="canceled"
             title={<OrdersTabTitle count={0} title="لغو شده" />}
           >
-            <EmptyOrders title="هیچ سفارشی تاکنون لغو نشده است" />
+            <AccountEmptyProducts
+              title="هیچ سفارشی تاکنون لغو نشده است"
+              Icon={LucidePackageX}
+            />
           </Tab>
         </Tabs>
       </CardBody>
@@ -42,4 +49,4 @@ function Orders({ orders }: OrdersProps) {
   );
 }
 
-export default Orders;
+export default OrdersSection;

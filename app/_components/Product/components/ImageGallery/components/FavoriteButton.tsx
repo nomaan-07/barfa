@@ -33,8 +33,8 @@ function FavoriteButton() {
   const isFavorite = favoriteProducts.some((p) => p.id === product.id);
 
   const tooltipContent = isFavorite
-    ? "حذف از مورد علاقه ها"
-    : "افزودن به مورد علاقه‌ها";
+    ? "حذف از لیست علاقه‌مندی‌ها"
+    : "افزودن به لیست علاقه‌مندی‌ها";
 
   async function handleToggleFavorite() {
     if (!isInitialized) return router.push(`/login?backTo=${pathname}`);
@@ -56,16 +56,16 @@ function FavoriteButton() {
     if (error) {
       addToast({
         title: isFavorite
-          ? "خطا در حذف از مورد علاقه‌ها"
-          : "خطا در اضافه کردن به مورد علاقه‌ها",
+          ? "خطا در حذف از لیست علاقه‌مندی‌ها"
+          : "خطا در اضافه کردن به لیست علاقه‌مندی‌ها",
         variant: "bordered",
         color: "danger",
       });
     } else if (updatedUser) {
       addToast({
         title: isFavorite
-          ? "از مورد علاقه‌ها حذف شد"
-          : "به مورد علاقه‌ها اضافه شد",
+          ? "از لیست علاقه‌مندی‌ها حذف شد"
+          : "به لیست علاقه‌مندی‌ها اضافه شد",
         description: product.title,
         variant: "bordered",
         color: isFavorite ? "warning" : "success",

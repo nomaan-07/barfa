@@ -7,7 +7,7 @@ type Order = {
   created_at: string;
 };
 
-export interface OrdersProps {
+export interface OrdersSectionProps {
   orders: Order[];
 }
 
@@ -23,10 +23,6 @@ export interface OrderRowProps {
 export interface OrderModalProps {
   order: Order;
   totalProducts: number;
-}
-
-export interface EmptyOrdersProps {
-  title?: string;
 }
 
 export interface OrderProductProps {

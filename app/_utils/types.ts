@@ -119,13 +119,13 @@ export type OrderProduct = {
   title: string;
 };
 
-type FavoriteProduct = {
+export type FavoriteProductType = {
   id: number;
   title: string;
   imageSrc: string;
 };
 
-export type FavoriteProducts = FavoriteProduct[];
+export type FavoriteProducts = FavoriteProductType[];
 
 export type Address = {
   firstName: string;

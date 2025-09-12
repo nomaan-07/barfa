@@ -3,7 +3,7 @@
 import { useLogout } from "@/app/_hooks/useLogout";
 import { Button } from "@heroui/button";
 import { LucideLogOut } from "lucide-react";
-import LogoutModal from "./LogoutModal";
+import AccountLogout from "./AccountLogout";
 
 function MobileLogoutButton() {
   const logout = useLogout();
@@ -20,7 +20,7 @@ function MobileLogoutButton() {
       >
         خروج از حساب
       </Button>
-      <LogoutModal logout={logout} />
+      <AccountLogout logout={logout} />
     </>
   );
 }

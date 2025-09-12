@@ -4,7 +4,7 @@ import { useLogout } from "@/app/_hooks/useLogout";
 import { Button } from "@heroui/button";
 import { LucideLogOut } from "lucide-react";
 import { AccountButtonSize, getButtonClasses, IconSize } from "../utils";
-import LogoutModal from "./LogoutModal";
+import AccountLogout from "./AccountLogout";
 
 interface AccountMenuLogoutButtonProps {
   onClosePopover?: () => void;
@@ -32,7 +32,7 @@ function AccountMenuLogoutButton({
         خروج از حساب کاربری
       </Button>
 
-      <LogoutModal afterLogout={onClosePopover} logout={logout} />
+      <AccountLogout afterLogout={onClosePopover} logout={logout} />
     </>
   );
 }

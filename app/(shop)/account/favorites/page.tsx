@@ -1,5 +1,7 @@
+import FavoritesSection from "@/app/_components/Account/FavoritesSection";
+
 function FavoritesPage() {
-  return <div></div>;
+  return <FavoritesSection />;
 }
 
 export default FavoritesPage;
