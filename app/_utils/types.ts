@@ -69,7 +69,6 @@ export type Banner = {
 export type PopularBrand = {
   id: number;
   name: string;
-  link: string;
   image_src: string;
 };
 

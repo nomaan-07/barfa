@@ -30,20 +30,20 @@ function BrandsSwiper({ brands }: BrandSwiperProps) {
       }}
       modules={[Navigation, Pagination]}
     >
-      {brands.map((brand) => (
+      {brands.map(({ id, image_src, name }) => (
         <SwiperSlide
-          key={brand.id}
+          key={id}
           className="not-last:border-l-default-200 !w-auto px-4 select-none not-last:border-l"
         >
           <Link
-            href={brand.link}
+            href={`/category/all?brand=${name}`}
             className="flex size-28 items-center justify-center sm:size-32"
           >
             <Skeleton isLoaded={isLoaded} className="rounded-xl">
               <div className="flex size-28 items-center justify-center transition-transform sm:size-32 md:hover:scale-105">
                 <Image
-                  src={brand.image_src}
-                  alt={brand.name}
+                  src={image_src}
+                  alt={name}
                   radius="none"
                   onLoad={() => setIsLoaded(true)}
                   onError={() => setIsLoaded(true)}

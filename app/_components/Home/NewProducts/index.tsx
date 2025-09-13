@@ -12,7 +12,7 @@ async function NewProducts() {
   return (
     <section>
       <SectionHeader
-        link="category/all?sort=newest"
+        link="/category/all?sort=newest"
         buttonColor="success"
         bgColor="bg-success"
         textColor="text-white"
