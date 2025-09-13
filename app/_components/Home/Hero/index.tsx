@@ -54,10 +54,11 @@ function Hero() {
               <Image
                 src={item.imageSrc}
                 fill
-                priority={index === 0}
                 alt={item.title}
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1280px, 1920px"
-                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                priority={index === 0}
+                className="object-cover"
               />
 
               {/* Dark overlay*/}
