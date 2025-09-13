@@ -1,4 +1,4 @@
-# <img src="public/logo.png" width="80" /> Barfa
+# <img src="public/logo/logo.png" width="120" />
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.4-%23000000)
 ![React](https://img.shields.io/badge/React-19.1-%2361DAFB)
