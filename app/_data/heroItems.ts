@@ -18,7 +18,7 @@ export const heroItems: Item[] = [
   },
   {
     id: "2",
-    imageSrc: "/hero/smartphones.png",
+    imageSrc: "/hero/smartphones.jpg",
     title: "گوشی رویایی شما همین‌جاست!",
     caption: "جدیدترین مدل‌های گوشی با بهترین قیمت‌ها.",
     href: "/category/mobile",
@@ -26,7 +26,7 @@ export const heroItems: Item[] = [
   },
   {
     id: "3",
-    imageSrc: "/hero/laptops.png",
+    imageSrc: "/hero/laptops.jpg",
     title: "لپ‌تاپ حرفه‌ای برای شما",
     caption: "بهترین لپ‌تاپ‌ها برای کار، بازی و خلق ایده‌های جدید.",
     href: "/category/laptop",
@@ -34,7 +34,7 @@ export const heroItems: Item[] = [
   },
   {
     id: "4",
-    imageSrc: "/hero/headphone.png",
+    imageSrc: "/hero/headphone.jpg",
     title: "صدای شفاف، کیفیت بی‌نظیر",
     caption: "هدفون‌های با کیفیت عالی برای تجربه صوتی متفاوت.",
     href: "/category/headphone",

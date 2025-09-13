@@ -47,15 +47,17 @@ function Hero() {
       >
         {heroItems.map((item, index) => (
           <SwiperSlide key={item.id}>
-            <Link href={item.href} className="relative">
+            <Link
+              href={item.href}
+              className="bg-background relative block size-full select-none"
+            >
               <Image
                 src={item.imageSrc}
                 fill
                 priority={index === 0}
-                quality={80}
                 alt={item.title}
-                className="select-none"
-                sizes="(max-width: 768px) 100vw, 1280px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 1280px, 1920px"
+                loading={index === 0 ? "eager" : "lazy"}
               />
 
               {/* Dark overlay*/}
