@@ -3,6 +3,7 @@ import FilterSidebar from "@/app/_components/Common/FilterAndSort/Filter/FilterS
 import PageBreadCrumbs from "@/app/_components/Common/PageBreadCrumbs";
 import ProductsList from "@/app/_components/Common/ProductsList";
 import ProductsListFallback from "@/app/_components/Common/ProductsList/components/ProductsListFallback";
+import ScrollToTop from "@/app/_components/Common/ScrollToTop";
 import { getProductsFilters } from "@/app/_lib/data-services";
 import {
   categoryParamsValidation,
@@ -40,6 +41,7 @@ async function CategoryPage({ params, searchParams }: CategoryPageProps) {
 
   return (
     <div className="mx-auto mt-4 max-w-7xl space-y-8 px-6">
+      <ScrollToTop />
       <PageBreadCrumbs
         page="category"
         category={currentCategory}
