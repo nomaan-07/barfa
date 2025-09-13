@@ -6,7 +6,7 @@ function ImageGallerySkeleton() {
       {/* CurrentColorLine */}
       <div className="order-2 flex w-full items-center gap-2 sm:h-5 lg:order-1 lg:mb-2 lg:h-6">
         <Skeleton className="bg-default-300 h-2 w-36 shrink-0 rounded-full sm:h-3 lg:h-4" />
-        <Skeleton className="h-1 w-full rounded-full lg:h-1.5" />
+        <Skeleton className="h-1.5 w-full rounded-full lg:h-2" />
       </div>
       {/* Image */}
       <div className="relative w-full space-y-2 lg:order-2 lg:px-12">

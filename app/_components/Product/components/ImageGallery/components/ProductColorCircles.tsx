@@ -14,10 +14,10 @@ function ProductColorCircles({ onSelect }: ProductColorCirclesProps) {
       {images.map((image, index) => (
         <button
           key={index}
-          className={clsx("size-6 cursor-pointer rounded-full", {
-            "ring-primary ring-1 ring-offset-2": activeIndex === index,
-            "border-default-300 border-1": activeIndex !== index,
-          })}
+          className={clsx(
+            "border-default-300 size-6 cursor-pointer rounded-full border-1",
+            activeIndex === index && "ring-primary ring-1 ring-offset-2",
+          )}
           style={{ backgroundColor: image.value }}
           onClick={() => onSelect(index)}
         />
