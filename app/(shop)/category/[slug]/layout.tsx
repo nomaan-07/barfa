@@ -9,15 +9,16 @@ export async function generateMetadata({
 
   if (slug === "all")
     return {
-      title: "دسته بندی محصولات",
-      description: "خرید بهترین محصولات دیجیتال از برفا",
+      title: "همه دسته‌بندی‌های محصولات دیجیتال و تکنولوژی",
+      description:
+        "خرید آنلاین بهترین محصولات دیجیتال شامل موبایل، لپ‌تاپ، تبلت و گجت‌ها از فروشگاه اینترنتی برفا با ارسال سریع و گارانتی معتبر",
     };
 
   const category = getCategoryBySlug(slug);
 
   return {
-    title: category.fa,
-    description: `خرید انواع محصولات ${category.fa} با بهترین کیفیت و قیمت مناسب`,
+    title: `محصولات ${category.fa} با بهترین قیمت و بالاترین کیفیت`,
+    description: `خرید آنلاین انواع محصولات ${category.fa} با بهترین کیفیت، قیمت مناسب، ارسال سریع، گارانتی معتبر و پشتیبانی حرفه‌ای از فروشگاه اینترنتی برفا`,
   };
 }
 
