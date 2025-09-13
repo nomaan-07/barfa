@@ -1,7 +1,7 @@
 export const socialLinks = [
   {
     name: "Instagram",
-    url: "https://instagram.com",
+    url: "https://instagram.com/nomaan07.dev",
     hoverColor: "md:hover:text-[#FF0069]",
     icon: (
       <svg

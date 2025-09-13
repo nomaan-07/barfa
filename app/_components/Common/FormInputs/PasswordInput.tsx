@@ -38,10 +38,7 @@ function PasswordInput({
         }
       />
       {showForgotPassword && (
-        <Link
-          href="/forgot-password"
-          className="text-primary mt-2 block text-xs"
-        >
+        <Link href="/" className="text-primary mt-2 block text-xs">
           فراموشی رمز عبور
         </Link>
       )}
