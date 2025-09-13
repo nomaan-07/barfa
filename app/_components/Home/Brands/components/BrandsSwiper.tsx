@@ -37,6 +37,7 @@ function BrandsSwiper({ brands }: BrandSwiperProps) {
         >
           <Link
             href={`/category/all?brand=${name}`}
+            scroll
             className="flex size-28 items-center justify-center sm:size-32"
           >
             <Skeleton isLoaded={isLoaded} className="rounded-xl">

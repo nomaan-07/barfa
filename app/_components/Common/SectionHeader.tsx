@@ -30,6 +30,7 @@ function SectionHeader({
       {link && (
         <Button
           as={Link}
+          scroll
           endContent={<LucideChevronLeft className="size-4.5" />}
           variant="light"
           href={link}
