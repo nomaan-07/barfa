@@ -27,7 +27,7 @@ export default async function middleware(req: NextRequest) {
     }
   }
   if (isProtectedRoute && !isAuthenticated) {
-    return NextResponse.redirect(new URL("/login", req.nextUrl));
+    return NextResponse.redirect(new URL(`/login?backTo=${path}`, req.nextUrl));
   }
 
   if (isAuthRoute && isAuthenticated) {

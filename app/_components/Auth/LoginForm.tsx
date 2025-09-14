@@ -4,7 +4,7 @@ import { loginUser } from "@/app/_lib/actions";
 import { loginValidation } from "@/app/_utils/validation";
 import { Form } from "@heroui/form";
 import { addToast } from "@heroui/toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import EmailInput from "../Common/FormInputs/EmailInput";
 import PasswordInput from "../Common/FormInputs/PasswordInput";
@@ -14,6 +14,8 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const backTo = searchParams.get("backTo");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -56,7 +58,7 @@ function LoginForm() {
         variant: "bordered",
         color: "success",
       });
-      router.push("/");
+      router.push(backTo ?? "/");
     }
   }
 
