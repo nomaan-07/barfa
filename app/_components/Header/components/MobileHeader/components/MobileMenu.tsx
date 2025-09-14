@@ -1,7 +1,7 @@
+import { headerMenuItems } from "@/app/_data/headerMenuItems";
 import { NavbarMenuItem } from "@heroui/navbar";
 import Link from "next/link";
 import SubMenu from "../../SubMenu";
-import { items } from "../../items";
 import MobilMenuAuthActions from "./MobilMenuAuthActions";
 
 interface MobileMenuProps {
@@ -11,17 +11,17 @@ interface MobileMenuProps {
 function MobileMenu({ onCloseMenu }: MobileMenuProps) {
   return (
     <>
-      {items.map((item) => (
+      {headerMenuItems.map(({ id, href, icon, title, subItems }) => (
         <NavbarMenuItem
-          key={item.id}
+          key={id}
           className="not-first:mt-6"
           onClick={onCloseMenu}
         >
-          <Link href={item.href} className="flex items-center gap-3">
-            {item.icon}
-            {item.title}
+          <Link href={href} className="flex items-center gap-3">
+            {icon}
+            {title}
           </Link>
-          {item.subItems && <SubMenu variant="mobile" items={item.subItems} />}
+          {subItems && <SubMenu variant="mobile" items={subItems} />}
         </NavbarMenuItem>
       ))}
 

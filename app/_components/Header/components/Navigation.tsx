@@ -1,31 +1,28 @@
+import { headerMenuItems } from "@/app/_data/headerMenuItems";
 import { Button } from "@heroui/button";
 import { NavbarItem } from "@heroui/navbar";
 import clsx from "clsx";
 import Link from "next/link";
-import { items } from "./items";
 import SubMenu from "./SubMenu";
 
 function Navigation() {
   return (
     <>
-      {items.map((item) => (
-        <NavbarItem
-          key={item.id}
-          className={clsx(item.subItems && "group relative")}
-        >
+      {headerMenuItems.map(({ id, href, icon, title, subItems }) => (
+        <NavbarItem key={id} className={clsx(subItems && "group relative")}>
           <Button
             as={Link}
             variant="light"
-            href={item.href}
-            startContent={item.icon}
+            href={href}
+            startContent={icon}
             className={clsx(
-              item.subItems &&
+              subItems &&
                 "after:bg-primary relative after:absolute after:right-0 after:bottom-0 after:h-px after:w-0 after:transition-all group-hover:after:w-full",
             )}
           >
-            {item.title}
+            {title}
           </Button>
-          {item.subItems && <SubMenu variant="desktop" items={item.subItems} />}
+          {subItems && <SubMenu variant="desktop" items={subItems} />}
         </NavbarItem>
       ))}
     </>

@@ -24,7 +24,7 @@ interface Item extends SubItem {
 
 const iconsStyles = "size-5 lg:size-4";
 
-export const items: Item[] = [
+export const headerMenuItems: Item[] = [
   {
     id: "1",
     title: "محصولات",
@@ -72,13 +72,13 @@ export const items: Item[] = [
   {
     id: "4",
     title: "درباره ما",
-    href: "/about-us",
+    href: "/",
     icon: <LucideInfo className={iconsStyles} />,
   },
   {
     id: "5",
     title: "ارتباط با ما",
-    href: "/contact-us",
+    href: "/",
     icon: <LucideMessageCircle className={iconsStyles} />,
   },
 ];
