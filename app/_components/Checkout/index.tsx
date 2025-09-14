@@ -11,7 +11,7 @@ import { SHIPPING_PRICE } from "@/app/_utils/constants";
 import { Address } from "@/app/_utils/types";
 import { addToast } from "@heroui/toast";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PriceSummaryCard from "../Common/PriceSummaryCard";
 import CheckoutAddressForm from "./components/CheckoutAddressForm";
 import CheckoutAddressSummary from "./components/CheckoutAddressSummary";
@@ -29,7 +29,11 @@ function Checkout() {
   const products = useCartStore((state) => state.products);
   const clearCart = useCartStore((state) => state.clearCart);
 
-  if (!hydrated || !productsCount) return <CheckoutSkeleton />;
+  useEffect(() => {
+    if (hydrated && !productsCount) return router.push("/");
+  }, [hydrated, productsCount, router]);
+
+  if (!hydrated) return <CheckoutSkeleton />;
 
   const handleOpenForm = () => setIsFormOpen(true);
 
